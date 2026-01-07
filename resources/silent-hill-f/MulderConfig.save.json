@@ -1,0 +1,14 @@
+{
+  "Silent Hill f": {
+    "HDR Peak Brightness": "1000 (default)",
+    "Ultrawide": [
+      "Fix cropped FOV",
+      "Remove aspect ratio limits",
+      "Remove pillarboxing / letterboxing in cutscenes"
+    ],
+    "Misc": [
+      "Remove 30 FPS cap in cutscenes",
+      "Skip intro logos and warnings"
+    ]
+  }
+}

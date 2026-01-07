@@ -1,0 +1,176 @@
+{
+  "game": {
+    "title": "Silent Hill f",
+    "originalExe": "SHf.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "HDR Peak Brightness",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "900" },
+        { "value": "1000 (default)" },
+        { "value": "1100" },
+        { "value": "1200" },
+        { "value": "1300" },
+        { "value": "1400" },
+        { "value": "1500" }
+      ]
+    },
+    {
+      "name": "Ultrawide",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Fix cropped FOV" },
+        { "value": "Remove aspect ratio limits" },
+        { "value": "Remove pillarboxing / letterboxing in cutscenes" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Enable console" },
+        { "value": "Remove 30 FPS cap in cutscenes" },
+        { "value": "Skip intro logos and warnings" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "HDR Peak Brightness": "900" } ],
+        "operation": "replaceLine",
+        "files": ["%LOCALAPPDATA%\\SHf\\Saved\\Config\\Windows\\GameUserSettings.ini"],
+        "pattern": "^HDRDisplayOutputNits=.*$",
+        "replacement": "HDRDisplayOutputNits=900"
+      },
+      {
+        "when": [ { "HDR Peak Brightness": "1000 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["%LOCALAPPDATA%\\SHf\\Saved\\Config\\Windows\\GameUserSettings.ini"],
+        "pattern": "^HDRDisplayOutputNits=.*$",
+        "replacement": "HDRDisplayOutputNits=1000"
+      },
+      {
+        "when": [ { "HDR Peak Brightness": "1100" } ],
+        "operation": "replaceLine",
+        "files": ["%LOCALAPPDATA%\\SHf\\Saved\\Config\\Windows\\GameUserSettings.ini"],
+        "pattern": "^HDRDisplayOutputNits=.*$",
+        "replacement": "HDRDisplayOutputNits=1100"
+      },
+      {
+        "when": [ { "HDR Peak Brightness": "1200" } ],
+        "operation": "replaceLine",
+        "files": ["%LOCALAPPDATA%\\SHf\\Saved\\Config\\Windows\\GameUserSettings.ini"],
+        "pattern": "^HDRDisplayOutputNits=.*$",
+        "replacement": "HDRDisplayOutputNits=1200"
+      },
+      {
+        "when": [ { "HDR Peak Brightness": "1300" } ],
+        "operation": "replaceLine",
+        "files": ["%LOCALAPPDATA%\\SHf\\Saved\\Config\\Windows\\GameUserSettings.ini"],
+        "pattern": "^HDRDisplayOutputNits=.*$",
+        "replacement": "HDRDisplayOutputNits=1300"
+      },
+      {
+        "when": [ { "HDR Peak Brightness": "1400" } ],
+        "operation": "replaceLine",
+        "files": ["%LOCALAPPDATA%\\SHf\\Saved\\Config\\Windows\\GameUserSettings.ini"],
+        "pattern": "^HDRDisplayOutputNits=.*$",
+        "replacement": "HDRDisplayOutputNits=1400"
+      },
+      {
+        "when": [ { "HDR Peak Brightness": "1500" } ],
+        "operation": "replaceLine",
+        "files": ["%LOCALAPPDATA%\\SHf\\Saved\\Config\\Windows\\GameUserSettings.ini"],
+        "pattern": "^HDRDisplayOutputNits=.*$",
+        "replacement": "HDRDisplayOutputNits=1500"
+      },
+      {
+        "when": [ { "Misc": "Enable console" } ],
+        "operation": "replaceText",
+        "files": ["SHf\\Binaries\\Win64\\scripts\\SHfFix.ini"],
+        "search": "key.\r\nEnabled = false",
+        "replacement": "key.\r\nEnabled = true"
+      },
+      {
+        "when": [ { "!Misc": "Enable console" } ],
+        "operation": "replaceText",
+        "files": ["SHf\\Binaries\\Win64\\scripts\\SHfFix.ini"],
+        "search": "key.\r\nEnabled = true",
+        "replacement": "key.\r\nEnabled = false"
+      },
+      {
+        "when": [ { "Misc": "Skip intro logos and warnings" } ],
+        "operation": "replaceText",
+        "files": ["SHf\\Binaries\\Win64\\scripts\\SHfFix.ini"],
+        "search": "intro logos and warnings.\r\nEnabled = false",
+        "replacement": "intro logos and warnings.\r\nEnabled = true"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro logos and warnings" } ],
+        "operation": "replaceText",
+        "files": ["SHf\\Binaries\\Win64\\scripts\\SHfFix.ini"],
+        "search": "intro logos and warnings.\r\nEnabled = true",
+        "replacement": "intro logos and warnings.\r\nEnabled = false"
+      },
+      {
+        "when": [ { "Misc": "Remove 30 FPS cap in cutscenes" } ],
+        "operation": "replaceText",
+        "files": ["SHf\\Binaries\\Win64\\scripts\\SHfFix.ini"],
+        "search": "30fps cap in cutscenes.\r\nEnabled = false",
+        "replacement": "30fps cap in cutscenes.\r\nEnabled = true"
+      },
+      {
+        "when": [ { "!Misc": "Remove 30 FPS cap in cutscenes" } ],
+        "operation": "replaceText",
+        "files": ["SHf\\Binaries\\Win64\\scripts\\SHfFix.ini"],
+        "search": "30fps cap in cutscenes.\r\nEnabled = true",
+        "replacement": "30fps cap in cutscenes.\r\nEnabled = false"
+      },
+      {
+        "when": [ { "Ultrawide": "Remove pillarboxing / letterboxing in cutscenes" } ],
+        "operation": "replaceText",
+        "files": ["SHf\\Binaries\\Win64\\scripts\\SHfFix.ini"],
+        "search": "letterboxing in cutscenes.\r\nEnabled = false",
+        "replacement": "letterboxing in cutscenes.\r\nEnabled = true"
+      },
+      {
+        "when": [ { "!Ultrawide": "Remove pillarboxing / letterboxing in cutscenes" } ],
+        "operation": "replaceText",
+        "files": ["SHf\\Binaries\\Win64\\scripts\\SHfFix.ini"],
+        "search": "letterboxing in cutscenes.\r\nEnabled = true",
+        "replacement": "letterboxing in cutscenes.\r\nEnabled = false"
+      },
+      {
+        "when": [ { "Ultrawide": "Remove aspect ratio limits" } ],
+        "operation": "replaceText",
+        "files": ["SHf\\Binaries\\Win64\\scripts\\SHfFix.ini"],
+        "search": "than 16:10.\r\nEnabled = false",
+        "replacement": "than 16:10.\r\nEnabled = true"
+      },
+      {
+        "when": [ { "!Ultrawide": "Remove aspect ratio limits" } ],
+        "operation": "replaceText",
+        "files": ["SHf\\Binaries\\Win64\\scripts\\SHfFix.ini"],
+        "search": "than 16:10.\r\nEnabled = true",
+        "replacement": "than 16:10.\r\nEnabled = false"
+      },
+      {
+        "when": [ { "Ultrawide": "Fix cropped FOV" } ],
+        "operation": "replaceText",
+        "files": ["SHf\\Binaries\\Win64\\scripts\\SHfFix.ini"],
+        "search": "cropped FOV.\r\nEnabled = false",
+        "replacement": "cropped FOV.\r\nEnabled = true"
+      },
+      {
+        "when": [ { "!Ultrawide": "Fix cropped FOV" } ],
+        "operation": "replaceText",
+        "files": ["SHf\\Binaries\\Win64\\scripts\\SHfFix.ini"],
+        "search": "cropped FOV.\r\nEnabled = true",
+        "replacement": "cropped FOV.\r\nEnabled = false"
+      }
+    ]
+  }
+}
