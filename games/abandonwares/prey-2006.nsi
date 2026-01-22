@@ -213,7 +213,7 @@ Function .onSelChange
             !insertmacro RadioButton ${lang_sp}
         !insertmacro EndRadioButtons
     ${EndIf}
-    
+
     ${If} ${SectionIsSelected} ${res}
         !insertmacro UnSelectSection ${res}
     ${Else}

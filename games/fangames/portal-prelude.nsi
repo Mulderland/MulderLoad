@@ -17,7 +17,7 @@ Section "Portal: Prelude v1.2.1"
     !insertmacro Download https://www.portalprelude.com/download.php?id=149 "portal-prelude-archive-1.2.1.zip"
     nsisunz::Unzip "portal-prelude-archive-1.2.1.zip" ".\"
     Delete "portal-prelude-archive-1.2.1.zip"
-    
+
     Rename "$INSTDIR\README.txt" "$INSTDIR\portal prelude\README.txt"
 SectionEnd
 

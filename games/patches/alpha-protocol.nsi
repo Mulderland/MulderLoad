@@ -13,7 +13,7 @@ Section "Steam Version - GOG Update v1.1"
     HashInfo::GetFileCRCHash "$R0" "$R1"
     Pop $0
     ${If} $0 == "9BFD7BED"
-        MessageBox MB_OK "Your version is already up-to-date with GOG release v1.1. Skipping." 
+        MessageBox MB_OK "Your version is already up-to-date with GOG release v1.1. Skipping."
         DetailPrint "Skipping GOG Update v1.1."
         goto skip_section
     ${EndIf}*/

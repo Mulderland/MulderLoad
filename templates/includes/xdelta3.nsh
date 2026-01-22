@@ -37,7 +37,7 @@ Function XDelta3_ApplyPatches_Rec
         IfFileExists "$1\$4.new" 0 +4
             Delete "$1\$4"
             Rename "$1\$4.new" "$1\$4"
-            Delete "$1\$3" ; delete the .xdelta file 
+            Delete "$1\$3" ; delete the .xdelta file
 
         FindNext $2 $3
     ${Loop}

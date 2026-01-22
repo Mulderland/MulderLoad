@@ -2,7 +2,7 @@
 !include "..\..\templates\select_exe.nsh"
 
 Name "Doom 3 [PATCHS]"
- 
+
 Section "Dhewm3 v1.5.4"
     SetOutPath $INSTDIR
 
@@ -26,7 +26,7 @@ SectionEnd
 
 Section /o "HUD/UI Fix (by NoisyPumpkin) - break existing saves"
     SetOutPath $INSTDIR
-    
+
     !insertmacro Download https://www.mediafire.com/file_premium/vvk9vdsxksu9atw/UNSTRECHED_HUD.zip/file "UNSTRECHED_HUD.zip"
     nsisunz::Unzip /noextractpath /file "zzzz_hud_base.pk4" "UNSTRECHED_HUD.zip" "base\"
     nsisunz::Unzip /noextractpath /file "zzzz_hud_xp.pk4" "UNSTRECHED_HUD.zip" "d3xp\"
@@ -45,7 +45,7 @@ Section "Textures Pack x4 v1.1 (by GrowlingGuy41)"
     Delete "base\autoexec.cfg.bak"
     IfFileExists "base\autoexec.cfg" +2
         Rename "base\autoexec.cfg" "base\autoexec.cfg.bak"
-    
+
     # Download autoexec.cfg that includes configuration for Texture Pack
     !insertmacro Download https://raw.githubusercontent.com/mulderload/recipes/refs/heads/main/resources/doom-3/autoexec.cfg "base\autoexec.cfg"
     !insertmacro Download https://raw.githubusercontent.com/mulderload/recipes/refs/heads/main/resources/doom-3/autoexec.cfg "d3xp\autoexec.cfg"

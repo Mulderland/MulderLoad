@@ -35,4 +35,3 @@ Get-ChildItem -Path '../games/abandonwares','../games/fangames','../games/patche
         Cache.SaveHash -nsiPath $nsiPath -hashValue $newHash
     }
   }
-  

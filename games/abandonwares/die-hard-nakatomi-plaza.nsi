@@ -64,7 +64,7 @@ SectionGroup "Die Hard: Nakatomi Plaza (USA)"
         RMDir "$INSTDIR\si_dhnp_en_update_10_1041"
         Delete "si_dhnp_en_update_10_1041.rar"
     SectionEnd
-    
+
     Section "NoCD crack v1.04 (by CLASS)"
         SetOutPath $INSTDIR
 
@@ -151,7 +151,7 @@ SectionGroup "Language" lang
         FileWrite $0 'language french'
         FileClose $0
     SectionEnd
-    
+
     Section /o "English with german subtitles (requires mod)" lang_omu
         FileOpen $0 "$INSTDIR\custom.cfg" w
         FileWrite $0 'language german'
@@ -173,7 +173,7 @@ SectionGroup "Language" lang
         !insertmacro Download https://cdn2.mulderload.eu/g/die-hard-nakatomi-plaza/french_audio_xdelta.7z "french_audio_xdelta.7z"
         Nsis7z::ExtractWithDetails "french_audio_xdelta.7z" "Installing package %s..."
         Delete "french_audio_xdelta.7z"
-        
+
         DetailPrint " // Applying xdelta patches"
         !insertmacro XDelta3_ApplyPatches "$INSTDIR"
     SectionEnd
@@ -184,7 +184,7 @@ Section
     Delete $INSTDIR\7z.dll
     Delete $INSTDIR\7z.exe
     RMDir /r $INSTDIR\Formats
-    
+
     DetailPrint " // Remove xdelta3"
     Delete "xdelta3.exe"
 SectionEnd

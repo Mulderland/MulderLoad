@@ -43,19 +43,19 @@ SectionGroup "Language Detection" lang
 
         IfFileExists "$INSTDIR\Data\Fallout4 - Voices_it.ba2" 0 +2
             StrCpy $F4_Language "it"
-            
+
         IfFileExists "$INSTDIR\Data\Fallout4 - Voices_es.ba2" 0 +2
             StrCpy $F4_Language "es"
-            
+
         IfFileExists "$INSTDIR\Data\Video\Intro_pl.bk2" 0 +2
             StrCpy $F4_Language "pl"
-            
+
         IfFileExists "$INSTDIR\Data\Video\Intro_ru.bk2" 0 +2
             StrCpy $F4_Language "ru"
-            
+
         IfFileExists "$INSTDIR\Data\Video\Intro_ptbr.bk2" 0 +2
             StrCpy $F4_Language "ptbr"
-            
+
         IfFileExists "$INSTDIR\Data\Video\Intro_ja.bk2" 0 +2
             StrCpy $F4_Language "ja"
     SectionEnd
@@ -72,11 +72,11 @@ SectionGroup /e "Downgrade Steam version (v1.11.191) to" version
 
         IfFileExists "$INSTDIR\Data\DLCRobot.cdx" 0 +2
             StrCpy $DLC_Automatron "yes"
-    
+
         IfFileExists "$INSTDIR\Data\DLCworkshop01.cdx" 0 +2
             StrCpy $DLC_Workshop "yes"
     SectionEnd
-    
+
     Section "v1.10.163 (pre-next-gen)" version_1_10_163
         AddSize 10485760
         SetOutPath $INSTDIR
@@ -261,7 +261,7 @@ SectionGroup /e "Downgrade Steam version (v1.11.191) to" version
         !insertmacro AbortIfUnsupportedVersion
         !insertmacro AbortIfUserRefuses
         !insertmacro DownloadXDelta
-    
+
         DetailPrint " // Downloading downgrade 377161 (Base game)"
         !insertmacro Download https://cdn2.mulderload.eu/g/fallout-4/steam_downgrade_1.11.191_to_1.10.984/377161.7z "377161.7z"
         Nsis7z::ExtractWithDetails "377161.7z" "Extracting downgrade 377161 %s..."
@@ -355,12 +355,12 @@ SectionGroup /e "Downgrade Steam version (v1.11.191) to" version
         !insertmacro AbortIfUnsupportedVersion
         !insertmacro AbortIfUserRefuses
         !insertmacro DownloadXDelta
-    
+
         DetailPrint " // Downloading downgrade 377162 (Base game)"
         !insertmacro Download https://cdn2.mulderload.eu/g/fallout-4/steam_downgrade_1.11.191_to_1.11.169/377162.7z "377162.7z"
         Nsis7z::ExtractWithDetails "377162.7z" "Extracting downgrade 377162 %s..."
         Delete "377162.7z"
-        
+
         DetailPrint " // Downloading downgrade 377163 (Base game)"
         !insertmacro Download https://cdn2.mulderload.eu/g/fallout-4/steam_downgrade_1.11.191_to_1.11.169/377163.7z "377163.7z"
         Nsis7z::ExtractWithDetails "377163.7z" "Extracting downgrade 377163 %s..."

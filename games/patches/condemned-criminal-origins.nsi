@@ -2,7 +2,7 @@
 !include "..\..\templates\select_exe.nsh"
 
 Name "Condemned: Criminal Origins [PATCHS]"
- 
+
 Section "[Steam] Missing sound effects (ThirteenAG)"
     SetOutPath $INSTDIR
 
@@ -29,7 +29,7 @@ SectionGroup /e "FOV increase" fov
         FileWrite $0 '"FovY" "70.0"$\r$\n'
         FileClose $0
     SectionEnd
- 
+
     Section "Medium increase (Vert- 75)" fov2
         FileOpen $0 "$INSTDIR\autoexec.cfg" a
         FileSeek $0 0 END

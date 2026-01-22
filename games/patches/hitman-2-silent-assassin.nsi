@@ -10,7 +10,7 @@ Section "Force version to GOG v1.01 (if required)"
 
     !insertmacro DownloadIfDifferent "hitman2.exe" "8eda1825c31521adb91c838b668a4c09ed51ac6d" https://cdn2.mulderload.eu/g/hitman-2-silent-assassin/Steam_v1.02_to_GOG_v1.01.7z "Steam_v1.02_to_GOG_v1.01.7z"
     IfFileExists "Steam_v1.02_to_GOG_v1.01.7z" yes no
-    yes: 
+    yes:
         Nsis7z::ExtractWithDetails "Steam_v1.02_to_GOG_v1.01.7z" "Installing package %s..."
         Delete "Steam_v1.02_to_GOG_v1.01.7z"
     no:
@@ -93,7 +93,7 @@ SectionGroup /e "Language Patch" lang
     SectionEnd
 SectionGroupEnd
 
-Section 
+Section
     # Download readme
     !insertmacro Download https://raw.githubusercontent.com/mulderload/recipes/refs/heads/main/resources/hitman-2-silent-assassin/README.txt "$INSTDIR\README-MulderLoad.txt"
 

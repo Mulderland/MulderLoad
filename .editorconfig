@@ -1,0 +1,23 @@
+root = true
+
+# Default for all files
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Markdown: preserve trailing spaces (used for line breaks)
+[*.md]
+trim_trailing_whitespace = false
+
+# Resources directories: only enforce Windows line endings
+[/resources/**]
+charset = unset
+end_of_line = crlf
+indent_size = unset
+indent_style = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset

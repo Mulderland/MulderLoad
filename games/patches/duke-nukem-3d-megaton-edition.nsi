@@ -4,7 +4,7 @@
 !include "..\..\templates\select_exe.nsh"
 
 Name "Duke Nukem 3D: Megaton Edition [PATCHS]"
- 
+
 Section "eDuke32 (x64)"
     SectionIn RO
     SetOutPath $INSTDIR\eduke32

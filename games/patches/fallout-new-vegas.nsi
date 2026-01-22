@@ -46,7 +46,7 @@ SectionGroup /e "Non-NVSE"
 
     Section "YUP (Yukichigai Unofficial Patch) v13.6"
         AddSize 138240
-    
+
         # Detect Game Language
         NScurl::sha1 "$INSTDIR\Data\Video\FNVIntro.bik"
         Pop $0
@@ -140,7 +140,7 @@ SectionGroup /e "NVSE v6.4.4"
         !insertmacro Download https://cdn2.mulderload.eu/g/fallout-new-vegas/NVTF%20v10.61/NVTF-66537-10-61-1756195258.7z "NVTF.7z"
         Nsis7z::ExtractWithDetails "NVTF.7z" "Extracting package %s..."
         Delete "NVTF.7z"
-        
+
         !insertmacro Download https://cdn2.mulderload.eu/g/fallout-new-vegas/NVTF%20v10.61/NVTF%20-%20INI-66537-1-06-1751295478.7z "NVTF-INI.7z"
         Nsis7z::ExtractWithDetails "NVTF-INI.7z" "Extracting package %s..."
         Delete "NVTF-INI.7z"
@@ -149,7 +149,7 @@ SectionGroup /e "NVSE v6.4.4"
     Section "Improved Lighting Shaders v1.6a"
         AddSize 21709
         SetOutPath $INSTDIR\Data
-        
+
         !insertmacro Download https://cdn2.mulderload.eu/g/fallout-new-vegas/Improved%20Lightning%20Shaders%20v1.6a/Improved%20Lighting%20Shaders-69833-1-6a-1738800319.zip "Improved_Lighting_Shaders.zip"
         nsisunz::Unzip "Improved_Lighting_Shaders.zip" ".\"
         Delete "Improved_Lighting_Shaders.zip"

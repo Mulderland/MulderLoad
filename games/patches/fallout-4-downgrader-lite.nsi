@@ -67,19 +67,19 @@ SectionGroup "Language Detection" lang
 
         IfFileExists "$INSTDIR\Data\Fallout4 - Voices_it.ba2" 0 +2
             StrCpy $F4_Language "it"
-            
+
         IfFileExists "$INSTDIR\Data\Fallout4 - Voices_es.ba2" 0 +2
             StrCpy $F4_Language "es"
-            
+
         IfFileExists "$INSTDIR\Data\Video\Intro_pl.bk2" 0 +2
             StrCpy $F4_Language "pl"
-            
+
         IfFileExists "$INSTDIR\Data\Video\Intro_ru.bk2" 0 +2
             StrCpy $F4_Language "ru"
-            
+
         IfFileExists "$INSTDIR\Data\Video\Intro_ptbr.bk2" 0 +2
             StrCpy $F4_Language "ptbr"
-            
+
         IfFileExists "$INSTDIR\Data\Video\Intro_ja.bk2" 0 +2
             StrCpy $F4_Language "ja"
     SectionEnd
@@ -96,7 +96,7 @@ SectionGroup /e "Downgrade Steam version (v1.11.191) to" version
 
         IfFileExists "$INSTDIR\Data\DLCRobot.cdx" 0 +2
             StrCpy $DLC_Automatron "yes"
-    
+
         IfFileExists "$INSTDIR\Data\DLCworkshop01.cdx" 0 +2
             StrCpy $DLC_Workshop "yes"
     SectionEnd
@@ -108,10 +108,10 @@ SectionGroup /e "Downgrade Steam version (v1.11.191) to" version
         !insertmacro AbortIfUnsupportedVersion
         !insertmacro AbortIfUserRefuses
         !insertmacro CopyXDelta
-    
+
         DetailPrint " // Copying downgrade 377162 (Base game)"
         CopyFiles "$EXEDIR\377162\*" "$INSTDIR\"
-        
+
         DetailPrint " // Copying downgrade 377163 (Base game)"
         CopyFiles "$EXEDIR\377163\*" "$INSTDIR\"
 
