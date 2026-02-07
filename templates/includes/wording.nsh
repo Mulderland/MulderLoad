@@ -1,5 +1,0 @@
-!define MUI_WELCOMEPAGE_TITLE "MulderLoad NSIS Installer"
-!define MUI_FINISHPAGE_TITLE "Installation complete !"
-!define MUI_FINISHPAGE_TEXT "Thank you for using our MulderLoad NSIS Installer.$\r$\n$\r$\nTo find more installers, visit our website, Mulderland.com.$\r$\nWe provides:$\r$\n- abandonwares$\r$\n- fangames$\r$\n- patches$\r$\n$\r$\nIf our project helped you, please spread the word to your friends and contacts.$\r$\n$\r$\nCheers !"
-!define MUI_FINISHPAGE_LINK "www.mulderland.com"
-!define MUI_FINISHPAGE_LINK_LOCATION "https://www.mulderland.com"
