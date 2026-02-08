@@ -14,6 +14,7 @@
 !include "..\..\includes\functions\StrReplace.nsh"
 !include "..\..\includes\functions\StrRightExplode.nsh"
 !include "..\..\includes\functions\StrStartsWith.nsh"
+!include "..\..\includes\misc\CommonMacros.nsh"
 
 ; Customize pages
 !define MUI_COMPONENTSPAGE_NODESC
