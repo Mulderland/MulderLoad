@@ -1,2 +1,2 @@
 * text=auto eol=lf
-/resources/** text=auto eol=crlf
+games/*/resources/** text=auto eol=crlf

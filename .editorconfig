@@ -14,7 +14,7 @@ trim_trailing_whitespace = true
 trim_trailing_whitespace = false
 
 # Resources directories: only enforce Windows line endings
-[/resources/**]
+[games/*/resources/**]
 charset = unset
 end_of_line = crlf
 indent_size = unset
