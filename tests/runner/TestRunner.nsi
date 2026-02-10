@@ -11,6 +11,7 @@ InstallDir "C:\MulderLoad\Tests"
 !include "..\..\tests\functions\StrContainsTest.nsh"
 !include "..\..\tests\functions\StrEndsWithTest.nsh"
 !include "..\..\tests\functions\StrReplaceTest.nsh"
+!include "..\..\tests\functions\StrResolveFilenameTest.nsh"
 !include "..\..\tests\functions\StrRightExplodeTest.nsh"
 !include "..\..\tests\functions\StrStartsWithTest.nsh"
 !insertmacro PRINT_STATS

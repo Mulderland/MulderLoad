@@ -12,6 +12,7 @@
 !include "..\..\includes\functions\StrContains.nsh"
 !include "..\..\includes\functions\StrEndsWith.nsh"
 !include "..\..\includes\functions\StrReplace.nsh"
+!include "..\..\includes\functions\StrResolveFilename.nsh"
 !include "..\..\includes\functions\StrRightExplode.nsh"
 !include "..\..\includes\functions\StrStartsWith.nsh"
 !include "..\..\includes\misc\CommonMacros.nsh"
