@@ -3,6 +3,7 @@
 
 !include "LogicLib.nsh"
 !include "..\..\includes\core\StackFrame.nsh"
+!include "..\..\includes\functions\PartialHashEquals.nsh"
 
 Function FileHashEquals
     !insertmacro STACKFRAME_BEGIN 2 3
@@ -21,8 +22,14 @@ Function FileHashEquals
     ${ElseIf} $R0 == 23
         NScurl::sha1 -file "$0"
         Pop $R1
-        # TODO
-        StrCpy $R2 0 ; false
+        !insertmacro PARTIAL_HASH_EQUALS $1 $R1 $R1
+        ${If} $R1 == 1
+            StrCpy $R2 1 ; true
+            Goto FileHashEquals_end
+        ${Else}
+            StrCpy $R2 0 ; false
+            Goto FileHashEquals_end
+        ${EndIf}
     ${Else}
         MessageBox MB_ICONEXCLAMATION "Unsupported hash length: $R0"
         StrCpy $R2 0 ; false
