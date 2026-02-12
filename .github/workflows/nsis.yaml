@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - 'test/**'
 
 permissions:
   contents: write
@@ -12,41 +11,94 @@ permissions:
 jobs:
   build:
     runs-on: windows-latest
+
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
+      with:
+        fetch-depth: 0
 
-    - name: Install NSIS
-      run: .\build\binaries\nsis\nsis-3.11-setup.exe /S /ALLUSERS=1 /LANG=ENGLISH
-
-    - name: Download some NSIS Plugins
-      working-directory: ./build/binaries/nsis-plugins
+    - name: Find previous release
+      id: previous_release
       shell: pwsh
       run: |
-        Invoke-WebRequest -Uri https://github.com/negrutiu/nsis-nscurl/releases/download/v25.5.31.201/NScurl.zip -OutFile NScurl.zip
+        $tag = git describe --tags --abbrev=0 2>$null
+        if (-not $tag) {
+          Write-Host "No previous release found, using first commit"
+          $firstCommit = git rev-list --max-parents=0 HEAD
+          echo fromCommit=$firstCommit >> $env:GITHUB_OUTPUT
+        } else {
+          Write-Host "Previous release tag: $tag"
+          echo fromCommit=$tag >> $env:GITHUB_OUTPUT
+        }
 
-    - name: Extract all NSIS Plugins
-      run: |
-        7z x -o"C:\Program Files (x86)\NSIS" "build\binaries\nsis-plugins\NScurl.zip"
-        7z x -o"C:\Program Files (x86)\NSIS" "build\binaries\nsis-plugins\Nsis7z_19.00.7z"
-        7z e -o"C:\Program Files (x86)\NSIS\Plugins\x86-unicode" "build\binaries\nsis-plugins\NSISunzU.zip" "NSISunzU\Plugin unicode\*"
-
-    - name: Build All
-      working-directory: ./build
+    - name: Detect NSI files to build
+      id: detect
       shell: pwsh
-      run: ./build-all.ps1
+      run: |
+        $fromCommit = "${{ steps.previous_release.outputs.fromCommit }}"
+        .\detect.ps1 $fromCommit HEAD
+      working-directory: build
+
+    - name: Setup build tools
+      if: steps.detect.outputs.detectSummary != 'none'
+      shell: pwsh
       env:
         CERTIFICATE_BASE64: ${{ secrets.CERTIFICATE_BASE64 }}
+      run: .\setup.ps1
+      working-directory: build
+
+    - name: Build NSI files
+      if: steps.detect.outputs.detectSummary != 'none'
+      shell: pwsh
+      env:
         CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
         ENABLE_CODE_SIGNING: ${{ vars.ENABLE_CODE_SIGNING }}
-        ENABLE_GITHUB_RELEASE: ${{ vars.ENABLE_GITHUB_RELEASE }}
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         MLD_REDIRECT_API_KEY: ${{ secrets.MLD_REDIRECT_API_KEY }}
-        RELEASE_NAME_SALT: ${{ secrets.RELEASE_NAME_SALT }}
+      run: |
+        Get-Content detect_result.txt | ForEach-Object {
+          Write-Host " // Building $_"
+          if ($env:ENABLE_CODE_SIGNING -eq '1') {
+            .\make.ps1 $_ -sign
+          } else {
+            .\make.ps1 $_
+          }
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "❌ Build failed for: $_ (exit code: $LASTEXITCODE)"
+            exit 1
+          }
+        }
+      working-directory: build
 
-    - name: Update cache
-      uses: EndBug/add-and-commit@v9
-      with:
-        add: 'build/.cache/'
-        author_name: 'github-actions[bot]'
-        author_email: 'github-actions[bot]@users.noreply.github.com'
-        message: 'Update cache'
+    - name: Generate version number
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.detect.outputs.detectSummary != 'none'
+      id: version_number
+      shell: pwsh
+      run: |
+        $base = Get-Date -Format "yy.MM"
+        $tags = git tag -l "$base.*"
+        Write-Host "Tags: $($tags -join ', ')"
+        if ($tags) {
+          $last = $tags | ForEach-Object { ($_ -split '\.')[-1] } | Sort-Object {[int]$_} -Descending | Select-Object -First 1
+          $next = [int]$last + 1
+        } else {
+          $next = 1
+        }
+        $versionNumber = "$base.$next"
+        Write-Host "Generated version number: $versionNumber"
+        echo versionNumber=$versionNumber >> $env:GITHUB_OUTPUT
+
+    - name: Create GitHub Release
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.detect.outputs.detectSummary != 'none'
+      shell: pwsh
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        $versionNumber = "${{ steps.version_number.outputs.versionNumber }}"
+        $detectSummary = "${{ steps.detect.outputs.detectSummary }}"
+
+        if ($detectSummary -eq "partial") {
+          gh release create $versionNumber ../dist/*.exe --generate-notes
+        } else {
+          gh release create $versionNumber ../dist/*.exe --generate-notes --latest=false
+        }
+      working-directory: build
