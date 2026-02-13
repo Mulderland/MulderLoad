@@ -1,9 +1,15 @@
 name: nsis
 
+# Avoid concurrent runs of this workflow on the main branch, but allow them for PRs
+concurrency:
+  group: ${{ github.workflow }}-main
+  cancel-in-progress: ${{ github.ref == 'refs/heads/main' }}
+
 on:
   push:
     branches:
       - main
+  pull_request: {}
 
 permissions:
   contents: write
