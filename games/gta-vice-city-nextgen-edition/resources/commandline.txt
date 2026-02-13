@@ -1,0 +1,7 @@
+-availablevidmem 30
+-forcehighqualitymirrors
+-novblank
+-heapsize 1048576
+-noprecache
+-nomemrestrict
+-norestrictions
