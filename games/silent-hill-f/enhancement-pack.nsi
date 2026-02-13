@@ -39,7 +39,7 @@ SectionGroup /e "MulderConfig (latest)"
         SectionIn RO
         AddSize 1024
         SetOutPath "$INSTDIR"
-        !insertmacro DOWNLOAD_1 "https://github.com/mulderload/MulderConfig/releases/latest/download/MulderConfig.exe" "MulderConfig.exe" ""
+        !insertmacro DOWNLOAD_1 "https://github.com/Mulderland/MulderConfig/releases/latest/download/MulderConfig.exe" "MulderConfig.exe" ""
         File "resources\MulderConfig.json"
         File "resources\MulderConfig.save.json"
         ExecWait '"$INSTDIR\MulderConfig.exe" -apply' $0
