@@ -2,7 +2,7 @@
 
 !macro 7Z_GET
     DetailPrint " // Getting 7z"
-    !insertmacro DOWNLOAD_2 "https://raw.githubusercontent.com/mulderload/recipes/refs/heads/main/build/binaries/7z-v25.01.zip" \
+    !insertmacro DOWNLOAD_2 "https://raw.githubusercontent.com/Mulderland/MulderLoad/refs/heads/main/build/binaries/7z-v25.01.zip" \
                             "https://cdn2.mulderload.eu/g/_tools/7z-v25.01.zip" \
                             "$INSTDIR\@mulderload\7z\7z.zip" "e1b06195495999f6a966631c76fa38eb1955285a"
     !insertmacro NSISUNZ_EXTRACT "$INSTDIR\@mulderload\7z\7z.zip" "$INSTDIR\@mulderload\7z" "AUTO_DELETE"
