@@ -1,32 +1,48 @@
-!define MUI_WELCOMEPAGE_TEXT "Welcome to this NSIS installer from the MulderLoad project.$\r$\n$\r$\nThis installer will download an (opinionated) compilation of patches for the game, while keeping a 'vanilla experience'.$\r$\n$\r$\nIt includes:$\r$\n- Better default resolution$\r$\n- Upscaled Textures$\r$\n- (optionally) a french patch$\r$\n$\r$\nA big thanks to the Penumbra: Quality Of Life Project for their textures !"
-!include "..\..\templates\select_exe.nsh"
+!define MUI_WELCOMEPAGE_TEXT "\
+This is an Enhancement Pack for Penumbra: Overture, aiming to provide a modern vanilla experience. It includes:$\r$\n\
+- Better default resolution$\r$\n\
+- Upscaled Textures$\r$\n\
+- (optionally) a french patch$\r$\n\
+$\r$\n\
+${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
+$\r$\n\
+Special thanks to the Penumbra: Quality Of Life project for their textures !"
 
-Name "Penumbra: Overture [PATCHS]"
+!include "..\..\includes\templates\SelectTemplate.nsh"
+
+Name "Penumbra: Overture [Enhancement Pack]"
 
 SectionGroup /e "Graphical improvements"
     Section "Set default res to 1920x1080 instead of 800x600"
-        SectionIn RO
-        SetOutPath $INSTDIR
+        SetOutPath "$INSTDIR"
 
-        !insertmacro Download https://www.mediafire.com/file_premium/pbaakxzy5tm0cdl/default_settings_1080p_us.cfg/file "config\default_settings.cfg"
+        File /oname=config\default_settings.cfg resources\default_settings_1080p.cfg
         Delete "$PROFILE\Documents\Penumbra Overture\Episode1\settings.cfg"
     SectionEnd
 
     Section "Texture Upscale Mod v1.1.1"
-        SetOutPath $INSTDIR
+        AddSize 1918894
+        SetOutPath "$INSTDIR"
 
-        !insertmacro Download https://www.mediafire.com/file_premium/bgsor1jqxtpcwhh/Overture-Mod-1.1.1.7z/file "Overture-Mod-1.1.1.7z"
-        Nsis7z::ExtractWithDetails "Overture-Mod-1.1.1.7z" "Installing package %s..."
-        Delete "Overture-Mod-1.1.1.7z"
+        # https://www.moddb.com/mods/penumbra-qol-project/downloads/penumbra-overture-texture-upscale-mod
+        !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/190144" \
+                                "https://cdn2.mulderload.eu/g/penumbra-overture/Overture-Mod-1.1.1.7z" \
+                                "Overture-Mod-1.1.1.7z" "77f89f7dd02e55aaab122d5c6155831a"
+
+        !insertmacro NSIS7Z_EXTRACT "Overture-Mod-1.1.1.7z" ".\" "AUTO_DELETE"
     SectionEnd
 SectionGroupEnd
 
 Section /o "Patch FR (French Subtitles)"
-    SetOutPath $INSTDIR
+    AddSize 179
+    SetOutPath "$INSTDIR"
 
-    !insertmacro Download https://www.mediafire.com/file_premium/dbi3hgrbyubsn0v/Francais.lang/file "config\Francais.lang"
-    !insertmacro Download https://www.mediafire.com/file_premium/i9nwzs04iam1muk/default_settings_1080p_fr.cfg/file "config\default_settings.cfg"
-    Delete "$PROFILE\Documents\Penumbra Overture\Episode1\settings.cfg"
+    !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/dbi3hgrbyubsn0v/Francais.lang/file" \
+                            "https://cdn2.mulderload.eu/g/penumbra-overture/Francais.lang" \
+                            "config\Francais.lang" "56d3d67fc4ce2fe556bae585aa37bef2fe7925c0"
+
+    !insertmacro FILE_STR_REPLACE "English.lang" "Francais.lang" 1 1 "config\default_settings.cfg"
+    !insertmacro FILE_STR_REPLACE "English.lang" "Francais.lang" 1 1 "$PROFILE\Documents\Penumbra Overture\Episode1\settings.cfg"
 SectionEnd
 
 Function .onInit

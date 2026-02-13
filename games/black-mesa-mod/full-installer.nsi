@@ -1,47 +1,65 @@
-!define MUI_WELCOMEPAGE_TEXT "Welcome to this NSIS installer from the MulderLoad project.$\r$\n$\r$\nThis installer will$\r$\n- download Black Mesa mod from Archive.org$\r$\n- download the 2023 fix (thanks to RN97 and EffBoyardee)$\r$\n- make english subtitles to work for french users$\r$\n- (optionally) download and install the official french translation$\r$\n$\r$\nYou need to have 'Source SDK Base 2007' for this mod to work, this installer will try to install it via Steam.$\r$\n$\r$\nAfter installation, you will have to quit & restart Steam for the game to appear in your library."
-!include "..\..\templates\select_exe.nsh"
+!define MUI_WELCOMEPAGE_TEXT "\
+This installer is for Black Mesa (the 2012 mod), the free version of the *almost official* remake of Half-Life. It will:$\r$\n\
+- install Black Mesa 2012 (fixed by RN97 and EffBoyardee)$\r$\n\
+- enable English subtitles for French users$\r$\n\
+- (optionally) install the French translation$\r$\n\
+$\r$\n\
+IMPORTANT:$\r$\n\
+- you need to have $\"Source SDK Base 2007$\" installed$\r$\n\
+- after installation, restart Steam so the game appears$\r$\n\
+$\r$\n\
+${TXT_WELCOMEPAGE_MULDERLAND_2}$\r$\n\
+$\r$\n\
+Special thanks to the Crowbar Collective! Consider buying the full game on Steam: it includes many improvements over this early version, as well as the final Xen chapters."
 
-Name "Black Mesa (mod)"
+!include "..\..\includes\templates\SelectTemplate.nsh"
+!include "..\..\includes\tools\7z.nsh"
+!include "..\..\includes\tools\InnoExtract.nsh"
 
-Section "Source SDK Base 2007 (Steam)"
-    MessageBox MB_ICONINFORMATION  "Steam will install Source SDK Base 2007. Click OK and follow instructions on Steam."
-    Exec '"$INSTDIR\..\..\..\steam.exe" steam://install/218'
-    Sleep 10000
-    MessageBox MB_OK "Click OK when 'Source SDK Base 2007' installation is complete."
-SectionEnd
+Name "Black Mesa (Mod)"
 
-Section "Black Mesa (with 2023 update)"
-    SectionIn RO
-    SetOutPath $INSTDIR
+Section "Black Mesa 2012 Fixed (Full Installation)"
+    AddSize 7423918
+    SetOutPath "$INSTDIR\blackmesa"
 
-    # This zip already includes the 2023 patch, but unzip doesn't work for files > 4Gb
-    #!insertmacro Download https://ia600500.us.archive.org/11/items/blackmesa.2/blackmesa.2.zip blackmesa.2.zip
+    # https://www.moddb.com/mods/black-mesa/downloads/black-mesa-source-fixed
+    !insertmacro DOWNLOAD_3 "https://www.moddb.com/downloads/start/253401" \
+                            "https://archive.org/download/blackmesa.2/blackmesa.2.zip" \
+                            "https://cdn2.mulderload.eu/g/black-mesa-2012/blackmesa.2.zip" \
+                            "blackmesa.2.zip" "80bf0c05c337cba9725cd8e135f5cb4f"
 
-    # So let's use the 2012 version in 7z...
-    !insertmacro Download https://archive.org/download/blackmesasource2012/blackmesa.7z "blackmesa.7z"
-    Nsis7z::ExtractWithDetails "blackmesa.7z" "Installing package %s..."
-    Delete "blackmesa.7z"
-
-    # ...and the 2023 "update" created with WinMerge
-    !insertmacro Download https://www.mediafire.com/file_premium/voo0iccje87wy3o/update_2023.7z/file "update_2023.7z"
-    Nsis7z::ExtractWithDetails "2023_update.7z" "Installing package %s..."
-    Delete "2023_update.7z"
+    # Extract with 7z (NSIS built-in unzip can't handle files > 4Gb)
+    SetOutPath "$INSTDIR"
+    !insertmacro 7Z_GET
+    !insertmacro 7Z_EXTRACT "blackmesa\blackmesa.2.zip" ".\" "AUTO_DELETE"
+    !insertmacro 7Z_REMOVE
 
     # Make english subtitles available for french users
-    CopyFiles "$INSTDIR\resource\closecaption_english.dat" "$INSTDIR\resource\closecaption_french.dat"
-    CopyFiles "$INSTDIR\resource\closecaption_english.txt" "$INSTDIR\resource\closecaption_french.txt"
+    CopyFiles "$INSTDIR\blackmesa\resource\closecaption_english.dat" "$INSTDIR\blackmesa\resource\closecaption_french.dat"
+    CopyFiles "$INSTDIR\blackmesa\resource\closecaption_english.txt" "$INSTDIR\blackmesa\resource\closecaption_french.txt"
 SectionEnd
 
 Section /o "Patch FR (French Subtitles)"
-    SetOutPath $INSTDIR
+    AddSize 293601
+    SetOutPath "$INSTDIR\blackmesa"
 
-    !insertmacro Download https://www.mediafire.com/file_premium/2bsqcj02ceiqjkz/Black_Mesa_-_Official_French_Translation_1.0_Setup.exe/file "Black_Mesa_-_Official_French_Translation_1.0_Setup.exe"
-    ExecWait '"Black_Mesa_-_Official_French_Translation_1.0_Setup.exe" /DIR="$INSTDIR" /SILENT /SUPPRESSMSGBOXES /NORESTART /SP-' $0
-    Delete "Black_Mesa_-_Official_French_Translation_1.0_Setup.exe"
+    # https://www.moddb.com/addons/black-mesa-official-french-translation
+    !insertmacro DOWNLOAD_3 "https://www.moddb.com/addons/start/50301" \
+                            "https://cdn2.mulderload.eu/g/black-mesa-2012/Black_Mesa_-_Official_French_Translation_1.0_Setup.exe" \
+                            "https://www.mediafire.com/file_premium/2bsqcj02ceiqjkz/Black_Mesa_-_Official_French_Translation_1.0_Setup.exe/file" \
+                            "Black_Mesa_-_Official_French_Translation_1.0_Setup.exe" "67ff98cac9a092316b25601389c719f8e57f4282"
+
+    # Extract with InnoExtract
+    !insertmacro INNOEXTRACT_GET
+    !insertmacro INNOEXTRACT_UNPACK "$INSTDIR\blackmesa\Black_Mesa_-_Official_French_Translation_1.0_Setup.exe" "$INSTDIR\blackmesa" "AUTO_DELETE"
+    !insertmacro INNOEXTRACT_REMOVE
+
+    Rename "$INSTDIR\blackmesa\BMS_French\BlackMesa_French_LisezMoi.pdf" "$INSTDIR\blackmesa\BlackMesa_French_LisezMoi.pdf"
+    RMDir /r "$INSTDIR\blackmesa\BMS_French"
 SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "steam.exe"
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam"
-    StrCpy $SELECT_RELATIVE_INSTDIR "steamapps\sourcemods\BMS"
+    StrCpy $SELECT_RELATIVE_INSTDIR "steamapps\sourcemods"
 FunctionEnd

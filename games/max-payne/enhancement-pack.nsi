@@ -1,43 +1,67 @@
-!define MUI_WELCOMEPAGE_TEXT "Welcome to this NSIS installer from the MulderLoad project.$\r$\n$\r$\nThis installer will download an (opinionated) compilation of patches for the game, while keeping a 'vanilla experience'.$\r$\n$\r$\nIt includes:$\r$\n- Corrupted levels Fix (with auto-detection)$\r$\n- Widescreen Fix$\r$\n- Modern CPUs Fix$\r$\n- Difficulty fixes$\r$\n- Sound fix (via DSOAL)$\r$\n$\r$\nA big thanks to ThirteenAG and the DSOAL project!"
-!include "..\..\templates\select_exe.nsh"
+!define MUI_WELCOMEPAGE_TEXT "\
+This is an Enhancement Pack for Max Payne, aiming to provide a modern vanilla experience. It includes:$\r$\n\
+- Crash fix because of corrupted levels (if detected)$\r$\n\
+- Crash fix for modern CPUs (JPEG error)$\r$\n\
+- Sound fix (with DSOAL)$\r$\n\
+- Difficulty fixes$\r$\n\
+$\r$\n\
+${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
+$\r$\n\
+Special thanks to ThirteenAG and the DSOAL project!"
 
-Name "Max Payne [PATCHS]"
+!include "..\..\includes\templates\SelectTemplate.nsh"
+!include "..\..\includes\tools\7z.nsh"
+
+Name "Max Payne [Enhancement Pack]"
 
 Section "Fix corrupted levels (if required)"
-    SectionIn RO
-    SetOutPath $INSTDIR
+    SetOutPath "$INSTDIR"
 
-    !insertmacro DownloadIfDifferent "x_level1.ras" "d7dc20d91930b67c84dad0fb18a5c712bd324330" https://www.mediafire.com/file_premium/9v212c2kmot7bes/x_levels_fix.7z/file "x_levels_fix.7z"
-    IfFileExists "x_levels_fix.7z" yes no
-    yes: Nsis7z::ExtractWithDetails "x_levels_fix.7z" "Replacing file %s..."
-        Delete "x_levels_fix.7z"
-    no:
+    DetailPrint " // Comparing level checksum with correct one..."
+    !insertmacro FILE_HASH_EQUALS "x_level1.ras" "d7dc20d91930b67c84dad0fb18a5c712bd324330" $0
+    ${If} $0 != "1"
+        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/max-payne/x_levels_fix.7z" \
+                                "https://www.mediafire.com/file_premium/9v212c2kmot7bes/x_levels_fix.7z/file" \
+                                "x_levels_fix.7z" "745253dd796e0833ebba0ff91cd40e83c5f76678"
+        !insertmacro NSIS7Z_EXTRACT "x_levels_fix.7z" ".\" "AUTO_DELETE"
+    ${EndIf}
 SectionEnd
 
 Section "ThirteenAG's Widescreen Fix (+ use D3D9)"
     SectionIn RO
-    SetOutPath $INSTDIR
+    AddSize 2417
 
-    !insertmacro Download https://github.com/ThirteenAG/WidescreenFixesPack/releases/download/mp1/MaxPayne.WidescreenFix.zip "MaxPayne.WidescreenFix.zip"
-    nsisunz::Unzip "MaxPayne.WidescreenFix.zip" ".\"
-    Delete "MaxPayne.WidescreenFix.zip"
+    SetOutPath "$INSTDIR"
 
-    !insertmacro Download https://www.mediafire.com/file_premium/1nh7p29tstyp2th/global.ini/file "scripts\global.ini"
+    !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/WidescreenFixesPack/releases/download/mp1/MaxPayne.WidescreenFix.zip" \
+                            "https://cdn2.mulderload.eu/g/max-payne/MaxPayne.WidescreenFix.zip" \
+                            "MaxPayne.WidescreenFix.zip" ""
+    !insertmacro NSISUNZ_EXTRACT "MaxPayne.WidescreenFix.zip" ".\" "AUTO_DELETE"
+
+    File "/oname=scripts\global.ini" "resources\global.ini"
 SectionEnd
 
 Section "Fix JPEG errors on modern CPUs"
-    SetOutPath $INSTDIR
+    AddSize 276
+    SetOutPath "$INSTDIR"
 
-    !insertmacro download https://www.mediafire.com/file_premium/vpotbzh2qt9o89c/rlmfc.dll/file "rlmfc.dll"
+    !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/ravyaa9mo2536z9/rlmfc_for_ryzen.rar/file" \
+                            "https://cdn2.mulderload.eu/g/max-payne/rlmfc_for_ryzen.rar" \
+                            "rlmfc_for_ryzen.rar" "39db990749e5dcbbd6a81b59075ad059998563f3"
+    !insertmacro 7Z_GET
+    !insertmacro 7Z_EXTRACT "rlmfc_for_ryzen.rar" ".\" "AUTO_DELETE"
+    !insertmacro 7Z_REMOVE
 SectionEnd
 
 SectionGroup "Difficulty fixes"
     Section "Remove broken Adaptive Difficulty"
-        SetOutPath $INSTDIR
+        AddSize 9
 
-        !insertmacro Download https://www.mediafire.com/file_premium/m5k5vstel0pbo71/payne_difficulty.7z/file "payne_difficulty.7z"
-        Nsis7z::ExtractWithDetails "payne_difficulty.7z" "Installing package %s..."
-        Delete "payne_difficulty.7z"
+        SetOutPath "$INSTDIR"
+        !insertmacro DOWNLOAD_2 "https://community.pcgamingwiki.com/files/file/2807-max-payne-flat-difficulty-vanilla-pc-values/#14073" \
+                                "https://cdn2.mulderload.eu/g/max-payne/payne_difficulty.7z" \
+                                "payne_difficulty.7z" "d450928893efad20708de6ec8ae1d0678a7499cd"
+        !insertmacro NSIS7Z_EXTRACT "payne_difficulty.7z" ".\" "AUTO_DELETE"
     SectionEnd
 
     Section "Unlock all difficulties"
@@ -50,20 +74,26 @@ SectionGroup "Difficulty fixes"
 SectionGroupEnd
 
 SectionGroup /e "Sound fix" sound
-    Section "DSOAL r647 Standard (recommended)" sound_std
-        !insertmacro Download https://github.com/kcat/dsoal/releases/download/r647/DSOAL.zip "$INSTDIR\DSOAL.zip"
+    Section
+        SetOutPath "$INSTDIR"
+
+        !insertmacro DOWNLOAD_1 "https://github.com/kcat/dsoal/releases/download/archive/DSOAL_r657.zip" "DSOAL_r657.zip" "0eea221e770addb35ee337c2938010c70c0e1603"
+        !insertmacro NSISUNZ_EXTRACT "DSOAL_r657.zip" ".\" "AUTO_DELETE"
     SectionEnd
 
-    Section /o "DSOAL r647 HRTF (for surround headphones)" sound_hrtf
-        !insertmacro Download https://github.com/kcat/dsoal/releases/download/r647/DSOAL+HRTF.zip "$INSTDIR\DSOAL.zip"
+    Section "DSOAL r657 Standard (recommended)" sound_std
+        AddSize 1547
+
+        !insertmacro NSISUNZ_EXTRACT_ONE "DSOAL_r657.zip" ".\" "DSOAL\Win32\alsoft.ini" ""
+        !insertmacro NSISUNZ_EXTRACT_ONE "DSOAL_r657.zip" ".\" "DSOAL\Win32\dsoal-aldrv.dll" ""
+        !insertmacro NSISUNZ_EXTRACT_ONE "DSOAL_r657.zip" ".\" "DSOAL\Win32\dsound.dll" "AUTO_DELETE"
     SectionEnd
 
-    Section # hidden section
-        SetOutPath $INSTDIR
-        nsisunz::Unzip /noextractpath /file "Win32\alsoft.ini" "DSOAL.zip" ".\"
-        nsisunz::Unzip /noextractpath /file "Win32\dsoal-aldrv.dll" "DSOAL.zip" ".\"
-        nsisunz::Unzip /noextractpath /file "Win32\dsound.dll" "DSOAL.zip" ".\"
-        Delete "DSOAL.zip"
+    Section /o "DSOAL r657 HRTF (for surround headphones)" sound_hrtf
+        AddSize 1526
+        !insertmacro NSISUNZ_EXTRACT_ONE "DSOAL_r657.zip" ".\" "DSOAL+HRTF\Win32\alsoft.ini" ""
+        !insertmacro NSISUNZ_EXTRACT_ONE "DSOAL_r657.zip" ".\" "DSOAL+HRTF\Win32\dsoal-aldrv.dll" ""
+        !insertmacro NSISUNZ_EXTRACT_ONE "DSOAL_r657.zip" ".\" "DSOAL+HRTF\Win32\dsound.dll" "AUTO_DELETE"
     SectionEnd
 SectionGroupEnd
 

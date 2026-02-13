@@ -1,16 +1,32 @@
-!define MUI_WELCOMEPAGE_TEXT "Welcome to this NSIS installer from the MulderLoad project.$\r$\n$\r$\nThis installer will$\r$\n- download and extract AM2RLauncher (a launcher and updater for the game)$\r$\n- the required AM2R_11.zip from Archive.org$\r$\n$\r$\nA big thanks to DoctorM64 for the development of this game!"
-!include "..\..\templates\standard.nsh"
+!define MUI_WELCOMEPAGE_TEXT "\
+WARNING: For legal reasons, this installer doesn't include or distribute the fan-game archive. You must provide your own backup of $\"AM2R_11.zip$\" released by DoctorM64.$\r$\n\
+$\r$\n\
+This installer can:$\r$\n\
+- verify the integrity of your AM2R_11.zip$\r$\n\
+- copy it to a folder of your choice$\r$\n\
+- install AM2RLauncher (a launcher and updater)$\r$\n\
+$\r$\n\
+${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
+$\r$\n\
+Special thanks to DoctorM64 and the AM2RLauncher community! Metroid is a trademark of Nintendo. This project is not affiliated with or endorsed by Nintendo."
+
+!include "..\..\includes\templates\ByofTemplate.nsh"
 
 Name "AM2R"
 InstallDir "C:\MulderLoad\AM2R"
 
+!insertmacro BYOF_DEFINE "BACKUP" "ZIP files|*.zip" "b6b722a2b4fb366e6e94dfda869d369f4ad93cbc"
+!insertmacro BYOF_PAGE_CREATE
+!insertmacro BYOF_WRITE_ENABLE_NEXT_BUTTON
+
 Section "AM2R v1.1 + AM2RLauncher v2.3"
-    SectionIn RO
-    SetOutPath $INSTDIR
+    SetOutPath "$INSTDIR"
+    AddSize 86016
 
-    !insertmacro Download https://github.com/AM2R-Community-Developers/AM2RLauncher/releases/download/2.3.0/AM2RLauncher_2.3.0_win_DownloadMe.zip "AM2RLauncher.zip"
-    nsisunz::Unzip "AM2RLauncher.zip" ".\"
-    Delete "AM2RLauncher.zip"
+    !insertmacro DOWNLOAD_2 "https://github.com/AM2R-Community-Developers/AM2RLauncher/releases/download/2.3.0/AM2RLauncher_2.3.0_win_DownloadMe.zip" \
+                            "https://cdn2.mulderload.eu/g/am2r/AM2RLauncher_2.3.0_win_DownloadMe.zip" \
+                            "AM2RLauncher.zip" "0fd83bd8c337b74e9e4e6e0af82cbc8bdcb639f5"
+    !insertmacro NSISUNZ_EXTRACT "AM2RLauncher.zip" ".\" "AUTO_DELETE"
 
-    !insertmacro Download https://archive.org/download/am2r1.1/am2r-another-metroid-2-remake-1-1.zip "AM2R_11.zip"
+    CopyFiles "$byofPath_BACKUP" "$INSTDIR\AM2R_11.zip"
 SectionEnd

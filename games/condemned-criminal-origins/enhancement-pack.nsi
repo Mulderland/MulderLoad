@@ -1,25 +1,41 @@
-!define MUI_WELCOMEPAGE_TEXT "Welcome to this NSIS installer from the MulderLoad project.$\r$\n$\r$\nThis installer can$\r$\n- install the missing sound effects from the Steam release (thanks ThirteenAG) for all languages (not just english)$\r$\n- install widescreen (and fps) fix (ThirteenAG again!)$\r$\n- change the FOV, since this game is Vert-$\r$\n- install AI upscaled textures (Neural Origins mod)$\r$\n- skip intro videos$\r$\n$\r$\nEnjoy this updated game !"
-!include "..\..\templates\select_exe.nsh"
+!define MUI_WELCOMEPAGE_TEXT "\
+Enhancement Pack for Condemned: Criminal Origins, to:$\r$\n\
+- install the missing sound effects from Steam effects (by ThirteenAG) for all languages (not just English)$\r$\n\
+- install Widescreen && FPS Fix (by ThirteenAG)$\r$\n\
+- change the FOV$\r$\n\
+- install AI Upscaled Textures (Neural Origins mod)$\r$\n\
+- skip intro videos$\r$\n\
+$\r$\n\
+${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
+$\r$\n\
+Special thanks to ThirteenAG and the Neural Origins modders!"
 
-Name "Condemned: Criminal Origins [PATCHS]"
+!include "..\..\includes\templates\SelectTemplate.nsh"
+!include "..\..\includes\tools\7z.nsh"
+
+Name "Condemned: Criminal Origins [Enhancement Pack]"
 
 Section "[Steam] Missing sound effects (ThirteenAG)"
-    SetOutPath $INSTDIR
+    AddSize 632832
+    SetOutPath "$INSTDIR"
 
-    !insertmacro Download https://github.com/ThirteenAG/WidescreenFixesPack/releases/download/condemned/Condemned.MissingSteamFilesFix.zip "Condemned.MissingSteamFilesFix.zip"
-    nsisunz::Unzip /noextractpath /file "Condemned.MissingSteamFilesFix\Game\CondemnedX.Arch00" "Condemned.MissingSteamFilesFix.zip" "Game\"
-    nsisunz::Unzip /noextractpath /file "Condemned.MissingSteamFilesFix\default.archcfg" "Condemned.MissingSteamFilesFix.zip" ".\"
-    Delete "Condemned.MissingSteamFilesFix.zip"
+    !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/WidescreenFixesPack/releases/download/condemned/Condemned.MissingSteamFilesFix.zip" \
+                            "https://cdn2.mulderload.eu/g/condemned-criminal-origins/Condemned.MissingSteamFilesFix.zip" \
+                            "Condemned.MissingSteamFilesFix.zip" ""
+    !insertmacro NSISUNZ_EXTRACT_ONE "Condemned.MissingSteamFilesFix.zip" "Game\" "Condemned.MissingSteamFilesFix\Game\CondemnedX.Arch00" ""
+    !insertmacro NSISUNZ_EXTRACT_ONE "Condemned.MissingSteamFilesFix.zip" ".\" "Condemned.MissingSteamFilesFix\default.archcfg" "AUTO_DELETE"
     Rename "Game\CondemnedX.Arch00" "Game\CondemnedB.Arch00"
 SectionEnd
 
 Section "Widescreen & Framerate Fix (ThirteenAG)"
+    AddSize 10547
     SectionIn RO
-    SetOutPath $INSTDIR
+    SetOutPath "$INSTDIR"
 
-    !insertmacro Download https://github.com/ThirteenAG/WidescreenFixesPack/releases/download/condemned/Condemned.WidescreenFix.zip "Condemned.WidescreenFix.zip"
-    nsisunz::Unzip "Condemned.WidescreenFix.zip" ".\"
-    Delete "Condemned.WidescreenFix.zip"
+    !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/WidescreenFixesPack/releases/download/condemned/Condemned.WidescreenFix.zip" \
+                            "https://cdn2.mulderload.eu/g/condemned-criminal-origins/Condemned.WidescreenFix.zip" \
+                            "Condemned.WidescreenFix.zip" ""
+    !insertmacro NSISUNZ_EXTRACT "Condemned.WidescreenFix.zip" ".\" "AUTO_DELETE"
 SectionEnd
 
 SectionGroup /e "FOV increase" fov
@@ -47,30 +63,44 @@ SectionGroupEnd
 
 SectionGroup /e "AI Upscaled Textures (Neural Origins 0.9)"
     Section # 4GB Patch
-        SetOutPath $INSTDIR
+        SetOutPath "$INSTDIR"
 
-        !insertmacro Download https://ntcore.com/files/4gb_patch.zip "4gb_patch.zip"
-        nsisunz::Unzip "4gb_patch.zip" ".\"
-        Delete "4gb_patch.zip"
+        !insertmacro DOWNLOAD_2 "https://ntcore.com/files/4gb_patch.zip" \
+                                "https://cdn2.mulderload.eu/g/condemned-criminal-origins/4gb_patch.zip" \
+                                "4gb_patch.zip" "c8b0d61937cb54fc8215124c0f737a1d29479c97"
+        !insertmacro NSISUNZ_EXTRACT "4gb_patch.zip" ".\" "AUTO_DELETE"
 
         ExecWait '4gb_patch.exe Condemned.exe' $0
         Delete "4gb_patch.exe"
     SectionEnd
 
-    Section # Neural Origins v0.9
-        SetOutPath $INSTDIR\Game\CondemnedC.Arch00
+    Section # Neural Origins
+        AddSize 9785344
+        SetOutPath "$INSTDIR\Game\CondemnedC.Arch00"
 
-        !insertmacro DownloadRange https://cdn2.mulderload.eu/g/condemned-criminal-origins/Neural_Origins_0.9/Neural_Origins_0.9.7z "Neural_Origins_0.9.7z" 9
-        Nsis7z::ExtractWithDetails "Neural_Origins_0.9.7z.001" "Installing package %s..."
-        !insertmacro DeleteRange "Neural_Origins_0.9.7z" 9
+        # https://www.moddb.com/mods/neural-origins/downloads/09
+        !insertmacro DOWNLOAD_3 "https://www.moddb.com/downloads/start/185281" \
+                                "https://www.mediafire.com/file_premium/psh39fggqk9li8y/Data.zip/file" \
+                                "https://cdn2.mulderload.eu/g/condemned-criminal-origins/Data.zip" \
+                                "Data.zip" "7c80e43f9f252bf55fba7b9b37df5a5e"
+
+        # Extract with 7z (NSIS built-in unzip can't handle files > 4Gb)
+        !insertmacro 7Z_GET
+        !insertmacro 7Z_EXTRACT "Data.zip" ".\" "AUTO_DELETE"
+        !insertmacro 7Z_REMOVE
+        !insertmacro FOLDER_MERGE "$INSTDIR\Game\CondemnedC.Arch00\Data" "$INSTDIR\Game\CondemnedC.Arch00"
     SectionEnd
 
     Section /o "Green HUD for OLED screens"
-        SetOutPath $INSTDIR\Game\CondemnedC.Arch00
+        AddSize 768
+        SetOutPath "$INSTDIR\Game\CondemnedC.Arch00"
 
-        !insertmacro Download https://www.mediafire.com/file_premium/b8cj2zfjy0vdpab/global.1.zip/file "global.1.zip"
-        nsisunz::Unzip "global.1.zip" ".\"
-        Delete "global.1.zip"
+        # https://www.moddb.com/mods/neural-origins/addons/green-hud-for-oled
+        !insertmacro DOWNLOAD_3 "https://www.moddb.com/addons/start/185307" \
+                                "https://cdn2.mulderload.eu/g/condemned-criminal-origins/global.1.zip" \
+                                "https://www.mediafire.com/file_premium/b8cj2zfjy0vdpab/global.1.zip/file" \
+                                "global.1.zip" "4fffb4b00087115d21d7dc1ff8255c3b"
+        !insertmacro NSISUNZ_EXTRACT "global.1.zip" ".\" "AUTO_DELETE"
     SectionEnd
 SectionGroupEnd
 

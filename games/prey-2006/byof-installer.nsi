@@ -1,228 +1,76 @@
-!define MUI_WELCOMEPAGE_TEXT "Welcome to this NSIS installer from the MulderLoad project.$\r$\n$\r$\nThis installer can$\r$\n- install Prey, downloaded from Archive.org$\r$\n- install official update v1.4$\r$\n- allow to switch language$\r$\n- allow high resolution and 21/9 support$\r$\n- download HUD Widescreen mod (by hexaae)$\r$\n- download ultrawide patch (by fgsfds)$\r$\n- force high quality graphics$\r$\n$\r$\nIf you already have Prey installed and updated to v1.4 (with Steam for example), you can use this installer as a Patcher only. Simply choose your installation follder, then unselect the first line on the components page."
-!include "..\..\templates\standard.nsh"
+!define MUI_WELCOMEPAGE_TEXT "\
+WARNING: For legal reasons, this installer doesn't include or distribute the original game files. You must provide your own DVD image. It has been tested with Europe and US releases; compatibility with other versions is not guaranteed.$\r$\n\
+$\r$\n\
+It will installs the game (without running Installshield), apply the official update v1.4, and adds several enhancements:$\r$\n\
+- configure 16/9 and 21/9 resolutions$\r$\n\
+- install widescreen HUD fix (by hexaae)$\r$\n\
+- install 21/9 support (by fgsfds)$\r$\n\
+- apply ultra-high quality settings$\r$\n\
+$\r$\n\
+${TXT_WELCOMEPAGE_MULDERLAND_3}."
 
-Name "Prey (2006)"
+!include "..\..\includes\templates\ByofTemplate.nsh"
+!include "..\..\includes\tools\7z.nsh"
+!include "..\..\includes\tools\I6Comp.nsh"
+
+; ...........................................................Europe (Original)............................Europe (Alt)..................Europe (Sold Out Software Rerelease)........USA (Limited Collector's Edition)
+!insertmacro BYOF_DEFINE "DVD" "Images files|*.iso" "6d8d476e4d564fd281d7020bc4dcdca4baebef40,c3145876767ab39e610aac5a003d12560e65e62b,33e4f4f41d817baf7cfd1700ebfd4fc3d5dbdc72,afbbac928a852c90a64ad4296358b644a39dfcfa"
+!insertmacro BYOF_PAGE_CREATE
+!insertmacro BYOF_WRITE_ENABLE_NEXT_BUTTON
+
+Name "Prey 2006"
 InstallDir "C:\MulderLoad\Prey 2006"
 
-Section "Prey (Limited Collectors Edition) + Patch v1.4"
-    SetOutPath $INSTDIR\@tmp
-    !insertmacro Get7z
+SectionGroup "Prey 2006 (Full installation)"
+    Section
+        AddSize 1646265
 
-    # Download and extract iso
-    !insertmacro Download https://archive.org/download/PreyUSAEnFrDeEsIt/Prey%20(USA)%20(En%2CFr%2CDe%2CEs%2CIt).iso "Prey (USA) (En,Fr,De,Es,It).iso"
-    nsExec::ExecToLog '".\7z.exe" x -aoa -o".\" "Prey (USA) (En,Fr,De,Es,It).iso"'
-    Delete "Prey (USA) (En,Fr,De,Es,It).iso"
+        # Extract ISO
+        !insertmacro 7Z_GET
+        !insertmacro 7Z_IMAGE_EXTRACT "$byofPath_DVD" "$INSTDIR\@mulderload\iso" ""
 
-    # Run Game Setup
-    !insertmacro Download https://raw.githubusercontent.com/mulderload/recipes/refs/heads/main/resources/prey-2006/setup-mulderload.iss "setup-mulderload.iss"
-    !insertmacro ReplaceInFile "___TARGETDIR___" "$INSTDIR" 1 1 "setup-mulderload.iss"
-    ExecWait '"setup.exe" /s /SMS /f1".\setup-mulderload.iss"' $0
+        # Copy files
+        RMDir /r "$INSTDIR\@mulderload\iso\Setup\Data\pb" ; We don't need pb folder
+        !insertmacro FOLDER_MERGE "$INSTDIR\@mulderload\iso\Setup\Data" "$INSTDIR\"
+        RMDir /r "$INSTDIR\@mulderload\iso"
 
-    # Write CD-Key from RELOADED
-    FileOpen $0 "$INSTDIR\base\preykey" w
-    FileWrite $0 'D23BDPBABCRPTABP$\r$\n'
-    FileClose $0
-
-    # Download Patch 1.4
-    !insertmacro Download https://www.mediafire.com/file_premium/4mbewp42mr6pjfd/prey_14.zip/file "prey_14.zip"
-    nsisunz::Unzip "prey_14.zip" ".\"
-    Delete "prey_14.zip"
-
-    # Run Patch Setup
-    !insertmacro Download https://raw.githubusercontent.com/mulderload/recipes/refs/heads/main/resources/prey-2006/update14-mulderload.iss "update14-mulderload.iss"
-    !insertmacro ReplaceInFile "___TARGETDIR___" "$INSTDIR" 1 1 "update14-mulderload.iss"
-    ExecWait '"SetupPreyPt1.4.exe" /s /SMS /f1".\update14-mulderload.iss"' $0
-
-    # Delete @tmp
-    SetOutPath $INSTDIR
-    RMDir /r "$INSTDIR\@tmp"
-
-    # Remove shortcuts
-    RMDir /r "$SMPROGRAMS\Prey"
-    Delete "$USERDESKTOP\Prey.lnk"
-SectionEnd
-
-Section
-    IfFileExists "$INSTDIR\base\autoexec.cfg" 0
-        Delete "$INSTDIR\base\autoexec.bak"
-        Rename "$INSTDIR\base\autoexec.cfg" "$INSTDIR\base\autoexec.bak"
-SectionEnd
-
-SectionGroup "Configure language" lang
-    Section "English" lang_en
-        FileOpen $0 "$INSTDIR\base\autoexec.cfg" a
-        FileSeek $0 0 END
-        FileWrite $0 'seta sys_lang "english"$\r$\n'
+        # Copy key
+        FileOpen $0 "$INSTDIR\base\preykey" w
+        FileWrite $0 'D23BDPBABCRPTABP$\r$\n'
         FileClose $0
     SectionEnd
 
-    Section /o "French" lang_fr
-        FileOpen $0 "$INSTDIR\base\autoexec.cfg" a
-        FileSeek $0 0 END
-        FileWrite $0 'seta sys_lang "french"$\r$\n'
-        FileWrite $0 'seta g_subtitles "1"$\r$\n'
-        FileClose $0
-    SectionEnd
+    Section "Official Update v1.4"
+        SetOutPath "$INSTDIR\@mulderload\update"
+        AddSize 40960
 
-    Section /o "German" lang_ge
-        FileOpen $0 "$INSTDIR\base\autoexec.cfg" a
-        FileSeek $0 0 END
-        FileWrite $0 'seta sys_lang "german"$\r$\n'
-        FileWrite $0 'seta g_subtitles "1"$\r$\n'
-        FileClose $0
-    SectionEnd
+        !insertmacro DOWNLOAD_3 "https://community.pcgamingwiki.com/files/file/1063-prey-patches/#4142" \
+                                "https://cdn2.mulderload.eu/g/prey-2006/prey_14.zip" \
+                                "https://www.mediafire.com/file_premium/4mbewp42mr6pjfd/prey_14.zip/file" \
+                                "prey_14.zip" "1a289de4a563e3c815d13658c7ab46108a9eca1e"
 
-    Section /o "Italian" lang_it
-        FileOpen $0 "$INSTDIR\base\autoexec.cfg" a
-        FileSeek $0 0 END
-        FileWrite $0 'seta sys_lang "italian"$\r$\n'
-        FileWrite $0 'seta g_subtitles "1"$\r$\n'
-        FileClose $0
-    SectionEnd
+        !insertmacro NSISUNZ_EXTRACT "prey_14.zip" ".\" "AUTO_DELETE"
 
-    Section /o "Spanish" lang_sp
-        FileOpen $0 "$INSTDIR\base\autoexec.cfg" a
-        FileSeek $0 0 END
-        FileWrite $0 'seta sys_lang "spanish"$\r$\n'
-        FileWrite $0 'seta g_subtitles "1"$\r$\n'
-        FileClose $0
+        # Extract Patch Files
+        ExecWait '"SetupPreyPt1.4.exe" /s /extract_all:."' $0
+        Delete "SetupPreyPt1.4.exe"
+
+        # Extract Patch Files
+        !insertmacro I6COMP_GET
+        !insertmacro I6COMP_UNPACK "$INSTDIR\@mulderload\update\Disk1\data1.cab" "$INSTDIR\@mulderload\update\unpacked"
+        CopyFiles "$INSTDIR\@mulderload\update\unpacked\PREY*.exe" "$INSTDIR\"
+        !insertmacro FOLDER_MERGE "$INSTDIR\@mulderload\update\unpacked\base" "$INSTDIR\base"
+
+        # Delete temporary folder
+        SetOutPath "$INSTDIR"
+        RMDir /r "$INSTDIR\@mulderload\update"
     SectionEnd
 SectionGroupEnd
 
-SectionGroup "Configure resolution" res
-    Section "1920x1080 (16/9)" res_1920_1080
-        FileOpen $0 "$INSTDIR\base\autoexec.cfg" a
-        FileSeek $0 0 END
-        FileWrite $0 'seta r_customWidth "1920"$\r$\n'
-        FileWrite $0 'seta r_customHeight "1080"$\r$\n'
-        FileWrite $0 'seta r_mode "-1"$\r$\n'
-        FileWrite $0 'seta r_aspectRatio "1"$\r$\n'
-        FileClose $0
-    SectionEnd
-
-    Section /o "2560x1080 (21/9)" res_2560_1080
-        FileOpen $0 "$INSTDIR\base\autoexec.cfg" a
-        FileSeek $0 0 END
-        FileWrite $0 'seta r_customWidth "2560"$\r$\n'
-        FileWrite $0 'seta r_customHeight "1080"$\r$\n'
-        FileWrite $0 'seta r_mode "-1"$\r$\n'
-        FileWrite $0 'seta r_aspectRatio "1"$\r$\n'
-        FileClose $0
-    SectionEnd
-
-    Section /o "2560x1440 (16/9)" res_2560_1440
-        FileOpen $0 "$INSTDIR\base\autoexec.cfg" a
-        FileSeek $0 0 END
-        FileWrite $0 'seta r_customWidth "2560"$\r$\n'
-        FileWrite $0 'seta r_customHeight "1440"$\r$\n'
-        FileWrite $0 'seta r_mode "-1"$\r$\n'
-        FileWrite $0 'seta r_aspectRatio "1"$\r$\n'
-        FileClose $0
-    SectionEnd
-
-    Section /o "3440x1440 (21/9)" res_3440_1440
-        FileOpen $0 "$INSTDIR\base\autoexec.cfg" a
-        FileSeek $0 0 END
-        FileWrite $0 'seta r_customWidth "3440"$\r$\n'
-        FileWrite $0 'seta r_customHeight "1440"$\r$\n'
-        FileWrite $0 'seta r_mode "-1"$\r$\n'
-        FileWrite $0 'seta r_aspectRatio "1"$\r$\n'
-        FileClose $0
-    SectionEnd
-
-    Section /o "3840x2160 (16/9)" res_3840_2160
-        FileOpen $0 "$INSTDIR\base\autoexec.cfg" a
-        FileSeek $0 0 END
-        FileWrite $0 'seta r_customWidth "3840"$\r$\n'
-        FileWrite $0 'seta r_customHeight "2160"$\r$\n'
-        FileWrite $0 'seta r_mode "-1"$\r$\n'
-        FileWrite $0 'seta r_aspectRatio "1"$\r$\n'
-        FileClose $0
-    SectionEnd
-SectionGroupEnd
-
-SectionGroup "Widescreen Fixes"
-    Section "Widescreen HUD (for 16/9 and wider)"
-        SetOutPath $INSTDIR
-
-        !insertmacro Download https://www.mediafire.com/file_premium/ce62xi2qxvezzqy/pak070_ws_hud.3.zip.zip/file "pak070_ws_hud.3.zip"
-        nsisunz::Unzip "prey_14.zip" "base\"
-        Delete "pak070_ws_hud.3.zip"
-    SectionEnd
-
-    Section /o "Ultrawide (21/9) Aspect Ratio Patch"
-        SetOutPath $INSTDIR
-
-        !insertmacro Download https://www.mediafire.com/file_premium/ewpqtk11ldnl3nj/prey_ultrawide.zip/file "prey_ultrawide.zip"
-        nsisunz::Unzip /file "game00.pk4" "prey_ultrawide.zip" "base\"
-        nsisunz::Unzip /file "game03.pk4" "prey_ultrawide.zip" "base\"
-        nsisunz::Unzip /file "gamex86.dll" "prey_ultrawide.zip" "base\"
-        Delete "prey_ultrawide.zip"
-    SectionEnd
-SectionGroupEnd
-
-SectionGroup "Graphical improvements"
-    Section "Use 16x MSAA (Anti-Aliasing)"
-        FileOpen $0 "$INSTDIR\base\autoexec.cfg" a
-        FileSeek $0 0 END
-        FileWrite $0 'seta r_multiSamples "16"$\r$\n'
-        FileClose $0
-    SectionEnd
-
-    Section "Force high image quality"
-        FileOpen $0 "$INSTDIR\base\autoexec.cfg" a
-        FileSeek $0 0 END
-        FileWrite $0 'seta com_machineSpec "3"$\r$\n'
-        FileWrite $0 'seta com_videoRam "2048"$\r$\n'
-        FileWrite $0 'seta r_shaderLevel "3"$\r$\n'
-        FileWrite $0 'seta r_shadows "1"$\r$\n'
-        FileWrite $0 'seta r_skipSky "0"$\r$\n'
-        FileWrite $0 'seta r_skipBump "0"$\r$\n'
-        FileWrite $0 'seta r_skipSpecular "0"$\r$\n'
-        FileWrite $0 'seta r_skipNewAmbient "0"$\r$\n'
-        FileWrite $0 'seta image_anisotropy "16"$\r$\n'
-        FileWrite $0 'seta image_ignoreHighQuality "0"$\r$\n'
-        FileWrite $0 'seta image_downSize "0"$\r$\n'
-        FileWrite $0 'seta image_downSizeBump "0"$\r$\n'
-        FileWrite $0 'seta image_downSizeSpecular "0"$\r$\n'
-        FileWrite $0 'seta image_useCache "0"$\r$\n'
-        FileWrite $0 'seta image_useCompression "0"$\r$\n'
-        FileWrite $0 'seta image_useNormalCompression "0"$\r$\n'
-        FileWrite $0 'seta image_usePrecompressedTextures "0"$\r$\n'
-        FileWrite $0 'seta image_lodbias "-1"$\r$\n'
-        FileWrite $0 'seta image_filter "GL_LINEAR_MIPMAP_LINEAR"$\r$\n'
-        FileWrite $0 'seta g_brassTime "2"$\r$\n'
-        FileClose $0
-    SectionEnd
-SectionGroupEnd
+!define NSI_INCLUDE
+!include "enhancement-pack.nsi"
 
 Function .onInit
     StrCpy $1 ${lang_en} ; Radio Button
     StrCpy $2 ${res_1920_1080} ; Radio Button
-FunctionEnd
-
-Function .onSelChange
-    ${If} ${SectionIsSelected} ${lang}
-        !insertmacro UnSelectSection ${lang}
-    ${Else}
-        !insertmacro StartRadioButtons $1
-            !insertmacro RadioButton ${lang_en}
-            !insertmacro RadioButton ${lang_fr}
-            !insertmacro RadioButton ${lang_ge}
-            !insertmacro RadioButton ${lang_it}
-            !insertmacro RadioButton ${lang_sp}
-        !insertmacro EndRadioButtons
-    ${EndIf}
-
-    ${If} ${SectionIsSelected} ${res}
-        !insertmacro UnSelectSection ${res}
-    ${Else}
-        !insertmacro StartRadioButtons $2
-            !insertmacro RadioButton ${res_1920_1080}
-            !insertmacro RadioButton ${res_2560_1080}
-            !insertmacro RadioButton ${res_2560_1440}
-            !insertmacro RadioButton ${res_3440_1440}
-            !insertmacro RadioButton ${res_3840_2160}
-        !insertmacro EndRadioButtons
-    ${EndIf}
 FunctionEnd

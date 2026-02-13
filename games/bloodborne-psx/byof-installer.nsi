@@ -1,20 +1,28 @@
-!define MUI_WELCOMEPAGE_TEXT "Welcome to this NSIS installer from the MulderLoad project.$\r$\n$\r$\nThis installer will download the latest version of Bloodborne PSX (v1.05) from the Archive.org servers, and extract it in the folder of your choice.$\r$\n$\r$\nA big thanks to LWMedia for the development of this game!"
-!include "..\..\templates\standard.nsh"
+!define MUI_WELCOMEPAGE_TEXT "\
+WARNING: For legal reasons, this installer doesn't include or distribute the fan-game archive. You must provide your own backup of $\"BBPSX_1.05.zip$\" released by LWMedia.$\r$\n\
+$\r$\n\
+This installer can:$\r$\n\
+- verify the integrity of your BBPSX_1.05.zip$\r$\n\
+- extract it to a folder of your choice$\r$\n\
+$\r$\n\
+${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
+$\r$\n\
+Special thanks to LWMedia. Bloodborne is a trademark of Sony Interactive Entertainment. This project is not affiliated with or endorsed by Sony or FromSoftware."
+
+!include "..\..\includes\templates\ByofTemplate.nsh"
 
 Name "Bloodborne PSX"
 InstallDir "C:\MulderLoad\Bloodborne PSX"
 
-Section "Bloodborne PSX v1.05"
-    SectionIn RO
-    !insertmacro AbortIfFolderNotEmpty $INSTDIR
-    SetOutPath $INSTDIR.tmp
+!insertmacro BYOF_DEFINE "BACKUP" "ZIP files|*.zip" "c695f86ca7fa6d244f8def74481430d3113ad8a9"
+!insertmacro BYOF_PAGE_CREATE
+!insertmacro BYOF_WRITE_ENABLE_NEXT_BUTTON
 
-    !insertmacro Download https://archive.org/download/bbpsx-1.05_202204/BBPSX_1.05.zip "BBPSX_1.05.zip"
-    nsisunz::Unzip "BBPSX_1.05.zip" ".\"
-    Delete "BBPSX_1.05.zip"
+Section "Bloodborne PSX v1.05 (Full Installation)"
+    AddSize 204800
+    SetOutPath "$INSTDIR"
 
-    Rename "$INSTDIR.tmp\BBPSX_Build_2022_02_06_1.05\WindowsNoEditor" $INSTDIR
-    SetOutPath $INSTDIR
-    RMDir $INSTDIR.tmp\BBPSX_Build_2022_02_06_1.05
-    RMDir $INSTDIR.tmp
+    !insertmacro NSISUNZ_EXTRACT "$byofPath_BACKUP" ".\" ""
+    !insertmacro FOLDER_MERGE "$INSTDIR\BBPSX_Build_2022_02_06_1.05\WindowsNoEditor" "$INSTDIR"
+    RMDir "$INSTDIR\BBPSX_Build_2022_02_06_1.05"
 SectionEnd

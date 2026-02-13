@@ -1,24 +1,30 @@
-!define MUI_WELCOMEPAGE_TEXT "Welcome to this NSIS installer from the MulderLoad project.$\r$\n$\r$\nThis installer will download Portal Prelude v1.2.1 from developer servers$\r$\n$\r$\nYou need to have 'Source SDK Base 2007' for this mod to work, this installer will try to install it via Steam.$\r$\n$\r$\nAfter installation, you will have to quit & restart Steam for the game to appear in your library."
-!include "..\..\templates\select_exe.nsh"
+!define MUI_WELCOMEPAGE_TEXT "\
+This installer is for Portal: Prelude (non-RTX version).$\r$\n\
+$\r$\n\
+IMPORTANT:$\r$\n\
+- you need to have $\"Source SDK Base 2007$\" installed$\r$\n\
+- after installation, restart Steam so the game appears$\r$\n\
+$\r$\n\
+${TXT_WELCOMEPAGE_MULDERLAND_3}"
+
+!include "..\..\includes\templates\SelectTemplate.nsh"
 
 Name "Portal: Prelude"
 
-Section "Source SDK Base 2007 (Steam)"
-    MessageBox MB_ICONINFORMATION  "Steam will install Source SDK Base 2007. Click OK and follow instructions on Steam."
-    Exec '"$INSTDIR\..\..\..\steam.exe" steam://install/218'
-    Sleep 10000
-    MessageBox MB_OK "Click OK when 'Source SDK Base 2007' installation is complete."
-SectionEnd
-
 Section "Portal: Prelude v1.2.1"
-    SectionIn RO
-    SetOutPath $INSTDIR
+    AddSize 1394606
+    SetOutPath "$INSTDIR\portal prelude"
 
-    !insertmacro Download https://www.portalprelude.com/download.php?id=149 "portal-prelude-archive-1.2.1.zip"
-    nsisunz::Unzip "portal-prelude-archive-1.2.1.zip" ".\"
-    Delete "portal-prelude-archive-1.2.1.zip"
+    # https://www.moddb.com/mods/portal-prelude/downloads/portal-prelude-121
+    !insertmacro DOWNLOAD_3 "https://www.portalprelude.com/download.php?id=149" \
+                            "https://www.moddb.com/downloads/start/252772" \
+                            "https://cdn2.mulderload.eu/g/portal-prelude/portal-prelude-archive-1.2.1.zip" \
+                            "portal-prelude-archive-1.2.1.zip" "01fb4ead9bc8718fcace26c213e629d8"
 
-    Rename "$INSTDIR\README.txt" "$INSTDIR\portal prelude\README.txt"
+    SetOutPath "$INSTDIR"
+    !insertmacro NSISUNZ_EXTRACT "portal prelude\portal-prelude-archive-1.2.1.zip" ".\" "AUTO_DELETE"
+
+    !insertmacro FORCE_RENAME "$INSTDIR\README.txt" "$INSTDIR\portal prelude\README.txt"
 SectionEnd
 
 Function .onInit

@@ -41,6 +41,21 @@ $exeName = GenerateExeName $nsiPath
 New-Item -ItemType Directory -Force -Path (Join-Path $PSScriptRoot "..\dist") | Out-Null
 $exePath = Join-Path $PSScriptRoot "..\dist\$exeName"
 
+# Handle custom pre-build script if it exists. Useful for fallout-4-steam-downgrader-lite for example.
+$prebuildScript = [System.IO.Path]::ChangeExtension($nsiPath, ".ps1")
+if (Test-Path $prebuildScript) {
+    Write-Host "Pre-Build Script Found: $prebuildScript"
+    $prebuildScript = (Resolve-Path $prebuildScript).Path
+    $prebuildDir = Split-Path -Parent $prebuildScript
+    $prebuildLeaf = Split-Path -Leaf $prebuildScript
+    Push-Location $prebuildDir
+    try {
+        & ".\$prebuildLeaf"
+        if ($LASTEXITCODE -ne 0) { Write-Host "bye"; exit $LASTEXITCODE }
+    }
+    finally { Pop-Location }
+}
+
 $process = Start-Process `
 	-FilePath "nsis\makensis.exe" `
     -ArgumentList @("/X`"OutFile `"$exePath`"`"", $nsiPath) `

@@ -1,144 +1,133 @@
-!define MUI_WELCOMEPAGE_TEXT "Welcome to this NSIS installer from the MulderLoad project.$\r$\n$\r$\nThis installer will$\r$\n- download Die Hard Nakatomi Plaza from Archive.org$\r$\n- extract it with 7z and WiseUnpacker$\r$\n- apply the 1.04 and crack$\r$\n- apply mouse fix / crash fix$\r$\n- install fov fix$\r$\n- install dgVoodoo2$\r$\n- install Die Hard Improved Edition mod$\r$\n$\r$\nA big thanks to Piranha Games, CLASS, Archive.org, ThirteenAG, alphayellow DgVoodoo2 authors and of course ReiKaz316 for his mod"
-!include "..\..\templates\standard.nsh"
-!include "..\..\templates\includes\xdelta3.nsh"
+!define MUI_WELCOMEPAGE_TEXT "\
+WARNING: For legal reasons, this installer doesn't include or distribute the original game files. You must provide your own disc image. It has been tested with US release; compatibility with other versions is not guaranteed.$\r$\n\
+$\r$\n\
+It installs the game (without running Installshield) and adds:$\r$\n\
+- Mouse fix / Crash fix$\r$\n\
+- FOV fix$\r$\n\
+- dgVoodoo2 (latest, or v2.81.3 if you're on Linux)$\r$\n\
+- (optionally) French patch$\r$\n\
+- (optionally) Die Hard Improved Edition (mod)$\r$\n\
+$\r$\n\
+${TXT_WELCOMEPAGE_MULDERLAND_1}$\r$\n\
+Die Hard is a trademark of 20th Century Fox. This project is not affiliated with or endorsed by 20th Century Fox or any of the original developers."
+
+!include "..\..\includes\templates\ByofTemplate.nsh"
+!include "..\..\includes\tools\7z.nsh"
+!include "..\..\includes\tools\WiseUnpacker.nsh"
+!include "..\..\includes\tools\XDelta3.nsh"
+
+!insertmacro BYOF_DEFINE "CD" "Images files|*.bin;*.iso" "11765655d34a7999bff73f3294744661fcc2921b"
+!insertmacro BYOF_PAGE_CREATE
+!insertmacro BYOF_WRITE_ENABLE_NEXT_BUTTON
 
 Name "Die Hard: Nakatomi Plaza"
 InstallDir "C:\MulderLoad\Die Hard Nakatomi Plaza"
 
 Section
-    SetOutPath $INSTDIR
-    DetailPrint " // Downloading 7z"
-    !insertmacro Get7z
-
-    DetailPrint " // Downloading xdelta3"
-    !insertmacro Download https://github.com/jmacd/xdelta-gpl/releases/download/v3.0.11/xdelta3-3.0.11-x86_64.exe.zip "xdelta3.zip"
-    nsisunz::Unzip "xdelta3.zip" ".\"
-    Delete "xdelta3.zip"
-    Rename "xdelta3-3.0.11-x86_64.exe" "xdelta3.exe"
+    !insertmacro 7Z_GET
+    !insertmacro WISEUNPACKER_GET
+    !insertmacro XDELTA3_GET
 SectionEnd
 
-SectionGroup "Die Hard: Nakatomi Plaza (USA)"
+SectionGroup "Die Hard: Nakatomi Plaza (Full Installation)"
     Section
         AddSize 847872
+
         # Game
-        SetOutPath $INSTDIR\@iso
-
-        ## Download ISO from Archive.org
-        !insertmacro Download https://archive.org/download/Die_Hard_Nakatomi_Plaza_USA/Disc%201.rar "Die_Hard_Nakatomi_Plaza_USA.rar"
-
-        ## Extract ISO
-        nsExec::ExecToLog '"..\7z.exe" e Die_Hard_Nakatomi_Plaza_USA.rar CD.bin'
-        Delete "Die_Hard_Nakatomi_Plaza_USA.rar"
-        nsExec::ExecToLog '"..\7z.exe" x -aoa -o".\" CD.bin'
-        Delete "CD.bin"
-        nsExec::ExecToLog '"..\7z.exe" x -aoa -o".\" CD.iso'
-        Delete "CD.iso"
-
-        ## Download WiseUnpacker
-        !insertmacro Download https://github.com/mnadareski/WiseUnpacker/releases/download/2.1.0/WiseUnpacker_2.1.0_net10.0_win-x64_release.zip "WiseUnpacker.zip"
-        nsisunz::Unzip "WiseUnpacker.zip" ".\"
-        Delete "WiseUnpacker.zip"
-
-        ## Extract Setup files
-        nsExec::ExecToLog '".\WiseUnpacker.exe" -o=.\ SETUP.exe'
-
-        ## Move MAINDIR contents to $INSTDIR
-        !insertmacro MoveFolder "$INSTDIR\@iso\MAINDIR" "$INSTDIR\" "*.*"
+        !insertmacro 7Z_IMAGE_EXTRACT "$byofPath_CD" "$INSTDIR\@mulderload\iso" ""
+        !insertmacro WISEUNPACKER_UNPACK "$INSTDIR\@mulderload\iso\SETUP.EXE" "$INSTDIR"
+        RMDir /r "$INSTDIR\@mulderload\iso"
 
         ## Clean temp files and unneeded files
-        SetOutPath $INSTDIR
-        RMDir /r "$INSTDIR\@iso"
-        Delete "Unwise.exe"
-        Delete "Register Die Hard Nakatomi Plaza Online.url"
+        Delete "$INSTDIR\Unwise.exe"
+        Delete "$INSTDIR\Register Die Hard Nakatomi Plaza Online.url"
 
         ## Create Save directory to fix saves issue
-        CreateDirectory $INSTDIR\Save
+        CreateDirectory "$INSTDIR\Save"
     SectionEnd
 
-    Section "Official patch v1.04"
-        SetOutPath $INSTDIR
+    Section "Official Patch v1.04"
+        SetOutPath "$INSTDIR"
 
-        !insertmacro DownloadRedirect https://redirect.mulderload.eu/pcgw/381-die-hard-nakatomi-plaza-patch-104/776 "si_dhnp_en_update_10_1041.rar"
-        #!insertmacro Download https://cdn2.mulderload.eu/g/die-hard-nakatomi-plaza/si_dhnp_en_update_10_1041.rar "si_dhnp_en_update_10_1041.rar"
-        nsExec::ExecToLog '".\7z.exe" e -aoa si_dhnp_en_update_10_1041.rar'
-        RMDir "$INSTDIR\si_dhnp_en_update_10_1041"
-        Delete "si_dhnp_en_update_10_1041.rar"
+        !insertmacro DOWNLOAD_2 "https://community.pcgamingwiki.com/files/file/381-die-hard-nakatomi-plaza-patch-104/#776" \
+                                "https://cdn2.mulderload.eu/g/die-hard-nakatomi-plaza/si_dhnp_en_update_10_1041.rar" \
+                                "si_dhnp_en_update_10_1041.rar" "c3e0f4a1345678759a581023d46f4597757d6967"
+        !insertmacro 7Z_EXTRACT "si_dhnp_en_update_10_1041.rar" ".\" "AUTO_DELETE"
+        !insertmacro FOLDER_MERGE "$INSTDIR\si_dhnp_en_update_10_1041" "$INSTDIR\"
     SectionEnd
 
-    Section "NoCD crack v1.04 (by CLASS)"
-        SetOutPath $INSTDIR
-
-        !insertmacro Download https://cdn2.mulderload.eu/g/die-hard-nakatomi-plaza/clsdh04c.rar "clsdh04c.rar"
-        Delete "Nakatomi.exe.bak"
-        Rename "Nakatomi.exe" "Nakatomi.exe.bak"
-        nsExec::ExecToLog '".\7z.exe" e -aoa clsdh04c.rar'
-        Delete "clsdh04c.rar"
+    Section "Remove legacy disc check"
+        !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/m4og74rtjsyvv6n/clsdh04c.rar/file" \
+                                "https://cdn2.mulderload.eu/g/die-hard-nakatomi-plaza/clsdh04c.rar" \
+                                "clsdh04c.rar" "cdd544e6bf1c7227c9ba7c21cb6b0012509e286b"
+        !insertmacro FORCE_RENAME "Nakatomi.exe" "Nakatomi.exe.bak"
+        !insertmacro 7Z_EXTRACT "clsdh04c.rar" ".\" "AUTO_DELETE"
     SectionEnd
 SectionGroupEnd
 
-Section "Mouse Fix / Crash Fix"
+Section "Mouse Fix / Crash Fix (by demon27248)"
     AddSize 147
-    SetOutPath $INSTDIR
-    !insertmacro DownloadRedirect https://redirect.mulderload.eu/pcgw/2528-no-one-lives-forever-mouse-input-fix-dinputdll/12670 "dinput.dll"
-    #!insertmacro Download https://cdn2.mulderload.eu/g/die-hard-nakatomi-plaza/dinput.dll "dinput.dll"
+    SetOutPath "$INSTDIR"
+    !insertmacro DOWNLOAD_2 "https://community.pcgamingwiki.com/files/file/2528-no-one-lives-forever-mouse-input-fix-dinputdll/#12670" \
+                            "https://cdn2.mulderload.eu/g/die-hard-nakatomi-plaza/dinput.dll" \
+                            "dinput.dll" "1f0636f8821c8a862cef94bf83f68edbc35f372d"
 SectionEnd
 
 Section "FOV Fix v1.4.1 (by alphayellow)"
     AddSize 3584
+    SetOutPath "$INSTDIR"
+
     # ThirteenAG's Ultimate ASI Loader
-    SetOutPath $INSTDIR
-    !insertmacro Download https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/Win32-latest/winmm-Win32.zip "winmm.zip"
-    nsisunz::Unzip /noextractpath /file "winmm.dll" "winmm.zip" ".\"
-    Delete "winmm.zip"
+    !insertmacro DOWNLOAD_1 "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/Win32-latest/winmm-Win32.zip" "winmm.zip" ""
+    !insertmacro NSISUNZ_EXTRACT_ONE "winmm.zip" ".\" "winmm.dll" "AUTO_DELETE"
 
     # alphayellow's FOV Fix
-    SetOutPath $INSTDIR\scripts
-    !insertmacro Download https://github.com/alphayellow1/AlphaYellowWidescreenFixes/releases/download/diehardnakatomiplaza/Die.Hard.Nakatomi.Plaza.-.FOV.Fix.v1.4.1.rar "FOV_Fix.rar"
-    nsExec::ExecToLog '"..\7z.exe" e -aoa FOV_Fix.rar'
-    Delete "FOV_Fix.rar"
+    SetOutPath "$INSTDIR\scripts"
+    !insertmacro DOWNLOAD_1 "https://github.com/alphayellow1/AlphaYellowWidescreenFixes/releases/download/diehardnakatomiplaza/Die.Hard.Nakatomi.Plaza.-.FOV.Fix.v1.4.1.rar" "Die.Hard.Nakatomi.Plaza.-.FOV.Fix.rar" ""
+    !insertmacro 7Z_EXTRACT "Die.Hard.Nakatomi.Plaza.-.FOV.Fix.rar" ".\" "AUTO_DELETE"
 SectionEnd
 
 Section "dgVoodoo2 (fix multiple other issues)"
     AddSize 1311
     # dgVoodoo
-    SetOutPath $INSTDIR
-    !insertmacro Download https://github.com/dege-diosg/dgVoodoo2/releases/download/v2.86.4/dgVoodoo2_86_4.zip "dgVoodoo2.zip"
-    nsisunz::Unzip /noextractpath /file "dgVoodoo.conf" "dgVoodoo2.zip" ".\"
-    nsisunz::Unzip /noextractpath /file "dgVoodooCpl.exe" "dgVoodoo2.zip" ".\"
-    nsisunz::Unzip /noextractpath /file "MS\x86\D3D8.dll" "dgVoodoo2.zip" ".\"
-    nsisunz::Unzip /noextractpath /file "MS\x86\D3DImm.dll" "dgVoodoo2.zip" ".\"
-    nsisunz::Unzip /noextractpath /file "MS\x86\DDraw.dll" "dgVoodoo2.zip" ".\"
-    Delete "dgVoodoo2.zip"
+    SetOutPath "$INSTDIR"
+    !insertmacro DOWNLOAD_DGVOODOO2
+    !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "dgVoodoo.conf" ""
+    !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "dgVoodooCpl.exe" ""
+    !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "MS\x86\D3D8.dll" ""
+    !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "MS\x86\D3DImm.dll" ""
+    !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "MS\x86\DDraw.dll" "AUTO_DELETE"
 
     # config
-    !insertmacro ReplaceInFile "FPSLimit                             = 0" "FPSLimit                             = 60" 1 1 "$INSTDIR\dgVoodoo.conf"
-    !insertmacro ReplaceInFile "VRAM                                = 256" "VRAM                                = 512" 1 1 "$INSTDIR\dgVoodoo.conf"
-    !insertmacro ReplaceInFile "Antialiasing                        = appdriven" "Antialiasing                        = 4x" 2 1 "$INSTDIR\dgVoodoo.conf"
-    !insertmacro ReplaceInFile "Resolution                          = unforced" "Resolution                          = desktop" 2 1 "$INSTDIR\dgVoodoo.conf"
-    !insertmacro ReplaceInFile "dgVoodooWatermark                   = true" "dgVoodooWatermark                   = false" 1 1 "$INSTDIR\dgVoodoo.conf"
-    !insertmacro ReplaceInFile "DisableAltEnterToToggleScreenMode   = true" "DisableAltEnterToToggleScreenMode   = false" 1 1 "$INSTDIR\dgVoodoo.conf"
+    !insertmacro FILE_STR_REPLACE "FPSLimit                             = 0" "FPSLimit                             = 60" 1 1 "$INSTDIR\dgVoodoo.conf"
+    !insertmacro FILE_STR_REPLACE "VRAM                                = 256" "VRAM                                = 512" 1 1 "$INSTDIR\dgVoodoo.conf"
+    !insertmacro FILE_STR_REPLACE "Antialiasing                        = appdriven" "Antialiasing                        = 4x" 2 1 "$INSTDIR\dgVoodoo.conf"
+    !insertmacro FILE_STR_REPLACE "Resolution                          = unforced" "Resolution                          = desktop" 2 1 "$INSTDIR\dgVoodoo.conf"
+    !insertmacro FILE_STR_REPLACE "dgVoodooWatermark                   = true" "dgVoodooWatermark                   = false" 1 1 "$INSTDIR\dgVoodoo.conf"
+    !insertmacro FILE_STR_REPLACE "DisableAltEnterToToggleScreenMode   = true" "DisableAltEnterToToggleScreenMode   = false" 1 1 "$INSTDIR\dgVoodoo.conf"
 SectionEnd
 
 Section "Skip intro videos"
-    !insertmacro ReplaceInFile "$\"nomovies$\" $\"0$\"" "$\"nomovies$\" $\"1$\"" 1 1 "$INSTDIR\autoexec.cfg"
+    !insertmacro FILE_STR_REPLACE "$\"nomovies$\" $\"0$\"" "$\"nomovies$\" $\"1$\"" 1 1 "$INSTDIR\autoexec.cfg"
 SectionEnd
 
 Section "[MOD] Die Hard Improved Edition v2 beta (by ReiKaz316)" mod
     AddSize 614400
-    SetOutPath $INSTDIR
+    SetOutPath "$INSTDIR"
 
     DetailPrint " // Backup original files (non-mod)"
-    CreateDirectory $INSTDIR\backup
-    CopyFiles $INSTDIR\Engine.rez $INSTDIR\backup\Engine.rez
-    CopyFiles $INSTDIR\Nakatomi.rez $INSTDIR\backup\Nakatomi.rez
+    CreateDirectory "$INSTDIR\backup"
+    CopyFiles "$INSTDIR\Engine.rez" "$INSTDIR\backup\Engine.rez"
+    CopyFiles "$INSTDIR\Nakatomi.rez" "$INSTDIR\backup\Nakatomi.rez"
 
     DetailPrint " // Downloading mod"
-    !insertmacro Download https://cdn2.mulderload.eu/g/die-hard-nakatomi-plaza/DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z "DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z"
-    Nsis7z::ExtractWithDetails "DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z" "Installing package %s..."
-    Delete "DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z"
+    !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/4zrmpgfl5j8a6gm/DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z/file" \
+                            "https://cdn2.mulderload.eu/g/die-hard-nakatomi-plaza/DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z" \
+                            "DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z" "28ffcac1db43d7e7b1df6ff2cc5697a9fb7a95ca"
+    !insertmacro NSIS7Z_EXTRACT "DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z" ".\" "AUTO_DELETE"
 
     DetailPrint " // Applying xdelta patch"
-    !insertmacro XDelta3_ApplyPatches "$INSTDIR"
+    !insertmacro XDELTA3_PATCH_FOLDER "$INSTDIR"
 SectionEnd
 
 SectionGroup "Language" lang
@@ -164,29 +153,27 @@ SectionGroup "Language" lang
         FileClose $0
 
         DetailPrint " // Backup english files"
-        CreateDirectory $INSTDIR\backup
-        CopyFiles $INSTDIR\Nakatomi.rez $INSTDIR\backup\Nakatomi.rez
-        CopyFiles $INSTDIR\Nakatomi2.rez $INSTDIR\backup\Nakatomi2.rez
+        CreateDirectory "$INSTDIR\backup"
+        CopyFiles "$INSTDIR\Nakatomi.rez" "$INSTDIR\backup\Nakatomi.rez"
+        CopyFiles "$INSTDIR\Nakatomi2.rez" "$INSTDIR\backup\Nakatomi2.rez"
 
         DetailPrint " // Download french audio xdelta"
-        SetOutPath $INSTDIR
-        !insertmacro Download https://cdn2.mulderload.eu/g/die-hard-nakatomi-plaza/french_audio_xdelta.7z "french_audio_xdelta.7z"
-        Nsis7z::ExtractWithDetails "french_audio_xdelta.7z" "Installing package %s..."
-        Delete "french_audio_xdelta.7z"
+        SetOutPath "$INSTDIR"
+        !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/qee1r6m9urs88ej/french_audio_xdelta.7z/file" \
+                                "https://cdn2.mulderload.eu/g/die-hard-nakatomi-plaza/french_audio_xdelta.7z" \
+                                "french_audio_xdelta.7z" "50474270dc911a1b37ec974e259787cbe6b5297c"
+        !insertmacro NSIS7Z_EXTRACT "french_audio_xdelta.7z" ".\" "AUTO_DELETE"
 
         DetailPrint " // Applying xdelta patches"
-        !insertmacro XDelta3_ApplyPatches "$INSTDIR"
+        !insertmacro XDELTA3_PATCH_FOLDER "$INSTDIR"
     SectionEnd
 SectionGroupEnd
 
 Section
-    DetailPrint " // Remove 7z"
-    Delete $INSTDIR\7z.dll
-    Delete $INSTDIR\7z.exe
-    RMDir /r $INSTDIR\Formats
-
-    DetailPrint " // Remove xdelta3"
-    Delete "xdelta3.exe"
+    !insertmacro 7Z_REMOVE
+    !insertmacro WISEUNPACKER_REMOVE
+    !insertmacro XDELTA3_REMOVE
+    RMDir "$INSTDIR\@mulderload"
 SectionEnd
 
 Function .onInit

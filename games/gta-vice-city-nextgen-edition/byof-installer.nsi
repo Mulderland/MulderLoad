@@ -1,71 +1,83 @@
-!define MUI_WELCOMEPAGE_TEXT "Welcome to this NSIS installer from the MulderLoad project.$\r$\n$\r$\nThis installer will$\r$\n- download VCNE v1.1 from Archive.org servers$\r$\n- run the setup$\r$\n- (optionally) download and extract v1.2 update$\r$\n- (optionally) download patches$\r$\n- (optionally) download redistribuables$\r$\n$\r$\nA big thanks RevTeam, the group behind this beauty!$\r$\n$\r$\nWARNING: if you already have a save on v1.1, don't install v1.2 because saves are incompatible."
-!include "..\..\templates\standard.nsh"
-RequestExecutionLevel admin
+!define MUI_WELCOMEPAGE_TEXT "\
+WARNING: For legal reasons, this installer doesn't include or distribute the fan-game setup. You must provide your own backup of $\"vcNE_setup$\" made by REVOLUTION TEAM.$\r$\n\
+$\r$\n\
+This installer can:$\r$\n\
+- verify the integrity of your vcNE_setup.exe$\r$\n\
+- extract it (bypassing InnoSetup && the admin requirement)$\r$\n\
+- install the unofficial Patch v1.2 (with or without FusionFix)$\r$\n\
+- install the vehicles Patch$\r$\n\
+- fix the loading screen && slow textures$\r$\n\
+$\r$\n\
+${TXT_WELCOMEPAGE_MULDERLAND_1}$\r$\n\
+Congrats to REVOLUTION TEAM for this great fan-remake!$\r$\n\
+Grand Theft Auto is a trademark of Rockstar Games. This project is not affiliated with or endorsed by Rockstar Games or any of the original developers."
 
-Name "GTA Vice City - Next Gen Edition"
-InstallDir "C:\MulderLoad\GTA Vice City - Next Gen Edition"
+!include "..\..\includes\templates\ByofTemplate.nsh"
+!include "..\..\includes\tools\InnoExtract.nsh"
 
-SectionGroup /e "GTA Vice City - Next Gen Edition v1.1"
-    Section
-        SetOutPath $INSTDIR
+Name "GTA Vice City NextGen Edition"
+InstallDir "C:\MulderLoad\GTA Vice City NextGen Edition"
 
-        !insertmacro Download https://archive.org/download/vice_city_nextgen_edition/vcNE_setup.exe "vcNE_setup.exe"
-        !insertmacro Download https://archive.org/download/vice_city_nextgen_edition/vcNE_setup-1.bin "vcNE_setup-1.bin"
-        !insertmacro Download https://archive.org/download/vice_city_nextgen_edition/vcNE_setup-2.bin "vcNE_setup-2.bin"
-        !insertmacro Download https://archive.org/download/vice_city_nextgen_edition/vcNE_setup-3.bin "vcNE_setup-3.bin"
-        !insertmacro Download https://archive.org/download/vice_city_nextgen_edition/vcNE_setup-4.bin "vcNE_setup-4.bin"
-        !insertmacro Download https://archive.org/download/vice_city_nextgen_edition/vcNE_setup-5.bin "vcNE_setup-5.bin"
-        !insertmacro Download https://archive.org/download/vice_city_nextgen_edition/vcNE_setup-6.bin "vcNE_setup-6.bin"
-        ExecWait '"vcNE_setup.exe" /DIR="$INSTDIR" /SILENT /SUPPRESSMSGBOXES /NORESTART /SP-' $0
-        Delete "vcNE_setup.exe"
-        Delete "vcNE_setup-1.bin"
-        Delete "vcNE_setup-2.bin"
-        Delete "vcNE_setup-3.bin"
-        Delete "vcNE_setup-4.bin"
-        Delete "vcNE_setup-5.bin"
-        Delete "vcNE_setup-6.bin"
+!insertmacro BYOF_DEFINE "SETUP" "vcNE_setup file|vcNE_setup.exe" "60e8e1fb3aeaa5565280fe1a983437292187ecb4"
+!insertmacro BYOF_PAGE_CREATE
+!insertmacro BYOF_WRITE_ENABLE_NEXT_BUTTON
+
+Section "GTA Vice City NextGen Edition v1.2 (Full Install)"
+    AddSize 8860468
+    SetOutPath "$INSTDIR"
+
+    !insertmacro INNOEXTRACT_GET
+    !insertmacro INNOEXTRACT_UNPACK "$byofPath_SETUP" "$INSTDIR" ""
+    !insertmacro INNOEXTRACT_REMOVE
+
+    !insertmacro DOWNLOAD_2 "https://nextgen.limited/download/Patch_V1.2.7z" \
+                            "https://cdn2.mulderload.eu/g/gta-vice-city-nextgen-edition/Patch_V1.2.7z" \
+                            "Patch_V1.2.7z" "065e75abca5ce3e7e6c54c85bb2ad62f1b41d36f"
+
+    !insertmacro NSIS7Z_EXTRACT "Patch_V1.2.7z" ".\" "AUTO_DELETE"
+    !insertmacro FOLDER_MERGE "$INSTDIR\vcNE Patch v1.2" "$INSTDIR"
+SectionEnd
+
+SectionGroup /e "Additional Patches"
+    Section /o "Enable FusionFix"
+        !insertmacro FOLDER_MERGE "$INSTDIR\FusionFix" "$INSTDIR"
     SectionEnd
 
-    Section "v1.2 Update"
-        SetOutPath $INSTDIR
-
-        !insertmacro Download https://www.mediafire.com/file_premium/5ruoansgdqly6xp/vcNE_Patch_v1.2.7z/file "vcNE_Patch_v1.2.7z"
-        Nsis7z::ExtractWithDetails "vcNE_Patch_v1.2.7z" "Installing package %s..."
-        Delete "vcNE_Patch_v1.2.7z"
-    SectionEnd
-SectionGroupEnd
-
-SectionGroup /e "Patches"
     Section "Fix loading screen + slow textures"
-        SetOutPath $INSTDIR
-
-        !insertmacro Download https://www.mediafire.com/file_premium/xsynqmgk6or2r7u/commandline.txt/file "commandline.txt"
+        AddSize 1
+        SetOutPath "$INSTDIR"
+        File "resources\commandline.txt"
     SectionEnd
 
     Section "Vehicles Patch"
-        SetOutPath $INSTDIR
+        SetOutPath "$INSTDIR"
 
-        !insertmacro Download https://nextgen.limited/download/VC_NE_Vehicles_Patch.7z "VC_NE_Vehicles_Patch.7z"
-        Nsis7z::ExtractWithDetails "VC_NE_Vehicles_Patch.7z" "Installing package %s..."
-        Delete "VC_NE_Vehicles_Patch.7z"
+        !insertmacro DOWNLOAD_2 "https://nextgen.limited/download/VC_NE_Vehicles_Patch.7z" \
+                                "https://cdn2.mulderload.eu/g/gta-vice-city-nextgen-edition/VC_NE_Vehicles_Patch.7z" \
+                                "VC_NE_Vehicles_Patch.7z" "bae6118387184f64723d1616e000f84bc9a7024e"
 
+        !insertmacro NSIS7Z_EXTRACT "VC_NE_Vehicles_Patch.7z" ".\" "AUTO_DELETE"
+        !insertmacro FORCE_RENAME "pc\models\cdimages\vehicles.img" "pc\models\cdimages\vehicles.img.bak"
         Rename "VC NE Vehicles Patch\vehicles.img" "pc\models\cdimages\vehicles.img"
-        Rename "VC NE Vehicles Patch\handling.dat" "common\data\handling.dat"
-        Rename "VC NE Vehicles Patch\vehicles.ide" "common\data\vehicles.ide"
-        Rename "VC NE Vehicles Patch\WeaponInfo.xml" "common\data\WeaponInfo.xml"
-        RMDir "VC NE Vehicles Patch"
+        !insertmacro FOLDER_MERGE "$INSTDIR\VC NE Vehicles Patch" "$INSTDIR\common\data"
     SectionEnd
 SectionGroupEnd
 
 SectionGroup /e "Redistribuables"
     Section "Direct-X Web Installer"
-        !insertmacro Download https://download.microsoft.com/download/1/7/1/1718ccc4-6315-4d8e-9543-8e28a4e18c4c/dxwebsetup.exe "dxwebsetup.exe"
+        SetOutPath "$INSTDIR"
+        !insertmacro DOWNLOAD_2 "https://download.microsoft.com/download/1/7/1/1718ccc4-6315-4d8e-9543-8e28a4e18c4c/dxwebsetup.exe" \
+                                "https://cdn2.mulderload.eu/g/_redist/dxwebsetup.exe" \
+                                "dxwebsetup.exe" "7bf35f2afca666078db35ca95130beb2e3782212"
         ExecWait '"dxwebsetup.exe" /Q' $0
         Delete "dxwebsetup.exe"
     SectionEnd
 
     Section "Microsoft Visual C++ 2005 SP1 x86"
-        !insertmacro Download https://download.microsoft.com/download/6/b/b/6bb661d6-a8ae-4819-b79f-236472f6070c/vcredist_x86.exe "vcredist_x86.exe"
+        SetOutPath "$INSTDIR"
+        !insertmacro DOWNLOAD_2 "https://download.microsoft.com/download/6/b/b/6bb661d6-a8ae-4819-b79f-236472f6070c/vcredist_x86.exe" \
+                                "https://cdn2.mulderload.eu/g/_redist/2005sp1/vcredist_x86.exe" \
+                                "vcredist_x86.exe" "d5d7cc096308a7366383cdd103854ffe91b84739"
         ExecWait '"vcredist_x86.exe" /Q' $0
         Delete "vcredist_x86.exe"
     SectionEnd

@@ -1,81 +1,89 @@
-!define MUI_WELCOMEPAGE_TEXT "Welcome to this NSIS installer from the MulderLoad project.$\r$\n$\r$\nThis installer can install $\r$\n- dhewm3 (source port) as doom3.exe$\r$\n- NoisyPumpkin's HUD/UI widescreen fix $\r$\n(WARNING: incompatible with existing saves, so install it only for new run)$\r$\n- GrowlingGuy41's Texture Pack x4$\r$\n- The Lost Mission DLC port (requires Resurrection of Evil installed)$\r$\n$\r$\nEnjoy this updated game !"
-!include "..\..\templates\select_exe.nsh"
+!define MUI_WELCOMEPAGE_TEXT "\
+This is an Enhancement Pack for Doom 3. It includes:$\r$\n\
+- dhewm3 (source port)$\r$\n\
+- HUD/UI widescreen fix (by NoisyPumpkin)$\r$\n\
+- Texture Pack x4 (by GrowlingGuy41)$\r$\n\
+- The Lost Mission DLC port (requires Resurrection of Evil installed)$\r$\n\
+$\r$\n\
+WARNING: the HUD/UI fix is incompatible with existing saves, so install it only for a new run.$\r$\n\
+$\r$\n\
+${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
+$\r$\n\
+Special thanks to the dhewm3 team for their amazing work!"
 
-Name "Doom 3 [PATCHS]"
+!include "..\..\includes\templates\SelectTemplate.nsh"
+!include "..\..\includes\tools\7z.nsh"
+
+Name "Doom 3 [Enhancement Pack]"
 
 Section "Dhewm3 v1.5.4"
-    SetOutPath $INSTDIR
+    SetOutPath "$INSTDIR"
 
-    # Clean temp files
-    Delete $TEMP\dhewm3.zip
-    RMDir /r $TEMP\dhewm3
-
-    # Download in temp directory then move, because we don't want the "dhewm3" subfolder from the archive
-    !insertmacro Download https://github.com/dhewm/dhewm3/releases/download/1.5.4/dhewm3-1.5.4_win32.zip "$TEMP\dhewm3.zip"
-    nsisunz::Unzip "$TEMP\dhewm3.zip" "$TEMP\dhewm3"
-    !insertmacro MoveFolder "$TEMP\dhewm3\dhewm3" "$INSTDIR\" "*.*"
-
-    # Clean temp files
-    Delete $TEMP\dhewm3.zip
-    RMDir /r $TEMP\dhewm3
-
-    # Rename executable
-    Rename "Doom3.exe" "Doom3_original.exe"
-    Rename "dhewm3.exe" "Doom3.exe"
+    !insertmacro DOWNLOAD_2 "https://github.com/dhewm/dhewm3/releases/download/1.5.4/dhewm3-1.5.4_win32.zip" \
+                            "https://cdn2.mulderload.eu/g/doom-3/dhewm3-1.5.4_win32.zip" \
+                            "dhewm3.zip" "6bcf95625bd274a67c4b81a90f38956fba8f029c"
+    !insertmacro NSISUNZ_EXTRACT "dhewm3.zip" ".\" "AUTO_DELETE"
+    Rename "dhewm3\dhewm3.exe" "dhewm3\doom3.exe"
+    !insertmacro FORCE_RENAME "Doom3.exe" "Doom3_o.exe"
+    !insertmacro FOLDER_MERGE "$INSTDIR\dhewm3" "$INSTDIR"
 SectionEnd
 
 Section /o "HUD/UI Fix (by NoisyPumpkin) - break existing saves"
-    SetOutPath $INSTDIR
+    SetOutPath "$INSTDIR"
 
-    !insertmacro Download https://www.mediafire.com/file_premium/vvk9vdsxksu9atw/UNSTRECHED_HUD.zip/file "UNSTRECHED_HUD.zip"
-    nsisunz::Unzip /noextractpath /file "zzzz_hud_base.pk4" "UNSTRECHED_HUD.zip" "base\"
-    nsisunz::Unzip /noextractpath /file "zzzz_hud_xp.pk4" "UNSTRECHED_HUD.zip" "d3xp\"
-    Delete "UNSTRECHED_HUD.zip"
+    # https://www.moddb.com/addons/unstretched-hud-for-dhewm3
+    !insertmacro DOWNLOAD_2 "https://www.moddb.com/addons/start/237720" \
+                            "https://cdn2.mulderload.eu/g/doom-3/UNSTRECHED_HUD.rar" \
+                            "UNSTRECHED_HUD.rar" "6a50d27cfc0f9a1af1b3597e2ae7043b"
+    !insertmacro 7Z_GET
+    !insertmacro 7Z_EXTRACT_ONE "UNSTRECHED_HUD.rar" ".\base\" "zzzz_hud_base.pk4" ""
+    !insertmacro 7Z_EXTRACT_ONE "UNSTRECHED_HUD.rar" ".\d3xp\" "zzzz_hud_xp.pk4" "AUTO_DELETE"
+    !insertmacro 7Z_REMOVE
 SectionEnd
 
 Section "Textures Pack x4 v1.1 (by GrowlingGuy41)"
-    SetOutPath $INSTDIR
+    SetOutPath "$INSTDIR"
 
-    !insertmacro DownloadRedirect https://redirect.mulderload.eu/moddb/271929 "Doom3_GG41_textures_RoE.zip"
-    nsisunz::Unzip "Doom3_GG41_textures_RoE.zip" ".\"
-    Delete "Doom3_GG41_textures_RoE.zip"
-    RMDir /r "GG41\"
+    # https://www.moddb.com/mods/gg41-doom3/downloads/x4-texture-upscale-for-doom-3-v11-roe
+    !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/271929" \
+                            "https://cdn2.mulderload.eu/g/doom-3/Doom3_GG41_textures_RoE.zip" \
+                            "Doom3_GG41_textures_RoE.zip" "73e8e1cc90dce64b3f1fa743b131ce6e"
+    !insertmacro NSISUNZ_EXTRACT "Doom3_GG41_textures_RoE.zip" "$INSTDIR" "AUTO_DELETE"
+    RMDir /r "$INSTDIR\GG41"
 
-    # Backup autoexec.cfg if it exists
-    Delete "base\autoexec.cfg.bak"
-    IfFileExists "base\autoexec.cfg" +2
-        Rename "base\autoexec.cfg" "base\autoexec.cfg.bak"
+    !insertmacro FORCE_RENAME "$INSTDIR\base\autoexec.cfg" "$INSTDIR\base\autoexec.cfg.bak"
+    !insertmacro FORCE_RENAME "$INSTDIR\d3xp\autoexec.cfg" "$INSTDIR\d3xp\autoexec.cfg.bak"
 
-    # Download autoexec.cfg that includes configuration for Texture Pack
-    !insertmacro Download https://raw.githubusercontent.com/mulderload/recipes/refs/heads/main/resources/doom-3/autoexec.cfg "base\autoexec.cfg"
-    !insertmacro Download https://raw.githubusercontent.com/mulderload/recipes/refs/heads/main/resources/doom-3/autoexec.cfg "d3xp\autoexec.cfg"
+    # Copy autoexec.cfg that includes configuration for Texture Pack
+    File /oname=base\autoexec.cfg resources\autoexec.cfg
+    File /oname=d3xp\autoexec.cfg resources\autoexec.cfg
 SectionEnd
 
 Section "[DLC] Lost Mission (require RoE installed)" lost_mission
-    SetOutPath $INSTDIR
-
     IfFileExists "$INSTDIR\d3xp\pak000.pk4" roe_installed roe_missing
     roe_missing:
         MessageBox MB_OK "Lost Mission requires Resurrection of Evil (RoE) to be installed. Skipping installation of Lost Mission."
         Return
-
     roe_installed:
-    # Clean temp files
-    Delete "$TEMP\Doom3_The_Lost_Mission.zip"
-    RMDir /r "$TEMP\Doom3_The_Lost_Mission"
+    SetOutPath "$INSTDIR\@mulderload\lost_mission"
 
-    !insertmacro DownloadRedirect https://redirect.mulderload.eu/moddb/182038 "$TEMP\Doom3_The_Lost_Mission.zip"
-    nsisunz::Unzip "$TEMP\Doom3_The_Lost_Mission.zip" "$TEMP\Doom3_The_Lost_Mission"
-    !insertmacro MoveFolder "$TEMP\Doom3_The_Lost_Mission\d3le" "$INSTDIR\d3le" "*.*"
-    !insertmacro MoveFolder "$TEMP\Doom3_The_Lost_Mission\Extras\languages" "$INSTDIR\d3le" "*.*"
+    # https://www.moddb.com/mods/the-lost-mission/downloads/d3-lost-mission
+    !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/182038" \
+                            "https://cdn2.mulderload.eu/g/doom-3/Doom3_The_Lost_Mission_1.5.7.zip" \
+                            "Doom3_The_Lost_Mission.zip" \
+                            "dd8b80d4798b28fa97131748338135fb"
+    !insertmacro NSISUNZ_EXTRACT "Doom3_The_Lost_Mission.zip" ".\" "AUTO_DELETE"
+    !insertmacro FOLDER_MERGE ".\d3le" "$INSTDIR\d3le"
+    !insertmacro FOLDER_MERGE ".\Extras\languages" "$INSTDIR\d3le"
 
-    # Clean temp files
-    Delete "$TEMP\Doom3_The_Lost_Mission.zip"
-    RMDir /r "$TEMP\Doom3_The_Lost_Mission"
+    SetOutPath "$INSTDIR\@mulderload"
+    RMDir /r "$INSTDIR\@mulderload\lost_mission"
 
-    !insertmacro Download https://github.com/dhewm/dhewm3/releases/download/1.5.4/dhewm3-mods-1.5.4_win32.zip "dhewm3-mods.zip"
-    nsisunz::Unzip /noextractpath /file "dhewm3-mods\d3le.dll" "dhewm3-mods.zip" ".\"
-    Delete "dhewm3-mods.zip"
+    !insertmacro DOWNLOAD_2 "https://github.com/dhewm/dhewm3/releases/download/1.5.4/dhewm3-mods-1.5.4_win32.zip" \
+                            "https://cdn2.mulderload.eu/g/doom-3/dhewm3-mods-1.5.4_win32.zip" \
+                            "dhewm3-mods.zip" \
+                            "c7126fbe8badd6076846b07f90ebbb0ae5020c72"
+    !insertmacro NSISUNZ_EXTRACT_ONE "dhewm3-mods.zip" "$INSTDIR" "dhewm3-mods\d3le.dll" "AUTO_DELETE"
 SectionEnd
 
 Function .onInit

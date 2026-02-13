@@ -1,34 +1,34 @@
-!define MUI_WELCOMEPAGE_TEXT "Welcome to this NSIS installer from the MulderLoad project.$\r$\n$\r$\nThis installer will download The Stanley Parable (mod) v1.4.$\r$\n$\r$\nYou need to have 'Source SDK Base 2007' for this mod to work, this installer will try to install it via Steam.$\r$\n$\r$\nAfter installation, you will have to quit & restart Steam for the game to appear in your library."
-!include "..\..\templates\select_exe.nsh"
+!define MUI_WELCOMEPAGE_TEXT "\
+This installer is for The Stanley Parable (the 2011 mod), an early version of what would become the full commercial game two years later.$\r$\n\
+$\r$\n\
+IMPORTANT:$\r$\n\
+- you need to have $\"Source SDK Base 2007$\" installed$\r$\n\
+- after installation, restart Steam so the game appears$\r$\n\
+$\r$\n\
+${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
+$\r$\n\
+Special thanks to the development team, Galactic Cafe! Consider buying the full game on Steam: it has a lot more content than this early version."
 
-Name "The Stanley Parable (mod)"
+!include "..\..\includes\templates\SelectTemplate.nsh"
 
-Section "Source SDK Base 2007 (Steam)"
-    MessageBox MB_ICONINFORMATION  "Steam will install Source SDK Base 2007. Click OK and follow instructions on Steam."
-    Exec '"$INSTDIR\..\..\..\steam.exe" steam://install/218'
-    Sleep 10000
-    MessageBox MB_OK "Click OK when 'Source SDK Base 2007' installation is complete."
-SectionEnd
+Name "The Stanley Parable (Mod)"
 
-Section "The Stanley Parable (mod) v1.4"
-    SectionIn RO
-    !insertmacro AbortIfFolderNotEmpty "$INSTDIR\thestanleyparable"
-    SetOutPath $INSTDIR\thestanleyparable.tmp
+Section "The Stanley Parable v1.4"
+    AddSize 77722
+    SetOutPath "$INSTDIR"
 
-    !insertmacro Download https://www.mediafire.com/file_premium/xffffm9ryi03mz6/The_Stanley_Parable_v1.4.zip/file "The_Stanley_Parable_v1.4.zip"
-    nsisunz::Unzip "The_Stanley_Parable_v1.4.zip" ".\"
-    Delete "The_Stanley_Parable_v1.4.zip"
+    !insertmacro DOWNLOAD_3 "https://www.moddb.com/downloads/start/37782" \
+                            "https://cdn2.mulderload.eu/g/the-stanley-parable-mod/The_Stanley_Parable_v1.4.zip" \
+                            "https://www.mediafire.com/file_premium/xffffm9ryi03mz6/The_Stanley_Parable_v1.4.zip/file" \
+                            "The_Stanley_Parable_v1.4.zip" "72f33f83ed50e4b79affe781632c6e8814cc2de1"
+    !insertmacro NSISUNZ_EXTRACT "The_Stanley_Parable_v1.4.zip" ".\" "AUTO_DELETE"
 
-    SetOutPath $INSTDIR
-    Rename "$INSTDIR\thestanleyparable.tmp\thestanleyparable" "$INSTDIR\thestanleyparable"
-    Rename "$INSTDIR\thestanleyparable.tmp\author commentary.txt" "$INSTDIR\thestanleyparable\author commentary.txt"
-    Rename "$INSTDIR\thestanleyparable.tmp\changelist.txt" "$INSTDIR\thestanleyparable\changelist.txt"
-    Rename "$INSTDIR\thestanleyparable.tmp\readme.txt" "$INSTDIR\thestanleyparable\readme.txt"
-    RMDir /r "$INSTDIR\thestanleyparable.tmp"
+    RMDir /r "$INSTDIR\__MACOSX"
+    !insertmacro FOLDER_MERGE "$INSTDIR\thestanleyparable" "$INSTDIR"
 SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "steam.exe"
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam"
-    StrCpy $SELECT_RELATIVE_INSTDIR "steamapps\sourcemods"
+    StrCpy $SELECT_RELATIVE_INSTDIR "steamapps\sourcemods\thestanleyparable"
 FunctionEnd

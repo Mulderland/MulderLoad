@@ -1,7 +1,15 @@
-!define MUI_WELCOMEPAGE_TEXT "Welcome to this NSIS installer from the MulderLoad project.$\r$\n$\r$\nThis installer will install$\r$\n- Ultimate ASI Loader (latest)$\r$\n- SHfFix (v0.0.1)$\r$\n- MulderConfig to configure SHfFix + edit HDR brightness.$\r$\n$\r$\nA big thanks to Lyall for creating this fix, and of course ThirteenAG !"
+!define MUI_WELCOMEPAGE_TEXT "\
+This is an Enhancement Pack for Silent Hill f, which includes:$\r$\n\
+- SHfFix (by Lyall) to improve multiple things in the game, updated with the latest version of Ultimate ASI Loader (by ThirteenAG)$\r$\n\
+- MulderConfig to configure SHfFix && edit HDR brightness$\r$\n\
+$\r$\n\
+${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
+$\r$\n\
+A special thanks to Lyall for releasing this fix so quickly!"
+
 !define MUI_FINISHPAGE_RUN "$INSTDIR\MulderConfig.exe"
 !define MUI_FINISHPAGE_RUN_TEXT "Run MulderConfig"
-!include "..\..\templates\select_exe.nsh"
+!include "..\..\includes\templates\SelectTemplate.nsh"
 
 Name "Silent Hill f [Enhancement Pack]"
 
@@ -9,20 +17,20 @@ SectionGroup /e "ThirteenAG's Ultimate ASI Loader"
     Section
         SectionIn RO
         AddSize 1151
-        SetOutPath $INSTDIR\SHf\Binaries\Win64
-        !insertmacro Download https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/dsound-x64.zip "dsound.zip"
-        nsisunz::Unzip /noextractpath /file "dsound.dll" "dsound.zip" ".\"
-        Delete "dsound.zip"
+        SetOutPath "$INSTDIR\SHf\Binaries\Win64"
+        !insertmacro DOWNLOAD_1 "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/dsound-x64.zip" "dsound.zip" ""
+        !insertmacro NSISUNZ_EXTRACT_ONE "dsound.zip" ".\" "dsound.dll" "AUTO_DELETE"
     SectionEnd
 
     Section "Lyall's SHfFix v0.0.1"
         SectionIn RO
         AddSize 1138
-        SetOutPath $INSTDIR\SHf\Binaries\Win64\scripts
-        !insertmacro Download https://codeberg.org/Lyall/SHfFix/releases/download/0.0.1/SHfFix_0.0.1.zip "SHfFix.zip"
-        nsisunz::Unzip /noextractpath /file "SHfFix.asi" "SHfFix.zip" ".\"
-        nsisunz::Unzip /noextractpath /file "SHfFix.ini" "SHfFix.zip" ".\"
-        Delete "SHfFix.zip"
+        SetOutPath "$INSTDIR\SHf\Binaries\Win64\scripts"
+        !insertmacro DOWNLOAD_2 "https://codeberg.org/Lyall/SHfFix/releases/download/0.0.1/SHfFix_0.0.1.zip" \
+                                "https://cdn2.mulderload.eu/g/silent-hill-f/SHfFix_0.0.1.zip" \
+                                "SHfFix.zip" "8346265b6afb034d9477a86be79f5251853112d1"
+        !insertmacro NSISUNZ_EXTRACT_ONE "SHfFix.zip" ".\" "SHfFix.asi" ""
+        !insertmacro NSISUNZ_EXTRACT_ONE "SHfFix.zip" ".\" "SHfFix.ini" "AUTO_DELETE"
     SectionEnd
 SectionGroupEnd
 
@@ -30,18 +38,20 @@ SectionGroup /e "MulderConfig (latest)"
     Section
         SectionIn RO
         AddSize 1024
-        SetOutPath $INSTDIR
-        !insertmacro Download https://github.com/mulderload/MulderConfig/releases/latest/download/MulderConfig.exe "MulderConfig.exe"
-        !insertmacro Download https://raw.githubusercontent.com/mulderload/recipes/refs/heads/main/resources/silent-hill-f/MulderConfig.json "MulderConfig.json"
-        !insertmacro Download https://raw.githubusercontent.com/mulderload/recipes/refs/heads/main/resources/silent-hill-f/MulderConfig.save.json "MulderConfig.save.json"
+        SetOutPath "$INSTDIR"
+        !insertmacro DOWNLOAD_1 "https://github.com/mulderload/MulderConfig/releases/latest/download/MulderConfig.exe" "MulderConfig.exe" ""
+        File "resources\MulderConfig.json"
+        File "resources\MulderConfig.save.json"
         ExecWait '"$INSTDIR\MulderConfig.exe" -apply' $0
     SectionEnd
 
-    Section /o "Microsoft .NET Desktop Runtime 8.0.22 (x64)"
-        SetOutPath $INSTDIR
+    Section /o "Microsoft .NET Desktop Runtime 8.0.23 (x64)"
+        SetOutPath "$INSTDIR"
         AddSize 100000
 
-        !insertmacro Download https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.22/windowsdesktop-runtime-8.0.22-win-x64.exe "windowsdesktop-runtime-win-x64.exe"
+        !insertmacro DOWNLOAD_2 "https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.23/windowsdesktop-runtime-8.0.23-win-x64.exe" \
+                                "https://cdn2.mulderload.eu/g/_redist/windowsdesktop-runtime-8.0.23-win-x64.exe" \
+                                "windowsdesktop-runtime-win-x64.exe" "0ecfc9a9dab72cb968576991ec34921719039d70"
         ExecWait '"windowsdesktop-runtime-win-x64.exe" /Q' $0
         Delete "windowsdesktop-runtime-win-x64.exe"
     SectionEnd
