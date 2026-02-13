@@ -63,7 +63,7 @@ jobs:
       run: |
         Get-Content detect_result.txt | ForEach-Object {
           Write-Host " // Building $_"
-          if ($env:ENABLE_CODE_SIGNING -eq '1') {
+          if ($env:ENABLE_CODE_SIGNING -eq "true") {
             .\make.ps1 $_ -sign
           } else {
             .\make.ps1 $_
