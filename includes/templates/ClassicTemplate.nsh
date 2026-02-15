@@ -15,6 +15,7 @@
 !include "..\..\includes\functions\StrResolveFilename.nsh"
 !include "..\..\includes\functions\StrRightExplode.nsh"
 !include "..\..\includes\functions\StrStartsWith.nsh"
+!include "..\..\includes\misc\CheckOutdated.nsh"
 !include "..\..\includes\misc\CommonMacros.nsh"
 
 # Customize pages
@@ -22,6 +23,7 @@
 !include "..\..\includes\misc\Wording.nsh"
 
 # MUI Macros
+!define MUI_PAGE_CUSTOMFUNCTION_PRE CheckOutdated
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_COMPONENTS

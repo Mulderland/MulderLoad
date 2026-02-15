@@ -14,4 +14,4 @@ If you enjoyed this installer, please help the community grow by sharing the web
 $\r$\n\
 Thank you for your support, and happy gaming!"
 !define MUI_FINISHPAGE_LINK "www.mulderland.com"
-!define MUI_FINISHPAGE_LINK_LOCATION "https://www.mulderland.com/?utm_source=nsis"
+!define MUI_FINISHPAGE_LINK_LOCATION "https://www.mulderland.com/?utm_source=nsis&utm_campaign=finishpage"
