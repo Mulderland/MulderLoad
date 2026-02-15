@@ -34,3 +34,9 @@ RequestExecutionLevel none
 
 # Ensure the installer is not corrupted
 CRCCheck force
+
+# Mark version
+!ifdef VERSION
+    VIProductVersion "${VERSION}.0"
+    VIAddVersionKey "ProductVersion" "${VERSION}"
+!endif
