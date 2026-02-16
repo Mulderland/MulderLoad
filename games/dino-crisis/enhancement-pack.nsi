@@ -1,5 +1,5 @@
 !define MUI_WELCOMEPAGE_TEXT "\
-This is an Enhancement Pack for Dino Crysis. It includes:$\r$\n\
+This is an Enhancement Pack for Dino Crisis. It includes:$\r$\n\
 - Windows XP Patch$\r$\n\
 - High Quality Videos$\r$\n\
 - Classic REbirth$\r$\n\
@@ -16,7 +16,7 @@ Special thanks to the Classic REbirth team!"
 !include "..\..\includes\tools\7z.nsh"
 !include "..\..\includes\tools\XDelta3.nsh"
 
-Name "Dino Crysis [Enhancement Pack]"
+Name "Dino Crisis [Enhancement Pack]"
 
 Section
     DetailPrint " // Checking that binary is supported"
@@ -49,7 +49,7 @@ SectionGroup /e "Classic REbirth"
             DetailPrint " // Skipping Windows XP Patch."
         ${Else}
             !insertmacro FORCE_RENAME "DINO.exe" "DINO.exe.bak"
-            !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crysis/DINO%20xp.7z" \
+            !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis/DINO%20xp.7z" \
                                     "https://www.mediafire.com/file_premium/6c73u2fjpgpcx1m/DINO_xp.7z/file" \
                                     "DINO xp.7z" "08d0a6c5e8a91fa56cb4a13bd46136cfa45748e3"
             !insertmacro NSIS7Z_EXTRACT "DINO xp.7z" ".\" "AUTO_DELETE"
@@ -60,7 +60,7 @@ SectionGroup /e "Classic REbirth"
         AddSize 101581
         SetOutPath "$INSTDIR\Movie"
 
-        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crysis/Movie.rar" \
+        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis/Movie.rar" \
                                 "https://www.mediafire.com/file_premium/wnfkb1a5isy4w6b/Movie.rar/file" \
                                 "Movie.rar" "c5575da40f1f32b92668c6ba8fc77c85a57c6110"
         !insertmacro 7Z_EXTRACT "Movie.rar" ".\" "AUTO_DELETE"
@@ -71,7 +71,7 @@ SectionGroup /e "Classic REbirth"
         SetOutPath "$INSTDIR"
 
         !insertmacro FORCE_RENAME "ddraw.dll" "ddraw.dll.bak"
-        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crysis/dc1cr-1.0.0-2020-04-24.7z" \
+        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis/dc1cr-1.0.0-2020-04-24.7z" \
                                 "https://www.mediafire.com/file_premium/zdq1avo7p1oahk0/dc1cr-1.0.0-2020-04-24.7z/file" \
                                 "dc1cr-1.0.0-2020-04-24.7z" "3a0a62df64fd96807f9ac90cc2485319fbe145d9"
         !insertmacro NSIS7Z_EXTRACT "dc1cr-1.0.0-2020-04-24.7z" ".\" "AUTO_DELETE"
@@ -81,7 +81,7 @@ SectionGroup /e "Classic REbirth"
         AddSize 232448
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crysis/DINO_CRISIS_HQ_(Voice)_and_(Background_Music)_updated.rar" \
+        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis/DINO_CRISIS_HQ_(Voice)_and_(Background_Music)_updated.rar" \
                                 "https://www.mediafire.com/file_premium/phtu0nbwgxwr7a2/DINO_CRISIS_HQ_%2528Voice%2529_and_%2528Background_Music%2529_updated.rar/file" \
                                 "DINO_CRISIS_HQ_(Voice)_and_(Background_Music)_updated.rar" "c772a8f17e898769479a1aad709527750204e20d"
         !insertmacro 7Z_EXTRACT "DINO_CRISIS_HQ_(Voice)_and_(Background_Music)_updated.rar" ".\" "AUTO_DELETE"
@@ -92,7 +92,7 @@ SectionGroup /e "Classic REbirth"
         AddSize 2527068
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_RANGE_1 "https://cdn2.mulderload.eu/g/dino-crysis/HD_Mod_1.0%20[Repack-MLD].7z.001" "HD_Mod_1.0 [Repack-MLD].7z.001" "149abbde37507d63bef0ad0a673946f756fe599a" 5
+        !insertmacro DOWNLOAD_RANGE_1 "https://cdn2.mulderload.eu/g/dino-crisis/HD_Mod_1.0%20[Repack-MLD].7z.001" "HD_Mod_1.0 [Repack-MLD].7z.001" "149abbde37507d63bef0ad0a673946f756fe599a" 5
         !insertmacro NSIS7Z_EXTRACT "HD_Mod_1.0 [Repack-MLD].7z.001" ".\" ""
         !insertmacro DELETE_RANGE "HD_Mod_1.0 [Repack-MLD].7z.001" 5
         !insertmacro FORCE_RENAME "readme.txt" "Readme_HQ_Textures.txt"
