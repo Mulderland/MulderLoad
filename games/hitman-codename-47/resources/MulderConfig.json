@@ -1,0 +1,324 @@
+{
+  "game": {
+    "title": "Hitman: Codename 47",
+    "originalExe": "Hitman.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Renderer",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Direct3D with dgVoodoo2" },
+        { "value": "OpenGL" }
+      ]
+    },
+    {
+      "name": "HUD Scaling",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Default (original)" },
+        { "value": "1280x800 (16/10) - Scaling x2", "disabledWhen": [ { "Renderer": "OpenGL" } ] },
+        { "value": "1920x1080 (16/9) - Scaling x2", "disabledWhen": [ { "Renderer": "OpenGL" } ] },
+        { "value": "2560x1440 (16/9) - Scaling x2", "disabledWhen": [ { "Renderer": "OpenGL" } ] },
+        { "value": "3840x2160 (16/9) - Scaling x2", "disabledWhen": [ { "Renderer": "OpenGL" } ] },
+        { "value": "3840x2160 (16/9) - Scaling x3", "disabledWhen": [ { "Renderer": "OpenGL" } ] },
+        { "value": "2560x1080 (21/9) - Scaling x2", "disabledWhen": [ { "Renderer": "OpenGL" } ] },
+        { "value": "3440x1440 (21/9) - Scaling x2", "disabledWhen": [ { "Renderer": "OpenGL" } ] },
+        { "value": "5120x2160 (21/9) - Scaling x2", "disabledWhen": [ { "Renderer": "OpenGL" } ] },
+        { "value": "3840x1080 (32/9) - Scaling x2", "disabledWhen": [ { "Renderer": "OpenGL" } ] },
+        { "value": "5120x1440 (32/9) - Scaling x2", "disabledWhen": [ { "Renderer": "OpenGL" } ] },
+        { "value": "7680x2160 (32/9) - Scaling x2", "disabledWhen": [ { "Renderer": "OpenGL" } ] },
+        { "value": "7680x2160 (32/9) - Scaling x3", "disabledWhen": [ { "Renderer": "OpenGL" } ] }
+      ]
+    },
+    {
+      "name": "Draw Distance",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Default (original)" },
+        { "value": "Increase +15%" },
+        { "value": "Increase +30%" }
+      ]
+    },
+    {
+      "name": "FOV Modifier",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Lowest (-20%)" },
+        { "value": "Lower (-10%)" },
+        { "value": "Default" },
+        { "value": "Higher (+10%)" },
+        { "value": "Highest (+20%)" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Restore default MulderLoad INI (recovery)" },
+        { "value": "Use borderless window" },
+        { "value": "Skip Intro Video" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "Misc": "Restore default MulderLoad INI (recovery)" } ],
+        "operation": "copy",
+        "source": "@mulderload\\backup\\hitman.ini",
+        "target": "hitman.ini"
+      },
+
+      {
+        "when": [ { "Renderer": "Direct3D with dgVoodoo2" } ],
+        "operation": "rename",
+        "source": "dsound.dll",
+        "target": "ddraw.dll"
+      },
+      {
+        "when": [ { "Renderer": "Direct3D with dgVoodoo2" } ],
+        "operation": "replaceLine",
+        "files": ["Hitman.ini"],
+        "pattern": "^DrawDll .*$",
+        "replacement": "DrawDll RenderD3D.dll"
+      },
+      {
+        "when": [ { "Renderer": "OpenGL" } ],
+        "operation": "rename",
+        "source": "ddraw.dll",
+        "target": "dsound.dll"
+      },
+      {
+        "when": [ { "Renderer": "OpenGL" } ],
+        "operation": "replaceLine",
+        "files": ["Hitman.ini"],
+        "pattern": "^DrawDll .*$",
+        "replacement": "DrawDll RenderOpenGL.dll"
+      },
+
+      {
+        "when": [ { "HUD Scaling": "Default (original)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=0"
+      },
+      {
+        "when": [ { "HUD Scaling": "Default (original)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=0"
+      },
+
+      {
+        "when": [ { "HUD Scaling": "1280x800 (16/10) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=640"
+      },
+      {
+        "when": [ { "HUD Scaling": "1280x800 (16/10) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=400"
+      },
+
+      {
+        "when": [ { "HUD Scaling": "1920x1080 (16/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=960"
+      },
+      {
+        "when": [ { "HUD Scaling": "1920x1080 (16/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=540"
+      },
+
+      {
+        "when": [ { "HUD Scaling": "2560x1440 (16/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=1280"
+      },
+      {
+        "when": [ { "HUD Scaling": "2560x1440 (16/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=720"
+      },
+
+      {
+        "when": [ { "HUD Scaling": "3840x2160 (16/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=1920"
+      },
+      {
+        "when": [ { "HUD Scaling": "3840x2160 (16/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=1080"
+      },
+
+      {
+        "when": [ { "HUD Scaling": "3840x2160 (16/9) - Scaling x3" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=1280"
+      },
+      {
+        "when": [ { "HUD Scaling": "3840x2160 (16/9) - Scaling x3" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=720"
+      },
+
+      {
+        "when": [ { "HUD Scaling": "2560x1080 (21/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=1280"
+      },
+      {
+        "when": [ { "HUD Scaling": "2560x1080 (21/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=540"
+      },
+
+      {
+        "when": [ { "HUD Scaling": "3440x1440 (21/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=1720"
+      },
+      {
+        "when": [ { "HUD Scaling": "3440x1440 (21/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=720"
+      },
+
+      {
+        "when": [ { "HUD Scaling": "5120x2160 (21/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=2560"
+      },
+      {
+        "when": [ { "HUD Scaling": "5120x2160 (21/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=1080"
+      },
+
+      {
+        "when": [ { "HUD Scaling": "3840x1080 (32/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=1920"
+      },
+      {
+        "when": [ { "HUD Scaling": "3840x1080 (32/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=540"
+      },
+
+      {
+        "when": [ { "HUD Scaling": "5120x1440 (32/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=2560"
+      },
+      {
+        "when": [ { "HUD Scaling": "5120x1440 (32/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=720"
+      },
+
+      {
+        "when": [ { "HUD Scaling": "7680x2160 (32/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=3840"
+      },
+      {
+        "when": [ { "HUD Scaling": "7680x2160 (32/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=1080"
+      },
+
+      {
+        "when": [ { "HUD Scaling": "7680x2160 (32/9) - Scaling x3" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=2560"
+      },
+      {
+        "when": [ { "HUD Scaling": "7680x2160 (32/9) - Scaling x3" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=720"
+      },
+
+      {
+        "when": [ { "Misc": "Use borderless window" } ],
+        "operation": "replaceLine",
+        "files": ["hitman.ini"],
+        "pattern": "^//Window$",
+        "replacement": "Window"
+      },
+      {
+        "when": [ { "!Misc": "Use borderless window" } ],
+        "operation": "replaceLine",
+        "files": ["hitman.ini"],
+        "pattern": "^Window$",
+        "replacement": "//Window"
+      },
+
+      {
+        "when": [ { "Misc": "Skip Intro Video" } ],
+        "operation": "copy",
+        "source": "Intro.zip",
+        "target": "Cutscenes\\Intro\\Intro.zip"
+      },
+      {
+        "when": [ { "!Misc": "Skip Intro Video" } ],
+        "operation": "copy",
+        "source": "@mulderload\\backup\\Intro.zip",
+        "target": "Cutscenes\\Intro\\Intro.zip"
+      }
+    ]
+  }
+}
