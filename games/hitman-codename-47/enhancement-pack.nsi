@@ -1,10 +1,7 @@
-; https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/v9.5.0/Ultimate-ASI-Loader.zip => dsound.dll
-
-
 !define MUI_WELCOMEPAGE_TEXT "\
 This is an Enhancement Pack for Hitman: Codename 47, aiming to provide a better experience today. It includes:$\r$\n\
 - Ultimate ASI Loader (by ThirteenAG)$\r$\n\
-- Widescreen & FOV Fix (by alphayellow)$\r$\n\
+- Widescreen && FOV Fix (by alphayellow)$\r$\n\
 - dgVoodoo2 (latest, or v2.81.3 if you're on Linux)$\r$\n\
 - MulderConfig (to configure HUD Scaling && more)$\r$\n\
 - Modern keyboard mapping$\r$\n\
@@ -15,8 +12,8 @@ Special thanks to alphayellow for his new widescreen fix, and for adding OpenGL 
 
 !define MUI_FINISHPAGE_RUN "$INSTDIR\MulderConfig.exe"
 !define MUI_FINISHPAGE_RUN_TEXT "Run MulderConfig"
-!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\@mulderload\README.txt"
-!define MUI_FINISHPAGE_SHOWREADME_TEXT "Show informations about HUD Scaling && more"
+!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\@mulderland\README.txt"
+!define MUI_FINISHPAGE_SHOWREADME_TEXT "Show infos about HUD Scaling && known issues (important)"
 !include "..\..\includes\templates\SelectTemplate.nsh"
 !include "..\..\includes\tools\7z.nsh"
 
@@ -33,22 +30,21 @@ Section "Widescreen fix (by alphayellow) + dgVoodoo2"
     !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "dgVoodooCpl.exe" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "MS\x86\DDraw.dll" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "MS\x86\D3DImm.dll" "AUTO_DELETE"
-    !insertmacro FORCE_RENAME "DDraw.dll" "ddrawHooked.dll"
 
-    # Install ThirteenAG's Ultimate ASI Loader (stick to 9.5, higher doesnt seem to work at least on GOG release)
+    # Install ThirteenAG's Ultimate ASI Loader (stick to 9.5, higher doesnt seem to work on GOG release)
     !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/v9.5.0/Ultimate-ASI-Loader.zip" \
                             "https://cdn2.mulderload.eu/g/hitman-codename-47/Ultimate-ASI-Loader-9.5.zip" \
                             "Ultimate-ASI-Loader.zip" "418b117c22ff2a798cf9173ba20f8cdfde3c456e"
     !insertmacro NSISUNZ_EXTRACT "Ultimate-ASI-Loader.zip" ".\" "AUTO_DELETE"
-    !insertmacro FORCE_RENAME "dinput8.dll" "ddraw.dll"
+    !insertmacro FORCE_RENAME "dinput8.dll" "dsound.dll"
 
     # Install Alphayellow's Widescreen Fix
     SetOutPath "$INSTDIR\scripts"
-    !insertmacro DOWNLOAD_2 "https://community.pcgamingwiki.com/files/file/3919-hitman-codename-47-widescreen-fov-fix/" \
-                            "https://cdn2.mulderload.eu/g/hitman-codename-47/Hitman%20Codename%2047%20-%20Widescreen%20&%20FOV%20Fix%20v1.1.rar" \
-                            "Hitman Codename 47 - Widescreen & FOV Fix v1.1.rar" "7f1422aecec733fd56baf30f3652cb2e09d2d60f"
+    !insertmacro DOWNLOAD_2 "https://github.com/alphayellow1/AlphaYellowWidescreenFixes/releases/download/hitmancodename47/Hitman.Codename.47.-.Widescreen.FOV.Fix.v1.1.1.rar" \
+                            "https://cdn2.mulderload.eu/g/hitman-codename-47/Hitman.Codename.47.-.Widescreen.FOV.Fix.v1.1.1.rar" \
+                            "Hitman.Codename.47.-.Widescreen.FOV.Fix.v1.1.1.rar" "7ea364ba1c5f7b7454d2c97c3533f62b2a8fdc6f"
     !insertmacro 7Z_GET
-    !insertmacro 7Z_EXTRACT "Hitman Codename 47 - Widescreen & FOV Fix v1.1.rar" ".\" "AUTO_DELETE"
+    !insertmacro 7Z_EXTRACT "Hitman.Codename.47.-.Widescreen.FOV.Fix.v1.1.1.rar" ".\" "AUTO_DELETE"
     !insertmacro 7Z_REMOVE
 
     # Configure dgVoodoo
@@ -72,14 +68,10 @@ SectionEnd
 
 SectionGroup /e "MulderConfig (latest)"
     Section
-        AddSize 1946
-        # Copy max quality INI to allow recovery
-        SetOutPath "$INSTDIR\@mulderload\backup"
-        File resources\hitman.ini
-
+        AddSize 1945
         # Copy Intro.zip to allow toggling the intro video in MulderConfig UI
-        ${IfNot} ${FileExists} "$INSTDIR\@mulderload\backup\Intro.zip"
-            CopyFiles "$INSTDIR\Cutscenes\Intro\Intro.zip" "$INSTDIR\@mulderload\backup\Intro.zip"
+        ${IfNot} ${FileExists} "$INSTDIR\@mulderland\backup\Intro.zip"
+            CopyFiles "$INSTDIR\Cutscenes\Intro\Intro.zip" "$INSTDIR\@mulderland\backup\Intro.zip"
         ${EndIf}
     SectionEnd
 
@@ -111,7 +103,7 @@ SectionEnd
 
 Section
     # Copy readme
-    SetOutPath "$INSTDIR\@mulderload"
+    SetOutPath "$INSTDIR\@mulderland"
     File "resources\README.txt"
 SectionEnd
 

@@ -1,7 +1,6 @@
 {
   "Hitman: Codename 47": {
-    "Renderer": "Direct3D with dgVoodoo2",
-    "HUD Scaling": "Default (original)",
+    "HUD Scaling (Direct3D only)": "Default (original)",
     "Draw Distance": "Default (original)",
     "FOV Modifier": "Default",
     "Misc": []
