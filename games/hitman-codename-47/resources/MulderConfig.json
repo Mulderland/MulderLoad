@@ -1,0 +1,331 @@
+{
+  "game": {
+    "title": "Hitman: Codename 47",
+    "originalExe": "Hitman.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "HUD Scaling (Direct3D only)",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Default (original)" },
+        { "value": "1280x800 (16/10) - Scaling x2" },
+        { "value": "1920x1080 (16/9) - Scaling x2" },
+        { "value": "2560x1440 (16/9) - Scaling x2" },
+        { "value": "3840x2160 (16/9) - Scaling x2" },
+        { "value": "3840x2160 (16/9) - Scaling x3" },
+        { "value": "2560x1080 (21/9) - Scaling x2" },
+        { "value": "3440x1440 (21/9) - Scaling x2" },
+        { "value": "5120x2160 (21/9) - Scaling x2" },
+        { "value": "3840x1080 (32/9) - Scaling x2" },
+        { "value": "5120x1440 (32/9) - Scaling x2" },
+        { "value": "7680x2160 (32/9) - Scaling x2" },
+        { "value": "7680x2160 (32/9) - Scaling x3" }
+      ]
+    },
+    {
+      "name": "Draw Distance",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Default (original)" },
+        { "value": "Increase +15%" },
+        { "value": "Increase +30%" }
+      ]
+    },
+    {
+      "name": "FOV Modifier",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Lowest (-20%)" },
+        { "value": "Lower (-10%)" },
+        { "value": "Default" },
+        { "value": "Higher (+10%)" },
+        { "value": "Highest (+20%)" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Skip Intro Video" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [],
+        "operation": "replaceLine",
+        "files": ["hitman.ini"],
+        "pattern": "^StartUpperPos.*$",
+        "replacement": "StartUpperPos 0,0"
+      },
+
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "Default (original)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=0"
+      },
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "Default (original)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=0"
+      },
+
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "1280x800 (16/10) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=640"
+      },
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "1280x800 (16/10) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=400"
+      },
+
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "1920x1080 (16/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=960"
+      },
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "1920x1080 (16/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=540"
+      },
+
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "2560x1440 (16/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=1280"
+      },
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "2560x1440 (16/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=720"
+      },
+
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "3840x2160 (16/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=1920"
+      },
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "3840x2160 (16/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=1080"
+      },
+
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "3840x2160 (16/9) - Scaling x3" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=1280"
+      },
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "3840x2160 (16/9) - Scaling x3" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=720"
+      },
+
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "2560x1080 (21/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=1280"
+      },
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "2560x1080 (21/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=540"
+      },
+
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "3440x1440 (21/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=1720"
+      },
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "3440x1440 (21/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=720"
+      },
+
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "5120x2160 (21/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=2560"
+      },
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "5120x2160 (21/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=1080"
+      },
+
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "3840x1080 (32/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=1920"
+      },
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "3840x1080 (32/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=540"
+      },
+
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "5120x1440 (32/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=2560"
+      },
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "5120x1440 (32/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=720"
+      },
+
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "7680x2160 (32/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=3840"
+      },
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "7680x2160 (32/9) - Scaling x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=1080"
+      },
+
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "7680x2160 (32/9) - Scaling x3" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=2560"
+      },
+      {
+        "when": [ { "HUD Scaling (Direct3D only)": "7680x2160 (32/9) - Scaling x3" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=720"
+      },
+      
+      {
+        "when": [ { "Draw Distance": "Default (original)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^DrawDistanceFactor=.*$",
+        "replacement": "DrawDistanceFactor=1.0"
+      },
+      {
+        "when": [ { "Draw Distance": "Increase +15%" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^DrawDistanceFactor=.*$",
+        "replacement": "DrawDistanceFactor=1.15"
+      },
+      {
+        "when": [ { "Draw Distance": "Increase +30%" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^DrawDistanceFactor=.*$",
+        "replacement": "DrawDistanceFactor=1.30"
+      },
+      
+      {
+        "when": [ { "FOV Modifier": "Lowest (-20%)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^FOVFactor=.*$",
+        "replacement": "FOVFactor=0.8"
+      },
+      {
+        "when": [ { "FOV Modifier": "Lower (-10%)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^FOVFactor=.*$",
+        "replacement": "FOVFactor=0.9"
+      },
+      {
+        "when": [ { "FOV Modifier": "Default" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^FOVFactor=.*$",
+        "replacement": "FOVFactor=1.0"
+      },
+      {
+        "when": [ { "FOV Modifier": "Higher (+10%)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^FOVFactor=.*$",
+        "replacement": "FOVFactor=1.1"
+      },
+      {
+        "when": [ { "FOV Modifier": "Highest (+20%)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\HitmanCodename47WidescreenFix.ini"],
+        "pattern": "^FOVFactor=.*$",
+        "replacement": "FOVFactor=1.2"
+      },
+
+      {
+        "when": [ { "Misc": "Skip Intro Video" } ],
+        "operation": "copy",
+        "source": "Intro.zip",
+        "target": "Cutscenes\\Intro\\Intro.zip"
+      },
+      {
+        "when": [ { "!Misc": "Skip Intro Video" } ],
+        "operation": "copy",
+        "source": "@mulderload\\backup\\Intro.zip",
+        "target": "Cutscenes\\Intro\\Intro.zip"
+      }
+    ]
+  }
+}
