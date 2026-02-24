@@ -1,0 +1,10 @@
+{
+  "Hitman: Contracts": {
+    "Resolution": "1920x1080 (16/9)",
+    "HUD Scaling": "x1 (default)",
+    "Controller Options": "Keyboard && Mouse",
+    "FOV Modifier": "Default",
+    "Window Mode": "Exclusive Fullscreen",
+    "Misc": []
+  }
+}
