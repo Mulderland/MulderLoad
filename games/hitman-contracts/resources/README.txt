@@ -5,13 +5,15 @@ Hitman: Contracts *Enhancement Pack* @ mulderland.com
 
 1.1) Fatal error: Direct3D: Unable to create device. Try changing resolution or color depth.
 
-This issue may be related to the HUD Scaling feature. It occurs when the selected "HUD resolution" (defined in 
+This issue may be related to the "UI Scaling" feature. It occurs when the selected "UI resolution" (defined in 
 scripts\h3.ini) doesn't exist on your system.
 
 Try the following solutions in order:
-- Set "HUD Scaling x1"
-- Set "HUD Scaling x1" and "Borderless Fullscreen"
-- (Advanced) Manually create the required "HUD resolution" in your GPU control panel. See the ini to know which one.
+- Set "Borderless Windowed Fullscreen"
+- Set "UI Scaling x1"
+- Set "Borderless Windowed Fullscreen" and "UI Scaling x1"
+- Choose another resolution
+- (Advanced) Manually create the required "UI resolution" in your GPU control panel. See the ini to know which one.
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +25,7 @@ To improve performance, you can
 
 ------------------------------------------------------------------------------------------------------------------------
 
-1.3) HUD Scaling "x2 (best quality)" reduces Steam Overlay size
+1.3) UI Scaling "x2 (best quality)" reduces Steam Overlay size
 
 This behavior is expected, and there is no fix available.
 
@@ -37,9 +39,9 @@ causes the Steam Overlay to appear smaller than usual.
 
 2.1) Custom Resolution
 
-If your resolution isn't listed, you can manually set it by editing the scripts\h3.ini file.
+If your resolution isn't listed, select "Other" and manually set it by editing the scripts\h3.ini file.
 
-Please note that if you're using HUD Scaling at x2, you’ll need to divide both the "Width" and "Height" values by 2.
+Please note that if you're using "UI Scaling" at x2, you’ll need to divide both the "Width" and "Height" values by 2.
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -52,7 +54,7 @@ Special thanks to:
 - ThirteenAG for the Ultimate ASI Loader
 - the dgVoodoo2 team
 - burntshrimp for importing missing Direct3D effects from the OpenGL version
-- mutantx20 for the controller support fix
+- mutantx20 for the controller support
 Without their work, this pack would not have been possible.
 
 Find other Enhancement Packs (and more) at www.mulderland.com

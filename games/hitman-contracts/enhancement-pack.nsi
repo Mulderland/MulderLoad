@@ -11,7 +11,7 @@ ${TXT_WELCOMEPAGE_MULDERLAND_3}"
 
 !define MUI_FINISHPAGE_RUN "$INSTDIR\MulderConfig.exe"
 !define MUI_FINISHPAGE_RUN_TEXT "Run MulderConfig"
-!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\@mulderland\README.txt"
+!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\@mulderload\README.txt"
 !define MUI_FINISHPAGE_SHOWREADME_TEXT "Show infos about HUD Scaling && known issues"
 !include "..\..\includes\templates\SelectTemplate.nsh"
 
@@ -108,7 +108,7 @@ SectionGroupEnd
 
 Section
     # Copy readme
-    SetOutPath "$INSTDIR\@mulderland"
+    SetOutPath "$INSTDIR\@mulderload"
     File "resources\README.txt"
 SectionEnd
 

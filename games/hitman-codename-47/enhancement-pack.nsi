@@ -12,7 +12,7 @@ Special thanks to alphayellow for his new widescreen fix, and for adding OpenGL 
 
 !define MUI_FINISHPAGE_RUN "$INSTDIR\MulderConfig.exe"
 !define MUI_FINISHPAGE_RUN_TEXT "Run MulderConfig"
-!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\@mulderland\README.txt"
+!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\@mulderload\README.txt"
 !define MUI_FINISHPAGE_SHOWREADME_TEXT "Show infos about HUD Scaling && known issues (important)"
 !include "..\..\includes\templates\SelectTemplate.nsh"
 !include "..\..\includes\tools\7z.nsh"
@@ -33,7 +33,7 @@ Section "Widescreen fix (by alphayellow) + dgVoodoo2"
 
     # Install ThirteenAG's Ultimate ASI Loader (stick to 9.5, higher doesnt seem to work on GOG release)
     !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/v9.5.0/Ultimate-ASI-Loader.zip" \
-                            "https://cdn2.mulderload.eu/g/hitman-codename-47/Ultimate-ASI-Loader-9.5.zip" \
+                            "https://cdn2.mulderload.eu/g/_common/Ultimate-ASI-Loader-9.5.zip" \
                             "Ultimate-ASI-Loader.zip" "418b117c22ff2a798cf9173ba20f8cdfde3c456e"
     !insertmacro NSISUNZ_EXTRACT "Ultimate-ASI-Loader.zip" ".\" "AUTO_DELETE"
     !insertmacro FORCE_RENAME "dinput8.dll" "dsound.dll"
@@ -48,10 +48,8 @@ Section "Widescreen fix (by alphayellow) + dgVoodoo2"
     !insertmacro 7Z_REMOVE
 
     # Configure dgVoodoo
-    !insertmacro FILE_STR_REPLACE "WindowedAttributes                   = " "WindowedAttributes                   = FullscreenSize" 1 1 "$INSTDIR\dgVoodoo.conf"
     !insertmacro FILE_STR_REPLACE "FPSLimit                             = 0" "FPSLimit                             = 60" 1 1 "$INSTDIR\dgVoodoo.conf"
     !insertmacro FILE_STR_REPLACE "VRAM                                = 256" "VRAM                                = 512" 1 1 "$INSTDIR\dgVoodoo.conf"
-    !insertmacro FILE_STR_REPLACE "Resolution                          = unforced" "Resolution                          = desktop" 2 1 "$INSTDIR\dgVoodoo.conf"
     !insertmacro FILE_STR_REPLACE "dgVoodooWatermark                   = true" "dgVoodooWatermark                   = false" 1 1 "$INSTDIR\dgVoodoo.conf"
 
     # Remove nGlide to avoid conflict with dgVoodoo (only useful on GOG release)
@@ -70,8 +68,8 @@ SectionGroup /e "MulderConfig (latest)"
     Section
         AddSize 1945
         # Copy Intro.zip to allow toggling the intro video in MulderConfig UI
-        ${IfNot} ${FileExists} "$INSTDIR\@mulderland\backup\Intro.zip"
-            CopyFiles "$INSTDIR\Cutscenes\Intro\Intro.zip" "$INSTDIR\@mulderland\backup\Intro.zip"
+        ${IfNot} ${FileExists} "$INSTDIR\@mulderload\backup\Intro.zip"
+            CopyFiles "$INSTDIR\Cutscenes\Intro\Intro.zip" "$INSTDIR\@mulderload\backup\Intro.zip"
         ${EndIf}
     SectionEnd
 
@@ -103,7 +101,7 @@ SectionEnd
 
 Section
     # Copy readme
-    SetOutPath "$INSTDIR\@mulderland"
+    SetOutPath "$INSTDIR\@mulderload"
     File "resources\README.txt"
 SectionEnd
 

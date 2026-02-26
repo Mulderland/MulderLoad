@@ -1,8 +1,10 @@
 {
   "Hitman: Codename 47": {
-    "HUD Scaling (Direct3D only)": "Default (original)",
-    "Draw Distance": "Default (original)",
+    "Resolution": "Desktop (automatic)",
+    "UI Scaling (Direct3D only)": "x1 (default)",
+    "Window Mode": "Exclusive Fullscreen",
     "FOV Modifier": "Default",
+    "Draw Distance": "Default (original)",
     "Misc": []
   }
 }
