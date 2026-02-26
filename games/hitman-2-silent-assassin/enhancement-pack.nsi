@@ -8,15 +8,17 @@ This is an Enhancement Pack for Hitman 2: Silent Assassin, aiming to provide a m
 $\r$\n\
 ${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
 $\r$\n\
-Specila thanks to the dgVoodoo2 project!"
+Special thanks to the dgVoodoo2 project!"
 
+!define MUI_FINISHPAGE_RUN "$INSTDIR\MulderConfig.exe"
+!define MUI_FINISHPAGE_RUN_TEXT "Run MulderConfig"
 !define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\@mulderload\README.txt"
 !define MUI_FINISHPAGE_SHOWREADME_TEXT "Show manual instructions (important)"
 !include "..\..\includes\templates\SelectTemplate.nsh"
 
 Name "Hitman 2: Silent Assassin [Enhancement Pack]"
 
-Section "Downgrade Steam v1.02 to GOG v1.01 (uncensored)"
+Section "Downgrade Steam v1.02 (if detected) to v1.01"
     AddSize 10240
     SetOutPath "$INSTDIR"
 
@@ -43,57 +45,73 @@ Section "Downgrade Steam v1.02 to GOG v1.01 (uncensored)"
     skip_section:
 SectionEnd
 
-Section "Widescreen fix (by nemesis2000) + dgVoodoo"
+Section "Widescreen fix (by nemesis2000) + dgVoodoo2"
     AddSize 8704
     SetOutPath "$INSTDIR"
 
-    # Max Settings INI (except DXT still on, because it can causes crashes without it)
+    # Copy Max Quality INI
     Delete "hitman2.ini"
     File resources\hitman2.ini
 
-    # nemesis2000 Widescreen Fix
-    !insertmacro DOWNLOAD_2 "https://community.pcgamingwiki.com/files/file/2787-hitman-2-silent-assassin-widescreen-fix/#13816" \
-                            "https://cdn2.mulderload.eu/g/hitman-2-silent-assassin/Hitman%202%20Silent%20Assassin%20Widescreen%20Fix.zip" \
-                            "Hitman 2 Silent Assassin Widescreen Fix.zip" "9a2c7e17e4a303e2dec640b3ce23f90192bc2398"
-    !insertmacro NSISUNZ_EXTRACT "Hitman 2 Silent Assassin Widescreen Fix.zip" ".\" "AUTO_DELETE"
-
-    # dgVoodoo
-    SetOutPath "$INSTDIR\dgVoodoo"
+    # Install dgVoodoo
     !insertmacro DOWNLOAD_DGVOODOO2
     !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "dgVoodoo.conf" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "dgVoodooCpl.exe" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "MS\x86\D3D8.dll" "AUTO_DELETE"
+    !insertmacro FORCE_RENAME "D3D8.dll" "d3d8Hooked.dll"
 
-    # config
-    !insertmacro FILE_STR_REPLACE "RealDllPath       = AUTO" "RealDllPath       = dgVoodoo\d3d8.dll" 1 1 "$INSTDIR\d3d8.ini"
-    !insertmacro FILE_STR_REPLACE "FPSLimit                             = 0" "FPSLimit                             = 60" 1 1 "$INSTDIR\dgVoodoo\dgVoodoo.conf"
-    !insertmacro FILE_STR_REPLACE "VRAM                                = 256" "VRAM                                = 512" 1 1 "$INSTDIR\dgVoodoo\dgVoodoo.conf"
-    !insertmacro FILE_STR_REPLACE "Antialiasing                        = appdriven" "Antialiasing                        = 4x" 2 1 "$INSTDIR\dgVoodoo\dgVoodoo.conf"
-    !insertmacro FILE_STR_REPLACE "Resolution                          = unforced" "Resolution                          = desktop" 2 1 "$INSTDIR\dgVoodoo\dgVoodoo.conf"
-    !insertmacro FILE_STR_REPLACE "dgVoodooWatermark                   = true" "dgVoodooWatermark                   = false" 1 1 "$INSTDIR\dgVoodoo\dgVoodoo.conf"
+    # Install ThirteenAG's Ultimate ASI Loader (stick to 9.5, higher doesnt seem to work on GOG release)
+    !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/v9.5.0/Ultimate-ASI-Loader.zip" \
+                            "https://cdn2.mulderload.eu/g/_common/Ultimate-ASI-Loader-9.5.zip" \
+                            "Ultimate-ASI-Loader.zip" "418b117c22ff2a798cf9173ba20f8cdfde3c456e"
+    !insertmacro NSISUNZ_EXTRACT "Ultimate-ASI-Loader.zip" ".\" "AUTO_DELETE"
+    !insertmacro FORCE_RENAME "dinput8.dll" "d3d8.dll"
+
+    SetOutPath "$INSTDIR\scripts"
+
+    # Install nemesis2000's Widescreen Fix
+    !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/hitman-2-silent-assassin/Hitman%202%20Silent%20Assassin%20Widescreen%20Fix.zip" \
+                            "https://community.pcgamingwiki.com/files/file/2787-hitman-2-silent-assassin-widescreen-fix/#13816" \
+                            "Hitman 2 Silent Assassin Widescreen Fix.zip" "9a2c7e17e4a303e2dec640b3ce23f90192bc2398"
+    !insertmacro NSISUNZ_EXTRACT_ONE "Hitman 2 Silent Assassin Widescreen Fix.zip" ".\" "scripts\h2.ini" ""
+    !insertmacro NSISUNZ_EXTRACT_ONE "Hitman 2 Silent Assassin Widescreen Fix.zip" ".\" "scripts\h2w.asi" "AUTO_DELETE"
+
+    # Configure dgVoodoo
+    !insertmacro FILE_STR_REPLACE "FPSLimit                             = 0" "FPSLimit                             = 60" 1 1 "$INSTDIR\dgVoodoo.conf"
+    !insertmacro FILE_STR_REPLACE "VRAM                                = 256" "VRAM                                = 512" 1 1 "$INSTDIR\dgVoodoo.conf"
+    !insertmacro FILE_STR_REPLACE "Antialiasing                        = appdriven" "Antialiasing                        = 4x" 2 1 "$INSTDIR\dgVoodoo.conf"
+    !insertmacro FILE_STR_REPLACE "dgVoodooWatermark                   = true" "dgVoodooWatermark                   = false" 1 1 "$INSTDIR\dgVoodoo.conf"
 SectionEnd
 
-SectionGroup /e "Controller Support (by mutantx20)"
-    Section
-        AddSize 862
-        SetOutPath "$INSTDIR"
-        !insertmacro DOWNLOAD_2 "https://community.pcgamingwiki.com/files/file/2820-hitman-2-controller-fix/#13930" \
-                                "https://cdn2.mulderload.eu/g/hitman-2-silent-assassin/hitman%202%20controller.7z" \
-                                "hitman 2 controller.7z" "bbe6e442e121dd968e138f57a14ce1517e7d6de1"
-        !insertmacro NSIS7Z_EXTRACT "hitman 2 controller.7z" ".\" "AUTO_DELETE"
+Section "Add Xinput Controller support (by mutantx20)"
+    AddSize 862
+    SetOutPath "$INSTDIR"
+    !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/hitman-2-silent-assassin/hitman%202%20controller.7z" \
+                            "https://community.pcgamingwiki.com/files/file/2820-hitman-2-controller-fix/#13930" \
+                            "hitman 2 controller.7z" "bbe6e442e121dd968e138f57a14ce1517e7d6de1"
+    !insertmacro NSIS7Z_EXTRACT "hitman 2 controller.7z" ".\" "AUTO_DELETE"
+    Delete "alec 360.txt"
+SectionEnd
 
-        FileOpen $0 "$INSTDIR\hitman2.ini" a
-        FileSeek $0 0 END
-        FileWrite $0 '$\r$\n; === CONTROLLER SUPPORT (Start) === $\r$\n'
-        FileWrite $0 '; UseGameController$\r$\n'
-        FileWrite $0 '; ConfigFile=HMCGPAD1.cfg$\r$\n'
-        FileWrite $0 '; === CONTROLLER SUPPORT (End) === $\r$\n'
-        FileClose $0
+SectionGroup /e "MulderConfig (latest)"
+    Section
+        SectionIn RO
+        AddSize 1024
+        SetOutPath "$INSTDIR"
+        !insertmacro DOWNLOAD_1 "https://github.com/Mulderland/MulderConfig/releases/latest/download/MulderConfig.exe" "MulderConfig.exe" ""
+        File resources\MulderConfig.json
+        File resources\MulderConfig.save.json
     SectionEnd
 
-    Section /o "Enable (will disable keyboard controls)"
-        !insertmacro FILE_STR_REPLACE "; UseGameController" "UseGameController" 1 1 "$INSTDIR\hitman2.ini"
-        !insertmacro FILE_STR_REPLACE "; ConfigFile=HMCGPAD1.cfg" "ConfigFile=HMCGPAD1.cfg" 1 1 "$INSTDIR\hitman2.ini"
+    Section /o "Microsoft .NET Desktop Runtime 8.0.23 (x64)"
+        SetOutPath "$INSTDIR"
+        AddSize 100000
+
+        !insertmacro DOWNLOAD_2 "https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.23/windowsdesktop-runtime-8.0.23-win-x64.exe" \
+                                "https://cdn2.mulderload.eu/g/_redist/windowsdesktop-runtime-8.0.23-win-x64.exe" \
+                                "windowsdesktop-runtime-win-x64.exe" "0ecfc9a9dab72cb968576991ec34921719039d70"
+        ExecWait '"windowsdesktop-runtime-win-x64.exe" /Q' $0
+        Delete "windowsdesktop-runtime-win-x64.exe"
     SectionEnd
 SectionGroupEnd
 

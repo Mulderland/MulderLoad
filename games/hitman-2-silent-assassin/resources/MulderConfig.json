@@ -1,0 +1,702 @@
+{
+  "game": {
+    "title": "Hitman 2: Silent Assassin",
+    "originalExe": "hitman2.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Resolution",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "1280x800 (16/10)" },
+        { "value": "1920x1080 (16/9)" },
+        { "value": "2560x1440 (16/9)" },
+        { "value": "3840x2160 (16/9)" },
+        { "value": "2560x1080 (21/9)" },
+        { "value": "3440x1440 (21/9)" },
+        { "value": "5120x2160 (21/9)" },
+        { "value": "3840x1080 (32/9)" },
+        { "value": "5120x1440 (32/9)" },
+        { "value": "7680x2160 (32/9)" },
+        { "value": "Other (manually edit scripts\\h2.ini)" }
+      ]
+    },
+    {
+      "name": "UI Scaling",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "x1 (default)" },
+        { "value": "x1.33 ~ x1.5", "disabledWhen": [ { "*Resolution": "Other" }, { "!Window Mode": "Exclusive Fullscreen" } ] },
+        { "value": "x2", "disabledWhen": [ { "Resolution": "1280x800 (16/10)" }, { "!Window Mode": "Exclusive Fullscreen" } ] }
+      ]
+    },
+    {
+      "name": "Window Mode",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Exclusive Fullscreen" },
+        { "value": "Borderless Windowed Fullscreen", "disabledWhen": [ { "!UI Scaling": "x1 (default)" } ] },
+        { "value": "Windowed", "disabledWhen": [ { "!UI Scaling": "x1 (default)" } ] }
+      ]
+    },
+    {
+      "name": "FOV Modifier",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Lowest (-20%)" },
+        { "value": "Lower (-10%)" },
+        { "value": "Default" },
+        { "value": "Higher (+10%)" },
+        { "value": "Highest (+20%)" }
+      ]
+    },
+    {
+      "name": "Controller Options",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Keyboard && Mouse" },
+        { "value": "Controller (Xinput)" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Skip intro videos" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [],
+        "operation": "replaceLine",
+        "files": ["hitman2.ini"],
+        "pattern": "^StartUpperPos.*$",
+        "replacement": "StartUpperPos 0,0"
+      },
+
+
+
+      {
+        "when": [ { "Resolution": "1280x800 (16/10)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=1280"
+      },
+      {
+        "when": [ { "Resolution": "1280x800 (16/10)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=800"
+      },
+      {
+        "when": [ { "Resolution": "1280x800 (16/10)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=960"
+      },
+      {
+        "when": [ { "Resolution": "1280x800 (16/10)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=600"
+      },
+
+      {
+        "when": [ { "Resolution": "1920x1080 (16/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=1920"
+      },
+      {
+        "when": [ { "Resolution": "1920x1080 (16/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=1080"
+      },
+      {
+        "when": [ { "Resolution": "1920x1080 (16/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=1280"
+      },
+      {
+        "when": [ { "Resolution": "1920x1080 (16/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=720"
+      },
+      {
+        "when": [ { "Resolution": "1920x1080 (16/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=960"
+      },
+      {
+        "when": [ { "Resolution": "1920x1080 (16/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=540"
+      },
+
+      {
+        "when": [ { "Resolution": "2560x1440 (16/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=2560"
+      },
+      {
+        "when": [ { "Resolution": "2560x1440 (16/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=1440"
+      },
+      {
+        "when": [ { "Resolution": "2560x1440 (16/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=1920"
+      },
+      {
+        "when": [ { "Resolution": "2560x1440 (16/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=1080"
+      },
+      {
+        "when": [ { "Resolution": "2560x1440 (16/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=1280"
+      },
+      {
+        "when": [ { "Resolution": "2560x1440 (16/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=720"
+      },
+
+      {
+        "when": [ { "Resolution": "3840x2160 (16/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=3840"
+      },
+      {
+        "when": [ { "Resolution": "3840x2160 (16/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=2160"
+      },
+      {
+        "when": [ { "Resolution": "3840x2160 (16/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=2560"
+      },
+      {
+        "when": [ { "Resolution": "3840x2160 (16/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=1440"
+      },
+      {
+        "when": [ { "Resolution": "3840x2160 (16/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=1920"
+      },
+      {
+        "when": [ { "Resolution": "3840x2160 (16/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=1080"
+      },
+
+      {
+        "when": [ { "Resolution": "2560x1080 (21/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=2560"
+      },
+      {
+        "when": [ { "Resolution": "2560x1080 (21/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=1080"
+      },
+      {
+        "when": [ { "Resolution": "2560x1080 (21/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=1920"
+      },
+      {
+        "when": [ { "Resolution": "2560x1080 (21/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=810"
+      },
+      {
+        "when": [ { "Resolution": "2560x1080 (21/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=1280"
+      },
+      {
+        "when": [ { "Resolution": "2560x1080 (21/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=540"
+      },
+
+      {
+        "when": [ { "Resolution": "3440x1440 (21/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=3440"
+      },
+      {
+        "when": [ { "Resolution": "3440x1440 (21/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=1440"
+      },
+      {
+        "when": [ { "Resolution": "3440x1440 (21/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=2580"
+      },
+      {
+        "when": [ { "Resolution": "3440x1440 (21/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=1080"
+      },
+      {
+        "when": [ { "Resolution": "3440x1440 (21/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=1720"
+      },
+      {
+        "when": [ { "Resolution": "3440x1440 (21/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=720"
+      },
+
+      {
+        "when": [ { "Resolution": "5120x2160 (21/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=5120"
+      },
+      {
+        "when": [ { "Resolution": "5120x2160 (21/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=2160"
+      },
+      {
+        "when": [ { "Resolution": "5120x2160 (21/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=3440"
+      },
+      {
+        "when": [ { "Resolution": "5120x2160 (21/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=1440"
+      },
+      {
+        "when": [ { "Resolution": "5120x2160 (21/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=2560"
+      },
+      {
+        "when": [ { "Resolution": "5120x2160 (21/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=1080"
+      },
+
+      {
+        "when": [ { "Resolution": "3840x1080 (32/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=3840"
+      },
+      {
+        "when": [ { "Resolution": "3840x1080 (32/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=1080"
+      },
+      {
+        "when": [ { "Resolution": "3840x1080 (32/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=2560"
+      },
+      {
+        "when": [ { "Resolution": "3840x1080 (32/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=720"
+      },
+      {
+        "when": [ { "Resolution": "3840x1080 (32/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=1920"
+      },
+      {
+        "when": [ { "Resolution": "3840x1080 (32/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=540"
+      },
+
+      {
+        "when": [ { "Resolution": "5120x1440 (32/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=5120"
+      },
+      {
+        "when": [ { "Resolution": "5120x1440 (32/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=1440"
+      },
+      {
+        "when": [ { "Resolution": "5120x1440 (32/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=3840"
+      },
+      {
+        "when": [ { "Resolution": "5120x1440 (32/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=1080"
+      },
+      {
+        "when": [ { "Resolution": "5120x1440 (32/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=2560"
+      },
+      {
+        "when": [ { "Resolution": "5120x1440 (32/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=720"
+      },
+
+      {
+        "when": [ { "Resolution": "7680x2160 (32/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=7680"
+      },
+      {
+        "when": [ { "Resolution": "7680x2160 (32/9)", "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=2160"
+      },
+      {
+        "when": [ { "Resolution": "7680x2160 (32/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=5120"
+      },
+      {
+        "when": [ { "Resolution": "7680x2160 (32/9)", "UI Scaling": "x1.33 ~ x1.5" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=1440"
+      },
+      {
+        "when": [ { "Resolution": "7680x2160 (32/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width=3840"
+      },
+      {
+        "when": [ { "Resolution": "7680x2160 (32/9)", "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height=1080"
+      },
+ 
+
+
+      {
+        "when": [ { "UI Scaling": "x1 (default)" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Resolution                          =.*$",
+        "replacement": "Resolution                          = unforced"
+      },
+      {
+        "when": [ { "UI Scaling": "x1.33 ~ x1.5", "Resolution": "1280x800 (16/10)" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Resolution                          =.*$",
+        "replacement": "Resolution                          = 1280x800"
+      },
+      {
+        "when": [ { "UI Scaling": "x1.33 ~ x1.5", "Resolution": "1920x1080 (16/9)" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Resolution                          =.*$",
+        "replacement": "Resolution                          = 1920x1080"
+      },
+      {
+        "when": [ { "UI Scaling": "x1.33 ~ x1.5", "Resolution": "2560x1440 (16/9)" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Resolution                          =.*$",
+        "replacement": "Resolution                          = 2560x1440"
+      },
+      {
+        "when": [ { "UI Scaling": "x1.33 ~ x1.5", "Resolution": "3840x2160 (16/9)" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Resolution                          =.*$",
+        "replacement": "Resolution                          = 3840x2160"
+      },
+      {
+        "when": [ { "UI Scaling": "x1.33 ~ x1.5", "Resolution": "2560x1080 (21/9)" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Resolution                          =.*$",
+        "replacement": "Resolution                          = 2560x1080"
+      },
+      {
+        "when": [ { "UI Scaling": "x1.33 ~ x1.5", "Resolution": "3440x1440 (21/9)" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Resolution                          =.*$",
+        "replacement": "Resolution                          = 3440x1440"
+      },
+      {
+        "when": [ { "UI Scaling": "x1.33 ~ x1.5", "Resolution": "5120x2160 (21/9)" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Resolution                          =.*$",
+        "replacement": "Resolution                          = 5120x2160"
+      },
+      {
+        "when": [ { "UI Scaling": "x1.33 ~ x1.5", "Resolution": "3840x1080 (32/9)" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Resolution                          =.*$",
+        "replacement": "Resolution                          = 3840x1080"
+      },
+      {
+        "when": [ { "UI Scaling": "x1.33 ~ x1.5", "Resolution": "5120x1440 (32/9)" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Resolution                          =.*$",
+        "replacement": "Resolution                          = 5120x1440"
+      },
+      {
+        "when": [ { "UI Scaling": "x1.33 ~ x1.5", "Resolution": "7680x2160 (32/9)" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Resolution                          =.*$",
+        "replacement": "Resolution                          = 7680x2160"
+      },
+      {
+        "when": [ { "UI Scaling": "x2" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Resolution                          =.*$",
+        "replacement": "Resolution                          = 2x"
+      },
+
+
+
+      {
+        "when": [ { "Window Mode": "Exclusive Fullscreen" } ],
+        "operation": "replaceLine",
+        "files": ["hitman2.ini"],
+        "pattern": "Window",
+        "replacement": "Window 0"
+      },
+      {
+        "when": [ { "*Window Mode": "Windowed" } ],
+        "operation": "replaceLine",
+        "files": ["hitman2.ini"],
+        "pattern": "Window",
+        "replacement": "Window 1"
+      },
+      {
+        "when": [ { "Window Mode": "Borderless Windowed Fullscreen" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^WindowedAttributes.*$",
+        "replacement": "WindowedAttributes                   = borderless, fullscreensize"
+      },
+      {
+        "when": [ { "!Window Mode": "Borderless Windowed Fullscreen" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^WindowedAttributes.*$",
+        "replacement": "WindowedAttributes                   = "
+      },
+
+
+      
+      {
+        "when": [ { "FOV Modifier": "Lowest (-20%)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^FOV_Multiplier.*$",
+        "replacement": "FOV_Multiplier = 0.8"
+      },
+      {
+        "when": [ { "FOV Modifier": "Lower (-10%)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^FOV_Multiplier.*$",
+        "replacement": "FOV_Multiplier = 0.9"
+      },
+      {
+        "when": [ { "FOV Modifier": "Default" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^FOV_Multiplier.*$",
+        "replacement": "FOV_Multiplier = 1.0"
+      },
+      {
+        "when": [ { "FOV Modifier": "Higher (+10%)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^FOV_Multiplier.*$",
+        "replacement": "FOV_Multiplier = 1.1"
+      },
+      {
+        "when": [ { "FOV Modifier": "Highest (+20%)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h2.ini"],
+        "pattern": "^FOV_Multiplier.*$",
+        "replacement": "FOV_Multiplier = 1.2"
+      },
+
+
+
+      {
+        "when": [ { "Controller Options": "Keyboard && Mouse" } ],
+        "operation": "replaceLine",
+        "files": ["hitman2.ini"],
+        "pattern": "UseGameController",
+        "replacement": "//UseGameController"
+      },
+      {
+        "when": [ { "Controller Options": "Keyboard && Mouse" } ],
+        "operation": "replaceLine",
+        "files": ["hitman2.ini"],
+        "pattern": "ConfigFile",
+        "replacement": "ConfigFile=Keyboard.cfg"
+      },
+      {
+        "when": [ { "Controller Options": "Controller (Xinput)" } ],
+        "operation": "replaceLine",
+        "files": ["hitman2.ini"],
+        "pattern": "UseGameController",
+        "replacement": "UseGameController"
+      },
+      {
+        "when": [ { "Controller Options": "Controller (Xinput)" } ],
+        "operation": "replaceLine",
+        "files": ["hitman2.ini"],
+        "pattern": "ConfigFile",
+        "replacement": "ConfigFile=HMCGPAD1.cfg"
+      },
+
+
+
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "replaceLine",
+        "files": ["hitman2.ini"],
+        "pattern": "^DefaultScene=.*$",
+        "replacement": "DefaultScene=mainmenu.gms"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "replaceLine",
+        "files": ["hitman2.ini"],
+        "pattern": "^DefaultScene=.*$",
+        "replacement": "DefaultScene=AllLevels/Logos.gms"
+      }
+    ]
+  }
+}

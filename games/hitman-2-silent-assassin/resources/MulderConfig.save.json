@@ -1,0 +1,10 @@
+{
+  "Hitman 2: Silent Assassin": {
+    "Resolution": "1920x1080 (16/9)",
+    "UI Scaling": "x1 (default)",
+    "Window Mode": "Exclusive Fullscreen",
+    "FOV Modifier": "Default",
+    "Controller Options": "Keyboard && Mouse",
+    "Misc": []
+  }
+}
