@@ -44,7 +44,7 @@ SectionGroup /e "Non-NVSE"
         AddSize 4389
         SetOutPath "$INSTDIR"
         !insertmacro DOWNLOAD_2 "https://github.com/doitsujin/dxvk/releases/download/v2.7.1/dxvk-2.7.1.tar.gz" \
-                                "https://cdn2.mulderload.eu/g/fallout-new-vegas/dxvk-2.7.1.tar.gz" \
+                                "https://cdn2.mulderload.eu/g/_common/dxvk-2.7.1.tar.gz" \
                                 "dxvk-2.7.1.tar.gz" "16e277f63aca1bb9d6b9ecf823dd0d7aab9b11be"
         !insertmacro 7Z_GET
         !insertmacro 7Z_EXTRACT "dxvk-2.7.1.tar.gz" ".\" "AUTO_DELETE"

@@ -66,7 +66,7 @@ SectionGroup /e "AI Upscaled Textures (Neural Origins 0.9)"
         SetOutPath "$INSTDIR"
 
         !insertmacro DOWNLOAD_2 "https://ntcore.com/files/4gb_patch.zip" \
-                                "https://cdn2.mulderload.eu/g/condemned-criminal-origins/4gb_patch.zip" \
+                                "https://cdn2.mulderload.eu/g/_common/ntcore_4gb_patch_v1.0.0.1.zip" \
                                 "4gb_patch.zip" "c8b0d61937cb54fc8215124c0f737a1d29479c97"
         !insertmacro NSISUNZ_EXTRACT "4gb_patch.zip" ".\" "AUTO_DELETE"
 
