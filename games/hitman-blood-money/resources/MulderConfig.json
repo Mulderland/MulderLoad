@@ -1,0 +1,323 @@
+{
+  "game": {
+    "title": "Hitman: Blood Money",
+    "originalExe": "HitmanBloodMoney.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Resolution",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "1280x800 (16/10)" },
+        { "value": "1920x1080 (16/9)" },
+        { "value": "2560x1440 (16/9)" },
+        { "value": "3840x2160 (16/9)" },
+        { "value": "2560x1080 (21/9)" },
+        { "value": "3440x1440 (21/9)" },
+        { "value": "5120x2160 (21/9)" },
+        { "value": "3840x1080 (32/9)" },
+        { "value": "5120x1440 (32/9)" },
+        { "value": "7680x2160 (32/9)" },
+        { "value": "Other (manually edit scripts\\h4.ini)" }
+      ]
+    },
+    {
+      "name": "API",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Vulkan (DXVK)" },
+        { "value": "Direct3D (original)" }
+      ]
+    },
+    {
+      "name": "Window Mode",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Fullscreen" },
+        { "value": "Windowed" }
+      ]
+    },
+    {
+      "name": "Controller Options",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Keyboard && Mouse" },
+        { "value": "Controller (Xinput)" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Skip intro videos" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [],
+        "operation": "replaceLine",
+        "files": ["HitmanBloodMoney.ini"],
+        "pattern": "^StartUpperPos.*$",
+        "replacement": "StartUpperPos 0,0"
+      },
+
+
+
+      {
+        "when": [ { "Resolution": "1280x800 (16/10)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width = 1280"
+      },
+      {
+        "when": [ { "Resolution": "1280x800 (16/10)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height =800"
+      },
+
+      {
+        "when": [ { "Resolution": "1920x1080 (16/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width = 1920"
+      },
+      {
+        "when": [ { "Resolution": "1920x1080 (16/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height = 1080"
+      },
+
+      {
+        "when": [ { "Resolution": "2560x1440 (16/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width = 2560"
+      },
+      {
+        "when": [ { "Resolution": "2560x1440 (16/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height = 1440"
+      },
+
+      {
+        "when": [ { "Resolution": "3840x2160 (16/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width = 3840"
+      },
+      {
+        "when": [ { "Resolution": "3840x2160 (16/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height = 2160"
+      },
+
+      {
+        "when": [ { "Resolution": "2560x1080 (21/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width = 2560"
+      },
+      {
+        "when": [ { "Resolution": "2560x1080 (21/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height = 1080"
+      },
+
+      {
+        "when": [ { "Resolution": "3440x1440 (21/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width = 3440"
+      },
+      {
+        "when": [ { "Resolution": "3440x1440 (21/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height = 1440"
+      },
+
+      {
+        "when": [ { "Resolution": "5120x2160 (21/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width = 5120"
+      },
+      {
+        "when": [ { "Resolution": "5120x2160 (21/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height = 2160"
+      },
+
+      {
+        "when": [ { "Resolution": "3840x1080 (32/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width = 3840"
+      },
+      {
+        "when": [ { "Resolution": "3840x1080 (32/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height = 1080"
+      },
+
+      {
+        "when": [ { "Resolution": "5120x1440 (32/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width = 5120"
+      },
+      {
+        "when": [ { "Resolution": "5120x1440 (32/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height = 1440"
+      },
+
+      {
+        "when": [ { "Resolution": "7680x2160 (32/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Width.*$",
+        "replacement": "Width = 7680"
+      },
+      {
+        "when": [ { "Resolution": "7680x2160 (32/9)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\h4.ini"],
+        "pattern": "^Height.*$",
+        "replacement": "Height = 2160"
+      },
+ 
+
+
+      {
+        "when": [ { "API": "Vulkan (DXVK)" } ],
+        "operation": "replaceLine",
+        "files": ["d3d9.ini"],
+        "pattern": "^RealDllPath.*$",
+        "replacement": "RealDllPath       = d3d9_dxvk.dll"
+      },
+      {
+        "when": [ { "!API": "Vulkan (DXVK)" } ],
+        "operation": "replaceLine",
+        "files": ["d3d9.ini"],
+        "pattern": "^RealDllPath.*$",
+        "replacement": "RealDllPath       = AUTO"
+      },
+ 
+
+
+      {
+        "when": [ { "Window Mode": "Fullscreen" } ],
+        "operation": "replaceLine",
+        "files": ["HitmanBloodMoney.ini"],
+        "pattern": "^Window.*$",
+        "replacement": "Window 0"
+      },
+      {
+        "when": [ { "Window Mode": "Windowed" } ],
+        "operation": "replaceLine",
+        "files": ["HitmanBloodMoney.ini"],
+        "pattern": "^Window.*$",
+        "replacement": "Window 1"
+      },
+ 
+
+
+      {
+        "when": [ { "Controller Options": "Keyboard && Mouse" } ],
+        "operation": "replaceLine",
+        "files": ["HitmanBloodMoney.ini"],
+        "pattern": "Gamepadmode",
+        "replacement": "//Gamepadmode"
+      },
+      {
+        "when": [ { "Controller Options": "Keyboard && Mouse" } ],
+        "operation": "replaceLine",
+        "files": ["HitmanBloodMoney.ini"],
+        "pattern": "ConfigFile",
+        "replacement": "//ConfigFile=hitman_gamepad.cfg"
+      },
+      {
+        "when": [ { "Controller Options": "Keyboard && Mouse" } ],
+        "operation": "copy",
+        "source": "_HitmanBloodMoney_keyboard.exe.bak",
+        "target": "HitmanBloodMoney.exe"
+      },
+      {
+        "when": [ { "Controller Options": "Controller (Xinput)" } ],
+        "operation": "replaceLine",
+        "files": ["HitmanBloodMoney.ini"],
+        "pattern": "Gamepadmode",
+        "replacement": "Gamepadmode"
+      },
+      {
+        "when": [ { "Controller Options": "Controller (Xinput)" } ],
+        "operation": "replaceLine",
+        "files": ["HitmanBloodMoney.ini"],
+        "pattern": "ConfigFile",
+        "replacement": "ConfigFile=hitman_gamepad.cfg"
+      },
+      {
+        "when": [ { "Controller Options": "Controller (Xinput)" } ],
+        "operation": "copy",
+        "source": "_HitmanBloodMoney_gamepad.exe.bak",
+        "target": "HitmanBloodMoney.exe"
+      },
+
+
+
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "rename",
+        "source": "Movies\\gfxlogo.bik",
+        "target": "Movies\\_gfxlogo.bik.bak"
+      },
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "rename",
+        "source": "Movies\\Intro_bi.bik",
+        "target": "Movies\\_Intro_bi.bik.bak"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "rename",
+        "source": "Movies\\_gfxlogo.bik.bak",
+        "target": "Movies\\gfxlogo.bik"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "rename",
+        "source": "Movies\\_Intro_bi.bik.bak",
+        "target": "Movies\\Intro_bi.bik"
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "Hitman: Blood Money": {
+    "Resolution": "1920x1080 (16/9)",
+    "API": "Vulkan (DXVK)",
+    "Window Mode": "Fullscreen",
+    "Controller Options": "Keyboard && Mouse",
+    "Misc": []
+  }
+}
