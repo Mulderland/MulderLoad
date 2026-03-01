@@ -25,8 +25,9 @@
       "name": "API",
       "type": "radioGroup",
       "radios": [
+        { "value": "Direct3D 11 (dgVoodoo2)" },
         { "value": "Vulkan (DXVK)" },
-        { "value": "Direct3D (original)" }
+        { "value": "Direct3D 9 (original)" }
       ]
     },
     {
@@ -218,6 +219,13 @@
 
 
       {
+        "when": [ { "API": "Direct3D 11 (dgVoodoo2)" } ],
+        "operation": "replaceLine",
+        "files": ["d3d9.ini"],
+        "pattern": "^RealDllPath.*$",
+        "replacement": "RealDllPath       = d3d9_dgVoodoo2.dll"
+      },
+      {
         "when": [ { "API": "Vulkan (DXVK)" } ],
         "operation": "replaceLine",
         "files": ["d3d9.ini"],
@@ -225,7 +233,7 @@
         "replacement": "RealDllPath       = d3d9_dxvk.dll"
       },
       {
-        "when": [ { "!API": "Vulkan (DXVK)" } ],
+        "when": [ { "API": "Direct3D 9 (original)" } ],
         "operation": "replaceLine",
         "files": ["d3d9.ini"],
         "pattern": "^RealDllPath.*$",
@@ -242,7 +250,7 @@
         "replacement": "Window 0"
       },
       {
-        "when": [ { "Window Mode": "Windowed" } ],
+        "when": [ { "*Window Mode": "Windowed" } ],
         "operation": "replaceLine",
         "files": ["HitmanBloodMoney.ini"],
         "pattern": "^Window.*$",

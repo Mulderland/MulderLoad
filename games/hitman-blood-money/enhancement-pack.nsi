@@ -3,6 +3,7 @@ This is an Enhancement Pack for Hitman: Blood Money, aiming to provide a modern 
 - dxWrapper (by elishacloud)$\r$\n\
 - Widescreen Fix (by nemesis2000)$\r$\n\
 - DXVK (by doitsujin & others)$\r$\n\
+- dgVoodoo2 (latest, or v2.81.3 if you're on Linux)$\r$\n\
 - XInput controller support (by JerichoRex)$\r$\n\
 - Blood Money Premastered v1.5 (by V01DXIX)$\r$\n\
 $\r$\n\
@@ -20,7 +21,7 @@ Special thanks to V01DXIX for his incredible textures pack, Blood Money Premaste
 
 Name "Hitman: Blood Money [Enhancement Pack]"
 
-Section "Widescreen fix (by nemesis2000) + DXVK"
+Section "Widescreen fix (by nemesis2000) + Wrappers"
     AddSize 4389
 
     SetOutPath "$INSTDIR\scripts"
@@ -41,6 +42,18 @@ Section "Widescreen fix (by nemesis2000) + DXVK"
     # Copy Max Quality INI
     Delete "HitmanBloodMoney.ini"
     File resources\HitmanBloodMoney.ini
+
+    # Install dgVoodoo2
+    !insertmacro DOWNLOAD_DGVOODOO2
+    !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "dgVoodoo.conf" ""
+    !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "dgVoodooCpl.exe" ""
+    !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "MS\x86\D3D9.dll" "AUTO_DELETE"
+    !insertmacro FORCE_RENAME "D3D9.dll" "d3d9_dgVoodoo2.dll"
+
+    # Configure dgVoodoo2
+    !insertmacro FILE_STR_REPLACE "FPSLimit                             = 0" "FPSLimit                             = 60" 1 1 "$INSTDIR\dgVoodoo.conf"
+    !insertmacro FILE_STR_REPLACE "VRAM                                = 256" "VRAM                                = 2048" 1 1 "$INSTDIR\dgVoodoo.conf"
+    !insertmacro FILE_STR_REPLACE "dgVoodooWatermark                   = true" "dgVoodooWatermark                   = false" 1 1 "$INSTDIR\dgVoodoo.conf"
 
     # Install DXVK
     !insertmacro DOWNLOAD_2 "https://github.com/doitsujin/dxvk/releases/download/v2.7.1/dxvk-2.7.1.tar.gz" \
@@ -66,7 +79,7 @@ Section "Widescreen fix (by nemesis2000) + DXVK"
     !insertmacro FORCE_RENAME "Stub.ini" "d3d9.ini"
 
     # Configure dxWrapper
-    !insertmacro FILE_STR_REPLACE "RealDllPath       = AUTO" "RealDllPath       = d3d9_dxvk.dll" 1 1 "$INSTDIR\d3d9.ini"
+    !insertmacro FILE_STR_REPLACE "RealDllPath       = AUTO" "RealDllPath       = d3d9_dgVoodoo2.dll" 1 1 "$INSTDIR\d3d9.ini"
     !insertmacro FILE_STR_REPLACE "LoadCustomDllPath          = " "LoadCustomDllPath          = scripts\h4w.dll" 1 1 "$INSTDIR\dxwrapper.ini"
     !insertmacro FILE_STR_REPLACE "DisableLogging             = 0" "DisableLogging             = 1" 1 1 "$INSTDIR\dxwrapper.ini"
 SectionEnd

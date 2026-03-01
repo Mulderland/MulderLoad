@@ -12,9 +12,9 @@ If your resolution isn't listed, select "Other" and manually set it by editing t
 High FPS can cause gameplay bugs and camera bugs.
 
 Recommended setup:
-- When using Vulkan: FPS is already properly limited (by DXVK)
-- When using Direct3D renderer, limit the framerate to 60 FPS in your GPU control panel, or with a software like
-MSIAfterBurner, or set your monitor to 60Hz + enable VSync.
+- When using Direct3D 11 or Vulkan: FPS is already properly limited (by dgVoodoo2 or DXVK)
+- When using Direct3D 9 (original), limit the framerate to 60 FPS in your GPU control panel, or with a software like
+MSIAfterBurner / RTSS, or set your monitor to 60Hz + enable VSync.
 
 ------------------------------------------------------------------------------------------------------------------------
 
