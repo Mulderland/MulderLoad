@@ -39,7 +39,15 @@ Function SelectFileDialog
     ${EndIf}
 
     StrCpy $INSTDIR "$R0\$SELECT_RELATIVE_INSTDIR"
+
+    Call OnSelectedFile
 FunctionEnd
+
+!ifndef ON_SELECTED_FILE
+    Function OnSelectedFile
+        # Do nothing
+    FunctionEnd
+!endif
 
 # https://nsis.sourceforge.io/Get_parent_directory
 Function GetParent
