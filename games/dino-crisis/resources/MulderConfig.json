@@ -1,0 +1,76 @@
+{
+  "game": {
+    "title": "Dino Crisis (Steam)",
+    "originalExe": "4249130_Launcher.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Executable",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Classic REbirth" },
+        { "value": "Original" }
+      ]
+    },
+    {
+      "name": "Language",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "English" },
+        { "value": "French", "disabledWhen": [{ "Executable": "Classic REbirth" }] },
+        { "value": "German", "disabledWhen": [{ "Executable": "Classic REbirth" }] },
+        { "value": "Italian", "disabledWhen": [{ "Executable": "Classic REbirth" }] },
+        { "value": "Japanese" },
+        { "value": "Spanish", "disabledWhen": [{ "Executable": "Classic REbirth" }] }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "Executable": "Classic REbirth", "Language": "English" } ],
+        "operation": "replaceLine",
+        "files": ["rebirth\\config.ini"],
+        "pattern": "^JapaneseEnable.*$",
+        "replacement": "JapaneseEnable = 0"
+      },
+      {
+        "when": [ { "Executable": "Classic REbirth", "Language": "Japanese" } ],
+        "operation": "replaceLine",
+        "files": ["rebirth\\config.ini"],
+        "pattern": "^JapaneseEnable.*$",
+        "replacement": "JapaneseEnable = 1"
+      }
+    ],
+    "launch": [
+      {
+        "when": [ { "Executable": "Classic REbirth" } ],
+        "exec": { "name": "rebirth\\DINO.exe", "workDir": "rebirth" }
+      },
+      {
+        "when": [ { "Executable": "Original", "Language": "English" } ],
+        "exec": { "name": "english\\DINO.exe", "workDir": "english" }
+      },
+      {
+        "when": [ { "Executable": "Original", "Language": "French" } ],
+        "exec": { "name": "french\\DINO.exe", "workDir": "french" }
+      },
+      {
+        "when": [ { "Executable": "Original", "Language": "German" } ],
+        "exec": { "name": "german\\DINO.exe", "workDir": "german" }
+      },
+      {
+        "when": [ { "Executable": "Original", "Language": "Italian" } ],
+        "exec": { "name": "italian\\DINO.exe", "workDir": "italian" }
+      },
+      {
+        "when": [ { "Executable": "Original", "Language": "Japanese" } ],
+        "exec": { "name": "japanese\\DINO.exe", "workDir": "japanese" }
+      },
+      {
+        "when": [ { "Executable": "Original", "Language": "Spanish" } ],
+        "exec": { "name": "spanish\\DINO.exe", "workDir": "spanish" }
+      }
+    ]
+  }
+}
