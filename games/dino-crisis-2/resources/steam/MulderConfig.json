@@ -1,0 +1,87 @@
+{
+  "game": {
+    "title": "Dino Crisis 2 (Steam)",
+    "originalExe": "4249140_Launcher.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Executable",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Classic REbirth" },
+        { "value": "Original" }
+      ]
+    },
+    {
+      "name": "Language",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "English" },
+        { "value": "Japanese" }
+      ]
+    },
+    {
+      "name": "Texture Pack",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Rex-HD Project", "disabledWhen": [{ "Executable": "Classic REbirth" }] }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "Executable": "Classic REbirth", "Language": "English" } ],
+        "operation": "replaceLine",
+        "files": ["rebirth\\config.ini"],
+        "pattern": "^JapaneseEnable.*$",
+        "replacement": "JapaneseEnable = 0"
+      },
+      {
+        "when": [ { "Executable": "Classic REbirth", "Language": "Japanese" } ],
+        "operation": "replaceLine",
+        "files": ["rebirth\\config.ini"],
+        "pattern": "^JapaneseEnable.*$",
+        "replacement": "JapaneseEnable = 1"
+      },
+      {
+        "when": [ { "Texture Pack": "Rex-HD Project", "Language": "English" } ],
+        "operation": "rename",
+        "source": "english\\_dinput.dll.bak",
+        "target": "english\\dinput.dll"
+      },
+      {
+        "when": [ { "!Texture Pack": "Rex-HD Project", "Language": "English" } ],
+        "operation": "rename",
+        "source": "english\\dinput.dll",
+        "target": "english\\_dinput.dll.bak"
+      },
+      {
+        "when": [ { "Texture Pack": "Rex-HD Project", "Language": "Japanese" } ],
+        "operation": "rename",
+        "source": "japanese\\_dinput.dll.bak",
+        "target": "japanese\\dinput.dll"
+      },
+      {
+        "when": [ { "!Texture Pack": "Rex-HD Project", "Language": "Japanese" } ],
+        "operation": "rename",
+        "source": "japanese\\dinput.dll",
+        "target": "japanese\\_dinput.dll.bak"
+      },
+    ],
+    "launch": [
+      {
+        "when": [ { "Executable": "Classic REbirth" } ],
+        "exec": { "name": "rebirth\\Dino2.exe", "workDir": "rebirth" }
+      },
+      {
+        "when": [ { "Executable": "Original", "Language": "English" } ],
+        "exec": { "name": "english\\Dino2.exe", "workDir": "english" }
+      },
+      {
+        "when": [ { "Executable": "Original", "Language": "Japanese" } ],
+        "exec": { "name": "japanese\\Dino2.exe", "workDir": "japanese" }
+      }
+    ]
+  }
+}

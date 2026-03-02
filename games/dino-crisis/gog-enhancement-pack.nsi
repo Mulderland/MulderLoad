@@ -23,7 +23,7 @@ Section
     !insertmacro FILE_HASH_EQUALS "$INSTDIR\DINO.exe" "9282dbbcb381188bf1b2e1f6c483dcd82a22ec0a" $1 ; GOG Japanese checksum
     ${If} $0 != "1"
     ${AndIf} $1 != "1"
-        MessageBox MB_ICONEXCLAMATION "Only GOG Japanese release can apply this patch.$\r$\n\
+        MessageBox MB_ICONEXCLAMATION "Only GOG Japanese release can apply this Enhancement Pack.$\r$\n\
         $\r$\n\
         Make sure you downloaded the Japanese version of the game on GOG."
         Quit

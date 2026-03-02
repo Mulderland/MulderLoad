@@ -1,11 +1,10 @@
 !ifndef GOG_ENHANCEMENT_PACK_NSI ; If Steam
     !define MUI_WELCOMEPAGE_TEXT "\
     This is an Enhancement Pack for Dino Crisis (Steam), with:$\r$\n\
-    - Windows XP Patch$\r$\n\
-    - High Quality Videos$\r$\n\
-    - Classic REbirth$\r$\n\
-    - (optionaly) High Quality Voices && Music (Dreamcast)$\r$\n\
-    - (optionaly) High Quality Textures (Dreamcast upscaled)$\r$\n\
+    - Downgrade to GOG version (including GOG's DX Wrapper)$\r$\n\
+    - Dino Crisis Classic REbirth$\r$\n\
+    - High Quality Voices && Music (Dreamcast)$\r$\n\
+    - High Quality Textures (Dreamcast upscaled)$\r$\n\
     - MulderConfig$\r$\n\
     $\r$\n\
     ${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
@@ -22,7 +21,7 @@
         SetOutPath "$INSTDIR"
 
         !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis/steam_to_gog_1.0hotfix3_full.7z" \
-                                "" \
+                                "https://www.mediafire.com/file_premium/bn8oxnx1d142dno/steam_to_gog_1.0hotfix3_full.7z/file" \
                                 "steam_to_gog_1.0hotfix3_full.7z" "735f2d4f0455c2be3011025520e9e3a91a0b968c"
         !insertmacro NSIS7Z_EXTRACT "steam_to_gog_1.0hotfix3_full.7z" ".\" "AUTO_DELETE"
     SectionEnd
@@ -31,9 +30,10 @@
 Var /GLOBAL REBIRTHDIR
 
 SectionGroup /e "Dino Crisis Classic REbirth"
-    # Copy japanese files to rebirth\ folder (if not already there)
     Section
-        !ifndef GOG_ENHANCEMENT_PACK_NSI ; If Steam
+        !ifdef GOG_ENHANCEMENT_PACK_NSI
+            StrCpy $REBIRTHDIR "$INSTDIR"
+        !else ; If Steam
             AddSize 385576
             ${IfNot} ${FileExists} "$INSTDIR\rebirth\*.*"
                 CopyFiles /SILENT "$INSTDIR\japanese\Data" "$INSTDIR\rebirth\Data"
@@ -42,8 +42,6 @@ SectionGroup /e "Dino Crisis Classic REbirth"
                 Delete "$INSTDIR\rebirth\dxcfg.*"
             ${EndIf}
             StrCpy $REBIRTHDIR "$INSTDIR\rebirth"
-        !else
-            StrCpy $REBIRTHDIR "$INSTDIR"
         !endif
     SectionEnd
 
@@ -57,8 +55,8 @@ SectionGroup /e "Dino Crisis Classic REbirth"
         # Windows XP Patch
         AddSize 2608
         !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis/DINO%20xp.7z" \
-                        "https://www.mediafire.com/file_premium/6c73u2fjpgpcx1m/DINO_xp.7z/file" \
-                        "DINO xp.7z" "08d0a6c5e8a91fa56cb4a13bd46136cfa45748e3"
+                                "https://www.mediafire.com/file_premium/6c73u2fjpgpcx1m/DINO_xp.7z/file" \
+                                "DINO xp.7z" "08d0a6c5e8a91fa56cb4a13bd46136cfa45748e3"
         !insertmacro NSIS7Z_EXTRACT "DINO xp.7z" ".\" "AUTO_DELETE"
 
         # High Quality Videos
