@@ -31,8 +31,8 @@
 
 Function XDelta3PatchFile
     !insertmacro STACKFRAME_BEGIN 2 0
-    ; $0: target_file
-    ; $1: xdelta3_file
+    # $0: target_file
+    # $1: xdelta3_file
 
     IfFileExists "$0.new" 0 +2
         Delete "$0.new"
@@ -50,12 +50,12 @@ FunctionEnd
 
 Function XDelta3PatchFolder
     !insertmacro STACKFRAME_BEGIN 1 5
-    ; $0: folder to process
-    ; $R0-$R4: scratch
+    # $0: folder to process
+    # $R0-$R4: scratch
 
     StrCpy $R0 "$0"
 
-    ; Process .xdelta files in current directory
+    # Process .xdelta files in current directory
     StrCpy $R1 ""
     StrCpy $R2 ""
     ClearErrors
@@ -69,18 +69,18 @@ Function XDelta3PatchFolder
         FindClose $R1
     XDelta3PatchFolder_noXdelta:
 
-    ; Recurse into subdirectories
+    # Recurse into subdirectories
     StrCpy $R1 ""
     StrCpy $R2 ""
     ClearErrors
     FindFirst $R1 $R2 "$R0\*.*"
     IfErrors XDelta3PatchFolder_noEntries
         ${DoWhile} $R2 != ""
-            ; skip "." and ".."
+            # skip "." and ".."
             StrCmp $R2 "." XDelta3PatchFolder_nextEntry
             StrCmp $R2 ".." XDelta3PatchFolder_nextEntry
 
-            ; If it's a directory, Call recursively
+            # If it's a directory, Call recursively
             IfFileExists "$R0\$R2\*" 0 XDelta3PatchFolder_nextEntry
                 Push "$R0\$R2"
                 Call XDelta3PatchFolder

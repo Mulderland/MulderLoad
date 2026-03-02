@@ -9,15 +9,15 @@
 !macro I6COMP_UNPACK ARCHIVE_PATH TARGET_DIR
     DetailPrint " // Unpacking ${ARCHIVE_PATH} with I6Comp"
 
-    ; Backup $0 and OutPath
+    # Backup $0 and OutPath
     Push $0
     StrCpy $0 "$OUTDIR"
 
-    ; Unpack
+    # Unpack
     SetOutPath "${TARGET_DIR}"
     nsExec::ExecToLog '"$INSTDIR\@mulderload\i6comp\i6comp.exe" x "${ARCHIVE_PATH}"'
 
-    ; Restore OutPath and $0
+    # Restore OutPath and $0
     SetOutPath "$0"
     Pop $0
 !macroend

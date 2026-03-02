@@ -12,17 +12,17 @@
 !macro INNOEXTRACT_UNPACK ARCHIVE_PATH TARGET_DIR AUTO_DELETE
     DetailPrint " // Unpacking ${ARCHIVE_PATH} with InnoExtract"
 
-    ; Backup $0 and OutPath
+    # Backup $0 and OutPath
     Push $0
     StrCpy $0 "$OUTDIR"
 
-    ; Unpack
+    # Unpack
     SetOutPath "$INSTDIR\@mulderload\innoextract\tmp"
     nsExec::ExecToLog '"$INSTDIR\@mulderload\innoextract\innoextract.exe" -c0 -p0 -q "${ARCHIVE_PATH}"'
     !insertmacro FOLDER_MERGE "$INSTDIR\@mulderload\innoextract\tmp\app" "${TARGET_DIR}"
     RMDir /r "$INSTDIR\@mulderload\innoextract\tmp"
 
-    ; Restore OutPath and $0
+    # Restore OutPath and $0
     SetOutPath "$0"
     Pop $0
 

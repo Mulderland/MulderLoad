@@ -18,15 +18,15 @@
 !macro NSIS7Z_EXTRACT ARCHIVE_PATH TARGET_DIR AUTO_DELETE
     DetailPrint " // Extracting ${ARCHIVE_PATH}"
 
-    ; Backup $0 and OutPath
+    # Backup $0 and OutPath
     Push $0
     StrCpy $0 "$OUTDIR"
 
-    ; Extract
+    # Extract
     SetOutPath "${TARGET_DIR}"
     Nsis7z::ExtractWithDetails "${ARCHIVE_PATH}" "Extracting package %s..."
 
-    ; Restore OutPath and $0
+    # Restore OutPath and $0
     SetOutPath "$0"
     Pop $0
 
