@@ -1,0 +1,82 @@
+{
+  "game": {
+    "title": "Doom 3",
+    "originalExe": "doom3.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Executable",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "dhewm3 (source port)" },
+        { "value": "original" }
+      ]
+    },
+    {
+      "name": "Dhewm3's Wide Patch (GUI / HUD)",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Enable for Base Game", "disabledWhen": [ { "Executable": "original" } ] },
+        { "value": "Enable for Resurrection of Evil", "disabledWhen": [ { "Executable": "original" } ] },
+        { "value": "Enable for The Lost Mission", "disabledWhen": [ { "Executable": "original" } ] }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "Executable": "dhewm3 (source port)" } ],
+        "operation": "copy",
+        "source": "dhewm3.exe",
+        "target": "doom3.exe"
+      },
+      {
+        "when": [ { "Executable": "original" } ],
+        "operation": "copy",
+        "source": "doom3_o.exe",
+        "target": "doom3.exe"
+      },
+
+
+      
+      {
+        "when": [ { "Dhewm3's Wide Patch (GUI / HUD)": "Enable for Base Game" } ],
+        "operation": "rename",
+        "source": "base\\_zWideGuis_D3.pk4.bak",
+        "target": "base\\zWideGuis_D3.pk4"
+      },
+      {
+        "when": [ { "!Dhewm3's Wide Patch (GUI / HUD)": "Enable for Base Game" } ],
+        "operation": "rename",
+        "source": "base\\zWideGuis_D3.pk4",
+        "target": "base\\_zWideGuis_D3.pk4.bak"
+      },
+
+      {
+        "when": [ { "Dhewm3's Wide Patch (GUI / HUD)": "Enable for Resurrection of Evil" } ],
+        "operation": "rename",
+        "source": "d3xp\\_zWideGuis_RoE.pk4.bak",
+        "target": "d3xp\\zWideGuis_RoE.pk4"
+      },
+      {
+        "when": [ { "!Dhewm3's Wide Patch (GUI / HUD)": "Enable for Resurrection of Evil" } ],
+        "operation": "rename",
+        "source": "d3xp\\zWideGuis_RoE.pk4",
+        "target": "d3xp\\_zWideGuis_RoE.pk4.bak"
+      },
+
+      {
+        "when": [ { "Dhewm3's Wide Patch (GUI / HUD)": "Enable for The Lost Mission" } ],
+        "operation": "rename",
+        "source": "d3le\\_zWideGuis_LM.pk4.bak",
+        "target": "d3le\\zWideGuis_LM.pk4"
+      },
+      {
+        "when": [ { "!Dhewm3's Wide Patch (GUI / HUD)": "Enable for The Lost Mission" } ],
+        "operation": "rename",
+        "source": "d3le\\zWideGuis_LM.pk4",
+        "target": "d3le\\_zWideGuis_LM.pk4.bak"
+      }
+    ]
+  }
+}
