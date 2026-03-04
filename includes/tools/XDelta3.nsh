@@ -2,6 +2,7 @@
 !include "FileFunc.nsh"
 !include "LogicLib.nsh"
 !include "..\..\includes\core\StackFrame.nsh"
+!include "..\..\includes\misc\CommonMacros.nsh"
 
 !macro XDELTA3_GET
     DetailPrint " // Getting XDelta3"
@@ -30,66 +31,65 @@
 !macroend
 
 Function XDelta3PatchFile
-    !insertmacro STACKFRAME_BEGIN 2 0
+    !insertmacro STACKFRAME_BEGIN 2 2
     # $0: target_file
     # $1: xdelta3_file
 
-    IfFileExists "$0.new" 0 +2
+    ${If} ${FileExists} "$0.new"
         Delete "$0.new"
+    ${EndIf}
 
-    DetailPrint " // Patching $0 with XDelta3"
-    nsExec::ExecToLog '"$INSTDIR\@mulderload\xdelta3\xdelta3.exe" -d -s "$0" "$1" "$0.new"'
+    DetailPrint " // Patching $0 with $1"
+    nsExec::ExecToStack '"$INSTDIR\@mulderload\xdelta3\xdelta3.exe" -d -s "$0" "$1" "$0.new"'
+    Pop $R0
+    Pop $R1
 
-    IfFileExists "$0.new" 0 +4
-        Delete "$0"
-        Rename "$0.new" "$0"
-        Delete "$1" ; delete the .xdelta file
+    ${If} $R0 = 0
+        !insertmacro FORCE_RENAME "$0.new" "$0" ; replace original file with the patched one
+    ${Else}
+        MessageBox MB_ICONEXCLAMATION "Error $R0 when patching $0$\r$\n$\r$\nDetails: $R1"
+        Delete "$0.new" ; delete the failed (probably doesn't exist, it's just in case)
+    ${EndIf}
 
-    !insertmacro STACKFRAME_END 2 0
+    Delete "$1" ; delete the .xdelta file
+
+    !insertmacro STACKFRAME_END 2 2
 FunctionEnd
 
 Function XDelta3PatchFolder
-    !insertmacro STACKFRAME_BEGIN 1 5
-    # $0: folder to process
-    # $R0-$R4: scratch
+    !insertmacro STACKFRAME_BEGIN 1 3
+    # $0 = folder du patch
+    # $R0 = handle FindFirst / FindNext
+    # $R1-2 = temp
 
-    StrCpy $R0 "$0"
+    FindFirst $R0 $R1 "$0\*.xdelta"
+    ${DoWhile} $R1 != ""
+        # full path of the .xdelta file
+        StrCpy $R2 "$0\$R1"
+        Push $R2
 
-    # Process .xdelta files in current directory
-    StrCpy $R1 ""
-    StrCpy $R2 ""
-    ClearErrors
-    FindFirst $R1 $R2 "$R0\*.xdelta"
-    IfErrors XDelta3PatchFolder_noXdelta
-        ${DoWhile} $R2 != ""
-            ${GetBaseName} "$R2" $R3
-            !insertmacro XDELTA3_PATCH_FILE "$R0\$R3" "$R0\$R2"
-            FindNext $R1 $R2
-        ${Loop}
-        FindClose $R1
-    XDelta3PatchFolder_noXdelta:
+        # full path of the target file (remove .xdelta, 7 chars)
+        StrCpy $R2 "$0\$R1" -7
+        Push $R2
 
-    # Recurse into subdirectories
-    StrCpy $R1 ""
-    StrCpy $R2 ""
-    ClearErrors
-    FindFirst $R1 $R2 "$R0\*.*"
-    IfErrors XDelta3PatchFolder_noEntries
-        ${DoWhile} $R2 != ""
-            # skip "." and ".."
-            StrCmp $R2 "." XDelta3PatchFolder_nextEntry
-            StrCmp $R2 ".." XDelta3PatchFolder_nextEntry
+        Call XDelta3PatchFile
+        FindNext $R0 $R1
+    ${Loop}
+    FindClose $R0
 
-            # If it's a directory, Call recursively
-            IfFileExists "$R0\$R2\*" 0 XDelta3PatchFolder_nextEntry
-                Push "$R0\$R2"
+    FindFirst $R0 $R1 "$0\*"
+    ${DoWhile} $R1 != ""
+        ${If} $R1 != "."
+        ${AndIf} $R1 != ".."
+            StrCpy $R2 "$0\$R1"
+            ${If} ${FileExists} "$R2\*" ; if it's a folder
+                Push $R2
                 Call XDelta3PatchFolder
+            ${EndIf}
+        ${EndIf}
+        FindNext $R0 $R1
+    ${Loop}
+    FindClose $R0
 
-            XDelta3PatchFolder_nextEntry:
-                FindNext $R1 $R2
-        ${Loop}
-        FindClose $R1
-    XDelta3PatchFolder_noEntries:
-
-    !insertmacro STACKFRAME_END 1 5
+    !insertmacro STACKFRAME_END 1 3
 FunctionEnd
