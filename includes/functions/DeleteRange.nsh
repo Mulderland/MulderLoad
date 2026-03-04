@@ -3,6 +3,7 @@
 
 !include "LogicLib.nsh"
 !include "..\..\includes\core\StackFrame.nsh"
+!include "..\..\includes\functions\GetNext3Digit.nsh"
 
 /*
 TODOS:
@@ -14,13 +15,13 @@ Function _GetNextFile
     !insertmacro STACKFRAME_BEGIN 1 2
     # $0: filePath (example: othername.7z.001)
 
-    StrCpy $R0 $0 -3 ; base filePath (example: othername.7z.)
+    StrCpy $R1 $0 3 -3                      ; part (example: 001)
+    !insertmacro GET_NEXT_3DIGIT $R1 $R1    ; next part (example: 002)
 
-    StrCpy $R1 $0 3 -3      ; "001" (we use $1, could also use $0)
-    IntOp  $R1 $R1 + 1      ; 2
-    IntFmt $R1 "%03d" $R1   ; "002"
+    StrCpy $R0 $0 -3                        ; base filePath (example: othername.7z.)
+    StrCpy $R0 "$R0$R1"                     ; next filePath (example: othername.7z.002)
 
-    !insertmacro STACKFRAME_RETURN 1 2 "$R0$R1" ; next filePath
+    !insertmacro STACKFRAME_RETURN 1 2 "$R0"
     !insertmacro STACKFRAME_END 1 2
 FunctionEnd
 

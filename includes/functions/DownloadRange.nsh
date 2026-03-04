@@ -4,6 +4,7 @@
 !include "LogicLib.nsh"
 !include "..\..\includes\core\StackFrame.nsh"
 !include "..\..\includes\functions\Download.nsh"
+!include "..\..\includes\functions\GetNext3Digit.nsh"
 
 /*
 TODOS:
@@ -17,15 +18,16 @@ Function _GetNextUrl
     # $0: url      (example: http://example.com/file.7z.001)
     # $1: filePath (example: othername.7z.001)
 
-    StrCpy $R0 $0 -3 ; base url      (example: http://example.com/file.7z.)
-    StrCpy $R1 $1 -3 ; base filePath (example: othername.7z.)
+    StrCpy $R2 $1 3 -3                      ; part (example: 001)
+    !insertmacro GET_NEXT_3DIGIT $R2 $R2    ; next part (example: 002)
 
-    StrCpy $R2 $1 3 -3      ; "001" (we use $1, could also use $0)
-    IntOp  $R2 $R2 + 1      ; 2
-    IntFmt $R2 "%03d" $R2   ; "002"
+    StrCpy $R0 $0 -3                        ; base url (example: http://example.com/file.7z.)
+    StrCpy $R1 $1 -3                        ; base filePath (example: othername.7z.)
+    StrCpy $R0 "$R0$R2"                     ; next url (example: http://example.com/file.7z.002)
+    StrCpy $R1 "$R1$R2"                     ; next filePath (example: othername.7z.002)
 
-    !insertmacro STACKFRAME_RETURN 2 3 "$R1$R2" ; next filePath
-    !insertmacro STACKFRAME_RETURN 2 3 "$R0$R2" ; next url
+    !insertmacro STACKFRAME_RETURN 2 3 $R1  ; next filePath
+    !insertmacro STACKFRAME_RETURN 2 3 $R0  ; next url
     !insertmacro STACKFRAME_END 2 3
 FunctionEnd
 
