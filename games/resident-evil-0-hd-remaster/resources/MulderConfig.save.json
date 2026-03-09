@@ -1,0 +1,11 @@
+{
+  "Resident Evil 0 HD Remaster": {
+    "API": "Direct3D 9 (original)",
+    "MSAA Anti-Aliasing": "Off",
+    "Quality of Life Mods": [
+      "Fast Door Skip",
+      "Item Box"
+    ],
+    "Performance Boost": []
+  }
+}

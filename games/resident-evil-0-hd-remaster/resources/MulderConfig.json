@@ -1,0 +1,149 @@
+{
+  "game": {
+    "title": "Resident Evil 0 HD Remaster",
+    "originalExe": "re0hd.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "API",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Direct3D 9 (original)" },
+        { "value": "Direct3D 11 (dgVoodoo2)" }
+      ]
+    },
+    {
+      "name": "MSAA Anti-Aliasing",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Off" },
+        { "value": "2x", "disabledWhen": [ { "!API": "Direct3D 11 (dgVoodoo2)" } ] },
+        { "value": "4x", "disabledWhen": [ { "!API": "Direct3D 11 (dgVoodoo2)" } ] },
+        { "value": "8x", "disabledWhen": [ { "!API": "Direct3D 11 (dgVoodoo2)" } ] }
+      ]
+    },
+    {
+      "name": "Quality of Life Mods",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Fast Door Skip" },
+        { "value": "Item Box" }
+      ]
+    },
+    {
+      "name": "Performance Boost",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Disable Create Query" },
+        { "value": "Half Rendering Resolution", "disabledWhen": [ { "!API": "Direct3D 9 (original)" } ] }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "API": "Direct3D 11 (dgVoodoo2)" } ],
+        "operation": "copy",
+        "source": "_dgVoodoo.dll.bak",
+        "target": "d3d9.dll"
+      },
+      {
+        "when": [ { "API": "Direct3D 9 (original)" } ],
+        "operation": "delete",
+        "source": "d3d9.dll"
+      },
+
+
+
+      {
+        "when": [ { "MSAA Anti-Aliasing": "Off" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Antialiasing                        =.*$",
+        "replacement": "Antialiasing                        = appdriven"
+      },
+      {
+        "when": [ { "!MSAA Anti-Aliasing": "Off" } ],
+        "operation": "replaceLine",
+        "files": ["%LOCALAPPDATA%\\CAPCOM\\RESIDENT EVIL 0 HD REMASTER\\config.ini"],
+        "pattern": "^AltAntiAlias.*$",
+        "replacement": "AltAntiAlias=NONE"
+      },
+      {
+        "when": [ { "MSAA Anti-Aliasing": "2x" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Antialiasing                        =.*$",
+        "replacement": "Antialiasing                        = 2x"
+      },
+      {
+        "when": [ { "MSAA Anti-Aliasing": "4x" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Antialiasing                        =.*$",
+        "replacement": "Antialiasing                        = 4x"
+      },
+      {
+        "when": [ { "MSAA Anti-Aliasing": "8x" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Antialiasing                        =.*$",
+        "replacement": "Antialiasing                        = 8x"
+      },
+
+
+
+      {
+        "when": [ { "Quality of Life Mods": "Fast Door Skip" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\ResidentEvil0.FusionFix.ini"],
+        "pattern": "^DoorSkip.*$",
+        "replacement": "DoorSkip = 1"
+      },
+      {
+        "when": [ { "!Quality of Life Mods": "Fast Door Skip" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\ResidentEvil0.FusionFix.ini"],
+        "pattern": "^DoorSkip.*$",
+        "replacement": "DoorSkip = 0"
+      },
+      {
+        "when": [ { "Quality of Life Mods": "Item Box" } ],
+        "operation": "replaceLine",
+        "files": ["re0box.ini"],
+        "pattern": "^Mod.*$",
+        "replacement": "Mod=1"
+      },
+      {
+        "when": [ { "!Quality of Life Mods": "Item Box" } ],
+        "operation": "replaceLine",
+        "files": ["re0box.ini"],
+        "pattern": "^Mod.*$",
+        "replacement": "Mod=0"
+      },
+
+
+      
+      {
+        "when": [ { "Performance Boost": "Disable Create Query" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\ResidentEvil0.FusionFix.ini"],
+        "pattern": "^DisableCreateQuery.*$",
+        "replacement": "DisableCreateQuery = 1"
+      },
+      {
+        "when": [ { "!Performance Boost": "Disable Create Query" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\ResidentEvil0.FusionFix.ini"],
+        "pattern": "^DisableCreateQuery.*$",
+        "replacement": "DisableCreateQuery = 0"
+      },
+      {
+        "when": [ { "Performance Boost": "Half Rendering Resolution" } ],
+        "operation": "copy",
+        "source": "_half.dll.bak",
+        "target": "d3d9.dll"
+      }
+    ]
+  }
+}
