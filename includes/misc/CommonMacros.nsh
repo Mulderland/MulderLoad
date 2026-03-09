@@ -99,4 +99,41 @@
     !macroend
 !endif
 
+!ifmacrondef MULDERCONFIG_SECTIONS
+    !macro MULDERCONFIG_SECTIONS OUT_PATH CONFIG_FOLDER
+        Section
+            SectionIn RO
+            AddSize 1024
+            SetOutPath "${OUT_PATH}"
+            !insertmacro DOWNLOAD_1 "https://github.com/Mulderland/MulderConfig/releases/latest/download/MulderConfig.exe" "MulderConfig.exe" ""
+            File ${CONFIG_FOLDER}\MulderConfig.json
+            File ${CONFIG_FOLDER}\MulderConfig.save.json
+        SectionEnd
+
+        Section ".NET Desktop Runtime 8.0.24 (x64)" SEC_MULDERCONFIG_DOTNET
+            SetOutPath "${OUT_PATH}"
+            AddSize 100000
+
+            !insertmacro DOWNLOAD_2 "https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.24/windowsdesktop-runtime-8.0.24-win-x64.exe" \
+                                    "https://cdn2.mulderload.eu/g/_redist/windowsdesktop-runtime-8.0.24-win-x64.exe" \
+                                    "windowsdesktop-runtime-win-x64.exe" "498e520c81f1aa21b0fed9ca64fa2893e6ad4c1d"
+            ExecWait '"windowsdesktop-runtime-win-x64.exe" /Q' $0
+            Delete "windowsdesktop-runtime-win-x64.exe"
+        SectionEnd
+    !macroend
+!endif
+
+!ifmacrondef MULDERCONFIG_ONINIT
+    !macro MULDERCONFIG_ONINIT
+        Push $0
+
+        !insertmacro HAS_DOTNET_DESKTOP_RUNTIME 8 $0
+        ${If} $0 == 1
+            SectionSetFlags ${SEC_MULDERCONFIG_DOTNET} 0
+        ${EndIf}
+
+        Pop $0
+    !macroend
+!endif
+
 !endif ; __COMMONMACROS_NSH__
