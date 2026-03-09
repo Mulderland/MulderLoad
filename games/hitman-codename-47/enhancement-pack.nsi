@@ -64,7 +64,7 @@ Section "Widescreen fix (by alphayellow) + dgVoodoo2"
     Delete "$INSTDIR\nGlideEULA.txt"
 SectionEnd
 
-SectionGroup /e "MulderConfig (latest)"
+SectionGroup "MulderConfig (latest)"
     Section
         AddSize 1945
         # Copy Intro.zip to allow toggling the intro video in MulderConfig UI
@@ -73,25 +73,7 @@ SectionGroup /e "MulderConfig (latest)"
         ${EndIf}
     SectionEnd
 
-    Section
-        SectionIn RO
-        AddSize 1024
-        SetOutPath "$INSTDIR"
-        !insertmacro DOWNLOAD_1 "https://github.com/Mulderland/MulderConfig/releases/latest/download/MulderConfig.exe" "MulderConfig.exe" ""
-        File resources\MulderConfig.json
-        File resources\MulderConfig.save.json
-    SectionEnd
-
-    Section /o "Microsoft .NET Desktop Runtime 8.0.23 (x64)"
-        SetOutPath "$INSTDIR"
-        AddSize 100000
-
-        !insertmacro DOWNLOAD_2 "https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.23/windowsdesktop-runtime-8.0.23-win-x64.exe" \
-                                "https://cdn2.mulderload.eu/g/_redist/windowsdesktop-runtime-8.0.23-win-x64.exe" \
-                                "windowsdesktop-runtime-win-x64.exe" "0ecfc9a9dab72cb968576991ec34921719039d70"
-        ExecWait '"windowsdesktop-runtime-win-x64.exe" /Q' $0
-        Delete "windowsdesktop-runtime-win-x64.exe"
-    SectionEnd
+    !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources"
 SectionGroupEnd
 
 Section "Modern keyboard mapping"
@@ -109,4 +91,5 @@ Function .onInit
     StrCpy $SELECT_FILENAME "Hitman.Exe"
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Hitman Codename 47"
     StrCpy $SELECT_RELATIVE_INSTDIR ""
+    !insertmacro MULDERCONFIG_ONINIT
 FunctionEnd

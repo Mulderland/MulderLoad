@@ -5,7 +5,6 @@ This is an Enhancement Pack for Dino Crisis 2 (GOG), with:$\r$\n\
 - High Quality Videos$\r$\n\
 - High Quality SFX$\r$\n\
 - Rex-HD Project Preview (requires GOG English version)$\r$\n\
-- MulderConfig$\r$\n\
 $\r$\n\
 ${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
 $\r$\n\
