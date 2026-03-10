@@ -10,6 +10,7 @@
 !include "..\..\includes\functions\FileStrReplace.nsh"
 !include "..\..\includes\functions\FolderMerge.nsh"
 !include "..\..\includes\functions\HasDotnetDesktopRuntime.nsh"
+!include "..\..\includes\functions\Move.nsh"
 !include "..\..\includes\functions\StrContains.nsh"
 !include "..\..\includes\functions\StrEndsWith.nsh"
 !include "..\..\includes\functions\StrReplace.nsh"
