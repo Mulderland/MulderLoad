@@ -1,22 +1,24 @@
-﻿!define MUI_WELCOMEPAGE_TEXT "\
-This is an Enhancement Pack for Dirt 3. It includes:$\r$\n\
-- Graphics Remake Mod 2018 (by Hulk)$\r$\n\
-- Extreme Graphics Settings (by Talal26)$\r$\n\
-- Upscaled Cars Textures (by Talal26)$\r$\n\
-- FOV Change Software (by dengo)$\r$\n\
-- Super Fast Menus Mod (by Martan)$\r$\n\
-- Intro Skip (by Garrett)$\r$\n\
-- MulderConfig$\r$\n\
-$\r$\n\
-${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
-$\r$\n\
-Special thanks to Talal26 and Hulk!"
+﻿!ifndef BYOF_INSTALLER_NSI
+    !define MUI_WELCOMEPAGE_TEXT "\
+    This is an Enhancement Pack for Dirt 3. It includes:$\r$\n\
+    - Graphics Remake Mod 2018 (by Hulk)$\r$\n\
+    - Extreme Graphics Settings (by Talal26)$\r$\n\
+    - Upscaled Cars Textures (by Talal26)$\r$\n\
+    - FOV Change Software (by dengo)$\r$\n\
+    - Super Fast Menus Mod (by Martan)$\r$\n\
+    - Intro Skip (by Garrett)$\r$\n\
+    - MulderConfig$\r$\n\
+    $\r$\n\
+    ${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
+    $\r$\n\
+    Special thanks to Talal26 and Hulk!"
 
-!define MUI_FINISHPAGE_RUN "$INSTDIR\MulderConfig.exe"
-!define MUI_FINISHPAGE_RUN_TEXT "Run MulderConfig"
-!include "..\..\includes\templates\SelectTemplate.nsh"
+    !define MUI_FINISHPAGE_RUN "$INSTDIR\MulderConfig.exe"
+    !define MUI_FINISHPAGE_RUN_TEXT "Run MulderConfig"
+    !include "..\..\includes\templates\SelectTemplate.nsh"
 
-Name "Dirt 3 [Enhancement Pack]"
+    Name "Dirt 3 [Enhancement Pack]"
+!endif
 
 Section "Graphics Remake Mod 2018 v1.3 (by Hulk)"
     AddSize 33690
@@ -75,7 +77,11 @@ Section /o "Upscaled Cars Textures (by Talal26)"
 SectionEnd
 
 SectionGroup /e "MulderConfig"
-    !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources"
+    !ifdef BYOF_INSTALLER_NSI
+        !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources\byof-installer"
+    !else
+        !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources\enhancement-pack"
+    !endif
 
     Section "Super Fast Menus Mod (by Martan)"
         AddSize 42
@@ -112,8 +118,8 @@ SectionGroup /e "MulderConfig"
         !insertmacro NSISUNZ_EXTRACT "dirt3_nointro.zip" ".\" "AUTO_DELETE"
 
         # Rename modded videos (to allow switch)
-        !insertmacro FORCE_RENAME "AMD_sting.bik" "_AMD_sting.mod.bak"
-        !insertmacro FORCE_RENAME "sting.bik" "_sting.mod.bak"
+        !insertmacro FORCE_RENAME "video\AMD_sting.bik" "video\_AMD_sting.mod.bak"
+        !insertmacro FORCE_RENAME "video\sting.bik" "video\_sting.mod.bak"
 
         # Apply
         SetOutPath "$INSTDIR"
@@ -126,8 +132,10 @@ SectionGroup /e "MulderConfig"
 SectionGroupEnd
 
 Function .onInit
-    StrCpy $SELECT_FILENAME "dirt3_game.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\DiRT 3 Complete Edition"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    !ifndef BYOF_INSTALLER_NSI
+        StrCpy $SELECT_FILENAME "dirt3_game.exe"
+        StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\DiRT 3 Complete Edition"
+        StrCpy $SELECT_RELATIVE_INSTDIR ""
+    !endif
     !insertmacro MULDERCONFIG_ONINIT
 FunctionEnd

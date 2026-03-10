@@ -1,0 +1,225 @@
+{
+  "game": {
+    "title": "Dirt 3",
+    "originalExe": "dirt3_game.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Language",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "English" },
+        { "value": "German" },
+        { "value": "French" },
+        { "value": "Italian" },
+        { "value": "Spanish" }
+      ]
+    },
+    {
+      "name": "Motion Blur",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Enabled (default)" },
+        { "value": "Disabled" }
+      ]
+    },
+    {
+      "name": "Fast Menus",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Disable the narrator" },
+        { "value": "Remove transitions (Super Fast Menus MOD)" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Skip intro videos" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "Language": "English" } ],
+        "operation": "replaceLine",
+        "files": ["codex.ini"],
+        "pattern": "^Language=.*$",
+        "replacement": "Language=english"
+      },
+      {
+        "when": [ { "Language": "German" } ],
+        "operation": "replaceLine",
+        "files": ["codex.ini"],
+        "pattern": "^Language=.*$",
+        "replacement": "Language=german"
+      },
+      {
+        "when": [ { "Language": "French" } ],
+        "operation": "replaceLine",
+        "files": ["codex.ini"],
+        "pattern": "^Language=.*$",
+        "replacement": "Language=french"
+      },
+      {
+        "when": [ { "Language": "Italian" } ],
+        "operation": "replaceLine",
+        "files": ["codex.ini"],
+        "pattern": "^Language=.*$",
+        "replacement": "Language=italian"
+      },
+      {
+        "when": [ { "Language": "Spanish" } ],
+        "operation": "replaceLine",
+        "files": ["codex.ini"],
+        "pattern": "^Language=.*$",
+        "replacement": "Language=spanish"
+      },
+
+
+
+      {
+        "when": [ { "Motion Blur": "Enabled (default)" } ],
+        "operation": "copy",
+        "source": "postprocess\\_effects.ori.bak",
+        "target": "postprocess\\effects.xml"
+      },
+      {
+        "when": [ { "Motion Blur": "Enabled (default)" } ],
+        "operation": "copy",
+        "source": "postprocess\\_palettes.ori.bak",
+        "target": "postprocess\\palettes.pssg"
+      },
+      {
+        "when": [ { "Motion Blur": "Disabled" } ],
+        "operation": "copy",
+        "source": "postprocess\\_effects.mod.bak",
+        "target": "postprocess\\effects.xml"
+      },
+      {
+        "when": [ { "Motion Blur": "Disabled" } ],
+        "operation": "copy",
+        "source": "postprocess\\_palettes.mod.bak",
+        "target": "postprocess\\palettes.pssg"
+      },
+
+
+
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "copy",
+        "source": "video\\_AMD_sting.mod.bak",
+        "target": "video\\AMD_sting.bik"
+      },
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "copy",
+        "source": "video\\_sting.mod.bak",
+        "target": "video\\sting.bik"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "copy",
+        "source": "video\\_AMD_sting.ori.bak",
+        "target": "video\\AMD_sting.bik"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "copy",
+        "source": "video\\_sting.ori.bak",
+        "target": "video\\sting.bik"
+      },
+
+
+
+      {
+        "when": [ { "Fast Menus": "Disable the narrator" } ],
+        "operation": "rename",
+        "source": "audio\\speech\\en\\en_generic.nfs",
+        "target": "audio\\speech\\en\\_en_generic.nfs.bak"
+      },
+      {
+        "when": [ { "Fast Menus": "Disable the narrator" } ],
+        "operation": "rename",
+        "source": "audio\\speech\\fr\\fr_generic.nfs",
+        "target": "audio\\speech\\fr\\_fr_generic.nfs.bak"
+      },
+      {
+        "when": [ { "Fast Menus": "Disable the narrator" } ],
+        "operation": "rename",
+        "source": "audio\\speech\\ge\\ge_generic.nfs",
+        "target": "audio\\speech\\ge\\_ge_generic.nfs.bak"
+      },
+      {
+        "when": [ { "Fast Menus": "Disable the narrator" } ],
+        "operation": "rename",
+        "source": "audio\\speech\\it\\it_generic.nfs",
+        "target": "audio\\speech\\it\\_it_generic.nfs.bak"
+      },
+      {
+        "when": [ { "Fast Menus": "Disable the narrator" } ],
+        "operation": "rename",
+        "source": "audio\\speech\\sp\\sp_generic.nfs",
+        "target": "audio\\speech\\sp\\_sp_generic.nfs.bak"
+      },
+      {
+        "when": [ { "!Fast Menus": "Disable the narrator" } ],
+        "operation": "rename",
+        "source": "audio\\speech\\en\\_en_generic.nfs.bak",
+        "target": "audio\\speech\\en\\en_generic.nfs"
+      },
+      {
+        "when": [ { "!Fast Menus": "Disable the narrator" } ],
+        "operation": "rename",
+        "source": "audio\\speech\\fr\\_fr_generic.nfs.bak",
+        "target": "audio\\speech\\fr\\fr_generic.nfs"
+      },
+      {
+        "when": [ { "!Fast Menus": "Disable the narrator" } ],
+        "operation": "rename",
+        "source": "audio\\speech\\ge\\_ge_generic.nfs.bak",
+        "target": "audio\\speech\\ge\\ge_generic.nfs"
+      },
+      {
+        "when": [ { "!Fast Menus": "Disable the narrator" } ],
+        "operation": "rename",
+        "source": "audio\\speech\\it\\_it_generic.nfs.bak",
+        "target": "audio\\speech\\it\\it_generic.nfs"
+      },
+      {
+        "when": [ { "!Fast Menus": "Disable the narrator" } ],
+        "operation": "rename",
+        "source": "audio\\speech\\sp\\_sp_generic.nfs.bak",
+        "target": "audio\\speech\\sp\\sp_generic.nfs"
+      },
+
+
+
+      {
+        "when": [ { "Fast Menus": "Remove transitions (Super Fast Menus MOD)" } ],
+        "operation": "copy",
+        "source": "frontend\\_durations.mod.bak",
+        "target": "frontend\\durations.bik"
+      },
+      {
+        "when": [ { "Fast Menus": "Remove transitions (Super Fast Menus MOD)" } ],
+        "operation": "copy",
+        "source": "frontend\\caranims\\_fe_animation_times.mod.bak",
+        "target": "frontend\\caranims\\fe_animation_times.bik"
+      },
+      {
+        "when": [ { "!Fast Menus": "Remove transitions (Super Fast Menus MOD)" } ],
+        "operation": "copy",
+        "source": "frontend\\_durations.ori.bak",
+        "target": "frontend\\durations.bik"
+      },
+      {
+        "when": [ { "!Fast Menus": "Remove transitions (Super Fast Menus MOD)" } ],
+        "operation": "copy",
+        "source": "frontend\\caranims\\_fe_animation_times.ori.bak",
+        "target": "frontend\\caranims\\fe_animation_times.bik"
+      }
+    ]
+  }
+}
