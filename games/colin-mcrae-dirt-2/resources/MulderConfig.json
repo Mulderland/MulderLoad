@@ -1,0 +1,98 @@
+{
+  "game": {
+    "title": "Colin McRae: Dirt 2",
+    "originalExe": "dirt2_game.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Disable GFWL (Xliveless)" },
+        { "value": "Skip intro videos" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "Misc": "Disable GFWL (Xliveless)" } ],
+        "operation": "rename",
+        "source": "_xlive.dll.bak",
+        "target": "xlive.dll"
+      },
+      {
+        "when": [ { "!Misc": "Disable GFWL (Xliveless)" } ],
+        "operation": "rename",
+        "source": "xlive.dll",
+        "target": "_xlive.dll.bak"
+      },
+
+
+      
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "copy",
+        "source": "video\\_AMD_sting.mod.bak",
+        "target": "video\\AMD_sting.bik"
+      },
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "copy",
+        "source": "video\\_ego_sting.mod.bak",
+        "target": "video\\ego_sting.bik"
+      },
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "copy",
+        "source": "video\\_intel_sting.mod.bak",
+        "target": "video\\intel_sting.bik"
+      },
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "copy",
+        "source": "video\\_sting.mod.bak",
+        "target": "video\\sting.bik"
+      },
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "copy",
+        "source": "video\\_sting_us.mod.bak",
+        "target": "video\\sting_us.bik"
+      },
+
+
+
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "copy",
+        "source": "video\\_AMD_sting.ori.bak",
+        "target": "video\\AMD_sting.bik"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "copy",
+        "source": "video\\_ego_sting.ori.bak",
+        "target": "video\\ego_sting.bik"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "copy",
+        "source": "video\\_intel_sting.ori.bak",
+        "target": "video\\intel_sting.bik"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "copy",
+        "source": "video\\_sting.ori.bak",
+        "target": "video\\sting.bik"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "copy",
+        "source": "video\\_sting_us.ori.bak",
+        "target": "video\\sting_us.bik"
+      }
+    ]
+  }
+}
