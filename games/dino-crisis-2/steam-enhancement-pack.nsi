@@ -39,8 +39,12 @@ Section "Fix GOG/Steam corrupted files with Retail files"
     !ifdef GOG_ENHANCEMENT_PACK_NSI
         !insertmacro NSIS7Z_EXTRACT "Data Retail [MLD].7z" ".\" "AUTO_DELETE"
     !else ; If Steam
-        !insertmacro NSIS7Z_EXTRACT "Data Retail [MLD].7z" "english\" ""
-        !insertmacro NSIS7Z_EXTRACT "Data Retail [MLD].7z" "japanese\" "AUTO_DELETE"
+        !insertmacro NSIS7Z_EXTRACT "$INSTDIR\Data Retail [MLD].7z" "$INSTDIR\english" ""
+        !insertmacro NSIS7Z_EXTRACT "$INSTDIR\Data Retail [MLD].7z" "$INSTDIR\japanese" ""
+        ${If} ${FileExists} "$INSTDIR\rebirth\Data\MF_0400.DAT"
+            !insertmacro NSIS7Z_EXTRACT "$INSTDIR\Data Retail [MLD].7z" "$INSTDIR\rebirth" ""
+        ${EndIf}
+        Delete "$INSTDIR\Data Retail [MLD].7z"
     !endif
 SectionEnd
 
@@ -126,7 +130,7 @@ Section "High Quality Textures (Rex-HD Project Preview)" rexhd
     !ifdef GOG_ENHANCEMENT_PACK_NSI
         !insertmacro NSISUNZ_EXTRACT "DC2_RexHD_Preview1.zip" ".\" "AUTO_DELETE"
     !else ; If Steam
-        !insertmacro NSISUNZ_EXTRACT "DC2_RexHD_Preview1.zip" "english\" "AUTO_DELETE"
+        !insertmacro NSISUNZ_EXTRACT "$INSTDIR\DC2_RexHD_Preview1.zip" "$INSTDIR\english" "AUTO_DELETE"
     !endif
 SectionEnd
 
