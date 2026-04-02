@@ -50,12 +50,12 @@ Section "Update Steam to GOG version (2024 re-release)"
 
     DetailPrint " // Update PhysX installer to the same shipped with GOG release..." ; keep the old file name to be compatible with 34010_install.vdf
     !insertmacro DOWNLOAD_2 "https://us.download.nvidia.com/Windows/9.21.0713/PhysX_9.21.0713_SystemSoftware.exe" \
-                            "https://cdn2.mulderload.eu/g/alpha-protocol/PhysX_9.21.0713_SystemSoftware.exe" \
+                            "https://cdn1.mulderload.eu/games/alpha-protocol/PhysX_9.21.0713_SystemSoftware.exe" \
                             "Support\physx\PhysX_9.09.0814_SystemSoftware.exe" "ffa850b7463cae49c651c24ee364f8f31fcf158e"
 
     DetailPrint " // Download new files from GOG release..."
     !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/o5nd96qfxh3zmr4/AlphaProtocolSteam_GOGUpdate_v1.1.7z/file" \
-                            "https://cdn2.mulderload.eu/g/alpha-protocol/AlphaProtocolSteam_GOGUpdate_v1.1.7z" \
+                            "https://cdn1.mulderload.eu/games/alpha-protocol/AlphaProtocolSteam_GOGUpdate_v1.1.7z" \
                             "AlphaProtocolSteam_GOGUpdate_v1.1.7z" "d8c4d4c5123d8f9c4bdabc3d45621fbef230763a"
     !insertmacro NSIS7Z_EXTRACT "AlphaProtocolSteam_GOGUpdate_v1.1.7z" ".\" "AUTO_DELETE"
     skip_section:

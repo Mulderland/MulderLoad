@@ -7,7 +7,7 @@
 !macro XDELTA3_GET
     DetailPrint " // Getting XDelta3"
     !insertmacro DOWNLOAD_2 "https://github.com/jmacd/xdelta-gpl/releases/download/v3.0.11/xdelta3-3.0.11-x86_64.exe.zip" \
-                            "https://cdn2.mulderload.eu/g/_tools/xdelta3-3.0.11-x86_64.exe.zip" \
+                            "https://cdn1.mulderload.eu/games/_tools/xdelta3-3.0.11-x86_64.exe.zip" \
                             "$INSTDIR\@mulderload\xdelta3\xdelta3.zip" "d280cca0a52ce7e6da03bc2d27035a7b46b39c77"
     !insertmacro NSISUNZ_EXTRACT "$INSTDIR\@mulderload\xdelta3\xdelta3.zip" "$INSTDIR\@mulderload\xdelta3" "AUTO_DELETE"
     Rename "$INSTDIR\@mulderload\xdelta3\xdelta3-3.0.11-x86_64.exe" "$INSTDIR\@mulderload\xdelta3\xdelta3.exe"

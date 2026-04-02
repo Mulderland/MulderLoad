@@ -150,19 +150,19 @@ SectionGroup "The Simpsons: Hit & Run (Full Installation)"
         Pop $9
         ${If} $9 == ${EXE_HASH_EUROPE}
             DetailPrint " // Apply english diff on European version"
-            !insertmacro DOWNLOAD_1 "https://cdn2.mulderload.eu/g/the-simpsons-hit-and-run/Europe%20(Both)/Simpsons.exe.xdelta" "$INSTDIR\Simpsons.exe.xdelta" "a07ccd46911000d5700577d1dfda6b69383c3cbd"
+            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/the-simpsons-hit-and-run/Europe%20(Both)/Simpsons.exe.xdelta" "$INSTDIR\Simpsons.exe.xdelta" "a07ccd46911000d5700577d1dfda6b69383c3cbd"
         ${ElseIf} $9 == ${EXE_HASH_FRANCE}
             DetailPrint " // Apply french diff on France version"
-            !insertmacro DOWNLOAD_1 "https://cdn2.mulderload.eu/g/the-simpsons-hit-and-run/France%20(Original)/Simpsons.exe.xdelta" "$INSTDIR\Simpsons.exe.xdelta" "a77f6a73f772597af678dd4ca4c51c2d9771313f"
+            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/the-simpsons-hit-and-run/France%20(Original)/Simpsons.exe.xdelta" "$INSTDIR\Simpsons.exe.xdelta" "a77f6a73f772597af678dd4ca4c51c2d9771313f"
         ${ElseIf} $9 == ${EXE_HASH_GERMANY}
             DetailPrint " // Apply german diff on Germany version"
-            !insertmacro DOWNLOAD_1 "https://cdn2.mulderload.eu/g/the-simpsons-hit-and-run/Germany%20(Rerelease)/Simpsons.exe.xdelta" "$INSTDIR\Simpsons.exe.xdelta" "6b35dd31b0f135ce5507afc68f442227ebd79dcc"
+            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/the-simpsons-hit-and-run/Germany%20(Rerelease)/Simpsons.exe.xdelta" "$INSTDIR\Simpsons.exe.xdelta" "6b35dd31b0f135ce5507afc68f442227ebd79dcc"
         ${ElseIf} $9 == ${EXE_HASH_SPAIN}
             DetailPrint " // Apply spanish diff on Spain version"
-            !insertmacro DOWNLOAD_1 "https://cdn2.mulderload.eu/g/the-simpsons-hit-and-run/Spain%20(Original)/Simpsons.exe.xdelta" "$INSTDIR\Simpsons.exe.xdelta" "10ddf112d4ee8d0bce9c76c388e0c176511078cc"
+            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/the-simpsons-hit-and-run/Spain%20(Original)/Simpsons.exe.xdelta" "$INSTDIR\Simpsons.exe.xdelta" "10ddf112d4ee8d0bce9c76c388e0c176511078cc"
         ${ElseIf} $9 == ${EXE_HASH_USA}
             DetailPrint " // Apply english diff on USA version"
-            !insertmacro DOWNLOAD_1 "https://cdn2.mulderload.eu/g/the-simpsons-hit-and-run/USA%20(Original)/Simpsons.exe.xdelta" "$INSTDIR\Simpsons.exe.xdelta" "cb69fed2706d95c8bd0c36970c7a4732e1f1e5e3"
+            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/the-simpsons-hit-and-run/USA%20(Original)/Simpsons.exe.xdelta" "$INSTDIR\Simpsons.exe.xdelta" "cb69fed2706d95c8bd0c36970c7a4732e1f1e5e3"
         ${Else}
             MessageBox MB_ICONEXCLAMATION "Unknown version of Simpsons.exe, skipping patch"
             Goto end_diff

@@ -20,13 +20,13 @@ SectionGroup /e "DSFix v2.4 + FPSFix-Plus + Morten242's UI v1.5.1"
 
         # https://www.moddb.com/games/dark-souls-prepare-to-die-edition/downloads/dsfix
         !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/133206" \
-                                "https://cdn2.mulderload.eu/g/dark-souls-prepare-to-die-edition/DSfix24.zip" \
+                                "https://cdn1.mulderload.eu/games/dark-souls-prepare-to-die-edition/DSfix24.zip" \
                                 "DSfix.zip" "efb76063fef728737d2204f21099261c"
         !insertmacro NSISUNZ_EXTRACT "DSfix.zip" ".\" "AUTO_DELETE"
 
         # https://github.com/SeanPesce/FPSFix-Plus
         !insertmacro DOWNLOAD_2 "https://github.com/SeanPesce/FPSFix-Plus/releases/download/2017-09-01/FPSFix-Plus-Bundle_v2017-09-07.zip" \
-                                "https://cdn2.mulderload.eu/g/dark-souls-prepare-to-die-edition/FPSFix-Plus-Bundle_v2017-09-07.zip" \
+                                "https://cdn1.mulderload.eu/games/dark-souls-prepare-to-die-edition/FPSFix-Plus-Bundle_v2017-09-07.zip" \
                                 "FPSFix-Plus-Bundle.zip" "19690f7dea168f7971cc79c75047338a2b5367f0"
         !insertmacro NSISUNZ_EXTRACT_ONE "FPSFix-Plus-Bundle.zip" ".\" "d3dx9_43\d3dx9_43.dll" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "FPSFix-Plus-Bundle.zip" ".\" "d3dx9_43\FPSFix-Plus-Readme.txt" ""
@@ -73,8 +73,8 @@ Section "HD Interface (Fonts + Controller Icons)"
     !insertmacro 7Z_EXTRACT "Dark Souls - High-Res UI and Subtitles.rar" "." "AUTO_DELETE"
 
     # https://www.nexusmods.com/darksouls/mods/171 (converted to DDS format for better performance)
-    !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/7rd2k0h26rnifuv/Xbox_360_HD_Interface_Icons-171-1_-_DDS.7z/file" \
-                            "https://cdn2.mulderload.eu/g/dark-souls-prepare-to-die-edition/Xbox%20360%20HD%20Interface%20Icons-171-1%20-%20DDS.7z" \
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dark-souls-prepare-to-die-edition/Xbox%20360%20HD%20Interface%20Icons-171-1%20-%20DDS.7z" \
+                            "https://www.mediafire.com/file_premium/7rd2k0h26rnifuv/Xbox_360_HD_Interface_Icons-171-1_-_DDS.7z/file" \
                             "Xbox 360 HD Interface Icons.7z" "9717ac0593c69f4026e166d39be8544174d4ea42"
     !insertmacro NSIS7Z_EXTRACT "Xbox 360 HD Interface Icons.7z" ".\" "AUTO_DELETE"
 SectionEnd

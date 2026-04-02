@@ -33,7 +33,7 @@ Section "Widescreen fix (by alphayellow) + dgVoodoo2"
 
     # Install ThirteenAG's Ultimate ASI Loader (stick to 9.5, higher doesnt seem to work on GOG release)
     !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/v9.5.0/Ultimate-ASI-Loader.zip" \
-                            "https://cdn2.mulderload.eu/g/_common/Ultimate-ASI-Loader-9.5.zip" \
+                            "https://cdn1.mulderload.eu/games/_common/Ultimate-ASI-Loader-9.5.zip" \
                             "Ultimate-ASI-Loader.zip" "418b117c22ff2a798cf9173ba20f8cdfde3c456e"
     !insertmacro NSISUNZ_EXTRACT "Ultimate-ASI-Loader.zip" ".\" "AUTO_DELETE"
     !insertmacro FORCE_RENAME "dinput8.dll" "dsound.dll"
@@ -41,7 +41,7 @@ Section "Widescreen fix (by alphayellow) + dgVoodoo2"
     # Install Alphayellow's Widescreen Fix
     SetOutPath "$INSTDIR\scripts"
     !insertmacro DOWNLOAD_2 "https://github.com/alphayellow1/AlphaYellowWidescreenFixes/releases/download/hitmancodename47/Hitman.Codename.47.-.Widescreen.FOV.Fix.v1.1.1.rar" \
-                            "https://cdn2.mulderload.eu/g/hitman-codename-47/Hitman.Codename.47.-.Widescreen.FOV.Fix.v1.1.1.rar" \
+                            "https://cdn1.mulderload.eu/games/hitman-codename-47/Hitman.Codename.47.-.Widescreen.FOV.Fix.v1.1.1.rar" \
                             "Hitman.Codename.47.-.Widescreen.FOV.Fix.v1.1.1.rar" "7ea364ba1c5f7b7454d2c97c3533f62b2a8fdc6f"
     !insertmacro 7Z_GET
     !insertmacro 7Z_EXTRACT "Hitman.Codename.47.-.Widescreen.FOV.Fix.v1.1.1.rar" ".\" "AUTO_DELETE"

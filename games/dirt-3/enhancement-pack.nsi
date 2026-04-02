@@ -25,7 +25,7 @@ Section "Graphics Remake Mod 2018 v1.3 (by Hulk)"
     SetOutPath "$INSTDIR"
 
     !insertmacro DOWNLOAD_2 "https://www.moddb.com/addons/start/132448" \
-                            "https://cdn2.mulderload.eu/g/dirt-3/Hulks_DiRT_3_Remake_Mod_v1.3.zip" \
+                            "https://cdn1.mulderload.eu/games/dirt-3/Hulks_DiRT_3_Remake_Mod_v1.3.zip" \
                             "Hulks_DiRT_3_Remake_Mod_v1.3.zip" "f51011b7a1b424944ffe996961e33fde"
     !insertmacro NSISUNZ_EXTRACT "Hulks_DiRT_3_Remake_Mod_v1.3.zip" ".\" "AUTO_DELETE"
 
@@ -61,8 +61,8 @@ Section "FOV Change Software (by dengo)"
     AddSize 749
     SetOutPath "$INSTDIR"
 
-    !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/c09cg9fn8gpo08t/Dirt3FovChange-v0.2.zip/file" \
-                            "https://cdn2.mulderload.eu/g/dirt-3/Dirt3FovChange-v0.2.zip" \
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dirt-3/Dirt3FovChange-v0.2.zip" \
+                            "https://www.mediafire.com/file_premium/c09cg9fn8gpo08t/Dirt3FovChange-v0.2.zip/file" \
                             "Dirt3FovChange.zip" "7f7ae70c385f5b30cb97b234c467ac294699e16b"
     !insertmacro NSISUNZ_EXTRACT "Dirt3FovChange.zip" ".\" "AUTO_DELETE"
 SectionEnd
@@ -71,7 +71,7 @@ Section /o "Upscaled Cars Textures (by Talal26)"
     AddSize 20835205
     SetOutPath "$INSTDIR"
 
-    !insertmacro DOWNLOAD_RANGE_1 "https://cdn2.mulderload.eu/g/dirt-3/DiRT%203%20Upscaled%20Liveries%20Mod%201.0%20%5BRepack-MLD%5D.001" "DiRT 3 Upscaled Liveries Mod 1.0 [Repack-MLD].001" "d9842cb0bbcc11227b74ce4e8e05a00b89312572" 15
+    !insertmacro DOWNLOAD_RANGE_1 "https://cdn1.mulderload.eu/games/dirt-3/DiRT%203%20Upscaled%20Liveries%20Mod%201.0%20%5BRepack-MLD%5D.001" "DiRT 3 Upscaled Liveries Mod 1.0 [Repack-MLD].001" "d9842cb0bbcc11227b74ce4e8e05a00b89312572" 15
     !insertmacro NSIS7Z_EXTRACT "DiRT 3 Upscaled Liveries Mod 1.0 [Repack-MLD].001" ".\" ""
     !insertmacro DELETE_RANGE "DiRT 3 Upscaled Liveries Mod 1.0 [Repack-MLD].001" 15
 SectionEnd
@@ -89,7 +89,7 @@ SectionGroup /e "MulderConfig"
 
         # Download modded xml
         !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/36kcxc2ad4wt5ex/DiRT3CE_SuperFastMenus_mod.zip/file" \
-                                "https://cdn2.mulderload.eu/g/dirt-3/DiRT3CE_SuperFastMenus_mod.zip" \
+                                "https://cdn1.mulderload.eu/games/dirt-3/DiRT3CE_SuperFastMenus_mod.zip" \
                                 "DiRT3CE_SuperFastMenus_mod.zip" "5e817b1c8793b2a4e0161883d00973ef89fc539d"
         !insertmacro NSISUNZ_EXTRACT "DiRT3CE_SuperFastMenus_mod.zip" ".\" "AUTO_DELETE"
 
@@ -113,7 +113,7 @@ SectionGroup /e "MulderConfig"
 
         # Download modded videos
         !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/w1ehcxk0m7t01n7/dirt3_nointro.zip/file" \
-                                "https://cdn2.mulderload.eu/g/dirt-3/dirt3_nointro.zip" \
+                                "https://cdn1.mulderload.eu/games/dirt-3/dirt3_nointro.zip" \
                                 "dirt3_nointro.zip" "9981cb1d0fa5419afda3822ed47e99d17aba2daf"
         !insertmacro NSISUNZ_EXTRACT "dirt3_nointro.zip" ".\" "AUTO_DELETE"
 

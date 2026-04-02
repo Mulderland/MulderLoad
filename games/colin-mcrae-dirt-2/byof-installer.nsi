@@ -51,7 +51,7 @@ SectionGroup /e "Colin McRae Dirt 2 (Full Installation, v1.1)" lang
         RMDIR /r "$INSTDIR\@mulderload\unpack"
 
         # Download v1.1 Update
-        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/colin-mcrae-dirt-2/byof-installer/Dirt2Retail_Update1.1.7z" \
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/colin-mcrae-dirt-2/byof-installer/Dirt2Retail_Update1.1.7z" \
                                 "https://www.mediafire.com/file_premium/eoygtrmzryn96l8/Dirt2Retail_Update1.1.7z/file" \
                                 "Dirt2Retail_Update1.1.7z" "51fc103b4e2685444ed6b2f809fce032d0d1f230"
         !insertmacro NSIS7Z_EXTRACT "Dirt2Retail_Update1.1.7z" ".\" "AUTO_DELETE"

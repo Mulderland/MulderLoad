@@ -26,14 +26,14 @@
     Section "Update redistributables installers"
 !endif
     SetOutPath "$INSTDIR\redist\OpenAL"
-    !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/_redist/oalinst_2.1.zip" \
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/_redist/oalinst_2.1.zip" \
                             "https://www.mediafire.com/file_premium/lwkut4mwyxkp1e5/oalinst_2.1.zip/file" \
                             "oalinst.zip" "8134406423071689df2245e6440ec73dfd1db74b"
     !insertmacro NSISUNZ_EXTRACT "oalinst.zip" ".\" "AUTO_DELETE"
     !insertmacro FORCE_RENAME "$INSTDIR\redist\OpenAL\OALInst.exe" "$INSTDIR\redist\OpenAL\OpenALwEAX.exe"
 
     SetOutPath "$INSTDIR\redist\GFWL"
-    !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/_redist/gfwlivesetup.zip" \
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/_redist/gfwlivesetup.zip" \
                             "https://www.mediafire.com/file_premium/lqo6o275xnm9y1x/gfwlivesetup.zip/file" \
                             "gfwlivesetup.zip" "917b90c585d871f4d08878786f821b80dbd25eea"
     !insertmacro NSISUNZ_EXTRACT_ONE "gfwlivesetup.zip" ".\" "xliveredist.msi" "AUTO_DELETE"
@@ -41,7 +41,7 @@
 
     SetOutPath "$INSTDIR\redist\Rapture3D"
     !insertmacro DOWNLOAD_3 "https://www.blueripplesound.com/download/public/rapture3dgame_2.7.4_win.exe" \
-                            "https://cdn2.mulderload.eu/g/_redist/rapture3dgame_2.7.4_win.exe" \
+                            "https://cdn1.mulderload.eu/games/_redist/rapture3dgame_2.7.4_win.exe" \
                             "https://www.mediafire.com/file_premium/492ezqorxfhehdn/rapture3dgame_2.7.4_win.exe/file" \
                             "rapture3dgame_2.7.4_win.exe" "4ab1aaaf7a46f082abad203a07b529a9977f0fa0"
     Delete "rapture3d_2.3.22game.exe"
@@ -63,7 +63,7 @@ Section "FOV Change Software (by dengo)"
     SetOutPath "$INSTDIR"
 
     !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/c09cg9fn8gpo08t/Dirt3FovChange-v0.2.zip/file" \
-                            "https://cdn2.mulderload.eu/g/dirt-3/Dirt3FovChange-v0.2.zip" \
+                            "https://cdn1.mulderload.eu/games/dirt-3/Dirt3FovChange-v0.2.zip" \
                             "Dirt3FovChange.zip" "7f7ae70c385f5b30cb97b234c467ac294699e16b"
     !insertmacro NSISUNZ_EXTRACT "Dirt3FovChange.zip" ".\" "AUTO_DELETE"
 SectionEnd
@@ -84,7 +84,7 @@ SectionGroup /e "MulderConfig"
         SetOutPath "$INSTDIR\@mulderload\introskip"
 
         # Download modded videos
-        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/colin-mcrae-dirt-2/Dirt%202%20No%20Intro.zip" \
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/colin-mcrae-dirt-2/Dirt%202%20No%20Intro.zip" \
                                 "https://www.mediafire.com/file_premium/q0yie4bo5ivj6l4/Dirt_2_No_Intro.zip/file" \
                                 "Dirt 2 No Intro.zip" "d105ec46efeac59aaccae9f610a2274187717b2d"
         !insertmacro NSISUNZ_EXTRACT "Dirt 2 No Intro.zip" ".\" "AUTO_DELETE"

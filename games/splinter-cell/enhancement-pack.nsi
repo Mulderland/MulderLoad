@@ -43,8 +43,8 @@ SectionGroup /e "Graphical improvements"
         AddSize 252928
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_2 "https://community.pcgamingwiki.com/files/file/740-splinter-cell-ps3-hd-textures/#2939" \
-                                "https://cdn2.mulderload.eu/g/splinter-cell/SC1_PS3_Textures.zip" \
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/splinter-cell/SC1_PS3_Textures.zip" \
+                                "https://community.pcgamingwiki.com/files/file/740-splinter-cell-ps3-hd-textures/#2939" \
                                 "SC1_PS3_Textures.zip" "5f00dfc82db3ec8a067224d6bac0f19212af545c"
 
         !insertmacro NSISUNZ_EXTRACT "SC1_PS3_Textures.zip" ".\" "AUTO_DELETE"
@@ -56,7 +56,7 @@ Section /o "Bonus missions (missing from Steam release)"
     SetOutPath "$INSTDIR"
 
     !insertmacro DOWNLOAD_2 "https://archive.org/download/splinter-cell-extra-content/Splinter_cell_missing_maps.7z" \
-                            "https://cdn2.mulderload.eu/g/splinter-cell/Splinter_cell_missing_maps.7z" \
+                            "https://cdn1.mulderload.eu/games/splinter-cell/Splinter_cell_missing_maps.7z" \
                             "Splinter_cell_missing_maps.7z" "be5b222fc4b861f697058eddf4e497985b156b4e"
 
     !insertmacro NSIS7Z_EXTRACT "Splinter_cell_missing_maps.7z" ".\" "AUTO_DELETE"

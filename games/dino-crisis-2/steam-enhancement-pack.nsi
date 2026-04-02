@@ -22,7 +22,7 @@
         AddSize 1824
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis-2/steam_to_gog_1.0hotfix3_full.7z" \
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis-2/steam_to_gog_1.0hotfix3_full.7z" \
                                 "https://www.mediafire.com/file_premium/1neorsjywl8zp6s/steam_to_gog_1.0hotfix3_full.7z/file" \
                                 "steam_to_gog_1.0hotfix3_full.7z" "577108ba1bd00eaf1952e417177a6875ea802f8b"
         !insertmacro NSIS7Z_EXTRACT "steam_to_gog_1.0hotfix3_full.7z" ".\" "AUTO_DELETE"
@@ -32,7 +32,7 @@
 Section "Fix GOG/Steam corrupted files with Retail files"
     SetOutPath "$INSTDIR"
 
-    !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis-2/Data%20Retail%20[MLD].7z" \
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis-2/Data%20Retail%20[MLD].7z" \
                             "https://www.mediafire.com/file_premium/kp9hfi5ezdtrvrm/Data_Retail_%255BMLD%255D.7z/file" \
                             "Data Retail [MLD].7z" "a19474b1846eed0fe9564bb6516740ba6b26d268"
 
@@ -75,14 +75,14 @@ SectionGroup /e "Dino Crisis 2 Classic REbirth"
         File resources\config.ini
 
         # Windows XP Patch
-        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis-2/Dino2-xp.7z" \
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis-2/Dino2-xp.7z" \
                                 "https://www.mediafire.com/file_premium/fjni41t9im4kqli/Dino2-xp.7z/file" \
                                 "Dino2-xp.7z" "47107fbdaaec9ad62114e071c478545beac97b7f"
         !insertmacro NSIS7Z_EXTRACT "Dino2-xp.7z" ".\" "AUTO_DELETE"
 
         # Classic REbirth DLL
         AddSize 3545
-        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis-2/dc2cr-2024-05-05.7z" \
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis-2/dc2cr-2024-05-05.7z" \
                                 "https://www.mediafire.com/file_premium/69dozi4wa1dfwlm/dc2cr-2024-05-05.7z/file" \
                                 "dc2cr-2024-05-05.7z" "2d84b2e9b3ebac15ede3fd4beee8bb5a5eaf90e0"
         !insertmacro NSIS7Z_EXTRACT "dc2cr-2024-05-05.7z" ".\" "AUTO_DELETE"
@@ -95,7 +95,7 @@ SectionGroup /e "Dino Crisis 2 Classic REbirth"
         AddSize 293888
         SetOutPath "$REBIRTHDIR"
 
-        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis-2/dc2cr_hq_movie_2024-04-29.7z" \
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis-2/dc2cr_hq_movie_2024-04-29.7z" \
                                 "https://www.mediafire.com/file_premium/5gbygmau33k9bfe/dc2cr_hq_movie_2024-04-29.7z/file" \
                                 "dc2cr_hq_movie_2024-04-29.7z" "2a8720c19ced0d6f40f598475bfc188aef038edc"
         !insertmacro NSIS7Z_EXTRACT "dc2cr_hq_movie_2024-04-29.7z" ".\" "AUTO_DELETE"
@@ -113,7 +113,7 @@ SectionGroup /e "Dino Crisis 2 Classic REbirth"
         AddSize 13619
         SetOutPath "$REBIRTHDIR"
 
-        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis-2/dc2cr_hq_sfx_2024-04-29.7z" \
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis-2/dc2cr_hq_sfx_2024-04-29.7z" \
                                 "https://www.mediafire.com/file_premium/dla43867fkmlq31/dc2cr_hq_sfx_2024-04-29.7z/file" \
                                 "dc2cr_hq_sfx_2024-04-29.7z" "87693f542928bffb4614e647f9856e7ef11f8085"
         !insertmacro NSIS7Z_EXTRACT "dc2cr_hq_sfx_2024-04-29.7z" ".\" "AUTO_DELETE"
@@ -123,7 +123,7 @@ SectionGroupEnd
 Section "High Quality Textures (Rex-HD Project Preview)" rexhd
     AddSize 437248
     SetOutPath "$INSTDIR"
-    !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis-2/DC2_RexHD_Preview1.zip" \
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis-2/DC2_RexHD_Preview1.zip" \
                             "https://www.mediafire.com/file_premium/1pwow7ayyor8h9c/DC2_RexHD_Preview1.zip/file" \
                             "DC2_RexHD_Preview1.zip" "aee5544e2ef6d10dc7d1692158771dd21bc85294"
 

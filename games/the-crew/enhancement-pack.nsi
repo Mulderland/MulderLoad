@@ -30,7 +30,7 @@ SectionGroup /e "The Crew Unlimited (Server Emulator) v1.2.0.1"
         AddSize 10000
 
         !insertmacro DOWNLOAD_2 "https://thecrewunlimited.com/TCUNet/TCULauncher/TCULauncher-1.2.0.1.7z" \
-                                "https://cdn2.mulderload.eu/g/the-crew/TCULauncher-1.2.0.1.7z" \
+                                "https://cdn1.mulderload.eu/games/the-crew/TCULauncher-1.2.0.1.7z" \
                                 "TCULauncher.7z" "0db2211ac432ee5740423aaba10c40f835b6aa1e"
 
         !insertmacro NSIS7Z_EXTRACT "TCULauncher.7z" ".\" "AUTO_DELETE"
@@ -45,7 +45,7 @@ SectionGroup /e "The Crew Unlimited (Server Emulator) v1.2.0.1"
         AddSize 100000
 
         !insertmacro DOWNLOAD_2 "https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.23/windowsdesktop-runtime-8.0.23-win-x64.exe" \
-                                "https://cdn2.mulderload.eu/g/_redist/windowsdesktop-runtime-8.0.23-win-x64.exe" \
+                                "https://cdn1.mulderload.eu/games/_redist/windowsdesktop-runtime-8.0.23-win-x64.exe" \
                                 "windowsdesktop-runtime-win-x64.exe" "0ecfc9a9dab72cb968576991ec34921719039d70"
         ExecWait '"windowsdesktop-runtime-win-x64.exe" /Q' $0
         Delete "windowsdesktop-runtime-win-x64.exe"

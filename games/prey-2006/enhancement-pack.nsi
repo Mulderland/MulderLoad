@@ -121,7 +121,7 @@ SectionGroup "Widescreen Fixes"
 
         # https://www.moddb.com/mods/widescreen-hud-for-prey-2006/addons/pak070-ws-hud
         !insertmacro DOWNLOAD_3 "https://www.moddb.com/addons/start/247093" \
-                                "https://cdn2.mulderload.eu/g/prey-2006/pak070_ws_hud.3.zip.zip" \
+                                "https://cdn1.mulderload.eu/games/prey-2006/pak070_ws_hud.3.zip.zip" \
                                 "https://www.mediafire.com/file_premium/ce62xi2qxvezzqy/pak070_ws_hud.3.zip.zip/file" \
                                 "pak070_ws_hud.3.zip.zip" "d5e5fbfbde34d1b0402a9bc093c402b0"
 
@@ -133,7 +133,7 @@ SectionGroup "Widescreen Fixes"
         SetOutPath "$INSTDIR\base"
 
         !insertmacro DOWNLOAD_3 "https://community.pcgamingwiki.com/files/file/2758-prey-2006-ultrawide-fix/#13642" \
-                                "https://cdn2.mulderload.eu/g/prey-2006/prey_ultrawide.zip" \
+                                "https://cdn1.mulderload.eu/games/prey-2006/prey_ultrawide.zip" \
                                 "https://www.mediafire.com/file_premium/ewpqtk11ldnl3nj/prey_ultrawide.zip/file" \
                                 "prey_ultrawide.zip" "3b3c0b5d654bcdef7bbb4f9f6165edd30f843292"
 

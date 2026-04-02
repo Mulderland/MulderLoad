@@ -23,7 +23,7 @@ SectionGroup /e "TemplarGFX's ACM Overhaul v6.2"
 
         # https://www.moddb.com/mods/templargfxs-acm-overhaul/downloads/acmo-v6-moddb-sep2020
         !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/200240" \
-                                "https://cdn2.mulderload.eu/g/aliens-colonial-marines/ACMO_V6_MODDB_SEP2020.zip" \
+                                "https://cdn1.mulderload.eu/games/aliens-colonial-marines/ACMO_V6_MODDB_SEP2020.zip" \
                                 "ACMO_V6_MODDB_SEP2020.zip" "34501c84738b72044027758915c49875"
         !insertmacro NSISUNZ_EXTRACT "ACMO_V6_MODDB_SEP2020.zip" ".\" "AUTO_DELETE"
 
@@ -40,7 +40,7 @@ SectionGroup /e "TemplarGFX's ACM Overhaul v6.2"
 
         # https://www.moddb.com/mods/templargfxs-acm-overhaul/downloads/acm-overhaul-v62-patch
         !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/200348" \
-                                "https://cdn2.mulderload.eu/g/aliens-colonial-marines/ACMO_V6-2_PATCH_MODDB_SEP2020.zip" \
+                                "https://cdn1.mulderload.eu/games/aliens-colonial-marines/ACMO_V6-2_PATCH_MODDB_SEP2020.zip" \
                                 "ACMO_V6-2_PATCH_MODDB_SEP2020.zip" "f10d3081708c6fe16734afa36316b043"
         !insertmacro NSISUNZ_EXTRACT "ACMO_V6-2_PATCH_MODDB_SEP2020.zip" ".\" "AUTO_DELETE"
     SectionEnd

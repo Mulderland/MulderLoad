@@ -20,7 +20,7 @@ Section "[Steam] Missing sound effects (ThirteenAG)"
     SetOutPath "$INSTDIR"
 
     !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/WidescreenFixesPack/releases/download/condemned/Condemned.MissingSteamFilesFix.zip" \
-                            "https://cdn2.mulderload.eu/g/condemned-criminal-origins/Condemned.MissingSteamFilesFix.zip" \
+                            "https://cdn1.mulderload.eu/games/condemned-criminal-origins/Condemned.MissingSteamFilesFix.zip" \
                             "Condemned.MissingSteamFilesFix.zip" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "Condemned.MissingSteamFilesFix.zip" "Game\" "Condemned.MissingSteamFilesFix\Game\CondemnedX.Arch00" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "Condemned.MissingSteamFilesFix.zip" ".\" "Condemned.MissingSteamFilesFix\default.archcfg" "AUTO_DELETE"
@@ -33,7 +33,7 @@ Section "Widescreen & Framerate Fix (ThirteenAG)"
     SetOutPath "$INSTDIR"
 
     !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/WidescreenFixesPack/releases/download/condemned/Condemned.WidescreenFix.zip" \
-                            "https://cdn2.mulderload.eu/g/condemned-criminal-origins/Condemned.WidescreenFix.zip" \
+                            "https://cdn1.mulderload.eu/games/condemned-criminal-origins/Condemned.WidescreenFix.zip" \
                             "Condemned.WidescreenFix.zip" ""
     !insertmacro NSISUNZ_EXTRACT "Condemned.WidescreenFix.zip" ".\" "AUTO_DELETE"
 SectionEnd
@@ -66,7 +66,7 @@ SectionGroup /e "AI Upscaled Textures (Neural Origins 0.9)"
         SetOutPath "$INSTDIR"
 
         !insertmacro DOWNLOAD_2 "https://ntcore.com/files/4gb_patch.zip" \
-                                "https://cdn2.mulderload.eu/g/_common/ntcore_4gb_patch_v1.0.0.1.zip" \
+                                "https://cdn1.mulderload.eu/games/_common/ntcore_4gb_patch_v1.0.0.1.zip" \
                                 "4gb_patch.zip" "c8b0d61937cb54fc8215124c0f737a1d29479c97"
         !insertmacro NSISUNZ_EXTRACT "4gb_patch.zip" ".\" "AUTO_DELETE"
 
@@ -81,7 +81,7 @@ SectionGroup /e "AI Upscaled Textures (Neural Origins 0.9)"
         # https://www.moddb.com/mods/neural-origins/downloads/09
         !insertmacro DOWNLOAD_3 "https://www.moddb.com/downloads/start/185281" \
                                 "https://www.mediafire.com/file_premium/psh39fggqk9li8y/Data.zip/file" \
-                                "https://cdn2.mulderload.eu/g/condemned-criminal-origins/Data.zip" \
+                                "https://cdn1.mulderload.eu/games/condemned-criminal-origins/Data.zip" \
                                 "Data.zip" "7c80e43f9f252bf55fba7b9b37df5a5e"
 
         # Extract with 7z (NSIS built-in unzip can't handle files > 4Gb)
@@ -97,7 +97,7 @@ SectionGroup /e "AI Upscaled Textures (Neural Origins 0.9)"
 
         # https://www.moddb.com/mods/neural-origins/addons/green-hud-for-oled
         !insertmacro DOWNLOAD_3 "https://www.moddb.com/addons/start/185307" \
-                                "https://cdn2.mulderload.eu/g/condemned-criminal-origins/global.1.zip" \
+                                "https://cdn1.mulderload.eu/games/condemned-criminal-origins/global.1.zip" \
                                 "https://www.mediafire.com/file_premium/b8cj2zfjy0vdpab/global.1.zip/file" \
                                 "global.1.zip" "4fffb4b00087115d21d7dc1ff8255c3b"
         !insertmacro NSISUNZ_EXTRACT "global.1.zip" ".\" "AUTO_DELETE"

@@ -3,7 +3,7 @@
 !macro INNOEXTRACT_GET
     DetailPrint " // Getting InnoExtract"
     !insertmacro DOWNLOAD_2 "https://github.com/dscharrer/innoextract/releases/download/1.9/innoextract-1.9-windows.zip" \
-                            "https://cdn2.mulderload.eu/g/_tools/innoextract-1.9-windows.zip" \
+                            "https://cdn1.mulderload.eu/games/_tools/innoextract-1.9-windows.zip" \
                             "$INSTDIR\@mulderload\innoextract\innoextract.zip" "ed06aeebf5ed1a7851a314e2524dab1bed072ca3"
     !insertmacro NSISUNZ_EXTRACT_ONE "$INSTDIR\@mulderload\innoextract\innoextract.zip" "$INSTDIR\@mulderload\innoextract" "innoextract.exe" "AUTO_DELETE"
 !macroend

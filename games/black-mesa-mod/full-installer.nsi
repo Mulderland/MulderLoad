@@ -25,7 +25,7 @@ Section "Black Mesa 2012 Fixed (Full Installation)"
     # https://www.moddb.com/mods/black-mesa/downloads/black-mesa-source-fixed
     !insertmacro DOWNLOAD_3 "https://www.moddb.com/downloads/start/253401" \
                             "https://archive.org/download/blackmesa.2/blackmesa.2.zip" \
-                            "https://cdn2.mulderload.eu/g/black-mesa-2012/blackmesa.2.zip" \
+                            "https://cdn1.mulderload.eu/games/black-mesa-2012/blackmesa.2.zip" \
                             "blackmesa.2.zip" "80bf0c05c337cba9725cd8e135f5cb4f"
 
     # Extract with 7z (NSIS built-in unzip can't handle files > 4Gb)
@@ -45,7 +45,7 @@ Section /o "Patch FR (French Subtitles)"
 
     # https://www.moddb.com/addons/black-mesa-official-french-translation
     !insertmacro DOWNLOAD_3 "https://www.moddb.com/addons/start/50301" \
-                            "https://cdn2.mulderload.eu/g/black-mesa-2012/Black_Mesa_-_Official_French_Translation_1.0_Setup.exe" \
+                            "https://cdn1.mulderload.eu/games/black-mesa-2012/Black_Mesa_-_Official_French_Translation_1.0_Setup.exe" \
                             "https://www.mediafire.com/file_premium/2bsqcj02ceiqjkz/Black_Mesa_-_Official_French_Translation_1.0_Setup.exe/file" \
                             "Black_Mesa_-_Official_French_Translation_1.0_Setup.exe" "67ff98cac9a092316b25601389c719f8e57f4282"
 

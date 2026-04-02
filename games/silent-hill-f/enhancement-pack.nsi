@@ -27,7 +27,7 @@ SectionGroup /e "ThirteenAG's Ultimate ASI Loader"
         AddSize 1138
         SetOutPath "$INSTDIR\SHf\Binaries\Win64\scripts"
         !insertmacro DOWNLOAD_2 "https://codeberg.org/Lyall/SHfFix/releases/download/0.0.1/SHfFix_0.0.1.zip" \
-                                "https://cdn2.mulderload.eu/g/silent-hill-f/SHfFix_0.0.1.zip" \
+                                "https://cdn1.mulderload.eu/games/silent-hill-f/SHfFix_0.0.1.zip" \
                                 "SHfFix.zip" "8346265b6afb034d9477a86be79f5251853112d1"
         !insertmacro NSISUNZ_EXTRACT_ONE "SHfFix.zip" ".\" "SHfFix.asi" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "SHfFix.zip" ".\" "SHfFix.ini" "AUTO_DELETE"

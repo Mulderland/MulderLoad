@@ -44,7 +44,7 @@ SectionGroup /e "Non-NVSE"
         AddSize 4389
         SetOutPath "$INSTDIR"
         !insertmacro DOWNLOAD_2 "https://github.com/doitsujin/dxvk/releases/download/v2.7.1/dxvk-2.7.1.tar.gz" \
-                                "https://cdn2.mulderload.eu/g/_common/dxvk-2.7.1.tar.gz" \
+                                "https://cdn1.mulderload.eu/games/_common/dxvk-2.7.1.tar.gz" \
                                 "dxvk-2.7.1.tar.gz" "16e277f63aca1bb9d6b9ecf823dd0d7aab9b11be"
         !insertmacro 7Z_GET
         !insertmacro 7Z_EXTRACT "dxvk-2.7.1.tar.gz" ".\" "AUTO_DELETE"
@@ -163,7 +163,7 @@ SectionGroup /e "NVSE v6.4.4"
         SetOutPath "$INSTDIR"
 
         !insertmacro DOWNLOAD_2 "https://github.com/xNVSE/NVSE/releases/download/6.4.4/nvse_6_4_4.7z" \
-                                "https://cdn2.mulderload.eu/g/fallout-new-vegas/nvse_6_4_4.7z" \
+                                "https://cdn1.mulderload.eu/games/fallout-new-vegas/nvse_6_4_4.7z" \
                                 "NVSE.7z" "2091cef3b62081612cd7c9dd3fc8cca493fc2164"
         !insertmacro NSIS7Z_EXTRACT "NVSE.7z" ".\" "AUTO_DELETE"
 
@@ -201,7 +201,7 @@ Section /o "NVTUP (FNV Texture Upscale Project) v2.0"
     AddSize 28626125
     SetOutPath "$INSTDIR\Data"
 
-    !insertmacro DOWNLOAD_RANGE_1 "https://cdn2.mulderload.eu/g/fallout-new-vegas/NVTUP%20v2.0/FNV%20Texture%20Upscale%20Project%20(NVTUP)%202.0-93775-2-0-1765930818.7z.001" "NVTUP.7z.001" "b11a479853b39beb99a8e97b3c29324cac61bd5f" 16
+    !insertmacro DOWNLOAD_RANGE_1 "https://cdn1.mulderload.eu/games/fallout-new-vegas/NVTUP%20v2.0/FNV%20Texture%20Upscale%20Project%20(NVTUP)%202.0-93775-2-0-1765930818.7z.001" "NVTUP.7z.001" "b11a479853b39beb99a8e97b3c29324cac61bd5f" 16
     !insertmacro NSIS7Z_EXTRACT "NVTUP.7z.001" ".\" ""
     !insertmacro DELETE_RANGE "NVTUP.7z.001" 16
 SectionEnd

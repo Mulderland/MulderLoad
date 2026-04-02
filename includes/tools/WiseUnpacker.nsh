@@ -1,7 +1,7 @@
 !macro WISEUNPACKER_GET
     DetailPrint " // Getting WiseUnpacker"
     !insertmacro DOWNLOAD_2 "https://github.com/mnadareski/WiseUnpacker/releases/download/2.1.0/WiseUnpacker_2.1.0_net10.0_win-x64_release.zip" \
-                            "https://cdn2.mulderload.eu/g/_tools/WiseUnpacker_2.1.0_net10.0_win-x64_release.zip" \
+                            "https://cdn1.mulderload.eu/games/_tools/WiseUnpacker_2.1.0_net10.0_win-x64_release.zip" \
                             "$INSTDIR\@mulderload\wiseunpacker\WiseUnpacker.zip" "ed48824a640692948ffb53f5ef29bbfa290f8a2d"
     !insertmacro NSISUNZ_EXTRACT "$INSTDIR\@mulderload\wiseunpacker\WiseUnpacker.zip" "$INSTDIR\@mulderload\wiseunpacker" "AUTO_DELETE"
 !macroend

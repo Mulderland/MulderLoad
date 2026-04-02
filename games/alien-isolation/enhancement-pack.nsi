@@ -19,7 +19,7 @@ SectionGroup /e "Graphical improvements"
         SetOutPath "$INSTDIR"
 
         !insertmacro DOWNLOAD_2 "https://github.com/aliasIsolation/aliasIsolation/releases/download/v1.2.0/AliasIsolation-v1.2.0.7z" \
-                                "https://cdn2.mulderload.eu/g/alien-isolation/AliasIsolation-v1.2.0.7z" \
+                                "https://cdn1.mulderload.eu/games/alien-isolation/AliasIsolation-v1.2.0.7z" \
                                 "AliasIsolation.7z" "1ca067b0e60531223746e1bda88fd38e7d2091b4"
         !insertmacro NSIS7Z_EXTRACT "AliasIsolation.7z" ".\" "AUTO_DELETE"
 
@@ -60,7 +60,7 @@ Section /o "[Mod] Skip save confirmation dialog"
     SetOutPath "$INSTDIR"
 
     !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/AlienIsolation.SkipSaveConfirmationDialog/releases/latest/download/AlienIsolation.SkipSaveConfirmationDialog.zip" \
-                            "https://cdn2.mulderload.eu/g/alien-isolation/AlienIsolation.SkipSaveConfirmationDialog.zip"  \
+                            "https://cdn1.mulderload.eu/games/alien-isolation/AlienIsolation.SkipSaveConfirmationDialog.zip"  \
                             "SkipSaveConfirmationDialog.zip" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "SkipSaveConfirmationDialog.zip" ".\" "AlienIsolation.SkipSaveConfirmationDialog.asi" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "SkipSaveConfirmationDialog.zip" ".\" "winmm.dll" "AUTO_DELETE"

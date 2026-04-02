@@ -20,7 +20,7 @@
         AddSize 5472
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis/steam_to_gog_1.0hotfix3_full.7z" \
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis/steam_to_gog_1.0hotfix3_full.7z" \
                                 "https://www.mediafire.com/file_premium/bn8oxnx1d142dno/steam_to_gog_1.0hotfix3_full.7z/file" \
                                 "steam_to_gog_1.0hotfix3_full.7z" "735f2d4f0455c2be3011025520e9e3a91a0b968c"
         !insertmacro NSIS7Z_EXTRACT "steam_to_gog_1.0hotfix3_full.7z" ".\" "AUTO_DELETE"
@@ -54,14 +54,14 @@ SectionGroup /e "Dino Crisis Classic REbirth"
 
         # Windows XP Patch
         AddSize 2608
-        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis/DINO%20xp.7z" \
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis/DINO%20xp.7z" \
                                 "https://www.mediafire.com/file_premium/6c73u2fjpgpcx1m/DINO_xp.7z/file" \
                                 "DINO xp.7z" "08d0a6c5e8a91fa56cb4a13bd46136cfa45748e3"
         !insertmacro NSIS7Z_EXTRACT "DINO xp.7z" ".\" "AUTO_DELETE"
 
         # High Quality Videos
         AddSize 101581
-        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis/Movie.rar" \
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis/Movie.rar" \
                                 "https://www.mediafire.com/file_premium/wnfkb1a5isy4w6b/Movie.rar/file" \
                                 "Movie.rar" "c5575da40f1f32b92668c6ba8fc77c85a57c6110"
         !insertmacro 7Z_GET
@@ -69,7 +69,7 @@ SectionGroup /e "Dino Crisis Classic REbirth"
 
         # Classic REbirth DLL
         AddSize 3474
-        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis/dc1cr-1.0.0-2020-04-24.7z" \
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis/dc1cr-1.0.0-2020-04-24.7z" \
                                 "https://www.mediafire.com/file_premium/zdq1avo7p1oahk0/dc1cr-1.0.0-2020-04-24.7z/file" \
                                 "dc1cr-1.0.0-2020-04-24.7z" "3a0a62df64fd96807f9ac90cc2485319fbe145d9"
         !insertmacro NSIS7Z_EXTRACT "dc1cr-1.0.0-2020-04-24.7z" ".\" "AUTO_DELETE"
@@ -81,7 +81,7 @@ SectionGroup /e "Dino Crisis Classic REbirth"
     Section "High Quality Audio (Dreamcast)"
         AddSize 232448
         SetOutPath "$REBIRTHDIR"
-        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dino-crisis/DINO_CRISIS_HQ_(Voice)_and_(Background_Music)_updated.rar" \
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis/DINO_CRISIS_HQ_(Voice)_and_(Background_Music)_updated.rar" \
                                 "https://www.mediafire.com/file_premium/phtu0nbwgxwr7a2/DINO_CRISIS_HQ_%2528Voice%2529_and_%2528Background_Music%2529_updated.rar/file" \
                                 "DINO_CRISIS_HQ_(Voice)_and_(Background_Music)_updated.rar" "c772a8f17e898769479a1aad709527750204e20d"
         !insertmacro 7Z_EXTRACT "DINO_CRISIS_HQ_(Voice)_and_(Background_Music)_updated.rar" ".\" "AUTO_DELETE"
@@ -91,7 +91,7 @@ SectionGroup /e "Dino Crisis Classic REbirth"
     Section "High Quality Textures (Dreamcast upscaled)"
         AddSize 2527068
         SetOutPath "$REBIRTHDIR"
-        !insertmacro DOWNLOAD_RANGE_1 "https://cdn2.mulderload.eu/g/dino-crisis/HD_Mod_1.0%20[Repack-MLD].7z.001" "HD_Mod_1.0 [Repack-MLD].7z.001" "149abbde37507d63bef0ad0a673946f756fe599a" 5
+        !insertmacro DOWNLOAD_RANGE_1 "https://cdn1.mulderload.eu/games/dino-crisis/HD_Mod_1.0%20[Repack-MLD].7z.001" "HD_Mod_1.0 [Repack-MLD].7z.001" "149abbde37507d63bef0ad0a673946f756fe599a" 5
         !insertmacro NSIS7Z_EXTRACT "HD_Mod_1.0 [Repack-MLD].7z.001" ".\" ""
         !insertmacro DELETE_RANGE "HD_Mod_1.0 [Repack-MLD].7z.001" 5
         !insertmacro FORCE_RENAME "readme.txt" "Readme_HQ_Textures.txt"

@@ -25,7 +25,7 @@ Section "Super Mario Bros Remastered v1.02"
     SetOutPath "$INSTDIR"
 
     !insertmacro DOWNLOAD_2 "https://github.com/JHDev2006/Super-Mario-Bros.-Remastered-Public/releases/download/1.0.2/Windows.zip" \
-                            "https://cdn2.mulderload.eu/g/super-mario-bros-remastered/Windows.zip" \
+                            "https://cdn1.mulderload.eu/games/super-mario-bros-remastered/Windows.zip" \
                             "SMBR.zip" "0f6a19f09d561259d506165abddce1c2815d889d"
 
     !insertmacro NSISUNZ_EXTRACT "SMBR.zip" ".\" "AUTO_DELETE"

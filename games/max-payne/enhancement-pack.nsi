@@ -20,7 +20,7 @@ Section "Fix corrupted levels (if required)"
     DetailPrint " // Comparing level checksum with correct one..."
     !insertmacro FILE_HASH_EQUALS "x_level1.ras" "d7dc20d91930b67c84dad0fb18a5c712bd324330" $0
     ${If} $0 != "1"
-        !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/max-payne/x_levels_fix.7z" \
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/max-payne/x_levels_fix.7z" \
                                 "https://www.mediafire.com/file_premium/9v212c2kmot7bes/x_levels_fix.7z/file" \
                                 "x_levels_fix.7z" "745253dd796e0833ebba0ff91cd40e83c5f76678"
         !insertmacro NSIS7Z_EXTRACT "x_levels_fix.7z" ".\" "AUTO_DELETE"
@@ -34,7 +34,7 @@ Section "ThirteenAG's Widescreen Fix (+ use D3D9)"
     SetOutPath "$INSTDIR"
 
     !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/WidescreenFixesPack/releases/download/mp1/MaxPayne.WidescreenFix.zip" \
-                            "https://cdn2.mulderload.eu/g/max-payne/MaxPayne.WidescreenFix.zip" \
+                            "https://cdn1.mulderload.eu/games/max-payne/MaxPayne.WidescreenFix.zip" \
                             "MaxPayne.WidescreenFix.zip" ""
     !insertmacro NSISUNZ_EXTRACT "MaxPayne.WidescreenFix.zip" ".\" "AUTO_DELETE"
 
@@ -46,7 +46,7 @@ Section "Fix JPEG errors on modern CPUs"
     SetOutPath "$INSTDIR"
 
     !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/ravyaa9mo2536z9/rlmfc_for_ryzen.rar/file" \
-                            "https://cdn2.mulderload.eu/g/max-payne/rlmfc_for_ryzen.rar" \
+                            "https://cdn1.mulderload.eu/games/max-payne/rlmfc_for_ryzen.rar" \
                             "rlmfc_for_ryzen.rar" "39db990749e5dcbbd6a81b59075ad059998563f3"
     !insertmacro 7Z_GET
     !insertmacro 7Z_EXTRACT "rlmfc_for_ryzen.rar" ".\" "AUTO_DELETE"
@@ -59,7 +59,7 @@ SectionGroup "Difficulty fixes"
 
         SetOutPath "$INSTDIR"
         !insertmacro DOWNLOAD_2 "https://community.pcgamingwiki.com/files/file/2807-max-payne-flat-difficulty-vanilla-pc-values/#14073" \
-                                "https://cdn2.mulderload.eu/g/max-payne/payne_difficulty.7z" \
+                                "https://cdn1.mulderload.eu/games/max-payne/payne_difficulty.7z" \
                                 "payne_difficulty.7z" "d450928893efad20708de6ec8ae1d0678a7499cd"
         !insertmacro NSIS7Z_EXTRACT "payne_difficulty.7z" ".\" "AUTO_DELETE"
     SectionEnd

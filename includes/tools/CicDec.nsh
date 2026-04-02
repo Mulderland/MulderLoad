@@ -3,7 +3,7 @@
 !macro CICDEC_GET
     DetailPrint " // Getting CicDec"
     !insertmacro DOWNLOAD_2 "https://github.com/Bioruebe/cicdec/releases/download/3.0.1/cicdec.zip" \
-                            "https://cdn2.mulderload.eu/g/_tools/cicdec.zip" \
+                            "https://cdn1.mulderload.eu/games/_tools/cicdec.zip" \
                             "$INSTDIR\@mulderload\cicdec\cicdec.zip" "218d04239535108ae52cb1b8b671a58ca552d4e5"
     !insertmacro NSISUNZ_EXTRACT_ONE "$INSTDIR\@mulderload\cicdec\cicdec.zip" "$INSTDIR\@mulderload\cicdec" "Bio.cs.dll" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "$INSTDIR\@mulderload\cicdec\cicdec.zip" "$INSTDIR\@mulderload\cicdec" "cicdec.exe" ""

@@ -19,7 +19,7 @@ Section "Daggerfall Unity v1.1.1"
 
     # Daggerfall Unity
     !insertmacro DOWNLOAD_2 "https://github.com/Interkarma/daggerfall-unity/releases/download/v1.1.1/dfu_windows_64bit-v1.1.1.zip" \
-                            "https://cdn2.mulderload.eu/g/daggerfall-unity/dfu_windows_64bit-v1.1.1.zip" \
+                            "https://cdn1.mulderload.eu/games/daggerfall-unity/dfu_windows_64bit-v1.1.1.zip" \
                             "dfu.zip" "f4fbcdf7cf6af1c60f1bcdfaee426e955754a509"
     !insertmacro NSISUNZ_EXTRACT "dfu.zip" ".\" "AUTO_DELETE"
 

@@ -31,7 +31,7 @@ Section "GTA Vice City NextGen Edition v1.2 (Full Install)"
     !insertmacro INNOEXTRACT_REMOVE
 
     !insertmacro DOWNLOAD_2 "https://nextgen.limited/download/Patch_V1.2.7z" \
-                            "https://cdn2.mulderload.eu/g/gta-vice-city-nextgen-edition/Patch_V1.2.7z" \
+                            "https://cdn1.mulderload.eu/games/gta-vice-city-nextgen-edition/Patch_V1.2.7z" \
                             "Patch_V1.2.7z" "065e75abca5ce3e7e6c54c85bb2ad62f1b41d36f"
 
     !insertmacro NSIS7Z_EXTRACT "Patch_V1.2.7z" ".\" "AUTO_DELETE"
@@ -53,7 +53,7 @@ SectionGroup /e "Additional Patches"
         SetOutPath "$INSTDIR"
 
         !insertmacro DOWNLOAD_2 "https://nextgen.limited/download/VC_NE_Vehicles_Patch.7z" \
-                                "https://cdn2.mulderload.eu/g/gta-vice-city-nextgen-edition/VC_NE_Vehicles_Patch.7z" \
+                                "https://cdn1.mulderload.eu/games/gta-vice-city-nextgen-edition/VC_NE_Vehicles_Patch.7z" \
                                 "VC_NE_Vehicles_Patch.7z" "bae6118387184f64723d1616e000f84bc9a7024e"
 
         !insertmacro NSIS7Z_EXTRACT "VC_NE_Vehicles_Patch.7z" ".\" "AUTO_DELETE"
@@ -67,7 +67,7 @@ SectionGroup /e "Redistribuables"
     Section "Direct-X Web Installer"
         SetOutPath "$INSTDIR"
         !insertmacro DOWNLOAD_2 "https://download.microsoft.com/download/1/7/1/1718ccc4-6315-4d8e-9543-8e28a4e18c4c/dxwebsetup.exe" \
-                                "https://cdn2.mulderload.eu/g/_redist/dxwebsetup.exe" \
+                                "https://cdn1.mulderload.eu/games/_redist/dxwebsetup.exe" \
                                 "dxwebsetup.exe" "7bf35f2afca666078db35ca95130beb2e3782212"
         ExecWait '"dxwebsetup.exe" /Q' $0
         Delete "dxwebsetup.exe"
@@ -76,7 +76,7 @@ SectionGroup /e "Redistribuables"
     Section "Microsoft Visual C++ 2005 SP1 x86"
         SetOutPath "$INSTDIR"
         !insertmacro DOWNLOAD_2 "https://download.microsoft.com/download/6/b/b/6bb661d6-a8ae-4819-b79f-236472f6070c/vcredist_x86.exe" \
-                                "https://cdn2.mulderload.eu/g/_redist/2005sp1/vcredist_x86.exe" \
+                                "https://cdn1.mulderload.eu/games/_redist/2005sp1/vcredist_x86.exe" \
                                 "vcredist_x86.exe" "d5d7cc096308a7366383cdd103854ffe91b84739"
         ExecWait '"vcredist_x86.exe" /Q' $0
         Delete "vcredist_x86.exe"

@@ -27,7 +27,7 @@ SectionGroup /e "Dhewm3 v1.5.5 RC2 + GUI Wide Patch"
 
         # Install dhewm3
         !insertmacro DOWNLOAD_2 "https://github.com/dhewm/dhewm3/releases/download/1.5.5_RC2/dhewm3-1.5.5_RC2_win32.zip" \
-                                "https://cdn2.mulderload.eu/g/doom-3/dhewm3-1.5.5_RC2_win32.zip" \
+                                "https://cdn1.mulderload.eu/games/doom-3/dhewm3-1.5.5_RC2_win32.zip" \
                                 "dhewm3.zip" "dac89f84b9de5819dff5267c3ba8b186f27f57e8"
         !insertmacro NSISUNZ_EXTRACT "dhewm3.zip" ".\" "AUTO_DELETE"
 
@@ -45,7 +45,7 @@ SectionGroup /e "Dhewm3 v1.5.5 RC2 + GUI Wide Patch"
 
         # Install dhewm3 Wide Patch
         !insertmacro DOWNLOAD_2 "https://github.com/dhewm/dhewm3/releases/download/1.5.5_RC2/dhewm3-wide-guis-v0.2.zip" \
-                                "https://cdn2.mulderload.eu/g/doom-3/dhewm3-wide-guis-v0.2.zip" \
+                                "https://cdn1.mulderload.eu/games/doom-3/dhewm3-wide-guis-v0.2.zip" \
                                 "dhewm3-wide-guis.zip" "80872ca06ef2df2f05c3d8efcd3a955592218502"
         !insertmacro NSISUNZ_EXTRACT "dhewm3-wide-guis.zip" ".\" "AUTO_DELETE"
         Delete "dhewm3-wide-guis\README.txt"
@@ -66,7 +66,7 @@ SectionGroup /e "Dhewm3 v1.5.5 RC2 + GUI Wide Patch"
 
         # https://www.moddb.com/mods/the-lost-mission/downloads/d3-lost-mission
         !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/182038" \
-                                "https://cdn2.mulderload.eu/g/doom-3/Doom3_The_Lost_Mission_1.5.7.zip" \
+                                "https://cdn1.mulderload.eu/games/doom-3/Doom3_The_Lost_Mission_1.5.7.zip" \
                                 "Doom3_The_Lost_Mission.zip" "dd8b80d4798b28fa97131748338135fb"
         !insertmacro NSISUNZ_EXTRACT "Doom3_The_Lost_Mission.zip" ".\" "AUTO_DELETE"
         CreateDirectory "$INSTDIR\d3le"
@@ -77,7 +77,7 @@ SectionGroup /e "Dhewm3 v1.5.5 RC2 + GUI Wide Patch"
         RMDir /r "$INSTDIR\@mulderload\lost_mission"
 
         !insertmacro DOWNLOAD_2 "https://github.com/dhewm/dhewm3/releases/download/1.5.5_RC2/dhewm3-mods-1.5.5_RC2_win32.zip" \
-                                "https://cdn2.mulderload.eu/g/doom-3/dhewm3-mods-1.5.5_RC2_win32.zip" \
+                                "https://cdn1.mulderload.eu/games/doom-3/dhewm3-mods-1.5.5_RC2_win32.zip" \
                                 "dhewm3-mods.zip" "6c6883655813e2a0d9c5a4795eab75bd5b7c5753"
         !insertmacro NSISUNZ_EXTRACT_ONE "dhewm3-mods.zip" ".\" "dhewm3-mods\d3le.dll" "AUTO_DELETE"
     SectionEnd
@@ -89,7 +89,7 @@ Section "Textures Pack x4 v1.1 (by GrowlingGuy41)"
 
     # https://www.moddb.com/mods/gg41-doom3/downloads/x4-texture-upscale-for-doom-3-v11-roe
     !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/271929" \
-                            "https://cdn2.mulderload.eu/g/doom-3/Doom3_GG41_textures_RoE.zip" \
+                            "https://cdn1.mulderload.eu/games/doom-3/Doom3_GG41_textures_RoE.zip" \
                             "Doom3_GG41_textures_RoE.zip" "73e8e1cc90dce64b3f1fa743b131ce6e"
     !insertmacro 7Z_GET
     !insertmacro 7Z_EXTRACT "Doom3_GG41_textures_RoE.zip" ".\" "AUTO_DELETE"

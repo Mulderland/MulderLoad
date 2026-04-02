@@ -19,7 +19,7 @@ Section "Broken Sword 2.5 + Language Patch 2010"
 
     # Get installer
     !insertmacro DOWNLOAD_2 "https://server.c-otto.de/baphometsfluch/bs25setup.zip" \
-                            "https://cdn2.mulderload.eu/g/broken-sword-25-the-return-of-the-templars/bs25setup.zip" \
+                            "https://cdn1.mulderload.eu/games/broken-sword-25-the-return-of-the-templars/bs25setup.zip" \
                             "bs25setup.zip" "d23601a4991ded4b15999f127accbfed7be93a83"
     !insertmacro NSISUNZ_EXTRACT "bs25setup.zip" ".\" "AUTO_DELETE"
 
@@ -30,8 +30,8 @@ Section "Broken Sword 2.5 + Language Patch 2010"
     Delete "bs25-setup-1.bin"
 
     # Get language patch
-    !insertmacro DOWNLOAD_2 "http://baphometsfluch25.de/downloads/sonstiges/BS25_patch000_multilingual.zip" \
-                            "https://cdn2.mulderload.eu/g/broken-sword-25-the-return-of-the-templars/BS25_patch000_multilingual.zip" \
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/broken-sword-25-the-return-of-the-templars/BS25_patch000_multilingual.zip" \
+                            "http://baphometsfluch25.de/downloads/sonstiges/BS25_patch000_multilingual.zip" \
                             "BS25_patch000_multilingual.zip" "3ccc20cb9d4277c9530eed88a114128863f0e070"
     !insertmacro NSISUNZ_EXTRACT "BS25_patch000_multilingual.zip" ".\" "AUTO_DELETE"
 SectionEnd

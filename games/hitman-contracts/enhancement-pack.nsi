@@ -40,7 +40,7 @@ Section "Widescreen fix (by nemesis2000) + dgVoodoo2"
 
     # Install nemesis2000's Widescreen Fix
     SetOutPath "$INSTDIR\scripts"
-    !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/hitman-contracts/Hitman%20Contracts%20Widescreen%20Fix.zip" \
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/hitman-contracts/Hitman%20Contracts%20Widescreen%20Fix.zip" \
                             "https://www.mediafire.com/file_premium/urcjckifsujp3zy/Hitman_Contracts_Widescreen_Fix.zip/file" \
                             "Hitman Contracts Widescreen Fix.zip" "ac56b015d4422e43305bc1139327905eab3a24f1"
     !insertmacro NSISUNZ_EXTRACT_ONE "Hitman Contracts Widescreen Fix.zip" ".\" "scripts\h3.ini" ""
@@ -64,7 +64,7 @@ Section "Add missing Direct3D effects (by burntshrimp)"
 
     SetOutPath "$INSTDIR\scripts"
 
-    !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/hitman-contracts/HitmanContractsFix-ASI.7z" \
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/hitman-contracts/HitmanContractsFix-ASI.7z" \
                             "https://www.mediafire.com/file_premium/6gbzjy7f1lyzfix/HitmanContractsFix-ASI.7z/file" \
                             "HitmanContractsFix-ASI.7z" "0d3a8bd43c5bbabf5977a67b130796d3ed605423"
     !insertmacro NSIS7Z_EXTRACT "HitmanContractsFix-ASI.7z" ".\" "AUTO_DELETE"
@@ -77,7 +77,7 @@ Section "Add Xinput Controller support (by mutantx20)"
     AddSize 861
     SetOutPath "$INSTDIR"
 
-    !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/hitman-contracts/Hitman%20-%20Contracts%20controller%20fix.7z" \
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/hitman-contracts/Hitman%20-%20Contracts%20controller%20fix.7z" \
                             "https://www.mediafire.com/file_premium/gu1not4kr6aab4a/Hitman_-_Contracts_controller_fix.7z/file" \
                             "Hitman - Contracts controller fix.7z" "e5998180058614e925be8fd6e4e28091436274ac"
     !insertmacro NSIS7Z_EXTRACT "Hitman - Contracts controller fix.7z" ".\" "AUTO_DELETE"

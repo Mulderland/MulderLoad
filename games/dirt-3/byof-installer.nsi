@@ -10104,15 +10104,15 @@ Section "Dirt 3 Complete Edition (Full Installation)"
 	RMDir /r "$INSTDIR\Media6"
 
 	# Download Complete Edition Update
-	!insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dirt-3/byof-installer/Dirt3RetailCab_To_Dirt3Retail.7z" \
+	!insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dirt-3/byof-installer/Dirt3RetailCab_To_Dirt3Retail.7z" \
                             "https://www.mediafire.com/file_premium/zu8m8afmj344jm7/Dirt3RetailCab_To_Dirt3Retail.7z/file" \
                             "Dirt3RetailCab_To_Dirt3Retail.7z" "701c4dfe12486a5ea3551401e0d411fccfc1375f"
 	!insertmacro NSIS7Z_EXTRACT "Dirt3RetailCab_To_Dirt3Retail.7z" ".\" "AUTO_DELETE"
 
-	!insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dirt-3/byof-installer/Dirt3Retail_To_Dirt3Complete.7z.001" \
+	!insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dirt-3/byof-installer/Dirt3Retail_To_Dirt3Complete.7z.001" \
                             "https://www.mediafire.com/file_premium/6q3ljaklwrn5ft0/Dirt3Retail_To_Dirt3Complete.7z.001/file" \
                             "Dirt3Retail_To_Dirt3Complete.7z.001" "f2727bbbc6f258870ebea956005db7f6a523d415"
-	!insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/dirt-3/byof-installer/Dirt3Retail_To_Dirt3Complete.7z.002" \
+	!insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dirt-3/byof-installer/Dirt3Retail_To_Dirt3Complete.7z.002" \
                             "https://www.mediafire.com/file_premium/pr1oqwryxnc0itn/Dirt3Retail_To_Dirt3Complete.7z.002/file" \
                             "Dirt3Retail_To_Dirt3Complete.7z.002" "962240261e81215848b169148099bbfb3269e249"
 	!insertmacro NSIS7Z_EXTRACT "Dirt3Retail_To_Dirt3Complete.7z.001" ".\" "AUTO_DELETE"

@@ -18,7 +18,7 @@ Section "Portal: Prelude v1.2.1"
     # https://www.moddb.com/mods/portal-prelude/downloads/portal-prelude-121
     !insertmacro DOWNLOAD_3 "https://www.portalprelude.com/download.php?id=149" \
                             "https://www.moddb.com/downloads/start/252772" \
-                            "https://cdn2.mulderload.eu/g/portal-prelude/portal-prelude-archive-1.2.1.zip" \
+                            "https://cdn1.mulderload.eu/games/portal-prelude/portal-prelude-archive-1.2.1.zip" \
                             "portal-prelude-archive-1.2.1.zip" "01fb4ead9bc8718fcace26c213e629d8"
 
     SetOutPath "$INSTDIR"
