@@ -17,15 +17,28 @@ Function Download
     !insertmacro STR_STARTS_WITH $0 "https://www.moddb.com/" $R0
     ${If} $R0 == 1
         !insertmacro STR_RIGHT_EXPLODE "/" $0 $R0 $R1
-        NScurl::http GET "https://redirect.mulderload.eu/moddb/$R1" "$1" /HEADER "X-API-Key: $%MLD_REDIRECT_API_KEY%" /INSIST /RESUME /CANCEL /END
+        NScurl::http GET "https://redirect.mulderload.eu/moddb/$R1" "$1" /HEADER "X-API-Key: $%MULDERLOAD_REDIRECT_KEY%" /INSIST /RESUME /CANCEL /END
     ${Else}
         !insertmacro STR_STARTS_WITH $0 "https://community.pcgamingwiki.com/files/file/" $R0
         ${If} $R0 == 1
             !insertmacro STR_RIGHT_EXPLODE "/file/" $0 $R0 $R1
             !insertmacro STR_RIGHT_EXPLODE "/#" $R0 $R0 $R1
-            NScurl::http GET "https://redirect.mulderload.eu/pcgw/$R0/$R1" "$1" /HEADER "X-API-Key: $%MLD_REDIRECT_API_KEY%" /INSIST /RESUME /CANCEL /END
+            NScurl::http GET "https://redirect.mulderload.eu/pcgw/$R0/$R1" "$1" /HEADER "X-API-Key: $%MULDERLOAD_REDIRECT_KEY%" /INSIST /RESUME /CANCEL /END
         ${Else}
-            NScurl::http GET "$0" "$1" /INSIST /RESUME /CANCEL /END
+            !insertmacro STR_STARTS_WITH $0 "https://www.nexusmods.com/" $R0
+            ${If} $R0 == 1
+                !insertmacro STR_RIGHT_EXPLODE "www.nexusmods.com/" $0 $R0 $R1
+                NScurl::http GET "https://nexus1.mulderload.eu/$R1" "$1" /HEADER "X-CDN-Key: $%MULDERLOAD_CDN_KEY%" /INSIST /RESUME /CANCEL /END
+            ${Else}
+                !insertmacro STR_STARTS_WITH $0 "https://cdn1.mulderload.eu/" $R0
+                !insertmacro STR_STARTS_WITH $0 "https://cdn2.mulderload.eu/" $R1
+                ${If} $R0 == 1
+                ${OrIf} $R1 == 1
+                    NScurl::http GET "$0" "$1" /HEADER "X-CDN-Key: $%MULDERLOAD_CDN_KEY%" /INSIST /RESUME /CANCEL /END
+                ${Else}
+                    NScurl::http GET "$0" "$1" /HEADER /INSIST /RESUME /CANCEL /END
+                ${EndIf}
+            ${EndIf}
         ${EndIf}
     ${EndIf}
     Pop $R0
