@@ -30,9 +30,7 @@ SectionGroup /e "Non-NVSE"
         AddSize 225
         SetOutPath "$INSTDIR"
 
-        # https://www.nexusmods.com/newvegas/mods/62552
-        !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/u8uyiy9hcm160ox/4GB_Patcher-62552-1-5-1618787921.7z/file" \
-                                "https://cdn2.mulderload.eu/g/fallout-new-vegas/FNV%204GB%20Patcher%20v1.5/4GB%20Patcher-62552-1-5-1618787921.7z" \
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/newvegas/mods/62552?tab=files&file_id=1000075100" \
                                 "4GB_Patcher.7z" "d39df38f2077e7fe5d2c24c6912a72821e17b540"
         !insertmacro NSIS7Z_EXTRACT "4GB_Patcher.7z" ".\" "AUTO_DELETE"
 
@@ -52,18 +50,17 @@ SectionGroup /e "Non-NVSE"
         !insertmacro 7Z_REMOVE
     SectionEnd
 
-    Section "NVHR (New Vegas Heap Replacer) v4.2"
+    Section "NVHR (New Vegas Heap Replacer) v4.3"
         AddSize 3963
         SetOutPath "$INSTDIR"
 
         # https://www.nexusmods.com/newvegas/mods/69779
-        !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/fl1qm6g3hx4criy/NVHR-69779-4-2-1665589730.7z/file" \
-                                "https://cdn2.mulderload.eu/g/fallout-new-vegas/New%20Vegas%20Heap%20Replacer%20v4.2/NVHR-69779-4-2-1665589730.7z" \
-                                "NVHR.7z" "74ca506548cad6523df6784f5a5c85c3398581b4"
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/newvegas/mods/69779?tab=files&file_id=1000166751" \
+                                "NVHR.7z" "6892646b5505165783c63a3cdf2c897846eae238"
         !insertmacro NSIS7Z_EXTRACT "NVHR.7z" ".\" "AUTO_DELETE"
     SectionEnd
 
-    Section "YUP (Yukichigai Unofficial Patch) v13.6"
+    Section "YUP (Yukichigai Unofficial Patch) v13.8"
         AddSize 138240
 
         # Detect Game Language
@@ -99,53 +96,53 @@ SectionGroup /e "Non-NVSE"
         # Determine YUP Download URL
         ${If} $YUP_Language == "en"
             ${If} $YUP_Edition == "complete"
-                StrCpy $YUP_URL1 "https://www.mediafire.com/file_premium/75yc6b4vw2678p8/YUP_-_Base_Game_and_All_DLC-51664-13-6-1766868693.7z/file"
-                StrCpy $YUP_URL2 "https://cdn2.mulderload.eu/g/fallout-new-vegas/YUP%20v13.6/YUP%20-%20Base%20Game%20and%20All%20DLC-51664-13-6-1766868693.7z"
-                StrCpy $YUP_Hash "0b6480a7f42f715b11799593a8abc38fb0afd711"
+                StrCpy $YUP_URL1 "https://cdn1.mulderload.eu/games/fallout-new-vegas/YUP%20v13.8/YUP%20-%20Base%20Game%20and%20All%20DLC-51664-13-8-1771599868.7z"
+                StrCpy $YUP_URL2 "https://www.nexusmods.com/newvegas/mods/51664?tab=files&file_id=1000169928"
+                StrCpy $YUP_Hash "22e40b4d67eb54e69b0ae2d8a39bb277559561d8"
             ${Else}
-                StrCpy $YUP_URL1 "https://www.mediafire.com/file_premium/xlmnbvavlrr22jo/YUP_-_Individual_ESMs-51664-13-6-1766868845.7z/file"
-                StrCpy $YUP_URL2 "https://cdn2.mulderload.eu/g/fallout-new-vegas/YUP%20v13.6/YUP%20-%20Individual%20ESMs-51664-13-6-1766868845.7z"
-                StrCpy $YUP_Hash "175a3d95d6dea40d4d50200848073f209f617500"
+                StrCpy $YUP_URL1 "https://cdn1.mulderload.eu/games/fallout-new-vegas/YUP%20v13.8/YUP%20-%20Individual%20ESMs-51664-13-8-1771600215.7z"
+                StrCpy $YUP_URL2 "https://www.nexusmods.com/newvegas/mods/51664?tab=files&file_id=1000169936"
+                StrCpy $YUP_Hash "04baf856b878bdd4af174b672d57c53c7506202c"
             ${EndIf}
         ${ElseIf} $YUP_Language == "fr"
             ${If} $YUP_Edition == "complete"
-                StrCpy $YUP_URL1 "https://www.mediafire.com/file_premium/v63yy5b6tpnhobn/YUP_FRA_-_Jeu_de_base_et_Tous_les_DLC-51664-13-6-1766958972.7z/file"
-                StrCpy $YUP_URL2 "https://cdn2.mulderload.eu/g/fallout-new-vegas/YUP%20v13.6/YUP%20FRA%20-%20Jeu%20de%20base%20et%20Tous%20les%20DLC-51664-13-6-1766958972.7z"
-                StrCpy $YUP_Hash "d90da9a976603362c1ca0c76a3b9df12f5aa5a01"
+                StrCpy $YUP_URL1 "https://cdn1.mulderload.eu/games/fallout-new-vegas/YUP%20v13.8/YUP%20FRA%20-%20Jeu%20de%20base%20et%20Tous%20les%20DLC-51664-13-8-1771600036.7z"
+                StrCpy $YUP_URL2 "https://www.nexusmods.com/newvegas/mods/51664?tab=files&file_id=1000169933"
+                StrCpy $YUP_Hash "5f58385fa83fc090d308e28c40bf8aea53b9b958"
             ${Else}
-                StrCpy $YUP_URL1 "https://www.mediafire.com/file_premium/ybrzht9hj2wium7/YUP_FRA_-_ESM_individuels-51664-13-6-1766959242.7z/file"
-                StrCpy $YUP_URL2 "https://cdn2.mulderload.eu/g/fallout-new-vegas/YUP%20v13.6/YUP%20FRA%20-%20ESM%20individuels-51664-13-6-1766959242.7z"
-                StrCpy $YUP_Hash "237dd6a36b6324d422dd08d438e4dafaa1964605"
+                StrCpy $YUP_URL1 "https://cdn1.mulderload.eu/games/fallout-new-vegas/YUP%20v13.8/YUP%20FRA%20-%20ESM%20individuels-51664-13-8-1771600364.7z"
+                StrCpy $YUP_URL2 "https://www.nexusmods.com/newvegas/mods/51664?tab=files&file_id=1000169939"
+                StrCpy $YUP_Hash "463309fa7deef9118442968db6b8cf85607f8ee5"
             ${EndIf}
         ${ElseIf} $YUP_Language == "it"
             ${If} $YUP_Edition == "complete"
-                StrCpy $YUP_URL1 "https://www.mediafire.com/file_premium/iy3qupfqxygo5y2/YUP_ITA_-_Gioco_base_e_Tutti_i_DLC-51664-13-6-1766959019.7z/file"
-                StrCpy $YUP_URL2 "https://cdn2.mulderload.eu/g/fallout-new-vegas/YUP%20v13.6/YUP%20ITA%20-%20Gioco%20base%20e%20Tutti%20i%20DLC-51664-13-6-1766959019.7z"
-                StrCpy $YUP_Hash "2e6363ce26e21f903c2d18564576fabca888a5cc"
+                StrCpy $YUP_URL1 "https://cdn1.mulderload.eu/games/fallout-new-vegas/YUP%20v13.8/YUP%20ITA%20-%20Gioco%20base%20e%20Tutti%20i%20DLC-51664-13-8-1771600097.7z"
+                StrCpy $YUP_URL2 "https://www.nexusmods.com/newvegas/mods/51664?tab=files&file_id=1000169934"
+                StrCpy $YUP_Hash "971e178574d5c5c127502a101e8b82b3585b760e"
             ${Else}
-                StrCpy $YUP_URL1 "https://www.mediafire.com/file_premium/339grlbk3s6zl7q/YUP_ITA_-_Singoli_ESM-51664-13-6-1766959292.7z/file"
-                StrCpy $YUP_URL2 "https://cdn2.mulderload.eu/g/fallout-new-vegas/YUP%20v13.6/YUP%20ITA%20-%20Singoli%20ESM-51664-13-6-1766959292.7z"
-                StrCpy $YUP_Hash "d4d4b1277bd6e306591cf7538e0e8b4ffdc126b9"
+                StrCpy $YUP_URL1 "https://cdn1.mulderload.eu/games/fallout-new-vegas/YUP%20v13.8/YUP%20ITA%20-%20Singoli%20ESM-51664-13-8-1771600414.7z"
+                StrCpy $YUP_URL2 "https://www.nexusmods.com/newvegas/mods/51664?tab=files&file_id=1000169940"
+                StrCpy $YUP_Hash "2b8d567b88450c5c6656dd91b47a499286270630"
             ${EndIf}
         ${ElseIf} $YUP_Language == "de"
             ${If} $YUP_Edition == "complete"
-                StrCpy $YUP_URL1 "https://www.mediafire.com/file_premium/476ef2czhf6wmfx/YUP_DEU_-_Basisspiel_und_Alle_DLCs-51664-13-6-1766958874.7z/file"
-                StrCpy $YUP_URL2 "https://cdn2.mulderload.eu/g/fallout-new-vegas/YUP%20v13.6/YUP%20DEU%20-%20Basisspiel%20und%20Alle%20DLCs-51664-13-6-1766958874.7z"
-                StrCpy $YUP_Hash "d95e8fe08dacc06e785df48b26175ab43e7fd569"
+                StrCpy $YUP_URL1 "https://cdn1.mulderload.eu/games/fallout-new-vegas/YUP%20v13.8/YUP%20DEU%20-%20Basisspiel%20und%20Alle%20DLCs-51664-13-8-1771599926.7z"
+                StrCpy $YUP_URL2 "https://www.nexusmods.com/newvegas/mods/51664?tab=files&file_id=1000169929"
+                StrCpy $YUP_Hash "f13c122c1dea49021c0dcc6c674d14a2c3a52934"
             ${Else}
-                StrCpy $YUP_URL1 "https://www.mediafire.com/file_premium/unka29qcdtei7g8/YUP_DEU_-_Individuelle_ESMs-51664-13-6-1766959150.7z/file"
-                StrCpy $YUP_URL2 "https://cdn2.mulderload.eu/g/fallout-new-vegas/YUP%20v13.6/YUP%20DEU%20-%20Individuelle%20ESMs-51664-13-6-1766959150.7z"
-                StrCpy $YUP_Hash "8a9f487cdb75d73b1ca700f09fb5ac071d283374"
+                StrCpy $YUP_URL1 "https://cdn1.mulderload.eu/games/fallout-new-vegas/YUP%20v13.8/YUP%20DEU%20-%20Individuelle%20ESMs-51664-13-8-1771600268.7z"
+                StrCpy $YUP_URL2 "https://www.nexusmods.com/newvegas/mods/51664?tab=files&file_id=1000169937"
+                StrCpy $YUP_Hash "6d5ce61f292948a35c5a0fd85893137e6ca2619c"
             ${EndIf}
         ${ElseIf} $YUP_Language == "es"
             ${If} $YUP_Edition == "complete"
-                StrCpy $YUP_URL1 "https://www.mediafire.com/file_premium/8if69zja7plu729/YUP_ESP_-_Juego_Original_y_Todos_Los_DLCs-51664-13-6-1766958925.7z/file"
-                StrCpy $YUP_URL2 "https://cdn2.mulderload.eu/g/fallout-new-vegas/YUP%20v13.6/YUP%20ESP%20-%20Juego%20Original%20y%20Todos%20Los%20DLCs-51664-13-6-1766958925.7z"
-                StrCpy $YUP_Hash "f9615e514307fc1336871dc721851a9cd0ee26d8"
+                StrCpy $YUP_URL1 "https://cdn1.mulderload.eu/games/fallout-new-vegas/YUP%20v13.8/YUP%20ESP%20-%20Juego%20Original%20y%20Todos%20Los%20DLCs-51664-13-8-1771599987.7z"
+                StrCpy $YUP_URL2 "https://www.nexusmods.com/newvegas/mods/51664?tab=files&file_id=1000169931"
+                StrCpy $YUP_Hash "04c86445a644eee1a46ff7a73605ec54d6c6fce5"
             ${Else}
-                StrCpy $YUP_URL1 "https://www.mediafire.com/file_premium/s4ob6isr81652m0/YUP_ESP_-_ESM_individuales-51664-13-6-1766959189.7z/file"
-                StrCpy $YUP_URL2 "https://cdn2.mulderload.eu/g/fallout-new-vegas/YUP%20v13.6/YUP%20ESP%20-%20ESM%20individuales-51664-13-6-1766959189.7z"
-                StrCpy $YUP_Hash "882e8a38f7b47db47edba1963ceba1b13add9e89"
+                StrCpy $YUP_URL1 "https://cdn1.mulderload.eu/games/fallout-new-vegas/YUP%20v13.8/YUP%20ESP%20-%20ESM%20individuales-51664-13-8-1771600313.7z"
+                StrCpy $YUP_URL2 "https://www.nexusmods.com/newvegas/mods/51664?tab=files&file_id=1000169938"
+                StrCpy $YUP_Hash "2c56538cb4305b0da410a0f91206dca2b0771445"
             ${EndIf}
         ${EndIf}
 
@@ -175,13 +172,11 @@ SectionGroup /e "NVSE v6.4.4"
         AddSize 1352
         SetOutPath "$INSTDIR\Data"
 
-        !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/k2uvhw1f673xacs/NVTF-66537-10-61-1756195258.7z/file" \
-                                "https://cdn2.mulderload.eu/g/fallout-new-vegas/NVTF%20v10.61/NVTF-66537-10-61-1756195258.7z" \
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/newvegas/mods/66537?tab=files&file_id=1000156835" \
                                 "NVTF.7z" "bc1cd4d51eb4d964aa7773ad45f2fce6e058baed"
         !insertmacro NSIS7Z_EXTRACT "NVTF.7z" ".\" "AUTO_DELETE"
 
-        !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/ogj9awawm033w8b/NVTF_-_INI-66537-1-06-1751295478.7z/file" \
-                                "https://cdn2.mulderload.eu/g/fallout-new-vegas/NVTF%20v10.61/NVTF%20-%20INI-66537-1-06-1751295478.7z" \
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/newvegas/mods/66537?tab=files&file_id=1000154098" \
                                 "NVTF - INI.7z" "ffb5c9db46e5748decb0952936070d640b92eed8"
         !insertmacro NSIS7Z_EXTRACT "NVTF - INI.7z" ".\" "AUTO_DELETE"
     SectionEnd
@@ -190,8 +185,7 @@ SectionGroup /e "NVSE v6.4.4"
         AddSize 21709
         SetOutPath "$INSTDIR\Data"
 
-        !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/94v5sz0gab5s69f/Improved_Lighting_Shaders-69833-1-6a-1738800319.zip/file" \
-                                "https://cdn2.mulderload.eu/g/fallout-new-vegas/Improved%20Lightning%20Shaders%20v1.6a/Improved%20Lighting%20Shaders-69833-1-6a-1738800319.zip" \
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/newvegas/mods/69833?tab=files&file_id=1000146363" \
                                 "Improved_Lighting_Shaders.zip" "a6fc30adaf7f4cbcd1359e2ef622c7eacaf63589"
         !insertmacro NSISUNZ_EXTRACT "Improved_Lighting_Shaders.zip" ".\" "AUTO_DELETE"
     SectionEnd
