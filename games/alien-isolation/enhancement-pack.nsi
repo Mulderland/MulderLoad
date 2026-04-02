@@ -33,9 +33,7 @@ SectionGroup /e "Graphical improvements"
         AddSize 24
         SetOutPath "$INSTDIR\DATA"
 
-        # https://www.nexusmods.com/alienisolation/mods/34
-        !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/v9w64btbqlwewjr/Enhanced_Graphics_Alternate-34-1-2-1-1670611572.rar/file" \
-                                "https://cdn2.mulderload.eu/g/alien-isolation/Enhanced%20Graphics%20Alternate-34-1-2-1-1670611572.rar" \
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/alienisolation/mods/34?tab=files&file_id=123" \
                                 "Enhanced_Graphics_Alternate.rar" "dd7ea478cea68bf9523fa7805c1427e1985cae1d"
 
         !insertmacro 7Z_GET

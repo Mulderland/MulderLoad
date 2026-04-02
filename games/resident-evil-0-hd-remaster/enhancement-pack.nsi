@@ -40,13 +40,13 @@ SectionGroup /e "Ultimate ASI Loader (by ThirteenAG)"
         !insertmacro FILE_STR_REPLACE "BorderlessWindowed = 1" "BorderlessWindowed = 0" 1 1 "$INSTDIR\scripts\ResidentEvil0.FusionFix.ini"
     SectionEnd
 
-    Section "Item Box MOD (by descawed)"
+    Section "Item Box MOD v0.5.2 (by descawed)"
         AddSize 2980
         SetOutPath "$INSTDIR\@itembox"
 
         # https://www.nexusmods.com/residentevil0biohazard0hdremaster/mods/39
-        !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/ds1z0ptuvy43kbv/Item_Box_v0.5.2-39-0-5-2-1771919806.zip/file" \
-                                "https://cdn2.mulderload.eu/g/resident-evil-0-hd-remaster/Item%20Box%20v0.5.2-39-0-5-2-1771919806.zip" \
+        !insertmacro DOWNLOAD_2 "https://www.nexusmods.com/residentevil0biohazard0hdremaster/mods/39?tab=files&file_id=152" \
+                                "https://cdn1.mulderload.eu/games/resident-evil-0-hd-remaster/Item%20Box%20v0.5.2-39-0-5-2-1771919806.zip" \
                                 "Item Box.zip" "cbdaa855ef84889d574d23270c38e65205668ec9"
         !insertmacro NSISUNZ_EXTRACT "Item Box.zip" ".\" "AUTO_DELETE"
 
@@ -80,8 +80,8 @@ Section "Remastered Weapons Sounds (by TheSorrow55)"
     SetOutPath "$INSTDIR"
 
     # https://www.nexusmods.com/residentevil0biohazard0hdremaster/mods/48
-    !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/duv835n48yt736y/Resident_Evil_0_hd_remastered_weapons_sounds_MOD-48-V2-1722805841.rar/file" \
-                            "https://cdn2.mulderload.eu/g/resident-evil-0-hd-remaster/Resident%20Evil%200%20hd%20remastered%20weapons%20sounds%20MOD-48-V2-1722805841.rar" \
+    !insertmacro DOWNLOAD_2 "https://www.nexusmods.com/residentevil0biohazard0hdremaster/mods/48?tab=files&file_id=97" \
+                            "https://cdn1.mulderload.eu/games/resident-evil-0-hd-remaster/Resident%20Evil%200%20hd%20remastered%20weapons%20sounds%20MOD-48-V2-1722805841.rar" \
                             "Resident Evil 0 hd remastered weapons sounds MOD.rar" "a560f1f91910e062f16927c31c4f5f9f36f7421a"
     !insertmacro 7Z_EXTRACT "Resident Evil 0 hd remastered weapons sounds MOD.rar" ".\" "AUTO_DELETE"
     !insertmacro FOLDER_MERGE "$INSTDIR\RE0 WEAPONS SOUNDS MOD" "$INSTDIR\nativePC\arc\sound\se\weapon"

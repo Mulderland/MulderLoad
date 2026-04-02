@@ -23,20 +23,15 @@ Section "Daggerfall Unity v1.1.1"
                             "dfu.zip" "f4fbcdf7cf6af1c60f1bcdfaee426e955754a509"
     !insertmacro NSISUNZ_EXTRACT "dfu.zip" ".\" "AUTO_DELETE"
 
-    # Daggerfall files from Archive.org (freeware since 2009)
-    !insertmacro DOWNLOAD_1 "https://archive.org/download/daggerfall-play/Daggerfall.zip" "Daggerfall.zip" "8135a03065b9a4a8f114c77822756dab76745505"
-    !insertmacro NSISUNZ_EXTRACT "Daggerfall.zip" ".\" "AUTO_DELETE"
-    Rename "$INSTDIR\DAGGER\ARENA2" "$INSTDIR\ARENA2"
-    RMDir /r "$INSTDIR\DAGGER"
-    Delete "dagger.bat"
+    # Daggerfall files (freeware since 2009)
+    !insertmacro DOWNLOAD_1 "https://www.mediafire.com/file_premium/1xjjcgx9bksbo6i/arena2.7z/file" "arena2.7z" "797be804f240d876f1ba5f5160d6b009f4c136da"
+    !insertmacro NSIS7Z_EXTRACT "arena2.7z" ".\" "AUTO_DELETE"
 SectionEnd
 
-Section /o "Patch FR (French Texts)"
+Section /o "Patch FR (French Texts) v1.1.1a"
     SetOutPath "$INSTDIR\DaggerfallUnity_Data\StreamingAssets"
 
-    # https://www.nexusmods.com/daggerfallunity/mods/456
-    !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/hvptn1qhfrx16zt/VF_Daggerfall_Unity_1.1.1a-456-1-1-1a-1721921977.7z/file" \
-                            "https://cdn2.mulderload.eu/g/daggerfall-unity/VF%20Daggerfall%20Unity%201.1.1a-456-1-1-1a-1721921977.7z" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/daggerfallunity/mods/456?tab=files&file_id=3926" \
                             "VF_Daggerfall_Unity.7z" "49c355ff758c3277ce3ff053e5b60df0264e0a20"
     !insertmacro NSIS7Z_EXTRACT "VF_Daggerfall_Unity.7z" ".\" "AUTO_DELETE"
 SectionEnd

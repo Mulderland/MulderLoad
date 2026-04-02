@@ -51,8 +51,7 @@ SectionEnd
 Section "Extreme Graphics Settings (by Talal26)"
     SetOutPath "$INSTDIR\system"
 
-    !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/86vaefi0t3pzyx3/DiRT_3_Extreme_Graphics_Settings-10-1-0-1746572811.zip/file" \
-                            "https://cdn2.mulderload.eu/g/dirt-3/DiRT%203%20Extreme%20Graphics%20Settings-10-1-0-1746572811.zip" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/dirt3/mods/10?tab=files&file_id=15" \
                             "DiRT 3 Extreme Graphics Settings.zip" "5954ce12c92cab6c4514fda2c51ab03c480252b9"
     !insertmacro NSISUNZ_EXTRACT_ONE "DiRT 3 Extreme Graphics Settings.zip" ".\" "modded file\hardware_settings_options.xml" "AUTO_DELETE"
 SectionEnd

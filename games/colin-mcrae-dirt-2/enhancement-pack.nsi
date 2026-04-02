@@ -52,7 +52,8 @@ Section "Shaders Upgrade (Care Package v1.1 by thrive4)"
     AddSize 934
     SetOutPath "$INSTDIR"
 
-    !insertmacro DOWNLOAD_2 "https://cdn2.mulderload.eu/g/colin-mcrae-dirt-2/dirt2%20carepackage%20v11-1-1-1-1687352392.zip" \
+    !insertmacro DOWNLOAD_3 "https://cdn1.mulderload.eu/games/colin-mcrae-dirt-2/dirt2%20carepackage%20v11-1-1-1-1687352392.zip" \
+                            "https://www.nexusmods.com/dirt2/mods/1?tab=files&file_id=7" \
                             "https://www.mediafire.com/file_premium/vx66w2sy8l31onn/dirt2_carepackage_v11-1-1-1-1687352392.zip/file" \
                             "dirt2 carepackage v11-1-1-1-1687352392.zip" "8d379867e927035cb28470c0eb98d3620fc64101"
     !insertmacro NSISUNZ_EXTRACT "dirt2 carepackage v11-1-1-1-1687352392.zip" ".\" "AUTO_DELETE"

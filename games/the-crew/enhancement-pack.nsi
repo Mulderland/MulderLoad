@@ -61,8 +61,9 @@ Section "Fix launch time too long"
     AddSize 13
 
     # https://www.nexusmods.com/watchdogs/mods/393?tab=description
-    !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/ouy57nd6chas25y/systemdetection64.dll-393-1-1-1748052023.zip/file" \
-                            "https://cdn2.mulderload.eu/g/the-crew/systemdetection64.dll-393-1-1-1748052023.zip" \
+    !insertmacro DOWNLOAD_3 "https://cdn1.mulderload.eu/games/the-crew/systemdetection64.dll-393-1-1-1748052023.zip" \
+                            "https://www.nexusmods.com/watchdogs/mods/393?tab=files&file_id=1268" \
+                            "https://www.mediafire.com/file_premium/ouy57nd6chas25y/systemdetection64.dll-393-1-1-1748052023.zip/file" \
                             "systemdetection64.dll.zip" "718fc899835316ceca1719191a72d7d47f579d50"
 
     !insertmacro NSISUNZ_EXTRACT_ONE "systemdetection64.dll.zip" ".\" "systemdetection64.dll" "AUTO_DELETE"
