@@ -1,0 +1,148 @@
+{
+  "game": {
+    "title": "Resident Evil (Steam)",
+    "originalExe": "4249100_Launcher.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Executable",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Classic REbirth" },
+        { "value": "Original" }
+      ]
+    },
+    {
+      "name": "Language",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "English" },
+        { "value": "French", "disabledWhen": [{ "Executable": "Classic REbirth" }] },
+        { "value": "German", "disabledWhen": [{ "Executable": "Classic REbirth" }] },
+        { "value": "Japanese" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Enable dgVoodoo2", "disabledWhen": [{ "!Executable": "Classic REbirth" }] },
+        { "value": "Enable HD textures", "disabledWhen": [{ "!Executable": "Classic REbirth" }] }
+      ]
+    },
+    {
+      "name": "MSAA Anti-Aliasing",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Off" },
+        { "value": "2x", "disabledWhen": [ { "!Misc": "Enable dgVoodoo2" } ] },
+        { "value": "4x", "disabledWhen": [ { "!Misc": "Enable dgVoodoo2" } ] },
+        { "value": "8x", "disabledWhen": [ { "!Misc": "Enable dgVoodoo2" } ] }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "Executable": "Classic REbirth", "Language": "English" } ],
+        "operation": "replaceLine",
+        "files": ["rebirth\\config.ini"],
+        "pattern": "^JapaneseEnable.*$",
+        "replacement": "JapaneseEnable = 0"
+      },
+      {
+        "when": [ { "Executable": "Classic REbirth", "Language": "Japanese" } ],
+        "operation": "replaceLine",
+        "files": ["rebirth\\config.ini"],
+        "pattern": "^JapaneseEnable.*$",
+        "replacement": "JapaneseEnable = 1"
+      },
+      {
+        "when": [ { "Misc": "Enable dgVoodoo2" } ],
+        "operation": "rename",
+        "source": "rebirth\\_re_DDraw.dll.bak",
+        "target": "rebirth\\re_DDraw.dll"
+      },
+      {
+        "when": [ { "Misc": "Enable dgVoodoo2" } ],
+        "operation": "rename",
+        "source": "rebirth\\_D3DImm.dll.bak",
+        "target": "rebirth\\D3DImm.dll"
+      },
+      {
+        "when": [ { "!Misc": "Enable dgVoodoo2" } ],
+        "operation": "rename",
+        "source": "rebirth\\re_DDraw.dll",
+        "target": "rebirth\\_re_DDraw.dll.bak"
+      },
+      {
+        "when": [ { "!Misc": "Enable dgVoodoo2" } ],
+        "operation": "rename",
+        "source": "rebirth\\D3DImm.dll",
+        "target": "rebirth\\_D3DImm.dll.bak"
+      },
+      {
+        "when": [ { "Misc": "Enable HD textures" } ],
+        "operation": "rename",
+        "source": "rebirth\\_hires.bak",
+        "target": "rebirth\\hires"
+      },
+      {
+        "when": [ { "!Misc": "Enable HD textures" } ],
+        "operation": "rename",
+        "source": "rebirth\\hires",
+        "target": "rebirth\\_hires.bak"
+      },
+      {
+        "when": [ { "MSAA Anti-Aliasing": "Off" } ],
+        "operation": "replaceLine",
+        "files": ["rebirth\\dgVoodoo.conf"],
+        "pattern": "^Antialiasing                        =.*$",
+        "replacement": "Antialiasing                        = appdriven"
+      },
+      {
+        "when": [ { "MSAA Anti-Aliasing": "2x" } ],
+        "operation": "replaceLine",
+        "files": ["rebirth\\dgVoodoo.conf"],
+        "pattern": "^Antialiasing                        =.*$",
+        "replacement": "Antialiasing                        = 2x"
+      },
+      {
+        "when": [ { "MSAA Anti-Aliasing": "4x" } ],
+        "operation": "replaceLine",
+        "files": ["rebirth\\dgVoodoo.conf"],
+        "pattern": "^Antialiasing                        =.*$",
+        "replacement": "Antialiasing                        = 4x"
+      },
+      {
+        "when": [ { "MSAA Anti-Aliasing": "8x" } ],
+        "operation": "replaceLine",
+        "files": ["rebirth\\dgVoodoo.conf"],
+        "pattern": "^Antialiasing                        =.*$",
+        "replacement": "Antialiasing                        = 8x"
+      }
+    ],
+    "launch": [
+      {
+        "when": [ { "Executable": "Classic REbirth" } ],
+        "exec": { "name": "rebirth\\Biohazard.exe", "workDir": "rebirth" }
+      },
+      {
+        "when": [ { "Executable": "Original", "Language": "English" } ],
+        "exec": { "name": "english\\ResidentEvil.exe", "workDir": "english" }
+      },
+      {
+        "when": [ { "Executable": "Original", "Language": "French" } ],
+        "exec": { "name": "french\\ResidentEvil.exe", "workDir": "french" }
+      },
+      {
+        "when": [ { "Executable": "Original", "Language": "German" } ],
+        "exec": { "name": "german\\ResidentEvil.exe", "workDir": "german" }
+      },
+      {
+        "when": [ { "Executable": "Original", "Language": "Japanese" } ],
+        "exec": { "name": "japanese\\Biohazard.exe", "workDir": "japanese" }
+      }
+    ]
+  }
+}
