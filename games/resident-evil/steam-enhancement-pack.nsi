@@ -98,6 +98,9 @@ Section "Resident Evil Classic REbirth"
                             "re1cr-2020-12-06.7z" "e5615c3fb0711e2d692a8eec1725ffde5993a189"
     !insertmacro NSIS7Z_EXTRACT "re1cr-2020-12-06.7z" ".\" "AUTO_DELETE"
     AddSize 3181
+
+    # Create save folder
+    CreateDirectory "$REBIRTHDIR\savedata"
 SectionEnd
 
 Section /o "Translation patches (DE, ES, FR, IT, RU)"
