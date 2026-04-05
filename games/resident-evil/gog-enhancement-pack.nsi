@@ -13,11 +13,24 @@ ${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
 $\r$\n\
 Special thanks to the Classic REbirth team!"
 
+!define ON_SELECTED_FILE
 !include "..\..\includes\templates\SelectTemplate.nsh"
 
 Name "Resident Evil [GOG Enhancement Pack]"
 
 Section
+SectionEnd
+
+!define GOG_ENHANCEMENT_PACK_NSI
+!include "steam-enhancement-pack.nsi"
+
+Function .onInit
+    StrCpy $SELECT_FILENAME "Biohazard.exe"
+    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\GOG Galaxy\Games\Resident Evil\Biohazard.exe"
+    StrCpy $SELECT_RELATIVE_INSTDIR ""
+FunctionEnd
+
+Function OnSelectedFile
     DetailPrint " // Checking that binary is supported"
     !insertmacro FILE_HASH_EQUALS "$INSTDIR\Biohazard.exe" "08e55bd30cfc31b8d4c62c0fbb8616ecd96f18f3" $0 ; GOG Japanese checksum
     !insertmacro FILE_HASH_EQUALS "$INSTDIR\Biohazard.exe" "047f4feea01b18c69f12e790f2dc837ae0b7107f" $1 ; Mediakite 1.01 checksum
@@ -30,13 +43,4 @@ Section
         Make sure you downloaded the Japanese version of the game on GOG."
         Quit
     ${EndIf}
-SectionEnd
-
-!define GOG_ENHANCEMENT_PACK_NSI
-!include "steam-enhancement-pack.nsi"
-
-Function .onInit
-    StrCpy $SELECT_FILENAME "Biohazard.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\GOG Galaxy\Games\Resident Evil\Biohazard.exe"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
 FunctionEnd

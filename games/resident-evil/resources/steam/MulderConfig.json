@@ -9,17 +9,10 @@
       "type": "radioGroup",
       "radios": [
         { "value": "Classic REbirth" },
-        { "value": "Original" }
-      ]
-    },
-    {
-      "name": "Language",
-      "type": "radioGroup",
-      "radios": [
-        { "value": "English" },
-        { "value": "French", "disabledWhen": [{ "Executable": "Classic REbirth" }] },
-        { "value": "German", "disabledWhen": [{ "Executable": "Classic REbirth" }] },
-        { "value": "Japanese" }
+        { "value": "Original - English" },
+        { "value": "Original - French" },
+        { "value": "Original - German" },
+        { "value": "Original - Japanese" }
       ]
     },
     {
@@ -43,20 +36,6 @@
   ],
   "actions": {
     "operations": [
-      {
-        "when": [ { "Executable": "Classic REbirth", "Language": "English" } ],
-        "operation": "replaceLine",
-        "files": ["rebirth\\config.ini"],
-        "pattern": "^JapaneseEnable.*$",
-        "replacement": "JapaneseEnable = 0"
-      },
-      {
-        "when": [ { "Executable": "Classic REbirth", "Language": "Japanese" } ],
-        "operation": "replaceLine",
-        "files": ["rebirth\\config.ini"],
-        "pattern": "^JapaneseEnable.*$",
-        "replacement": "JapaneseEnable = 1"
-      },
       {
         "when": [ { "Misc": "Enable dgVoodoo2" } ],
         "operation": "rename",
@@ -128,19 +107,19 @@
         "exec": { "name": "rebirth\\Biohazard.exe", "workDir": "rebirth" }
       },
       {
-        "when": [ { "Executable": "Original", "Language": "English" } ],
+        "when": [ { "Executable": "Original - English" } ],
         "exec": { "name": "english\\ResidentEvil.exe", "workDir": "english" }
       },
       {
-        "when": [ { "Executable": "Original", "Language": "French" } ],
+        "when": [ { "Executable": "Original - French" } ],
         "exec": { "name": "french\\ResidentEvil.exe", "workDir": "french" }
       },
       {
-        "when": [ { "Executable": "Original", "Language": "German" } ],
+        "when": [ { "Executable": "Original - German" } ],
         "exec": { "name": "german\\ResidentEvil.exe", "workDir": "german" }
       },
       {
-        "when": [ { "Executable": "Original", "Language": "Japanese" } ],
+        "when": [ { "Executable": "Original - Japanese" } ],
         "exec": { "name": "japanese\\Biohazard.exe", "workDir": "japanese" }
       }
     ]

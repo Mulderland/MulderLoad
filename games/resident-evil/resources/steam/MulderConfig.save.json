@@ -1,7 +1,6 @@
 {
   "Resident Evil (Steam)": {
     "Executable": "Classic REbirth",
-    "Language": "English",
     "Misc": [
       "Enable dgVoodoo2",
       "Enable HD textures"

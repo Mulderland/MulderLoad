@@ -100,6 +100,31 @@ Section "Resident Evil Classic REbirth"
     AddSize 3181
 SectionEnd
 
+Section /o "Translation patches (DE, ES, FR, IT, RU)"
+    SetOutPath "$REBIRTHDIR"
+    AddSize 2007
+
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/mod_german_1_0_1_crypto.7z" \
+                            "https://www.mediafire.com/file_premium/9xqqsj3owxqs7bw/mod_german_1_0_1_crypto.7z/file" \
+                            "mod_german_1_0_1_crypto.7z" "c6abde7a312c22cb1d87c59c4cf5f5dc5e86c67a"
+
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/Mod_RE_SpanishTranslationV1.1.7z" \
+                            "https://www.mediafire.com/file_premium/3sdkz1chsf9alvi/Mod_RE_SpanishTranslationV1.1.7z/file" \
+                            "Mod_RE_SpanishTranslationV1.1.7z" "8f655ba467b7145a9d19fc045bb139eeb3730e2c"
+
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/mod_fr_V1.3.1.7z" \
+                            "https://www.mediafire.com/file_premium/gcz0nmcto6zv1lt/mod_fr_V1.3.1.7z/file" \
+                            "mod_fr_V1.3.1.7z" "e60b30797a5856e8edee518327efe517bbfdeb75"
+
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/Mod_RE_Italian_V1.1_Classic.7z" \
+                            "https://www.mediafire.com/file_premium/uel8ssivbpzwz5r/Mod_RE_Italian_V1.1_Classic.7z/file" \
+                            "Mod_RE_Italian_V1.1_Classic.7z" "a577108600077cbd0f49d1077420d1ac311441b0"
+
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/mod_russian.7z" \
+                            "https://www.mediafire.com/file_premium/b3linupnamnx281/mod_russian.7z/file" \
+                            "mod_russian.7z" "7f27bb864bf032ac42701e1ecb548e2ae6a35ae1"
+SectionEnd
+
 SectionGroup "Graphical improvements" gfx
     Section "Resident Evil HD Mod v20220831 (by TeamX)" gfx1
         SetOutPath "$REBIRTHDIR"
