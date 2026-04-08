@@ -43,7 +43,7 @@ SectionEnd
     SectionEnd
 !endif
 
-Section "Remove admin permissions requirement"
+Section "Fix crash when saving"
     SetOutPath "$INSTDIR"
 
     !ifdef GOG_ENHANCEMENT_PACK_NSI
@@ -211,7 +211,7 @@ SectionGroup "Graphical improvements"
         SetOutPath "$REBIRTHDIR"
 
         # https://www.moddb.com/mods/reenhance-re2/downloads/re-enhance-re2-v201
-        !insertmacro DOWNLOAD_2 "https://www.moddb_.com/downloads/start/279069" \
+        !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/279069" \
                                 "https://cdn1.mulderload.eu/games/resident-evil-2/gfx/RE-ENHANCE_RE2_v2.0.1.zip" \
                                 "RE-ENHANCE_RE2_v2.0.1.zip" "b6658149a2ecdf8a1df7674f282e33b2"
         !insertmacro NSISUNZ_EXTRACT "RE-ENHANCE_RE2_v2.0.1.zip" ".\" "AUTO_DELETE"
@@ -241,7 +241,7 @@ SectionGroup "High Quality FMVs" fmv
         SetOutPath "$REBIRTHDIR"
 
         # https://www.moddb.com/mods/reenhance-re2/downloads/re-enhance-re2-fmv-pack-v10
-        !insertmacro DOWNLOAD_2 "https://www.moddb_.com/downloads/start/291855" \
+        !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/291855" \
                                 "https://cdn1.mulderload.eu/games/resident-evil-2/videos/RE-ENHANCE_RE2_FMV-Pack_V1.0.zip" \
                                 "RE-ENHANCE_RE2_FMV-Pack_V1.0.zip" "d97ba594eee809fa242c5818f9534105"
         !insertmacro 7Z_GET ; NSISUNZ_EXTRACT doesn't support zip > 4GB

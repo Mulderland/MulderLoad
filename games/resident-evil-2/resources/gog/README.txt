@@ -3,7 +3,7 @@ Resident Evil 2 *GOG Enhancement Pack* @ mulderland.com
 
 1) What this pack does:
 
-- Fixes the "Some of the data have been damaged" error on launch, which occurs when using a non-administrator account
+- Fixes non-rebirth crash on saving (due to a wrong save path in registry and/or wrong current user)
 - Installs Classic REbirth in a new "rebirth" subfolder
 - Patches the Classic REbirth executable to allow 4GB of memory
 - Installs Graphical Improvements (see below) and dgVoodoo2
@@ -41,6 +41,16 @@ Is it required to install one FMVs pack, as old 240p videos doesn't work with th
 
 This is a repack of the following file, to keep only music and voice files.
 http://re123.bplaced.net/board/viewtopic.php?f=22&t=308
+
+------------------------------------------------------------------------------------------------------------------------
+
+2.4) About the Save Crash Fix
+
+There are two causes for the game crashing while saving:
+- A missing registry key under CURRENT_USER (usually the case when using a non-admin account)
+- An incorrect "Save Path" in the registry
+
+This installer runs without administrator rights, so it is able to fix both issues.
 
 ------------------------------------------------------------------------------------------------------------------------
 

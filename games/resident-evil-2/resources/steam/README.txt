@@ -5,7 +5,7 @@ Resident Evil 2 *Steam Enhancement Pack* @ mulderland.com
 
 - Downgrades the Steam version to the latest GOG version (v1.0 Hotfix 5) for better compatibility
 - Fixes Steam game time tracking, Steam Overlay, Steam Input, etc.
-- Fixes the "Some of the data have been damaged" error on launch, which occurs when using a non-administrator account
+- Fixes non-rebirth crash on saving
 - Installs Classic REbirth in a new "rebirth" subfolder
 - Patches the Classic REbirth executable to allow 4GB of memory
 - Installs Graphical Improvements (see below) and dgVoodoo2
@@ -43,6 +43,18 @@ Is it required to install one FMVs pack, as old 240p videos doesn't work with th
 
 This is a repack of the following file, to keep only music and voice files.
 http://re123.bplaced.net/board/viewtopic.php?f=22&t=308
+
+------------------------------------------------------------------------------------------------------------------------
+
+2.4) About the Save Crash Fix
+
+There are two causes for the game crashing while saving:
+- A missing registry key under CURRENT_USER (usually the case when using a non-admin account)
+- An incorrect "Save Path" in the registry
+
+This installer runs without administrator rights, so it is able to fix both issues.
+Warning: For non-Rebirth and non-Japanese versions, the save location will always be "english\saves", even if you play
+in another language.
 
 ------------------------------------------------------------------------------------------------------------------------
 
