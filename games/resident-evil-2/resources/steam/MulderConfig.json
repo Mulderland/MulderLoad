@@ -1,0 +1,137 @@
+{
+  "game": {
+    "title": "Resident Evil 2 (Steam)",
+    "originalExe": "4249110_Launcher.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Executable",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Classic REbirth" },
+        { "value": "Original - English" },
+        { "value": "Original - French" },
+        { "value": "Original - German" },
+        { "value": "Original - Italian" },
+        { "value": "Original - Japanese" },
+        { "value": "Original - Spanish" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Enable dgVoodoo2", "disabledWhen": [{ "!Executable": "Classic REbirth" }] },
+        { "value": "Enable HD textures", "disabledWhen": [{ "!Executable": "Classic REbirth" }] }
+      ]
+    },
+    {
+      "name": "MSAA Anti-Aliasing",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Off" },
+        { "value": "2x", "disabledWhen": [ { "!Misc": "Enable dgVoodoo2" } ] },
+        { "value": "4x", "disabledWhen": [ { "!Misc": "Enable dgVoodoo2" } ] },
+        { "value": "8x", "disabledWhen": [ { "!Misc": "Enable dgVoodoo2" } ] }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "Misc": "Enable dgVoodoo2" } ],
+        "operation": "rename",
+        "source": "rebirth\\_re2_DDraw.dll.bak",
+        "target": "rebirth\\re2_DDraw.dll"
+      },
+      {
+        "when": [ { "Misc": "Enable dgVoodoo2" } ],
+        "operation": "rename",
+        "source": "rebirth\\_D3DImm.dll.bak",
+        "target": "rebirth\\D3DImm.dll"
+      },
+      {
+        "when": [ { "!Misc": "Enable dgVoodoo2" } ],
+        "operation": "rename",
+        "source": "rebirth\\re_DDraw.dll",
+        "target": "rebirth\\_re_DDraw.dll.bak"
+      },
+      {
+        "when": [ { "!Misc": "Enable dgVoodoo2" } ],
+        "operation": "rename",
+        "source": "rebirth\\D3DImm.dll",
+        "target": "rebirth\\_D3DImm.dll.bak"
+      },
+      {
+        "when": [ { "Misc": "Enable HD textures" } ],
+        "operation": "rename",
+        "source": "rebirth\\_hires.bak",
+        "target": "rebirth\\hires"
+      },
+      {
+        "when": [ { "!Misc": "Enable HD textures" } ],
+        "operation": "rename",
+        "source": "rebirth\\hires",
+        "target": "rebirth\\_hires.bak"
+      },
+      {
+        "when": [ { "MSAA Anti-Aliasing": "Off" } ],
+        "operation": "replaceLine",
+        "files": ["rebirth\\dgVoodoo.conf"],
+        "pattern": "^Antialiasing                        =.*$",
+        "replacement": "Antialiasing                        = appdriven"
+      },
+      {
+        "when": [ { "MSAA Anti-Aliasing": "2x" } ],
+        "operation": "replaceLine",
+        "files": ["rebirth\\dgVoodoo.conf"],
+        "pattern": "^Antialiasing                        =.*$",
+        "replacement": "Antialiasing                        = 2x"
+      },
+      {
+        "when": [ { "MSAA Anti-Aliasing": "4x" } ],
+        "operation": "replaceLine",
+        "files": ["rebirth\\dgVoodoo.conf"],
+        "pattern": "^Antialiasing                        =.*$",
+        "replacement": "Antialiasing                        = 4x"
+      },
+      {
+        "when": [ { "MSAA Anti-Aliasing": "8x" } ],
+        "operation": "replaceLine",
+        "files": ["rebirth\\dgVoodoo.conf"],
+        "pattern": "^Antialiasing                        =.*$",
+        "replacement": "Antialiasing                        = 8x"
+      }
+    ],
+    "launch": [
+      {
+        "when": [ { "Executable": "Classic REbirth" } ],
+        "exec": { "name": "rebirth\\bio2.exe", "workDir": "rebirth", "wait": true }
+      },
+      {
+        "when": [ { "Executable": "Original - English" } ],
+        "exec": { "name": "english\\RE2Launcher.exe", "workDir": "english" }
+      },
+      {
+        "when": [ { "Executable": "Original - French" } ],
+        "exec": { "name": "french\\RE2Launcher.exe", "workDir": "french" }
+      },
+      {
+        "when": [ { "Executable": "Original - German" } ],
+        "exec": { "name": "german\\RE2Launcher.exe", "workDir": "german" }
+      },
+      {
+        "when": [ { "Executable": "Original - Italian" } ],
+        "exec": { "name": "italian\\RE2Launcher.exe", "workDir": "italian" }
+      },
+      {
+        "when": [ { "Executable": "Original - Japanese" } ],
+        "exec": { "name": "japanese\\BH2Launcher.exe", "workDir": "japanese" }
+      },
+      {
+        "when": [ { "Executable": "Original - Spanish" } ],
+        "exec": { "name": "spanish\\RE2Launcher.exe", "workDir": "spanish" }
+       }
+    ]
+  }
+}

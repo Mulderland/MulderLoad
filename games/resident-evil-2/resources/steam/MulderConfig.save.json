@@ -1,0 +1,10 @@
+{
+  "Resident Evil 2 (Steam)": {
+    "Executable": "Classic REbirth",
+    "Misc": [
+      "Enable dgVoodoo2",
+      "Enable HD textures"
+    ],
+    "MSAA Anti-Aliasing": "4x"
+  }
+}
