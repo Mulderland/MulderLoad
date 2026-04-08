@@ -3,6 +3,7 @@
     This is an Enhancement Pack for Resident Evil (Steam), with:$\r$\n\
     - Downgrade to GOG version (including GOG's DX Wrapper)$\r$\n\
     - Resident Evil Classic REbirth$\r$\n\
+    - Translation patches$\r$\n\
     - Resident Evil HD Mod (by TeamX)$\r$\n\
     - Seamless HD Project v1.1 (by RESHDP)$\r$\n\
     - RE-Enhance v2.0 (by SonicB00M)$\r$\n\
@@ -17,16 +18,6 @@
     !include "..\..\includes\templates\SelectTemplate.nsh"
 
     Name "Resident Evil [Steam Enhancement Pack]"
-
-    Section "Downgrade Steam to GOG v1.0 hotfix 4" gog_downgrade
-        AddSize 1
-        SetOutPath "$INSTDIR"
-
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/steam_to_gog_1.0hotfix4.7z" \
-                                "https://www.mediafire.com/file_premium/icjvuvpl5598q70/steam_to_gog_1.0hotfix4.7z/file" \
-                                "steam_to_gog_1.0hotfix4.7z" "9bd48a912e467bfbce5441ed3e570d828f79c7fd"
-        !insertmacro NSIS7Z_EXTRACT "steam_to_gog_1.0hotfix4.7z" ".\" "AUTO_DELETE"
-    SectionEnd
 !endif
 
 Var /GLOBAL REBIRTHDIR
@@ -39,27 +30,48 @@ Section
     !endif
 SectionEnd
 
+!ifndef GOG_ENHANCEMENT_PACK_NSI ; If Steam
+    Section "Downgrade Steam to GOG v1.0 hotfix 4" gog_downgrade
+        AddSize 1
+        SetOutPath "$INSTDIR"
+
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/steam_to_gog_1.0hotfix4.7z" \
+                                "https://www.mediafire.com/file_premium/icjvuvpl5598q70/steam_to_gog_1.0hotfix4.7z/file" \
+                                "steam_to_gog_1.0hotfix4.7z" "9bd48a912e467bfbce5441ed3e570d828f79c7fd"
+        !insertmacro NSIS7Z_EXTRACT "steam_to_gog_1.0hotfix4.7z" ".\" "AUTO_DELETE"
+    SectionEnd
+!endif
+
 Section "Remove admin permissions requirement"
     SetOutPath "$INSTDIR"
 
     !ifdef GOG_ENHANCEMENT_PACK_NSI
-        # If GOG: copy registry files (they will be imported later with the current user)
         File "resources\gog\bh1_japanese.reg"
-        File "resources\gog\re1_english.reg"
+        ExecWait 'regedit.exe /s "$INSTDIR\bh1_japanese.reg"'
+        WriteRegStr HKCU "SOFTWARE\CAPCOM\BIO HAZARD" "Install Path" "$INSTDIR\"
     !else
-        # If Steam, but GOG downgrade is checked: do the same
+        # If Steam, check if GOG downgrade is selected.
         SectionGetFlags ${gog_downgrade} $0
         IntOp $0 $0 & ${SF_SELECTED}
-        StrCmp $0 ${SF_SELECTED} gog_downgrade_yes gog_downgrade_no
-        gog_downgrade_yes:
-            File "resources\gog\re1_english.reg"
-            File "resources\gog\bh1_japanese.reg"
-        gog_downgrade_no:
-    !endif
+        StrCmp $0 ${SF_SELECTED} reg_steam_downgraded reg_steam_original
 
-    # Import the registry keys with the current user (no need to import french/german as they are the same as english)
-    ExecWait 'regedit.exe /s "$INSTDIR\bh1_japanese.reg"'
-    ExecWait 'regedit.exe /s "$INSTDIR\re1_english.reg"'
+        reg_steam_downgraded:
+            File "resources\gog\bh1_japanese.reg"
+            File "resources\steam\re1_english.reg"
+            ExecWait 'regedit.exe /s "$INSTDIR\bh1_japanese.reg"'
+            ExecWait 'regedit.exe /s "$INSTDIR\re1_english.reg"'
+            WriteRegStr HKCU "SOFTWARE\CAPCOM\BIO HAZARD" "Install Path" "$INSTDIR\japanese\"
+            WriteRegStr HKCU "SOFTWARE\CAPCOM\RESIDENT EVIL" "Install Path" "$INSTDIR\english\"
+            Goto reg_end
+
+        reg_steam_original:
+            ExecWait 'regedit.exe /s "$INSTDIR\bh1_japanese.reg"'
+            ExecWait 'regedit.exe /s "$INSTDIR\re1_english.reg"'
+            WriteRegStr HKCU "SOFTWARE\CAPCOM\STEAM_BIO1" "Install Path" "$INSTDIR\japanese\"
+            WriteRegStr HKCU "SOFTWARE\CAPCOM\STEAM_R EVIL1" "Install Path" "$INSTDIR\english\"
+
+        reg_end:
+    !endif
 SectionEnd
 
 Section "Resident Evil Classic REbirth"
@@ -99,34 +111,57 @@ Section "Resident Evil Classic REbirth"
     !insertmacro NSIS7Z_EXTRACT "re1cr-2020-12-06.7z" ".\" "AUTO_DELETE"
     AddSize 3181
 
-    # Create save folder
+    # Create Classic REbirth save folder
     CreateDirectory "$REBIRTHDIR\savedata"
+
+    # Apply 4GB Patch
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/_common/ntcore_4gb_patch_v1.0.0.1.zip" \
+                            "https://ntcore.com/files/4gb_patch.zip" \
+                            "4gb_patch.zip" "c8b0d61937cb54fc8215124c0f737a1d29479c97"
+    !insertmacro NSISUNZ_EXTRACT "4gb_patch.zip" ".\" "AUTO_DELETE"
+    ExecWait '4gb_patch.exe Biohazard.exe' $0
+    Delete "4gb_patch.exe"
+    AddSize 940
 SectionEnd
 
-Section /o "Translation patches (DE, ES, FR, IT, RU)"
-    SetOutPath "$REBIRTHDIR"
-    AddSize 2007
+SectionGroup "Translation patches"
+    Section /o "French patch (by Vonmalvarius)"
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/mod_fr_V1.3.1.7z" \
+                                "https://www.mediafire.com/file_premium/gcz0nmcto6zv1lt/mod_fr_V1.3.1.7z/file" \
+                                "$REBIRTHDIR\mod_fr_V1.3.1.7z" "e60b30797a5856e8edee518327efe517bbfdeb75"
+        AddSize 483
+    SectionEnd
 
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/mod_german_1_0_1_crypto.7z" \
-                            "https://www.mediafire.com/file_premium/9xqqsj3owxqs7bw/mod_german_1_0_1_crypto.7z/file" \
-                            "mod_german_1_0_1_crypto.7z" "c6abde7a312c22cb1d87c59c4cf5f5dc5e86c67a"
+    Section /o "German patch (by Accandon)"
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/mod_german_1_0_1_crypto.7z" \
+                                "https://www.mediafire.com/file_premium/9xqqsj3owxqs7bw/mod_german_1_0_1_crypto.7z/file" \
+                                "$REBIRTHDIR\mod_german_1_0_1_crypto.7z" "c6abde7a312c22cb1d87c59c4cf5f5dc5e86c67a"
+        AddSize 372
+    SectionEnd
 
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/Mod_RE_SpanishTranslationV1.1.7z" \
-                            "https://www.mediafire.com/file_premium/3sdkz1chsf9alvi/Mod_RE_SpanishTranslationV1.1.7z/file" \
-                            "Mod_RE_SpanishTranslationV1.1.7z" "8f655ba467b7145a9d19fc045bb139eeb3730e2c"
+    Section /o "Italian patch (by menmacchi)"
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/Mod_RE_Italian_V1.1_Classic.7z" \
+                                "https://www.mediafire.com/file_premium/uel8ssivbpzwz5r/Mod_RE_Italian_V1.1_Classic.7z/file" \
+                                "$REBIRTHDIR\Mod_RE_Italian_V1.1_Classic.7z" "a577108600077cbd0f49d1077420d1ac311441b0"
+        AddSize 403
+    SectionEnd
 
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/mod_fr_V1.3.1.7z" \
-                            "https://www.mediafire.com/file_premium/gcz0nmcto6zv1lt/mod_fr_V1.3.1.7z/file" \
-                            "mod_fr_V1.3.1.7z" "e60b30797a5856e8edee518327efe517bbfdeb75"
+    Section /o "Russian patch (by CasperPRO)"
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/mod_russian.7z" \
+                                "https://www.mediafire.com/file_premium/b3linupnamnx281/mod_russian.7z/file" \
+                                "$REBIRTHDIR\mod_russian.7z" "7f27bb864bf032ac42701e1ecb548e2ae6a35ae1"
+        AddSize 344
+    SectionEnd
 
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/Mod_RE_Italian_V1.1_Classic.7z" \
-                            "https://www.mediafire.com/file_premium/uel8ssivbpzwz5r/Mod_RE_Italian_V1.1_Classic.7z/file" \
-                            "Mod_RE_Italian_V1.1_Classic.7z" "a577108600077cbd0f49d1077420d1ac311441b0"
-
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/mod_russian.7z" \
-                            "https://www.mediafire.com/file_premium/b3linupnamnx281/mod_russian.7z/file" \
-                            "mod_russian.7z" "7f27bb864bf032ac42701e1ecb548e2ae6a35ae1"
-SectionEnd
+    Section /o "Spanish patch (by LeigiBoy)"
+        SetOutPath "$REBIRTHDIR"
+        !insertmacro DOWNLOAD_2 "https://www.nexusmods.com/residentevil1996/mods/2?tab=files&file_id=6" \
+                                "https://cdn1.mulderload.eu/games/resident-evil/translation/Spanish%20translation%20(fixed)-2-1-1-1603507505.zip" \
+                                "Spanish translation (fixed)-2-1-1-1603507505.zip" "fe0873b2cd3ac8a6a6c1a035747f4e203c24ad4c"
+        !insertmacro NSISUNZ_EXTRACT "Spanish translation (fixed)-2-1-1-1603507505.zip" ".\" "AUTO_DELETE"
+        AddSize 405
+    SectionEnd
+SectionGroupEnd
 
 SectionGroup "Graphical improvements" gfx
     Section "Resident Evil HD Mod v20220831 (by TeamX)" gfx1
@@ -168,10 +203,12 @@ SectionGroup "Graphical improvements" gfx
         AddSize 334848
     SectionEnd
 
-    Section # dgVoodoo 2.64
+    Section "dgVoodoo2 (by Dege)"
         SetOutPath "$REBIRTHDIR"
 
-        !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/resident-evil/dgVoodoo2_64_nopassword.zip" \
+        # This particular game requires exactly the v2.64 version
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/dgVoodoo2_64_nopassword.zip" \
+                                "https://www.mediafire.com/file_premium/dudqbe1p5r0vtge/dgVoodoo2_64_nopassword.zip/file" \
                                 "dgVoodoo2.zip" "38815d63c33501dcb732f405b985d7339fc3c328"
         !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "dgVoodoo.conf" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "dgVoodooCpl.exe" ""
@@ -181,24 +218,14 @@ SectionGroup "Graphical improvements" gfx
         AddSize 618
 
         # Configure dgVoodoo
-        !insertmacro FILE_STR_REPLACE "VRAM                                = 256" "VRAM                                = 2048" 1 1 "$REBIRTHDIR\dgVoodoo.conf"
+        !insertmacro FILE_STR_REPLACE "Antialiasing                        = appdriven" "Antialiasing                        = 4x" 2 1 "$REBIRTHDIR\dgVoodoo.conf"
+        !insertmacro FILE_STR_REPLACE "VRAM                                = 256" "VRAM                                = 4096" 1 1 "$REBIRTHDIR\dgVoodoo.conf"
         !insertmacro FILE_STR_REPLACE "dgVoodooWatermark                   = true" "dgVoodooWatermark                   = false" 1 1 "$REBIRTHDIR\dgVoodoo.conf"
-    SectionEnd
-
-    Section # NTCore 4GB Patch
-        SetOutPath "$REBIRTHDIR"
-        !insertmacro DOWNLOAD_2 "https://ntcore.com/files/4gb_patch.zip" \
-                                "https://cdn1.mulderload.eu/games/_common/ntcore_4gb_patch_v1.0.0.1.zip" \
-                                "4gb_patch.zip" "c8b0d61937cb54fc8215124c0f737a1d29479c97"
-        !insertmacro NSISUNZ_EXTRACT "4gb_patch.zip" ".\" "AUTO_DELETE"
-        ExecWait '4gb_patch.exe Biohazard.exe' $0
-        Delete "4gb_patch.exe"
-        AddSize 940
     SectionEnd
 SectionGroupEnd
 
 SectionGroup /e "High Quality FMVs" fmv
-    Section "960p - RE-Enhance FMV V1.1 (by SonicB00M)" fmv960
+    Section "960p - RE-Enhance FMV V1.1 (by SonicB00M)" fmv1
         SetOutPath "$REBIRTHDIR"
 
         # https://www.moddb.com/mods/reenhance-re1/downloads/re-enhance-re1-fmv-pack-v11
@@ -209,7 +236,7 @@ SectionGroup /e "High Quality FMVs" fmv
         AddSize 1583350
     SectionEnd
 
-    Section /o "480p - FMVs from HD Mod (by TeamX)" fmv480
+    Section /o "480p - FMVs from HD Mod (by TeamX)" fmv2
         SetOutPath "$REBIRTHDIR"
 
         # https://www.moddb.com/mods/resident-evil-hd-mod (repacked to keep exclusives hires + remove other things)
@@ -276,7 +303,7 @@ SectionEnd
     SectionGroupEnd
 
     Function .onInit
-        StrCpy $9 ${fmv_960} ; Radio Button
+        StrCpy $9 ${fmv1} ; Radio Button
         StrCpy $SELECT_FILENAME "4249100_Launcher.exe"
         StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\4249100_Biohazard"
         StrCpy $SELECT_RELATIVE_INSTDIR ""
@@ -285,17 +312,10 @@ SectionEnd
 !endif
 
 Function .onSelChange
-    Push $R0
-    # 0 = none selected, 1 = at least one selected
-
-    StrCpy $R0 0
+    # Some graphics options are grouped together
     ${If} ${SectionIsSelected} ${gfx1}
     ${OrIf} ${SectionIsSelected} ${gfx2}
     ${OrIf} ${SectionIsSelected} ${gfx3}
-        StrCpy $R0 1
-    ${EndIf}
-
-    ${If} $R0 == 1
         !insertmacro SelectSection ${gfx1}
         !insertmacro SelectSection ${gfx2}
         !insertmacro SelectSection ${gfx3}
@@ -305,14 +325,16 @@ Function .onSelChange
         !insertmacro UnselectSection ${gfx3}
     ${EndIf}
 
-    Pop $R0
-
+    # FMV options are lax radio buttons (0 or 1 choice)
     ${If} ${SectionIsSelected} ${fmv}
         !insertmacro UnSelectSection ${fmv}
     ${Else}
-        !insertmacro StartRadioButtons $9
-            !insertmacro RadioButton ${fmv960}
-            !insertmacro RadioButton ${fmv480}
-        !insertmacro EndRadioButtons
+        ${If} ${SectionIsSelected} ${fmv1}
+        ${OrIf} ${SectionIsSelected} ${fmv2}
+            !insertmacro StartRadioButtons $9
+                !insertmacro RadioButton ${fmv1}
+                !insertmacro RadioButton ${fmv2}
+            !insertmacro EndRadioButtons
+        ${EndIf}
     ${EndIf}
 FunctionEnd

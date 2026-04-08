@@ -1,6 +1,7 @@
 !define MUI_WELCOMEPAGE_TEXT "\
 This is an Enhancement Pack for Resident Evil (GOG), with:$\r$\n\
 - Resident Evil Classic REbirth$\r$\n\
+- Translation patches$\r$\n\
 - Resident Evil HD Mod (by TeamX)$\r$\n\
 - Seamless HD Project v1.1 (by RESHDP)$\r$\n\
 - RE-Enhance v2.0 (by SonicB00M)$\r$\n\
@@ -9,7 +10,7 @@ This is an Enhancement Pack for Resident Evil (GOG), with:$\r$\n\
 $\r$\n\
 WARNING: make sure you've downloaded the Japanese version of the game on GOG.$\r$\n\
 $\r$\n\
-${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
+${TXT_WELCOMEPAGE_MULDERLAND_2}$\r$\n\
 $\r$\n\
 Special thanks to the Classic REbirth team!"
 
@@ -18,15 +19,13 @@ Special thanks to the Classic REbirth team!"
 
 Name "Resident Evil [GOG Enhancement Pack]"
 
-Section
-SectionEnd
-
 !define GOG_ENHANCEMENT_PACK_NSI
 !include "steam-enhancement-pack.nsi"
 
 Function .onInit
+    StrCpy $9 ${fmv1} ; Radio Button
     StrCpy $SELECT_FILENAME "Biohazard.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\GOG Galaxy\Games\Resident Evil\Biohazard.exe"
+    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\GOG Galaxy\Games\Resident Evil"
     StrCpy $SELECT_RELATIVE_INSTDIR ""
 FunctionEnd
 
