@@ -221,13 +221,16 @@ SectionGroup "Graphical improvements"
     Section "dgVoodoo2 (by Dege)"
         SetOutPath "$REBIRTHDIR"
 
-        !insertmacro DOWNLOAD_DGVOODOO2
+        # While latest version of dgVoodoo2 seems works for some people, others (Steam Deck users?) have reported better success with v2.64 so let's use that one
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/dgVoodoo2_64_nopassword.zip" \
+                                "https://www.mediafire.com/file_premium/dudqbe1p5r0vtge/dgVoodoo2_64_nopassword.zip/file" \
+                                "dgVoodoo2.zip" "38815d63c33501dcb732f405b985d7339fc3c328"
         !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "dgVoodoo.conf" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "dgVoodooCpl.exe" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\Common\" "MS\x86\DDraw.dll" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "MS\x86\D3DImm.dll" "AUTO_DELETE"
         !insertmacro FORCE_RENAME ".\Common\DDraw.dll" ".\re2_DDraw.dll"
-        AddSize 914
+        AddSize 618
 
         # Configure dgVoodoo
         !insertmacro FILE_STR_REPLACE "Antialiasing                        = appdriven" "Antialiasing                        = 4x" 2 1 "$REBIRTHDIR\dgVoodoo.conf"
