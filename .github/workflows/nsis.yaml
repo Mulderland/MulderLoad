@@ -9,6 +9,7 @@ on:
   push:
     branches:
       - main
+      - pre/**
   pull_request: {}
 
 permissions:
@@ -76,16 +77,18 @@ jobs:
         }
       working-directory: build
 
-    - name: Generate version number
+    - name: Generate version number (stable)
       if: github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.detect.outputs.detectSummary != 'none'
-      id: version_number
+      id: version_number_stable
       shell: pwsh
       run: |
         $base = Get-Date -Format "yy.MM"
         $tags = git tag -l "$base.*"
-        Write-Host "Tags: $($tags -join ', ')"
+        Write-Host "Stable tags: $($tags -join ', ')"
         if ($tags) {
-          $last = $tags | ForEach-Object { ($_ -split '\.')[-1] } | Sort-Object {[int]$_} -Descending | Select-Object -First 1
+          $last = $tags | ForEach-Object {
+            if ($_ -match '^\d+\.\d+\.(\d+)$') { [int]$Matches[1] } else { 0 }
+          } | Sort-Object -Descending | Select-Object -First 1
           $next = [int]$last + 1
         } else {
           $next = 1
@@ -94,16 +97,43 @@ jobs:
         Write-Host "Generated version number: $versionNumber"
         echo versionNumber=$versionNumber >> $env:GITHUB_OUTPUT
 
+    - name: Generate version number (pre)
+      if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/pre/') && steps.detect.outputs.detectSummary != 'none'
+      id: version_number_pre
+      shell: pwsh
+      run: |
+        $base = Get-Date -Format "yy.MM"
+        $tags = git tag -l "$base.pre.*"
+        Write-Host "Pre tags: $($tags -join ', ')"
+        if ($tags) {
+          $last = $tags | ForEach-Object {
+            if ($_ -match '^\d+\.\d+\.pre\.(\d+)$') { [int]$Matches[1] } else { 0 }
+          } | Sort-Object -Descending | Select-Object -First 1
+          $next = [int]$last + 1
+        } else {
+          $next = 1
+        }
+        $versionNumber = "$base.pre.$next"
+        Write-Host "Generated version number: $versionNumber"
+        echo versionNumber=$versionNumber >> $env:GITHUB_OUTPUT
+
     - name: Create GitHub Release
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.detect.outputs.detectSummary != 'none'
+      if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/pre/')) && steps.detect.outputs.detectSummary != 'none'
       shell: pwsh
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        $versionNumber = "${{ steps.version_number.outputs.versionNumber }}"
+        $versionNumber = if ("${{ github.ref_name }}" -eq "main") {
+          "${{ steps.version_number_stable.outputs.versionNumber }}"
+        } else {
+          "${{ steps.version_number_pre.outputs.versionNumber }}"
+        }
         $detectSummary = "${{ steps.detect.outputs.detectSummary }}"
+        $isPre = "${{ github.ref_name }}" -ne "main"
 
-        if ($detectSummary -eq "partial") {
+        if ($isPre) {
+          gh release create $versionNumber ../dist/*.exe --generate-notes --prerelease
+        } elseif ($detectSummary -eq "partial") {
           gh release create $versionNumber ../dist/*.exe --generate-notes
         } else {
           gh release create $versionNumber ../dist/*.exe --generate-notes --latest=false
