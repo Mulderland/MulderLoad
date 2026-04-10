@@ -1,0 +1,9 @@
+{
+  "Resident Evil 3 (Steam)": {
+    "Executable": "Classic REbirth",
+    "Misc": [
+      "Enable HD textures",
+      "Enable HQ audio"
+    ]
+  }
+}
