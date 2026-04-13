@@ -2,7 +2,8 @@
     !define MUI_WELCOMEPAGE_TEXT "\
     This is an Enhancement Pack for Resident Evil 3 Steam, with:$\r$\n\
     - Downgrade to GOG version (including GOG's DX Wrapper)$\r$\n\
-    - Resident Evil 3 Classic REbirth$\r$\n\
+    - Resident Evil 3 Classic REbirth (by Gemini)$\r$\n\
+    - Modern Controls Mods$\r$\n\
     - Translation patches$\r$\n\
     - Resident Evil 3 HD Mod (by TeamX)$\r$\n\
     - Seamless HD Project v2.0 Patch 2 (by RESHDP)$\r$\n\
@@ -11,7 +12,7 @@
     - High Quality Audio (by lexas87)$\r$\n\
     - MulderConfig$\r$\n\
     $\r$\n\
-    ${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
+    ${TXT_WELCOMEPAGE_MULDERLAND_2}$\r$\n\
     $\r$\n\
     Special thanks to the Classic REbirth team!"
 
@@ -103,6 +104,13 @@ SectionGroup "Resident Evil 3 Classic REbirth (by Gemini)"
                                 "clocktower_bugfix.7z" "6fde3f4086573a8bf264192d147dc4d1db8579d4"
         !insertmacro NSIS7Z_EXTRACT "clocktower_bugfix.7z" ".\" "AUTO_DELETE"
         AddSize 9
+
+        # Clocktower Bug Fix 2
+        !ifdef GOG_ENHANCEMENT_PACK_NSI
+            WriteRegStr HKCU "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" "$REBIRTHDIR\BH3Launcher.exe" "~ DISABLEDXMAXIMIZEDWINDOWEDMODE"
+        !else
+            WriteRegStr HKCU "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" "$REBIRTHDIR\BIOHAZARD(R) 3 PC.exe" "~ DISABLEDXMAXIMIZEDWINDOWEDMODE"
+        !endif
 
         # XAudio DLL
         !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-3/xaudio2_9.dll" \
