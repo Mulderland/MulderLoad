@@ -1,0 +1,99 @@
+{
+  "game": {
+    "title": "Resident Evil 3 Nemesis (Steam)",
+    "originalExe": "4249120_Launcher.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Executable",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Classic REbirth" },
+        { "value": "Original - English" },
+        { "value": "Original - French" },
+        { "value": "Original - German" },
+        { "value": "Original - Italian" },
+        { "value": "Original - Japanese" },
+        { "value": "Original - Spanish" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Enable HD textures", "disabledWhen": [{ "!Executable": "Classic REbirth" }] },
+        { "value": "Enable HQ audio", "disabledWhen": [{ "!Executable": "Classic REbirth" }] }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "Misc": "Enable HD textures" } ],
+        "operation": "rename",
+        "source": "rebirth\\_hires.bak",
+        "target": "rebirth\\hires"
+      },
+      {
+        "when": [ { "!Misc": "Enable HD textures" } ],
+        "operation": "rename",
+        "source": "rebirth\\hires",
+        "target": "rebirth\\_hires.bak"
+      },
+      {
+        "when": [ { "Misc": "Enable HQ audio" } ],
+        "operation": "rename",
+        "source": "rebirth\\DATA_A\\_SOUND.bak",
+        "target": "rebirth\\DATA_A\\SOUND"
+      },
+      {
+        "when": [ { "Misc": "Enable HQ audio" } ],
+        "operation": "rename",
+        "source": "rebirth\\DATA_A\\_VOICE.bak",
+        "target": "rebirth\\DATA_A\\VOICE"
+      },
+      {
+        "when": [ { "!Misc": "Enable HQ audio" } ],
+        "operation": "rename",
+        "source": "rebirth\\DATA_A\\SOUND",
+        "target": "rebirth\\DATA_A\\_SOUND.bak"
+      },
+      {
+        "when": [ { "!Misc": "Enable HQ audio" } ],
+        "operation": "rename",
+        "source": "rebirth\\DATA_A\\VOICE",
+        "target": "rebirth\\DATA_A\\_VOICE.bak"
+      }
+    ],
+    "launch": [
+      {
+        "when": [ { "Executable": "Classic REbirth" } ],
+        "exec": { "name": "rebirth\\BIOHAZARD(R) 3 PC.exe", "workDir": "rebirth" }
+      },
+      {
+        "when": [ { "Executable": "Original - English" } ],
+        "exec": { "name": "english\\RE3Launcher.exe", "workDir": "english" }
+      },
+      {
+        "when": [ { "Executable": "Original - French" } ],
+        "exec": { "name": "french\\RE3Launcher.exe", "workDir": "french" }
+      },
+      {
+        "when": [ { "Executable": "Original - German" } ],
+        "exec": { "name": "german\\RE3Launcher.exe", "workDir": "german" }
+      },
+      {
+        "when": [ { "Executable": "Original - Italian" } ],
+        "exec": { "name": "italian\\RE3Launcher.exe", "workDir": "italian" }
+      },
+      {
+        "when": [ { "Executable": "Original - Japanese" } ],
+        "exec": { "name": "japanese\\BH3Launcher.exe", "workDir": "japanese" }
+      },
+      {
+        "when": [ { "Executable": "Original - Spanish" } ],
+        "exec": { "name": "spanish\\RE3Launcher.exe", "workDir": "spanish" }
+       }
+    ]
+  }
+}
