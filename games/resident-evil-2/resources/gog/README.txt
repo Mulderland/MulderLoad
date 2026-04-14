@@ -4,7 +4,7 @@ Resident Evil 2 *GOG Enhancement Pack* @ mulderland.com
 1) What this pack does:
 
 - Fixes non-rebirth crash on saving (due to a wrong save path in registry and/or wrong current user)
-- Installs Classic REbirth in a new "rebirth" subfolder
+- Replace the GOG japanese installation with Classic REbirth
 - Patches the Classic REbirth executable to allow 4GB of memory
 - Installs Graphical Improvements (see below) and dgVoodoo2
 - Installs High Quality FMVs (see below)
