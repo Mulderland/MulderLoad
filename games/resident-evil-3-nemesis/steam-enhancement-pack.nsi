@@ -194,6 +194,18 @@ SectionGroup "Graphical improvements"
                                 "dinput8-Win32.zip" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "dinput8-Win32.zip" ".\" "dinput8.dll" "AUTO_DELETE"
         AddSize 5264
+
+        # Get patched asi for Linux/Proton
+        Push $R0
+        EnumRegKey $R0 HKCU "Software\Wine" ""
+        ${If} $R0 != ""
+            DetailPrint " // HD Mod: Wine/Proton detected, download patched asi"
+            !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-3/gfx/RE3-Linux.zip" \
+                                    "https://www.mediafire.com/file_premium/lt1dpezsrywj4rg/RE3-Linux.zip/file" \
+                                    "RE3-Linux.zip" "70ccfce8c1d3946c2bb1757116cb4e2d21ea254f"
+            !insertmacro NSISUNZ_EXTRACT_ONE "RE3-Linux.zip" ".\" "bio3hd.asi" "AUTO_DELETE"
+        ${EndIf}
+        Pop $R0
     SectionEnd
 
     Section "Seamless HD Project v2.0 (by RESHDP)" gfx2
