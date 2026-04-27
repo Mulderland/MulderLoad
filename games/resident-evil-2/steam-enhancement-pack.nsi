@@ -3,6 +3,7 @@
     This is an Enhancement Pack for Resident Evil 2 Steam, with:$\r$\n\
     - Downgrade to GOG version (including GOG's DX Wrapper)$\r$\n\
     - Resident Evil 2 Classic REbirth$\r$\n\
+    - Modern Controls Plus (Mod)$\r$\n\
     - Translation patches$\r$\n\
     - Resident Evil 2 HD Mod (by TeamX)$\r$\n\
     - Seamless HD Project v2.0 Patch 2 (by RESHDP)$\r$\n\
@@ -11,7 +12,7 @@
     - High Quality Audio (by lexas87)$\r$\n\
     - MulderConfig$\r$\n\
     $\r$\n\
-    ${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
+    ${TXT_WELCOMEPAGE_MULDERLAND_2}$\r$\n\
     $\r$\n\
     Special thanks to the Classic REbirth team!"
 
@@ -75,77 +76,88 @@ Section "Fix crash when saving"
     !endif
 SectionEnd
 
-Section "Resident Evil 2 Classic REbirth"
-    SetOutPath "$INSTDIR"
+SectionGroup "Resident Evil 2 Classic REbirth"
+    Section
+        SetOutPath "$INSTDIR"
 
-    !ifdef GOG_ENHANCEMENT_PACK_NSI
-        # If GOG: disable unwanted files
-        !insertmacro FORCE_RENAME "$INSTDIR\BH2Launcher.exe" "$INSTDIR\BH2Launcher.exe.bak"
-        !insertmacro FORCE_RENAME "$INSTDIR\ClaireJ.exe" "$INSTDIR\ClaireJ.exe.bak"
-        !insertmacro FORCE_RENAME "$INSTDIR\ddraw.dll" "$INSTDIR\ddraw.dll.bak"
-        !insertmacro FORCE_RENAME "$INSTDIR\dinput.dll" "$INSTDIR\dinput.dll.bak"
-        !insertmacro FORCE_RENAME "$INSTDIR\dshow.dll" "$INSTDIR\dshow.dll.bak"
-        !insertmacro FORCE_RENAME "$INSTDIR\dxcfg.exe" "$INSTDIR\dxcfg.exe.bak"
-        !insertmacro FORCE_RENAME "$INSTDIR\dxcfg.ini" "$INSTDIR\dxcfg.ini.bak"
-        !insertmacro FORCE_RENAME "$INSTDIR\LeonJ.exe" "$INSTDIR\LeonJ.exe.bak"
-    !else
-        # If Steam: copy files to a new "rebirth" folder
-        AddSize 888832
-        ${IfNot} ${FileExists} "$INSTDIR\rebirth\*.*"
-            CopyFiles /SILENT "$INSTDIR\japanese\Common" "$INSTDIR\rebirth\Common"
-            CopyFiles /SILENT "$INSTDIR\japanese\Gallery" "$INSTDIR\rebirth\Gallery"
-            CopyFiles /SILENT "$INSTDIR\japanese\Pl0" "$INSTDIR\rebirth\Pl0"
-            CopyFiles /SILENT "$INSTDIR\japanese\Pl1" "$INSTDIR\rebirth\Pl1"
-            CopyFiles /SILENT "$INSTDIR\japanese\Zmovie" "$INSTDIR\rebirth\Zmovie"
-        ${EndIf}
-    !endif
+        !ifdef GOG_ENHANCEMENT_PACK_NSI
+            # If GOG: disable unwanted files
+            !insertmacro FORCE_RENAME "$INSTDIR\BH2Launcher.exe" "$INSTDIR\BH2Launcher.exe.bak"
+            !insertmacro FORCE_RENAME "$INSTDIR\ClaireJ.exe" "$INSTDIR\ClaireJ.exe.bak"
+            !insertmacro FORCE_RENAME "$INSTDIR\ddraw.dll" "$INSTDIR\ddraw.dll.bak"
+            !insertmacro FORCE_RENAME "$INSTDIR\dinput.dll" "$INSTDIR\dinput.dll.bak"
+            !insertmacro FORCE_RENAME "$INSTDIR\dshow.dll" "$INSTDIR\dshow.dll.bak"
+            !insertmacro FORCE_RENAME "$INSTDIR\dxcfg.exe" "$INSTDIR\dxcfg.exe.bak"
+            !insertmacro FORCE_RENAME "$INSTDIR\dxcfg.ini" "$INSTDIR\dxcfg.ini.bak"
+            !insertmacro FORCE_RENAME "$INSTDIR\LeonJ.exe" "$INSTDIR\LeonJ.exe.bak"
+        !else
+            # If Steam: copy files to a new "rebirth" folder
+            AddSize 888832
+            ${IfNot} ${FileExists} "$INSTDIR\rebirth\*.*"
+                CopyFiles /SILENT "$INSTDIR\japanese\Common" "$INSTDIR\rebirth\Common"
+                CopyFiles /SILENT "$INSTDIR\japanese\Gallery" "$INSTDIR\rebirth\Gallery"
+                CopyFiles /SILENT "$INSTDIR\japanese\Pl0" "$INSTDIR\rebirth\Pl0"
+                CopyFiles /SILENT "$INSTDIR\japanese\Pl1" "$INSTDIR\rebirth\Pl1"
+                CopyFiles /SILENT "$INSTDIR\japanese\Zmovie" "$INSTDIR\rebirth\Zmovie"
+            ${EndIf}
+        !endif
 
-    SetOutPath "$REBIRTHDIR"
+        SetOutPath "$REBIRTHDIR"
 
-    # Sourcenext DVD Update
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-2/sourcenext/sourcenext_dvd_update.7z" \
-                            "https://www.mediafire.com/file_premium/es5y8hzqcxrknog/sourcenext_dvd_update.7z/file" \
-                            "sourcenext_dvd_update.7z" "81029dec85034fe57538ade06c64865501dab113"
-    !insertmacro NSIS7Z_EXTRACT "sourcenext_dvd_update.7z" ".\" "AUTO_DELETE"
-    !insertmacro FORCE_RENAME "Common\Data\Tit_bg.adt" "Common\Data\Title_bg.adt"
-    AddSize 266
+        # Sourcenext DVD Update
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-2/sourcenext/sourcenext_dvd_update.7z" \
+                                "https://www.mediafire.com/file_premium/es5y8hzqcxrknog/sourcenext_dvd_update.7z/file" \
+                                "sourcenext_dvd_update.7z" "81029dec85034fe57538ade06c64865501dab113"
+        !insertmacro NSIS7Z_EXTRACT "sourcenext_dvd_update.7z" ".\" "AUTO_DELETE"
+        !insertmacro FORCE_RENAME "Common\Data\Tit_bg.adt" "Common\Data\Title_bg.adt"
+        AddSize 266
 
-    # Sourcenext Patch 1.1.0
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-2/sourcenext/bio2patch1.1.0.7z" \
-                            "https://www.mediafire.com/file_premium/hyrr80sjbq6s7jw/bio2patch1.1.0.7z/file" \
-                            "bio2patch1.1.0.7z" "e35a99db5a07b26119f08f4402782108b2d6c790"
-    !insertmacro NSIS7Z_EXTRACT "bio2patch1.1.0.7z" ".\" "AUTO_DELETE"
-    AddSize 5988
-    !ifdef GOG_ENHANCEMENT_PACK_NSI
-        !insertmacro FORCE_RENAME "bio2.exe" "BH2Launcher.exe"
-    !endif
+        # Sourcenext Patch 1.1.0
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-2/sourcenext/bio2patch1.1.0.7z" \
+                                "https://www.mediafire.com/file_premium/hyrr80sjbq6s7jw/bio2patch1.1.0.7z/file" \
+                                "bio2patch1.1.0.7z" "e35a99db5a07b26119f08f4402782108b2d6c790"
+        !insertmacro NSIS7Z_EXTRACT "bio2patch1.1.0.7z" ".\" "AUTO_DELETE"
+        AddSize 5988
+        !ifdef GOG_ENHANCEMENT_PACK_NSI
+            !insertmacro FORCE_RENAME "bio2.exe" "BH2Launcher.exe"
+        !endif
 
-    # Classic REbirth DLL
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-2/re2cr-2024-09-01.7z" \
-                            "https://www.mediafire.com/file_premium/gmyfli4apolmcg9/re2cr-2024-09-01.7z/file" \
-                            "re2cr-2024-09-01.7z" "c2f6a2f6ae9f6e8bb4a48f1aeb74b820fb398f46"
-    !insertmacro NSIS7Z_EXTRACT "re2cr-2024-09-01.7z" ".\" "AUTO_DELETE"
-    AddSize 3364
+        # Classic REbirth DLL
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-2/re2cr-2024-09-01.7z" \
+                                "https://www.mediafire.com/file_premium/gmyfli4apolmcg9/re2cr-2024-09-01.7z/file" \
+                                "re2cr-2024-09-01.7z" "c2f6a2f6ae9f6e8bb4a48f1aeb74b820fb398f46"
+        !insertmacro NSIS7Z_EXTRACT "re2cr-2024-09-01.7z" ".\" "AUTO_DELETE"
+        AddSize 3364
 
-    # Copy default config.ini (without that, DATA1, DATA2 and DriverMode will have incorrect values)
-    File "resources\config.ini"
+        # Copy default config.ini (without that, DATA1, DATA2 and DriverMode will have incorrect values)
+        File "resources\config.ini"
 
-    # Fix squares/lines in background when using Anti-Aliasing
-    WriteRegStr HKCU "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" "$REBIRTHDIR\bio2.exe" "~ HIGHDPIAWARE"
+        # Fix squares/lines in background when using Anti-Aliasing
+        WriteRegStr HKCU "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" "$REBIRTHDIR\bio2.exe" "~ HIGHDPIAWARE"
 
-    # Apply 4GB Patch
-    !insertmacro DOWNLOAD_2 "https://ntcore.com/files/4gb_patch.zip" \
-                            "https://cdn1.mulderload.eu/games/_common/ntcore_4gb_patch_v1.0.0.1.zip" \
-                            "4gb_patch.zip" "c8b0d61937cb54fc8215124c0f737a1d29479c97"
-    !insertmacro NSISUNZ_EXTRACT "4gb_patch.zip" ".\" "AUTO_DELETE"
-    !ifdef GOG_ENHANCEMENT_PACK_NSI
-        ExecWait '4gb_patch.exe BH2Launcher.exe' $0
-    !else
-        ExecWait '4gb_patch.exe bio2.exe' $0
-    !endif
-    Delete "4gb_patch.exe"
-    AddSize 5988
-SectionEnd
+        # Apply 4GB Patch
+        !insertmacro DOWNLOAD_2 "https://ntcore.com/files/4gb_patch.zip" \
+                                "https://cdn1.mulderload.eu/games/_common/ntcore_4gb_patch_v1.0.0.1.zip" \
+                                "4gb_patch.zip" "c8b0d61937cb54fc8215124c0f737a1d29479c97"
+        !insertmacro NSISUNZ_EXTRACT "4gb_patch.zip" ".\" "AUTO_DELETE"
+        !ifdef GOG_ENHANCEMENT_PACK_NSI
+            ExecWait '4gb_patch.exe BH2Launcher.exe' $0
+        !else
+            ExecWait '4gb_patch.exe bio2.exe' $0
+        !endif
+        Delete "4gb_patch.exe"
+        AddSize 5988
+    SectionEnd
+
+    Section "Modern Controls+ v2.1 (by X4vv, Rebrond)"
+        SetOutPath "$REBIRTHDIR"
+        !insertmacro DOWNLOAD_2 "https://www.nexusmods.com/residentevil21998/mods/48?tab=files&file_id=174" \
+                                "https://cdn1.mulderload.eu/games/resident-evil-2/mods/mod_ModernControlsPlus-48-v2-1-1777235451.zip" \
+                                "$REBIRTHDIR\mod_ModernControlsPlus.zip" "eeb62be7781aa50fbd412f62f40f74f94bad8d3c"
+        !insertmacro NSISUNZ_EXTRACT "mod_ModernControlsPlus.zip" ".\" "AUTO_DELETE"
+        AddSize 2350
+    SectionEnd
+SectionGroupEnd
 
 SectionGroup "Translation patches"
     Section /o "French patch (by Vonmalvarius)"
