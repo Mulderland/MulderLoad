@@ -130,6 +130,9 @@ Section "Resident Evil 2 Classic REbirth"
     # Copy default config.ini (without that, DATA1, DATA2 and DriverMode will have incorrect values)
     File "resources\config.ini"
 
+    # Fix squares/lines in background when using Anti-Aliasing
+    WriteRegStr HKCU "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" "$REBIRTHDIR\bio2.exe" "~ HIGHDPIAWARE"
+
     # Apply 4GB Patch
     !insertmacro DOWNLOAD_2 "https://ntcore.com/files/4gb_patch.zip" \
                             "https://cdn1.mulderload.eu/games/_common/ntcore_4gb_patch_v1.0.0.1.zip" \

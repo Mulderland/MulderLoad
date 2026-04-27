@@ -114,6 +114,9 @@ Section "Resident Evil Classic REbirth"
     # Create Classic REbirth save folder
     CreateDirectory "$REBIRTHDIR\savedata"
 
+    # Fix squares/lines in background when using Anti-Aliasing
+    WriteRegStr HKCU "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" "$REBIRTHDIR\Biohazard.exe" "~ HIGHDPIAWARE"
+
     # Apply 4GB Patch
     !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/_common/ntcore_4gb_patch_v1.0.0.1.zip" \
                             "https://ntcore.com/files/4gb_patch.zip" \
