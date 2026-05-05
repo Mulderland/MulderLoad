@@ -40,13 +40,13 @@ SectionGroup /e "The Crew Unlimited (Server Emulator) v1.2.0.1"
         nsExec::ExecToLog /OEM 'icacls "$INSTDIR" /grant *S-1-5-32-545:(OI)(CI)M /T'
     SectionEnd
 
-    Section "Microsoft .NET Desktop Runtime 8.0.23 (x64)"
+    Section "Microsoft .NET Desktop Runtime 8.0.26 (x64)"
         SetOutPath "$INSTDIR"
         AddSize 100000
 
-        !insertmacro DOWNLOAD_2 "https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.23/windowsdesktop-runtime-8.0.23-win-x64.exe" \
-                                "https://cdn1.mulderload.eu/games/_redist/windowsdesktop-runtime-8.0.23-win-x64.exe" \
-                                "windowsdesktop-runtime-win-x64.exe" "0ecfc9a9dab72cb968576991ec34921719039d70"
+        !insertmacro DOWNLOAD_2 "https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.26/windowsdesktop-runtime-8.0.26-win-x64.exe" \
+                                "https://cdn1.mulderload.eu/games/_redist/windowsdesktop-runtime-8.0.26-win-x64.exe" \
+                                "windowsdesktop-runtime-win-x64.exe" "0a25dfd2bef2646551dcaceb8322fb3f136ff186"
         ExecWait '"windowsdesktop-runtime-win-x64.exe" /Q' $0
         Delete "windowsdesktop-runtime-win-x64.exe"
     SectionEnd

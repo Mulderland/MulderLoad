@@ -105,18 +105,18 @@
             SectionIn RO
             AddSize 1024
             SetOutPath "${OUT_PATH}"
-            !insertmacro DOWNLOAD_1 "https://github.com/Mulderland/MulderConfig/releases/latest/download/MulderConfig.exe" "MulderConfig.exe" ""
+            !insertmacro DOWNLOAD_1 "https://github.com/Mulderland/MulderConfig/releases/download/26.04.1/MulderConfig.exe" "MulderConfig.exe" ""
             File ${CONFIG_FOLDER}\MulderConfig.json
             File ${CONFIG_FOLDER}\MulderConfig.save.json
         SectionEnd
 
-        Section ".NET Desktop Runtime 8.0.25 (x64)" SEC_MULDERCONFIG_DOTNET
+        Section ".NET Desktop Runtime 8.0.26 (x64)" SEC_MULDERCONFIG_DOTNET
             SetOutPath "${OUT_PATH}"
             AddSize 100000
 
-            !insertmacro DOWNLOAD_2 "https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.25/windowsdesktop-runtime-8.0.25-win-x64.exe" \
-                                    "https://cdn1.mulderload.eu/games/_redist/windowsdesktop-runtime-8.0.25-win-x64.exe" \
-                                    "windowsdesktop-runtime-win-x64.exe" "5af2ef45b817c57ea68d9eec9fe5a9e23d87d481"
+            !insertmacro DOWNLOAD_2 "https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.26/windowsdesktop-runtime-8.0.26-win-x64.exe" \
+                                    "https://cdn1.mulderload.eu/games/_redist/windowsdesktop-runtime-8.0.26-win-x64.exe" \
+                                    "windowsdesktop-runtime-win-x64.exe" "0a25dfd2bef2646551dcaceb8322fb3f136ff186"
             ExecWait '"windowsdesktop-runtime-win-x64.exe" /Q' $0
             Delete "windowsdesktop-runtime-win-x64.exe"
         SectionEnd
