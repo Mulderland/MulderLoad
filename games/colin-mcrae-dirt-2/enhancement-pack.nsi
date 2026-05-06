@@ -121,6 +121,5 @@ SectionEnd
         StrCpy $SELECT_FILENAME "dirt2_game.exe"
         StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Dirt 2"
         StrCpy $SELECT_RELATIVE_INSTDIR ""
-        !insertmacro MULDERCONFIG_ONINIT
     FunctionEnd
 !endif

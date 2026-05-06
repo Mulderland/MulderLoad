@@ -91,5 +91,4 @@ Function .onInit
     StrCpy $SELECT_FILENAME "Hitman.Exe"
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Hitman Codename 47"
     StrCpy $SELECT_RELATIVE_INSTDIR ""
-    !insertmacro MULDERCONFIG_ONINIT
 FunctionEnd

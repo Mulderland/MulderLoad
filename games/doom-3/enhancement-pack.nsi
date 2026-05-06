@@ -114,7 +114,6 @@ Function .onInit
     StrCpy $SELECT_FILENAME "Doom3.exe"
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Doom 3"
     StrCpy $SELECT_RELATIVE_INSTDIR ""
-    !insertmacro MULDERCONFIG_ONINIT
 FunctionEnd
 
 Function OnSelectedFile

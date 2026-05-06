@@ -150,5 +150,4 @@ Function .onInit
     StrCpy $SELECT_FILENAME "HitmanBloodMoney.exe"
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Hitman Blood Money"
     StrCpy $SELECT_RELATIVE_INSTDIR ""
-    !insertmacro MULDERCONFIG_ONINIT
 FunctionEnd

@@ -45,5 +45,4 @@ Function .onInit
     StrCpy $SELECT_FILENAME "SHf.exe"
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\SILENT HILL f"
     StrCpy $SELECT_RELATIVE_INSTDIR ""
-    !insertmacro MULDERCONFIG_ONINIT
 FunctionEnd

@@ -310,7 +310,6 @@ SectionEnd
         StrCpy $SELECT_FILENAME "4249100_Launcher.exe"
         StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\4249100_Biohazard"
         StrCpy $SELECT_RELATIVE_INSTDIR ""
-        !insertmacro MULDERCONFIG_ONINIT
     FunctionEnd
 !endif
 

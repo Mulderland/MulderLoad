@@ -153,7 +153,6 @@ Function .onInit
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Hitman 2 Silent Assassin"
     StrCpy $SELECT_RELATIVE_INSTDIR ""
     StrCpy $1 ${lang_fr} ; Radio Button
-    !insertmacro MULDERCONFIG_ONINIT
 FunctionEnd
 
 Function .onSelChange

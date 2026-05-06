@@ -136,5 +136,4 @@ Function .onInit
         StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\DiRT 3 Complete Edition"
         StrCpy $SELECT_RELATIVE_INSTDIR ""
     !endif
-    !insertmacro MULDERCONFIG_ONINIT
 FunctionEnd
