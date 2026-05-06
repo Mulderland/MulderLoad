@@ -77,43 +77,33 @@ jobs:
         }
       working-directory: build
 
-    - name: Generate version number (stable)
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.detect.outputs.detectSummary != 'none'
-      id: version_number_stable
+    - name: Generate version number
+      if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/pre/')) && steps.detect.outputs.detectSummary != 'none'
+      id: version_number
       shell: pwsh
       run: |
-        $base = Get-Date -Format "yy.MM"
-        $tags = git tag -l "$base.*"
-        Write-Host "Stable tags: $($tags -join ', ')"
-        if ($tags) {
-          $last = $tags | ForEach-Object {
-            if ($_ -match '^\d+\.\d+\.(\d+)$') { [int]$Matches[1] } else { 0 }
-          } | Sort-Object -Descending | Select-Object -First 1
-          $next = [int]$last + 1
+        $isPre = "${{ github.ref_name }}" -ne "main"
+        if ($isPre) {
+          $base = Get-Date -Format "yy.00"
         } else {
-          $next = 1
+          $base = Get-Date -Format "yy.MM"
         }
-        $versionNumber = "$base.$next"
-        Write-Host "Generated version number: $versionNumber"
-        echo versionNumber=$versionNumber >> $env:GITHUB_OUTPUT
 
-    - name: Generate version number (pre)
-      if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/pre/') && steps.detect.outputs.detectSummary != 'none'
-      id: version_number_pre
-      shell: pwsh
-      run: |
-        $base = Get-Date -Format "yy.MM"
-        $tags = git tag -l "$base.pre.*"
-        Write-Host "Pre tags: $($tags -join ', ')"
+        $tagPattern = "$base.*"
+        $tagRegex = '^\d+\.\d+\.(\d+)$'
+        $tags = git tag -l "$tagPattern"
+        Write-Host "Matching tags: $($tags -join ', ')"
+
         if ($tags) {
           $last = $tags | ForEach-Object {
-            if ($_ -match '^\d+\.\d+\.pre\.(\d+)$') { [int]$Matches[1] } else { 0 }
+            if ($_ -match $tagRegex) { [int]$Matches[1] } else { 0 }
           } | Sort-Object -Descending | Select-Object -First 1
           $next = [int]$last + 1
         } else {
           $next = 1
         }
-        $versionNumber = "$base.pre.$next"
+
+        $versionNumber = "$base.$next"
         Write-Host "Generated version number: $versionNumber"
         echo versionNumber=$versionNumber >> $env:GITHUB_OUTPUT
 
@@ -123,11 +113,7 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        $versionNumber = if ("${{ github.ref_name }}" -eq "main") {
-          "${{ steps.version_number_stable.outputs.versionNumber }}"
-        } else {
-          "${{ steps.version_number_pre.outputs.versionNumber }}"
-        }
+        $versionNumber = "${{ steps.version_number.outputs.versionNumber }}"
         $detectSummary = "${{ steps.detect.outputs.detectSummary }}"
         $isPre = "${{ github.ref_name }}" -ne "main"
 
