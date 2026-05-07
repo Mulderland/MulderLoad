@@ -53,8 +53,8 @@
       {
         "when": [ { "!Misc": "Enable dgVoodoo2" } ],
         "operation": "rename",
-        "source": "rebirth\\re_DDraw.dll",
-        "target": "rebirth\\_re_DDraw.dll.bak"
+        "source": "rebirth\\re2_DDraw.dll",
+        "target": "rebirth\\_re2_DDraw.dll.bak"
       },
       {
         "when": [ { "!Misc": "Enable dgVoodoo2" } ],
