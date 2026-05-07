@@ -72,7 +72,7 @@ SectionGroup /e "HD Textures" fov
 SectionGroupEnd
 
 Section "MulderConfig (latest)"
-    !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
+    !insertmacro INSTALL_MULDERCONFIG "$INSTDIR\bin" "resources"
 SectionEnd
 
 Function .onInit
