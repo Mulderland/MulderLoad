@@ -106,6 +106,7 @@ jobs:
         $versionNumber = "$base.$next"
         Write-Host "Generated version number: $versionNumber"
         echo versionNumber=$versionNumber >> $env:GITHUB_OUTPUT
+        echo isPre=$($isPre.ToString().ToLower()) >> $env:GITHUB_OUTPUT
 
     - name: Create GitHub Release
       if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/pre/')) && steps.detect.outputs.detectSummary != 'none'
@@ -115,7 +116,7 @@ jobs:
       run: |
         $versionNumber = "${{ steps.version_number.outputs.versionNumber }}"
         $detectSummary = "${{ steps.detect.outputs.detectSummary }}"
-        $isPre = "${{ github.ref_name }}" -ne "main"
+        $isPre = "${{ steps.version_number.outputs.isPre }}" -eq "true"
 
         if ($isPre) {
           gh release create $versionNumber ../dist/*.exe --generate-notes --prerelease
@@ -125,3 +126,19 @@ jobs:
           gh release create $versionNumber ../dist/*.exe --generate-notes --latest=false
         }
       working-directory: build
+
+    - name: Cleanup old pre-releases
+      if: steps.version_number.outputs.isPre == 'true'
+      shell: pwsh
+      run: |
+        $old = gh release list --limit 100 --json tagName,isPrerelease,createdAt |
+          ConvertFrom-Json |
+          Where-Object { $_.isPrerelease } |
+          Sort-Object createdAt |
+          Select-Object -SkipLast 10
+        foreach ($r in $old) {
+          Write-Host "Deleting old pre-release: $($r.tagName)"
+          gh release delete $r.tagName --cleanup-tag --yes
+        }
+      env:
+        GH_TOKEN: ${{ github.token }}
