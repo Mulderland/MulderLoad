@@ -75,12 +75,14 @@ Section /o "Upscaled Cars Textures (by Talal26)"
     !insertmacro DELETE_RANGE "DiRT 3 Upscaled Liveries Mod 1.0 [Repack-MLD].001" 15
 SectionEnd
 
-SectionGroup /e "MulderConfig"
+SectionGroup /e "MulderConfig (latest)"
+    Section
     !ifdef BYOF_INSTALLER_NSI
-        !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources\byof-installer"
+        !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources\byof-installer"
     !else
-        !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources\enhancement-pack"
+        !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources\enhancement-pack"
     !endif
+    SectionEnd
 
     Section "Super Fast Menus Mod (by Martan)"
         AddSize 42

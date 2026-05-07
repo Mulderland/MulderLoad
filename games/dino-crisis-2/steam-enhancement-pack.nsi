@@ -135,14 +135,9 @@ Section "High Quality Textures (Rex-HD Project Preview)" rexhd
 SectionEnd
 
 !ifndef GOG_ENHANCEMENT_PACK_NSI ; If Steam
-    SectionGroup "MulderConfig (latest)"
-        !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources\steam"
-        Section
-            #ExecWait '"$INSTDIR\MulderConfig.exe" -apply' $0
-            Rename "$INSTDIR\4249140_Launcher.exe" "$INSTDIR\4249140_Launcher_o.exe"
-            CopyFiles "$INSTDIR\MulderConfig.exe" "$INSTDIR\4249140_Launcher.exe"
-        SectionEnd
-    SectionGroupEnd
+    Section "MulderConfig (latest)"
+        !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources\steam"
+    SectionEnd
 
     SectionGroup /e "Remove Non-REbirth files (preserve saves)"
         Section /o "Remove english files" remove_original_english

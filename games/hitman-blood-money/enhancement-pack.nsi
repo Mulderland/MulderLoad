@@ -104,9 +104,9 @@ Section "Add controller support (by JerichoRex)"
     Rename "HitmanBloodMoney.exe" "$INSTDIR\_HitmanBloodMoney_gamepad.exe.bak"
 SectionEnd
 
-SectionGroup "MulderConfig (latest)"
-    !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources"
-SectionGroupEnd
+Section "MulderConfig (latest)"
+    !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
+SectionEnd
 
 Section /o "Upscaled Textures (BM Premastered by V01DXIX)"
     AddSize 5274337

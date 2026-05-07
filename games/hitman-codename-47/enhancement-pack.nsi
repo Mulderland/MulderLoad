@@ -64,17 +64,16 @@ Section "Widescreen fix (by alphayellow) + dgVoodoo2"
     Delete "$INSTDIR\nGlideEULA.txt"
 SectionEnd
 
-SectionGroup "MulderConfig (latest)"
-    Section
-        AddSize 1945
-        # Copy Intro.zip to allow toggling the intro video in MulderConfig UI
-        ${IfNot} ${FileExists} "$INSTDIR\@mulderload\backup\Intro.zip"
-            CopyFiles "$INSTDIR\Cutscenes\Intro\Intro.zip" "$INSTDIR\@mulderload\backup\Intro.zip"
-        ${EndIf}
-    SectionEnd
+Section "MulderConfig (latest)"
+    # Copy Intro.zip to allow toggling the intro video in MulderConfig UI
+    AddSize 1945
+    ${IfNot} ${FileExists} "$INSTDIR\@mulderload\backup\Intro.zip"
+        CopyFiles "$INSTDIR\Cutscenes\Intro\Intro.zip" "$INSTDIR\@mulderload\backup\Intro.zip"
+    ${EndIf}
 
-    !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources"
-SectionGroupEnd
+    # MulderConfig
+    !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
+SectionEnd
 
 Section "Modern keyboard mapping"
     SetOutPath "$INSTDIR"

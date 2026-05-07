@@ -77,8 +77,10 @@ Section "GFWL Fix (Xliveless by ThirteenAG)"
     !insertmacro NSISUNZ_EXTRACT_ONE "xlive-Win32.zip" ".\"  "xlive.dll" "AUTO_DELETE"
 SectionEnd
 
-SectionGroup /e "MulderConfig"
-    !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources"
+SectionGroup /e "MulderConfig (latest)"
+    Section
+        !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
+    SectionEnd
 
     Section "Intro Skip (by Garrett)"
         AddSize 4

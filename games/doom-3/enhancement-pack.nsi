@@ -106,9 +106,9 @@ Section "Textures Pack x4 v1.1 (by GrowlingGuy41)"
     File "/oname=$DOCUMENTS\My Games\dhewm3\d3xp\autoexec.cfg" resources\autoexec.cfg
 SectionEnd
 
-SectionGroup "MulderConfig (latest)"
-    !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources"
-SectionGroupEnd
+Section "MulderConfig (latest)"
+    !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
+SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "Doom3.exe"

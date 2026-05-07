@@ -93,9 +93,9 @@ Section "Add Xinput Controller support (by mutantx20)"
     Delete "alec 360.txt"
 SectionEnd
 
-SectionGroup "MulderConfig (latest)"
-    !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources"
-SectionGroupEnd
+Section "MulderConfig (latest)"
+    !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
+SectionEnd
 
 SectionGroup /e "Language Patch" lang
     Section /o "French Patch" lang_fr

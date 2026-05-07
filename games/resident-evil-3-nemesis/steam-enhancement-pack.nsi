@@ -305,14 +305,9 @@ SectionGroupEnd
         File "resources\steam\README.txt"
     SectionEnd
 
-    SectionGroup "MulderConfig (latest)"
-        !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources\steam"
-        Section
-            #ExecWait '"$INSTDIR\MulderConfig.exe" -apply' $0
-            Rename "$INSTDIR\4249120_Launcher.exe" "$INSTDIR\4249120_Launcher_o.exe"
-            CopyFiles "$INSTDIR\MulderConfig.exe" "$INSTDIR\4249120_Launcher.exe"
-        SectionEnd
-    SectionGroupEnd
+    Section "MulderConfig (latest)"
+        !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources\steam"
+    SectionEnd
 
     SectionGroup "Free space by removing Non-REbirth files"
         Section /o "Remove english files (keep saves)"

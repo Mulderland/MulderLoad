@@ -99,16 +99,15 @@
     !macroend
 !endif
 
-!ifmacrondef MULDERCONFIG_SECTIONS
-    !macro MULDERCONFIG_SECTIONS OUT_PATH CONFIG_FOLDER
-        Section
-            SectionIn RO
-            AddSize 1024
-            SetOutPath "${OUT_PATH}"
-            !insertmacro DOWNLOAD_1 "https://github.com/Mulderland/MulderConfig/releases/latest/download/MulderConfig.exe" "MulderConfig.exe" ""
-            File ${CONFIG_FOLDER}\MulderConfig.json
-            File ${CONFIG_FOLDER}\MulderConfig.save.json
-        SectionEnd
+!ifmacrondef INSTALL_MULDERCONFIG
+    !macro INSTALL_MULDERCONFIG OUT_PATH CONFIG_FOLDER
+        SectionIn RO
+        AddSize 1024
+        SetOutPath "${OUT_PATH}"
+        !insertmacro DOWNLOAD_1 "https://github.com/Mulderland/MulderConfig/releases/latest/download/MulderConfig.exe" "MulderConfig.exe" ""
+        File ${CONFIG_FOLDER}\MulderConfig.json
+        File ${CONFIG_FOLDER}\MulderConfig.save.json
+        ExecWait '"$INSTDIR\MulderConfig.exe" -apply' $0
     !macroend
 !endif
 
