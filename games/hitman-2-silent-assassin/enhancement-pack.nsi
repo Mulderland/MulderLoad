@@ -93,9 +93,9 @@ Section "Add Xinput Controller support (by mutantx20)"
     Delete "alec 360.txt"
 SectionEnd
 
-SectionGroup "MulderConfig (latest)"
-    !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources"
-SectionGroupEnd
+Section "MulderConfig (latest)"
+    !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
+SectionEnd
 
 SectionGroup /e "Language Patch" lang
     Section /o "French Patch" lang_fr
@@ -153,7 +153,6 @@ Function .onInit
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Hitman 2 Silent Assassin"
     StrCpy $SELECT_RELATIVE_INSTDIR ""
     StrCpy $1 ${lang_fr} ; Radio Button
-    !insertmacro MULDERCONFIG_ONINIT
 FunctionEnd
 
 Function .onSelChange

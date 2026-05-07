@@ -71,16 +71,12 @@ SectionGroup /e "HD Textures" fov
     SectionEnd
 SectionGroupEnd
 
-SectionGroup /e "MulderConfig (latest)"
-    !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR""resources"
-    Section
-        ExecWait '"$INSTDIR\bin\MulderConfig.exe" -apply' $0
-    SectionEnd
-SectionGroupEnd
+Section "MulderConfig (latest)"
+    !insertmacro INSTALL_MULDERCONFIG "$INSTDIR\bin" "resources"
+SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "duke3d.exe"
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Duke Nukem 3D\bin"
     StrCpy $SELECT_RELATIVE_INSTDIR ".."
-    !insertmacro MULDERCONFIG_ONINIT
 FunctionEnd

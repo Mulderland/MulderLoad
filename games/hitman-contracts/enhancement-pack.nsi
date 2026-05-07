@@ -84,9 +84,9 @@ Section "Add Xinput Controller support (by mutantx20)"
     Delete "alec 360.txt"
 SectionEnd
 
-SectionGroup "MulderConfig (latest)"
-    !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources"
-SectionGroupEnd
+Section "MulderConfig (latest)"
+    !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
+SectionEnd
 
 Section
     # Copy readme
@@ -98,5 +98,4 @@ Function .onInit
     StrCpy $SELECT_FILENAME "HitmanContracts.exe"
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Hitman Contracts"
     StrCpy $SELECT_RELATIVE_INSTDIR ""
-    !insertmacro MULDERCONFIG_ONINIT
 FunctionEnd

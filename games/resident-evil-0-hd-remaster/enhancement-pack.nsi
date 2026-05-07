@@ -136,13 +136,12 @@ Section
     !insertmacro 7Z_REMOVE
 SectionEnd
 
-SectionGroup "MulderConfig (latest)"
-    !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources"
-SectionGroupEnd
+Section "MulderConfig (latest)"
+    !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
+SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "re0hd.exe"
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Resident Evil 0"
     StrCpy $SELECT_RELATIVE_INSTDIR ""
-    !insertmacro MULDERCONFIG_ONINIT
 FunctionEnd

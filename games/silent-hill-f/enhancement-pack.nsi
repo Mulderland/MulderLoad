@@ -34,16 +34,12 @@ SectionGroup /e "ThirteenAG's Ultimate ASI Loader"
     SectionEnd
 SectionGroupEnd
 
-SectionGroup "MulderConfig (latest)"
-    !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources"
-    Section
-        ExecWait '"$INSTDIR\MulderConfig.exe" -apply' $0
-    SectionEnd
-SectionGroupEnd
+Section "MulderConfig (latest)"
+    !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
+SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "SHf.exe"
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\SILENT HILL f"
     StrCpy $SELECT_RELATIVE_INSTDIR ""
-    !insertmacro MULDERCONFIG_ONINIT
 FunctionEnd

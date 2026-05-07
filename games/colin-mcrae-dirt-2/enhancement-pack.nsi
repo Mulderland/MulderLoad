@@ -77,8 +77,10 @@ Section "GFWL Fix (Xliveless by ThirteenAG)"
     !insertmacro NSISUNZ_EXTRACT_ONE "xlive-Win32.zip" ".\"  "xlive.dll" "AUTO_DELETE"
 SectionEnd
 
-SectionGroup /e "MulderConfig"
-    !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources"
+SectionGroup /e "MulderConfig (latest)"
+    Section
+        !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
+    SectionEnd
 
     Section "Intro Skip (by Garrett)"
         AddSize 4
@@ -121,6 +123,5 @@ SectionEnd
         StrCpy $SELECT_FILENAME "dirt2_game.exe"
         StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Dirt 2"
         StrCpy $SELECT_RELATIVE_INSTDIR ""
-        !insertmacro MULDERCONFIG_ONINIT
     FunctionEnd
 !endif

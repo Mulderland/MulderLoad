@@ -103,14 +103,9 @@ SectionGroup /e "Dino Crisis Classic REbirth"
 SectionGroupEnd
 
 !ifndef GOG_ENHANCEMENT_PACK_NSI ; If Steam
-    SectionGroup "MulderConfig (latest)"
-        !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources\steam"
-        Section
-            #ExecWait '"$INSTDIR\MulderConfig.exe" -apply' $0
-            Rename "$INSTDIR\4249130_Launcher.exe" "$INSTDIR\4249130_Launcher_o.exe"
-            CopyFiles "$INSTDIR\MulderConfig.exe" "$INSTDIR\4249130_Launcher.exe"
-        SectionEnd
-    SectionGroupEnd
+    Section "MulderConfig (latest)"
+        !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources\steam"
+    SectionEnd
 
     SectionGroup /e "Remove Non-REbirth files (preserve saves)"
         Section /o "Remove english files"
@@ -160,6 +155,5 @@ SectionGroupEnd
         StrCpy $SELECT_FILENAME "4249130_Launcher.exe"
         StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\4249130_DinoCrisis"
         StrCpy $SELECT_RELATIVE_INSTDIR ""
-        !insertmacro MULDERCONFIG_ONINIT
     FunctionEnd
 !endif

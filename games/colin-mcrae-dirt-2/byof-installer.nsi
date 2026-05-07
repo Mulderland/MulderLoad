@@ -92,7 +92,6 @@ SectionEnd
 
 Function .onInit
     StrCpy $9 ${lang_eng} ; Radio Button
-    !insertmacro MULDERCONFIG_ONINIT
 FunctionEnd
 
 Function .onSelChange

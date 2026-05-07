@@ -335,14 +335,9 @@ SectionEnd
         File "resources\steam\README.txt"
     SectionEnd
 
-    SectionGroup "MulderConfig (latest)"
-        !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources\steam"
-        Section
-            #ExecWait '"$INSTDIR\MulderConfig.exe" -apply' $0
-            Rename "$INSTDIR\4249110_Launcher.exe" "$INSTDIR\4249110_Launcher_o.exe"
-            CopyFiles "$INSTDIR\MulderConfig.exe" "$INSTDIR\4249110_Launcher.exe"
-        SectionEnd
-    SectionGroupEnd
+    Section "MulderConfig (latest)"
+        !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources\steam"
+    SectionEnd
 
     SectionGroup "Free space by removing Non-REbirth files"
         Section /o "Remove english files (keep saves)"
@@ -405,7 +400,6 @@ SectionEnd
         StrCpy $SELECT_FILENAME "4249110_Launcher.exe"
         StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\4249110_Biohazard2"
         StrCpy $SELECT_RELATIVE_INSTDIR ""
-        !insertmacro MULDERCONFIG_ONINIT
     FunctionEnd
 !endif
 

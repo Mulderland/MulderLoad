@@ -104,9 +104,9 @@ Section "Add controller support (by JerichoRex)"
     Rename "HitmanBloodMoney.exe" "$INSTDIR\_HitmanBloodMoney_gamepad.exe.bak"
 SectionEnd
 
-SectionGroup "MulderConfig (latest)"
-    !insertmacro MULDERCONFIG_SECTIONS "$INSTDIR" "resources"
-SectionGroupEnd
+Section "MulderConfig (latest)"
+    !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
+SectionEnd
 
 Section /o "Upscaled Textures (BM Premastered by V01DXIX)"
     AddSize 5274337
@@ -150,5 +150,4 @@ Function .onInit
     StrCpy $SELECT_FILENAME "HitmanBloodMoney.exe"
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Hitman Blood Money"
     StrCpy $SELECT_RELATIVE_INSTDIR ""
-    !insertmacro MULDERCONFIG_ONINIT
 FunctionEnd
