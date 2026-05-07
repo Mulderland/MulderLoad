@@ -104,6 +104,7 @@
         SectionIn RO
         AddSize 1024
         SetOutPath "${OUT_PATH}"
+        Delete "MulderConfig.exe"
         !insertmacro DOWNLOAD_1 "https://github.com/Mulderland/MulderConfig/releases/latest/download/MulderConfig.exe" "MulderConfig.exe" ""
         File ${CONFIG_FOLDER}\MulderConfig.json
         File ${CONFIG_FOLDER}\MulderConfig.save.json
