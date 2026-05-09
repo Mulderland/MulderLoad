@@ -67,7 +67,7 @@
         "operation": "rename",
         "source": "japanese\\dinput.dll",
         "target": "japanese\\_dinput.dll.bak"
-      },
+      }
     ],
     "launch": [
       {
