@@ -7,8 +7,9 @@
                             "$INSTDIR\@mulderload\7z\7z.zip" "e1b06195495999f6a966631c76fa38eb1955285a"
     !insertmacro NSISUNZ_EXTRACT "$INSTDIR\@mulderload\7z\7z.zip" "$INSTDIR\@mulderload\7z" "AUTO_DELETE"
 
-    !insertmacro DOWNLOAD_2 "https://www.tc4shell.com/binary/Iso7z.zip" \
-                            "https://cdn1.mulderload.eu/games/_tools/Iso7z-v1.8.7.zip" \
+    !insertmacro DOWNLOAD_3 "https://cdn1.mulderload.eu/games/_tools/Iso7z-v1.8.7.zip" \
+                            "https://www.mediafire.com/file_premium/ibgw7ca0u24mi9l/Iso7z-v1.8.7.zip/file" \
+                            "https://www.tc4shell.com/binary/Iso7z.zip" \
                             "$INSTDIR\@mulderload\7z\Iso7z.zip" "8af613c248dbb2360c84bbcee4352fbcf62b7b8d"
     !insertmacro NSISUNZ_EXTRACT_ONE "$INSTDIR\@mulderload\7z\Iso7z.zip" "$INSTDIR\@mulderload\7z\Formats" "Iso7z.64.dll" "AUTO_DELETE"
 !macroend
