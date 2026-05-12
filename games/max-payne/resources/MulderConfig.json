@@ -1,0 +1,173 @@
+{
+  "game": {
+    "title": "Max Payne",
+    "originalExe": "maxpayne.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Executable",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Default executable" },
+        { "value": "4GB Patched executable (Steam only)" }
+      ]
+    },
+    {
+      "name": "Improvements",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "New Weapons sounds" },
+        { "value": "Upscaled Textures (requires Detail Textures = Medium)", "disabledWhen": [{ "!Executable": "4GB Patched executable (Steam only)" }] }
+      ]
+    },
+    {
+      "name": "Translation patches (texts only)",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "None (default)" },
+        { "value": "French patch" },
+        { "value": "Italian patch" },
+        { "value": "Polish patch" },
+        { "value": "Portuguese patch (Brazil)" },
+        { "value": "Russian patch" },
+        { "value": "Spanish patch" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "Executable": "Default executable" } ],
+        "operation": "copy",
+        "source": "_maxpayne.exe.bak",
+        "target": "maxpayne.exe"
+      },
+      {
+        "when": [ { "Executable": "4GB Patched executable (Steam only)" } ],
+        "operation": "copy",
+        "source": "_maxpayne_4gb.exe.bak",
+        "target": "maxpayne.exe"
+      },
+      {
+        "when": [ { "Improvements": "New Weapons sounds" } ],
+        "operation": "copy",
+        "source": "_x_data_weapons.ras.bak",
+        "target": "x_data.ras"
+      },
+      {
+        "when": [ { "!Improvements": "New Weapons sounds" } ],
+        "operation": "copy",
+        "source": "_x_data.ras.bak",
+        "target": "x_data.ras"
+      },
+      {
+        "when": [ { "*Improvements": "Upscaled Textures" } ],
+        "operation": "rename",
+        "source": "data\\_database",
+        "target": "data\\database"
+      },
+      {
+        "when": [ { "*Improvements": "Upscaled Textures" } ],
+        "operation": "rename",
+        "source": "data\\_graphicnovel",
+        "target": "data\\graphicnovel"
+      },
+      {
+        "when": [ { "*Improvements": "Upscaled Textures" } ],
+        "operation": "rename",
+        "source": "data\\_hud",
+        "target": "data\\hud"
+      },
+      {
+        "when": [ { "!*Improvements": "Upscaled Textures" } ],
+        "operation": "rename",
+        "source": "data\\database",
+        "target": "data\\_database"
+      },
+      {
+        "when": [ { "!*Improvements": "Upscaled Textures" } ],
+        "operation": "rename",
+        "source": "data\\graphicnovel",
+        "target": "data\\_graphicnovel"
+      },
+      {
+        "when": [ { "!*Improvements": "Upscaled Textures" } ],
+        "operation": "rename",
+        "source": "data\\hud",
+        "target": "data\\_hud"
+      },
+      {
+        "when": [ { "Translation patches (texts only)": "French patch" } ],
+        "operation": "rename",
+        "source": "_MP1_TextOnly_fr-FR.ras.bak",
+        "target": "MP1_TextOnly_fr-FR.ras"
+      },
+      {
+        "when": [ { "!Translation patches (texts only)": "French patch" } ],
+        "operation": "rename",
+        "source": "MP1_TextOnly_fr-FR.ras",
+        "target": "_MP1_TextOnly_fr-FR.ras.bak"
+      },
+      {
+        "when": [ { "Translation patches (texts only)": "Italian patch" } ],
+        "operation": "rename",
+        "source": "_MP1_TextOnly_it-IT.ras.bak",
+        "target": "MP1_TextOnly_it-IT.ras"
+      },
+      {
+        "when": [ { "!Translation patches (texts only)": "Italian patch" } ],
+        "operation": "rename",
+        "source": "MP1_TextOnly_it-IT.ras",
+        "target": "_MP1_TextOnly_it-IT.ras.bak"
+      },
+      {
+        "when": [ { "Translation patches (texts only)": "Polish patch" } ],
+        "operation": "rename",
+        "source": "_MP1_TextOnly_pl-PL.ras.bak",
+        "target": "MP1_TextOnly_pl-PL.ras"
+      },
+      {
+        "when": [ { "!Translation patches (texts only)": "Polish patch" } ],
+        "operation": "rename",
+        "source": "MP1_TextOnly_pl-PL.ras",
+        "target": "_MP1_TextOnly_pl-PL.ras.bak"
+      },
+      {
+        "when": [ { "Translation patches (texts only)": "Portuguese patch (Brazil)" } ],
+        "operation": "rename",
+        "source": "_MP1_TextOnly_pt-BR.ras.bak",
+        "target": "MP1_TextOnly_pt-BR.ras"
+      },
+      {
+        "when": [ { "!Translation patches (texts only)": "Portuguese patch (Brazil)" } ],
+        "operation": "rename",
+        "source": "MP1_TextOnly_pt-BR.ras",
+        "target": "_MP1_TextOnly_pt-BR.ras.bak"
+      },
+      {
+        "when": [ { "Translation patches (texts only)": "Russian patch" } ],
+        "operation": "rename",
+        "source": "_MP1_TextOnly_ru-RU.ras.bak",
+        "target": "MP1_TextOnly_ru-RU.ras"
+      },
+      {
+        "when": [ { "!Translation patches (texts only)": "Russian patch" } ],
+        "operation": "rename",
+        "source": "MP1_TextOnly_ru-RU.ras",
+        "target": "_MP1_TextOnly_ru-RU.ras.bak"
+      },
+      {
+        "when": [ { "Translation patches (texts only)": "Spanish patch" } ],
+        "operation": "rename",
+        "source": "_MP1_TextOnly_es-ES.ras.bak",
+        "target": "MP1_TextOnly_es-ES.ras"
+      },
+      {
+        "when": [ { "!Translation patches (texts only)": "Spanish patch" } ],
+        "operation": "rename",
+        "source": "MP1_TextOnly_es-ES.ras",
+        "target": "_MP1_TextOnly_es-ES.ras.bak"
+      }
+    ]
+  }
+}
