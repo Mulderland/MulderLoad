@@ -28,7 +28,7 @@
       "radios": [
         { "value": "x1 (default)" },
         { "value": "x2", "disabledWhen": [ { "Resolution": "Desktop (automatic)" }, { "!Window Mode": "Exclusive Fullscreen" } ] },
-        { "value": "x3", "disabledWhen": [ { "Resolution": "Desktop (automatic)" }, { "*Resolution": "x800" }, { "*Resolution": "x1080" }, { "*Resolution": "x1440" }, { "*Resolution": "5120x" }, { "!Window Mode": "Exclusive Fullscreen" } ] },
+        { "value": "x3", "disabledWhen": [ { "Resolution": "Desktop (automatic)" }, { "*Resolution": "x800" }, { "*Resolution": "x1080" }, { "*Resolution": "x1440" }, { "*Resolution": "5120x" }, { "!Window Mode": "Exclusive Fullscreen" } ] }
       ]
     },
     {
