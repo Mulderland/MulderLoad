@@ -86,13 +86,13 @@
         ReadRegStr $R0 HKCU "Software\Wine" ""
         ${If} $R0 != ""
             DetailPrint " // DgVoodoo2: Wine/Proton detected, download v2.81.3 (old compatible version)"
-            !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/xkpacrm7c27bwhp/dgVoodoo2_81_3.zip/file" \
-                                    "https://cdn1.mulderload.eu/games/_common/dgVoodoo2_81_3.zip" \
+            !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/_common/dgVoodoo2_81_3.zip" \
+                                    "https://www.mediafire.com/file_premium/xkpacrm7c27bwhp/dgVoodoo2_81_3.zip/file" \
                                     "dgVoodoo2.zip" "0b04c7d621192425c595badfc60c12060017738c"
         ${Else}
             DetailPrint " // DgVoodoo2: Windows detected, download v2.86.5 (latest version)"
-            !insertmacro DOWNLOAD_2 "https://github.com/dege-diosg/dgVoodoo2/releases/download/v2.86.5/dgVoodoo2_86_5.zip" \
-                                    "https://cdn1.mulderload.eu/games/_common/dgVoodoo2_86_5.zip" \
+            !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/_common/dgVoodoo2_86_5.zip" \
+                                    "https://www.mediafire.com/file_premium/r963yst5rnjiez9/dgVoodoo2_86_5.zip/file" \
                                     "dgVoodoo2.zip" "4942e9af65f5204f576a444ff73a765cad6b8e28"
         ${EndIf}
         Pop $R0
