@@ -34,7 +34,7 @@ SectionGroup /e "Graphical improvements"
         SetOutPath "$INSTDIR\DATA"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/alienisolation/mods/34?tab=files&file_id=123" \
-                                "Enhanced_Graphics_Alternate.rar" "dd7ea478cea68bf9523fa7805c1427e1985cae1d"
+                                "Enhanced_Graphics_Alternate.rar" "2ff3a3f45aa1ab780765a30b343427ce22375b21"
 
         !insertmacro 7Z_GET
         !insertmacro 7Z_EXTRACT "Enhanced_Graphics_Alternate.rar" ".\" "AUTO_DELETE"
