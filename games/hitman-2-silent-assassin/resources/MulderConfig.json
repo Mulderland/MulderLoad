@@ -47,7 +47,7 @@
         { "value": "Lower (-10%)" },
         { "value": "Default" },
         { "value": "Higher (+10%)" },
-        { "value": "Highest (+20%)" }
+        { "value": "Highest (+18%)" }
       ]
     },
     {
@@ -643,11 +643,11 @@
         "replacement": "FOV_Multiplier = 1.1"
       },
       {
-        "when": [ { "FOV Modifier": "Highest (+20%)" } ],
+        "when": [ { "FOV Modifier": "Highest (+18%)" } ],
         "operation": "replaceLine",
         "files": ["scripts\\h2.ini"],
         "pattern": "^FOV_Multiplier.*$",
-        "replacement": "FOV_Multiplier = 1.2"
+        "replacement": "FOV_Multiplier = 1.18"
       },
 
 
