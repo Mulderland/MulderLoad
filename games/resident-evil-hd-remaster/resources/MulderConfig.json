@@ -1,0 +1,249 @@
+{
+  "game": {
+    "title": "Resident Evil HD Remaster",
+    "originalExe": "bhd.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "API",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Direct3D 9 (original)" },
+        { "value": "Direct3D 11 (dgVoodoo2)", "disabledWhen": [ { "Misc": "ERR09 Crash Fix" } ] }
+      ]
+    },
+    {
+      "name": "Graphical improvements",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Real time graphics mod" },
+        { "value": "Remove 120fps cap in \"Variable frame rate\"" }
+      ]
+    },
+    {
+      "name": "Graphical improvements / MSAA Anti-Aliasing",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Off" },
+        { "value": "2x", "disabledWhen": [ { "!*API": "dgVoodoo2" }, { "Misc": "Performance boost" } ] },
+        { "value": "4x", "disabledWhen": [ { "!*API": "dgVoodoo2" }, { "Misc": "Performance boost" } ] },
+        { "value": "8x", "disabledWhen": [ { "!*API": "dgVoodoo2" }, { "Misc": "Performance boost" } ] }
+      ]
+    },
+    {
+      "name": "Other improvements",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Gamecube Font Mod" },
+        { "value": "Fast Door Skip" },
+        { "value": "Remastered Inventory Icons" },
+        { "value": "Weapons Sounds Mod" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "ERR09 Crash Fix", "disabledWhen": [ { "*API": "dgVoodoo2" } ] },
+        { "value": "Performance boost" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ ],
+        "operation": "delete",
+        "source": "d3d9.dll"
+      },
+      {
+        "when": [ { "!Graphical improvements": "Real time graphics mod", "*API": "dgVoodoo2" } ],
+        "operation": "copy",
+        "source": "_dgVoodoo2.dll",
+        "target": "d3d9.dll"
+      },
+      {
+        "when": [ { "!Graphical improvements": "Real time graphics mod", "Misc": "ERR09 Crash Fix" } ],
+        "operation": "copy",
+        "source": "_crashfix.dll",
+        "target": "d3d9.dll"
+      },
+
+
+
+      {
+        "when": [ { "Graphical improvements": "Real time graphics mod" } ],
+        "operation": "copy",
+        "source": "_realtimegraphics.dll",
+        "target": "d3d9.dll"
+      },
+      {
+        "when": [ { "Graphical improvements": "Real time graphics mod" } ],
+        "operation": "replaceLine",
+        "files": ["DX9Settings.ini"],
+        "pattern": "ProxyLib",
+        "replacement": ";ProxyLib = "
+      },
+      {
+        "when": [ { "Graphical improvements": "Real time graphics mod", "*API": "dgVoodoo2" } ],
+        "operation": "replaceLine",
+        "files": ["DX9Settings.ini"],
+        "pattern": "ProxyLib",
+        "replacement": "ProxyLib = _dgVoodoo2.dll"
+      },
+      {
+        "when": [ { "Graphical improvements": "Real time graphics mod", "Misc": "ERR09 Crash Fix" } ],
+        "operation": "replaceLine",
+        "files": ["DX9Settings.ini"],
+        "pattern": "ProxyLib",
+        "replacement": "ProxyLib = _crashfix.dll"
+      },
+      {
+        "when": [ { "!*Graphical improvements": "Remove 120fps cap" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\ResidentEvil.FusionFix.ini"],
+        "pattern": "UnlockFPS",
+        "replacement": "UnlockFPS = 0"
+      },
+      {
+        "when": [ { "*Graphical improvements": "Remove 120fps cap" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\ResidentEvil.FusionFix.ini"],
+        "pattern": "UnlockFPS",
+        "replacement": "UnlockFPS = 1"
+      },
+
+
+   
+      {
+        "when": [ { "Graphical improvements / MSAA Anti-Aliasing": "Off" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Antialiasing                        =.*$",
+        "replacement": "Antialiasing                        = appdriven"
+      },
+      {
+        "when": [ { "!Graphical improvements / MSAA Anti-Aliasing": "Off" } ],
+        "operation": "replaceLine",
+        "files": ["%LOCALAPPDATA%\\CAPCOM\\Resident Evil - biohazard@HD REMASTER\\config.ini"],
+        "pattern": "^AltAntiAlias.*$",
+        "replacement": "AltAntiAlias=NONE"
+      },
+      {
+        "when": [ { "Graphical improvements / MSAA Anti-Aliasing": "2x" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Antialiasing                        =.*$",
+        "replacement": "Antialiasing                        = 2x"
+      },
+      {
+        "when": [ { "Graphical improvements / MSAA Anti-Aliasing": "4x" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Antialiasing                        =.*$",
+        "replacement": "Antialiasing                        = 4x"
+      },
+      {
+        "when": [ { "Graphical improvements / MSAA Anti-Aliasing": "8x" } ],
+        "operation": "replaceLine",
+        "files": ["dgVoodoo.conf"],
+        "pattern": "^Antialiasing                        =.*$",
+        "replacement": "Antialiasing                        = 8x"
+      },
+
+
+
+      {
+        "when": [ { "!Other improvements": "Gamecube Font Mod" } ],
+        "operation": "copy",
+        "source": "nativePC\\arc\\id\\e_rom\\_common.ori",
+        "target": "nativePC\\arc\\id\\e_rom\\common.arc"
+      },
+      {
+        "when": [ { "Other improvements": "Gamecube Font Mod" } ],
+        "operation": "copy",
+        "source": "nativePC\\arc\\id\\e_rom\\_common.mod",
+        "target": "nativePC\\arc\\id\\e_rom\\common.arc"
+      },
+      {
+        "when": [ { "!Other improvements": "Fast Door Skip" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\ResidentEvil.FusionFix.ini"],
+        "pattern": "DoorSkip",
+        "replacement": "DoorSkip = 0"
+      },
+      {
+        "when": [ { "Other improvements": "Fast Door Skip" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\ResidentEvil.FusionFix.ini"],
+        "pattern": "DoorSkip",
+        "replacement": "DoorSkip = 1"
+      },
+      {
+        "when": [ { "!Other improvements": "Remastered Inventory Icons" } ],
+        "operation": "copy",
+        "source": "nativePC\\arc\\id\\e_rom\\subscr\\_itemicon.ori",
+        "target": "nativePC\\arc\\id\\e_rom\\subscr\\itemicon.arc"
+      },
+      {
+        "when": [ { "Other improvements": "Remastered Inventory Icons" } ],
+        "operation": "copy",
+        "source": "nativePC\\arc\\id\\e_rom\\subscr\\_itemicon.mod",
+        "target": "nativePC\\arc\\id\\e_rom\\subscr\\itemicon.arc"
+      },
+      {
+        "when": [ { "!Other improvements": "Weapons Sounds Mod" } ],
+        "operation": "copy",
+        "source": "nativePC\\arcPC\\sound\\se\\wep\\_wep02.ori",
+        "target": "nativePC\\arcPC\\sound\\se\\wep\\wep02.arc"
+      },
+      {
+        "when": [ { "!Other improvements": "Weapons Sounds Mod" } ],
+        "operation": "copy",
+        "source": "nativePC\\arcPC\\sound\\se\\wep\\_wep03.ori",
+        "target": "nativePC\\arcPC\\sound\\se\\wep\\wep03.arc"
+      },
+      {
+        "when": [ { "!Other improvements": "Weapons Sounds Mod" } ],
+        "operation": "copy",
+        "source": "nativePC\\arcPC\\sound\\se\\wep\\_wep04.ori",
+        "target": "nativePC\\arcPC\\sound\\se\\wep\\wep04.arc"
+      },
+      {
+        "when": [ { "Other improvements": "Weapons Sounds Mod" } ],
+        "operation": "copy",
+        "source": "nativePC\\arcPC\\sound\\se\\wep\\_wep02.mod",
+        "target": "nativePC\\arcPC\\sound\\se\\wep\\wep02.arc"
+      },
+      {
+        "when": [ { "Other improvements": "Weapons Sounds Mod" } ],
+        "operation": "copy",
+        "source": "nativePC\\arcPC\\sound\\se\\wep\\_wep03.mod",
+        "target": "nativePC\\arcPC\\sound\\se\\wep\\wep03.arc"
+      },
+      {
+        "when": [ { "Other improvements": "Weapons Sounds Mod" } ],
+        "operation": "copy",
+        "source": "nativePC\\arcPC\\sound\\se\\wep\\_wep04.mod",
+        "target": "nativePC\\arcPC\\sound\\se\\wep\\wep04.arc"
+      },
+
+
+
+      {
+        "when": [ { "!Misc": "Performance boost" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\ResidentEvil.FusionFix.ini"],
+        "pattern": "DisableCreateQuery",
+        "replacement": "DisableCreateQuery = 0"
+      },
+      {
+        "when": [ { "Misc": "Performance boost" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\ResidentEvil.FusionFix.ini"],
+        "pattern": "DisableCreateQuery",
+        "replacement": "DisableCreateQuery = 1"
+      }
+    ]
+  }
+}
