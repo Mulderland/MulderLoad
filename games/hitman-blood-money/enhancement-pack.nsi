@@ -21,6 +21,10 @@ Special thanks to V01DXIX for his incredible textures pack, Blood Money Premaste
 
 Name "Hitman: Blood Money [Enhancement Pack]"
 
+Section
+    !insertmacro 7Z_GET
+SectionEnd
+
 Section "Widescreen fix (by nemesis2000) + Wrappers"
     AddSize 4389
 
@@ -59,10 +63,8 @@ Section "Widescreen fix (by nemesis2000) + Wrappers"
     !insertmacro DOWNLOAD_2 "https://github.com/doitsujin/dxvk/releases/download/v2.7.1/dxvk-2.7.1.tar.gz" \
                             "https://cdn1.mulderload.eu/games/_common/dxvk-2.7.1.tar.gz" \
                             "dxvk-2.7.1.tar.gz" "16e277f63aca1bb9d6b9ecf823dd0d7aab9b11be"
-    !insertmacro 7Z_GET
     !insertmacro 7Z_EXTRACT "dxvk-2.7.1.tar.gz" ".\" "AUTO_DELETE"
     !insertmacro 7Z_EXTRACT_ONE "dxvk-2.7.1.tar" ".\" "dxvk-2.7.1\x32\d3d9.dll" "AUTO_DELETE"
-    !insertmacro 7Z_REMOVE
     !insertmacro FORCE_RENAME "d3d9.dll" "d3d9_dxvk.dll"
 
     # Configure DXVK
@@ -117,7 +119,7 @@ Section /o "Upscaled Textures (BM Premastered by V01DXIX)"
                             "https://cdn1.mulderload.eu/games/hitman-blood-money/HBM_PREMASTER_V1.5.zip" \
                             "HBM_PREMASTER_V1.5.zip" "f02da72221a6cdec6e950d910423df5b"
 
-    !insertmacro NSISUNZ_EXTRACT "HBM_PREMASTER_V1.5.zip" ".\" "AUTO_DELETE"
+    !insertmacro 7Z_EXTRACT "HBM_PREMASTER_V1.5.zip" ".\" "AUTO_DELETE"
     !insertmacro FORCE_RENAME "README.txt" "README_PREMASTER.txt"
     Delete "HitmanLaaPatcher.exe"
 
@@ -144,6 +146,8 @@ Section
 
     # Copy main executable (required for MulderConfig to allow controller switch)
     CopyFiles "$INSTDIR\HitmanBloodMoney.exe" "$INSTDIR\_HitmanBloodMoney_keyboard.exe.bak"
+
+    !insertmacro 7Z_REMOVE
 SectionEnd
 
 Function .onInit
