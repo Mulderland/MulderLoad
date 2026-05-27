@@ -1,16 +1,17 @@
 !define MUI_WELCOMEPAGE_TEXT "\
-This downgrader is for the latest Steam version of Fallout 4 (v1.11.191, Dec 2025). Works with all editions && languages.$\r$\n\
+This downgrader is for the latest Steam version of Fallout 4 (v1.11.221, May 2026). Works with all editions && languages.$\r$\n\
 $\r$\n\
 It auto-detects your installed language* and your installed DLCs, then downloads matching $\"xdelta patches$\".$\r$\n\
 $\r$\n\
-It can downgrade to 3 different versions (your choice):$\r$\n\
+It can downgrade to 4 different versions (your choice):$\r$\n\
 - v1.10.163 (Pre-Next-Gen - 2019)$\r$\n\
 - v1.10.984 (Next-gen, Update 2 - 2024)$\r$\n\
-- v1.11.169 (Anniversary, November Patch - 2025)$\r$\n\
+- v1.11.169 (Anniversary, November Patch 1 - 2025)$\r$\n\
+- v1.11.191 (Anniversary, December Patch 2 - 2025)$\r$\n\
 $\r$\n\
 *WARNING (for Chinese): Chinese language can't be auto detected, so you'll have to select $\"Chinese$\" during setup.$\r$\n\
 $\r$\n\
-${TXT_WELCOMEPAGE_MULDERLAND_2}"
+${TXT_WELCOMEPAGE_MULDERLAND_1}"
 
 !include "..\..\includes\templates\SelectTemplate.nsh"
 !include "..\..\includes\tools\XDelta3.nsh"
@@ -19,7 +20,7 @@ Name "Fallout 4 [Steam Downgrader]"
 
 !include "steam-downgrader-common.nsh"
 
-SectionGroup /e "Downgrade Steam version (v1.11.191) to" version
+SectionGroup /e "Downgrade Steam version (v1.11.221) to" version
     Section
         StrCpy $DLC_Automatron "no"
         StrCpy $DLC_Workshop "no"
@@ -38,11 +39,11 @@ SectionGroup /e "Downgrade Steam version (v1.11.191) to" version
         !insertmacro ABORT_IF_USER_REFUSES
 
         DetailPrint " // Downloading downgrade 377161 (Base game)"
-        !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/377161.7z" "377161.7z" "3d4c6560e2ff58aca5fabc7b0de425765d28cbc9"
+        !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/377161.7z" "377161.7z" "d3c782aea649b83cf62dbea6296f3711334c0320"
         !insertmacro NSIS7Z_EXTRACT "377161.7z" ".\" "AUTO_DELETE"
 
         DetailPrint " // Downloading downgrade 377162 (Base game)"
-        !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/377162.7z" "377162.7z" "0dcc5ad2169e59d54d64a0eb887b075dd9e265d2"
+        !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/377162.7z" "377162.7z" "861b35540c4d2419b927f61988e0a53094f7a729"
         !insertmacro NSIS7Z_EXTRACT "377162.7z" ".\" "AUTO_DELETE"
 
         DetailPrint " // Downloading downgrade 377163 (Base game)"
@@ -73,41 +74,41 @@ SectionGroup /e "Downgrade Steam version (v1.11.191) to" version
         Delete "Data\ccSBJFO4003-Grenade.esl"
         Delete "Data\Fallout4 - TexturesPatch.ba2"
         Delete "Fallout4IDs.ccc"
-        !insertmacro DOWNLOAD_RANGE_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/377163.7z.001" "377163.7z.001" "6e969cd276f82958b1893e3ea10a7434210457cf" 22
+        !insertmacro DOWNLOAD_RANGE_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/377163.7z.001" "377163.7z.001" "d14f02bfdbdfde7d48725da6e559c26138f24a68" 22
         !insertmacro NSIS7Z_EXTRACT "377163.7z.001" ".\" ""
         !insertmacro DELETE_RANGE "377163.7z.001" 22
 
         ${If} $F4_Language == "fr"
             DetailPrint " // Downloading downgrade 377165 (Base game, French)"
-            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/377165.7z" "377165.7z" "fda5c6f265177e1e65da2967975c5f8ee1d5856f"
+            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/377165.7z" "377165.7z" "b35b4a48997def37581b0377a76a2e719be9ce59"
             !insertmacro NSIS7Z_EXTRACT "377165.7z" ".\" "AUTO_DELETE"
         ${ElseIf} $F4_Language == "de"
             DetailPrint " // Downloading downgrade 377166 (Base game, German)"
-            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/377166.7z" "377166.7z" "fa953ac1932c022d344ef38e54367a496560f359"
+            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/377166.7z" "377166.7z" "707321bc7b9c0be207149e079c720ee851b17f91"
             !insertmacro NSIS7Z_EXTRACT "377166.7z" ".\" "AUTO_DELETE"
         ${ElseIf} $F4_Language == "it"
             DetailPrint " // Downloading downgrade 377167 (Base game, Italian)"
-            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/377167.7z" "377167.7z" "5712d91f1b4a40e560e6a6c90b43f9dad2c17f5e"
+            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/377167.7z" "377167.7z" "2ed2fd07e98c0d9e94345cbed8f891df11361ea0"
             !insertmacro NSIS7Z_EXTRACT "377167.7z" ".\" "AUTO_DELETE"
         ${ElseIf} $F4_Language == "es"
             DetailPrint " // Downloading downgrade 377168 (Base game, Spanish)"
-            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/377168.7z" "377168.7z" "eea1b759ae0cee36caf65feedccab9a8038d1f4f"
+            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/377168.7z" "377168.7z" "6919bac91ffc1bf298d059b4baf7a177a33ca239"
             !insertmacro NSIS7Z_EXTRACT "377168.7z" ".\" "AUTO_DELETE"
         ${ElseIf} $F4_Language == "pl"
             DetailPrint " // Downloading downgrade 393880 (Base game, Polish)"
-            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/393880.7z" "393880.7z" "0f0be553230c401b74c747e9be75ab131b201946"
+            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/393880.7z" "393880.7z" "3c0d5250230ba4245740e5de7b6c79fbde3837aa"
             !insertmacro NSIS7Z_EXTRACT "393880.7z" ".\" "AUTO_DELETE"
         ${ElseIf} $F4_Language == "ru"
             DetailPrint " // Downloading downgrade 393881 (Base game, Russian)"
-            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/393881.7z" "393881.7z" "e688a4881f706a32e3b974558db41674d1a091f6"
+            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/393881.7z" "393881.7z" "3670dfb1fc9061b61572b002daf1307067eb0462"
             !insertmacro NSIS7Z_EXTRACT "393881.7z" ".\" "AUTO_DELETE"
         ${ElseIf} $F4_Language == "ptbr"
             DetailPrint " // Downloading downgrade 393882 (Base game, Portuguese-Brazil)"
-            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/393882.7z" "393882.7z" "d04afe81210c432a100432bd8f6409fc3df4d0ca"
+            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/393882.7z" "393882.7z" "fdd5c85ebd54346902d7013e5fd8be15bc48b70e"
             !insertmacro NSIS7Z_EXTRACT "393882.7z" ".\" "AUTO_DELETE"
         ${ElseIf} $F4_Language == "cn"
             DetailPrint " // Downloading downgrade 393883 (Base game, Chinese-Traditional)"
-            !insertmacro DOWNLOAD_RANGE_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/393883.7z.001" "393883.7z.001" "5fa434511b014b24a2ad44214340210637228282" 6
+            !insertmacro DOWNLOAD_RANGE_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/393883.7z.001" "393883.7z.001" "b1d63afee69343bfe09a249757c2320619655ef6" 6
             !insertmacro NSIS7Z_EXTRACT "393883.7z.001" ".\" ""
             !insertmacro DELETE_RANGE "393883.7z.001" 6
         ${ElseIf} $F4_Language == "ja"
@@ -127,62 +128,62 @@ SectionGroup /e "Downgrade Steam version (v1.11.191) to" version
             Rename "Data\Video\LUCK_ja.bk2" "Data\Video\LUCK.bk2"
             Rename "Data\Video\PERCEPTION_ja.bk2" "Data\Video\PERCEPTION.bk2"
             Rename "Data\Video\STRENGTH_ja.bk2" "Data\Video\STRENGTH.bk2"
-            !insertmacro DOWNLOAD_RANGE_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/393884.7z.001" "393884.7z.001" "4a63788d8ac3d49ec204c4ad0e9133884843c881" 4
+            !insertmacro DOWNLOAD_RANGE_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/393884.7z.001" "393884.7z.001" "9b2322f755d83b42e793235ff88ec49ea3653086" 4
             !insertmacro NSIS7Z_EXTRACT "393884.7z.001" ".\" ""
             !insertmacro DELETE_RANGE "393884.7z.001" 4
         ${EndIf}
 
         ${If} $DLC_Automatron == "yes"
             DetailPrint " // Downloading downgrade 435870 (Automatron DLC)"
-            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/435870.7z" "435870.7z" "392ced0c50ce22f578966debb64120caaf858a65"
+            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/435870.7z" "435870.7z" "651a0ecd12dd3cd607060189a55402f35ac6ebd3"
             !insertmacro NSIS7Z_EXTRACT "435870.7z" ".\" "AUTO_DELETE"
 
             ${If} $F4_Language == "ja"
                 DetailPrint " // Downloading downgrade 404091 (Automatron DLC, Japanese)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/404091.7z" "404091.7z" "98fc3453624728dc8ff56753531d157dadcd045a"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/404091.7z" "404091.7z" "f24d2cee58467dfe5658308b6a99f24cc96835c3"
                 !insertmacro NSIS7Z_EXTRACT "404091.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "en"
                 DetailPrint " // Downloading downgrade 435871 (Automatron DLC, English)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/435871.7z" "435871.7z" "45ae9dbe3168e2eceb7951ee4730b3d736ed0f24"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/435871.7z" "435871.7z" "c433f48bbfc01d5cd3fe0ebe82c47f6ec76dbcbc"
                 !insertmacro NSIS7Z_EXTRACT "435871.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "fr"
                 DetailPrint " // Downloading downgrade 435872 (Automatron DLC, French)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/435872.7z" "435872.7z" "fed2f41878a37d6eba0a559163e1a04bd9c8d7b8"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/435872.7z" "435872.7z" "149eb19ae78f13eddae18849eab23d4289343bb5"
                 !insertmacro NSIS7Z_EXTRACT "435872.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "de"
                 DetailPrint " // Downloading downgrade 435873 (Automatron DLC, German)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/435873.7z" "435873.7z" "b47e86614a9e5965151de02ac681244ef4d4e6f0"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/435873.7z" "435873.7z" "f3ddd12d932d8108fe7e3e6a5ec70350d86365a7"
                 !insertmacro NSIS7Z_EXTRACT "435873.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "it"
                 DetailPrint " // Downloading downgrade 435874 (Automatron DLC, Italian)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/435874.7z" "435874.7z" "f417bf5af0cf3f6dcd811a6422c3631cca184887"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/435874.7z" "435874.7z" "4e724149425cb1ae2d6394aa7eeb52fdc65c34f1"
                 !insertmacro NSIS7Z_EXTRACT "435874.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "es"
                 DetailPrint " // Downloading downgrade 435875 (Automatron DLC, Spanish)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/435875.7z" "435875.7z" "5be1894ca92c4f426f07dd96eb031dd08cd8213c"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/435875.7z" "435875.7z" "3eeb97f05dd5c543352475b44c816b33a0eb4dcf"
                 !insertmacro NSIS7Z_EXTRACT "435875.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "pl"
                 DetailPrint " // Downloading downgrade 435876 (Automatron DLC, Polish)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/435876.7z" "435876.7z" "5f1791ac16b61760dd3279f5185a10c5dfa5e4ca"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/435876.7z" "435876.7z" "c9e1465e19080e1fae262c8cee04ab630298e4d5"
                 !insertmacro NSIS7Z_EXTRACT "435876.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "ru"
                 DetailPrint " // Downloading downgrade 435877 (Automatron DLC, Russian)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/435877.7z" "435877.7z" "05d6100c90c7be1e243ed954f1d5b5621505245e"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/435877.7z" "435877.7z" "a6dfa19a2992de7ee86b2b5feb5fac0697586e95"
                 !insertmacro NSIS7Z_EXTRACT "435877.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "ptbr"
                 DetailPrint " // Downloading downgrade 435878 (Automatron DLC, Portuguese-Brazil)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/435878.7z" "435878.7z" "a6a064263a90990a878a7c2ab429a0a9f8639171"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/435878.7z" "435878.7z" "43f1968b36ffaa3de916ae5c672821a8d3ca72b8"
                 !insertmacro NSIS7Z_EXTRACT "435878.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "cn"
                 DetailPrint " // Downloading downgrade 435879 (Automatron DLC, Chinese-Traditional)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/435879.7z" "435879.7z" "19ba23e61a6ed9980b2b187063415eb8bfb76b56"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/435879.7z" "435879.7z" "8d73e425ddb1cb12a3dcb93295c3a13f0cfc5465"
                 !insertmacro NSIS7Z_EXTRACT "435879.7z" ".\" "AUTO_DELETE"
             ${EndIf}
         ${EndIf}
 
         ${If} $DLC_Workshop == "yes"
             DetailPrint " // Downloading downgrade 435880 (Wasteland Workshop DLC)"
-            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.163/435880.7z" "435880.7z" "e598e29e0b9e6f7537b71911b067d3d9fec8a75f"
+            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.163/435880.7z" "435880.7z" "bddb1a64552890eeb05abc19b8fb7f79d5df351a"
             !insertmacro NSIS7Z_EXTRACT "435880.7z" ".\" "AUTO_DELETE"
         ${EndIf}
     SectionEnd
@@ -194,16 +195,16 @@ SectionGroup /e "Downgrade Steam version (v1.11.191) to" version
         !insertmacro ABORT_IF_USER_REFUSES
 
         DetailPrint " // Downloading downgrade 377161 (Base game)"
-        !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.984/377161.7z" "377161.7z" "20b2de27d1fd8491aec3c866860adc1ac2134636"
+        !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.984/377161.7z" "377161.7z" "b4945795c95ab4221d0bd3e85d9c155bde5a6fc1"
         !insertmacro NSIS7Z_EXTRACT "377161.7z" ".\" "AUTO_DELETE"
 
         DetailPrint " // Downloading downgrade 377162 (Base game)"
-        !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.984/377162.7z" "377162.7z" "04dd09e54f737d6ae7470694d2def7648f2a952a"
+        !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.984/377162.7z" "377162.7z" "7ba588747b17b93720cc2b2d3a5153ea579e3ddb"
         !insertmacro NSIS7Z_EXTRACT "377162.7z" ".\" "AUTO_DELETE"
 
         DetailPrint " // Downloading downgrade 377163 (Base game)"
         Delete "Data\Fallout4 - TexturesPatch.ba2"
-        !insertmacro DOWNLOAD_RANGE_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.984/377163.7z.001" "377163.7z.001" "df479685c7528530b7d7177d7be8abcab54c7bdb" 4
+        !insertmacro DOWNLOAD_RANGE_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.984/377163.7z.001" "377163.7z.001" "c7211ce2e42240d1c05825999ff436c05c39a6b5" 4
         !insertmacro NSIS7Z_EXTRACT "377163.7z.001" ".\" ""
         !insertmacro DELETE_RANGE "377163.7z.001" 4
 
@@ -211,148 +212,239 @@ SectionGroup /e "Downgrade Steam version (v1.11.191) to" version
             DetailPrint " // Downloading downgrade 393884 (Base game, Japanese)"
             Rename "Data\Fallout4 - Voices_jp.ba2" "Data\Fallout4 - Voices.ba2"
             Rename "Data\Fallout4 - Voices_rep_ja.ba2" "Data\Fallout4 - Voices_rep.ba2"
-            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.984/393884.7z" "393884.7z" "6052557424488a1ae44af2a09b4c7447fcc083af"
+            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.984/393884.7z" "393884.7z" "362942a03bd79efbb1450ecff580e35ae1a995c2"
             !insertmacro NSIS7Z_EXTRACT "393884.7z" ".\" "AUTO_DELETE"
         ${EndIf}
 
         ${If} $DLC_Automatron == "yes"
             ${If} $F4_Language == "ja"
                 DetailPrint " // Downloading downgrade 404091 (Automatron DLC, Japanese)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.984/404091.7z" "404091.7z" "0dcce1ff15dfeed8fef7ae80feebb10b17abf482"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.984/404091.7z" "404091.7z" "3372d3d424508629d1ca5508b559cc47086bafc1"
                 !insertmacro NSIS7Z_EXTRACT "404091.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "en"
                 DetailPrint " // Downloading downgrade 435871 (Automatron DLC, English)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.984/435871.7z" "435871.7z" "71657a53d3b2cb7a1c11403195e9f966892e48e6"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.984/435871.7z" "435871.7z" "a1aaaa128b44e02f54025caefcedb23bb2328740"
                 !insertmacro NSIS7Z_EXTRACT "435871.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "fr"
                 DetailPrint " // Downloading downgrade 435872 (Automatron DLC, French)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.984/435872.7z" "435872.7z" "267f1ceff6d2c09258859a696aa70f3785219650"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.984/435872.7z" "435872.7z" "052d026941cb3f20572268746bd8efa84c42247a"
                 !insertmacro NSIS7Z_EXTRACT "435872.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "de"
                 DetailPrint " // Downloading downgrade 435873 (Automatron DLC, German)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.984/435873.7z" "435873.7z" "ceaa914c6626863a8cd994becb75cc0b6ad2aacc"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.984/435873.7z" "435873.7z" "66f80729e79954ae66653b84703841e75b6eb593"
                 !insertmacro NSIS7Z_EXTRACT "435873.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "it"
                 DetailPrint " // Downloading downgrade 435874 (Automatron DLC, Italian)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.984/435874.7z" "435874.7z" "59918e238571f2ebde5c6e9d1ba105424f7da1f7"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.984/435874.7z" "435874.7z" "79309f3d3e356b1569c12b98cf4052685bfe1a6e"
                 !insertmacro NSIS7Z_EXTRACT "435874.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "es"
                 DetailPrint " // Downloading downgrade 435875 (Automatron DLC, Spanish)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.984/435875.7z" "435875.7z" "2c368557eb710740b39d3bdc78a2f2b3777a25e8"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.984/435875.7z" "435875.7z" "f48f063e98191602090d1fe4f3e4d40bd449f2d5"
                 !insertmacro NSIS7Z_EXTRACT "435875.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "pl"
                 DetailPrint " // Downloading downgrade 435876 (Automatron DLC, Polish)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.984/435876.7z" "435876.7z" "6c8b61097be7e54b0b9a9784955c19e6f248bbe8"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.984/435876.7z" "435876.7z" "38cda76eb31e4b4bc1724f40fce6307a1e626ab0"
                 !insertmacro NSIS7Z_EXTRACT "435876.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "ru"
                 DetailPrint " // Downloading downgrade 435877 (Automatron DLC, Russian)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.984/435877.7z" "435877.7z" "84e1fb272d44daa1795e196c5e464cbad16327ed"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.984/435877.7z" "435877.7z" "b660ff7be47d8d9a45cfecc84565566ce205ee83"
                 !insertmacro NSIS7Z_EXTRACT "435877.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "ptbr"
                 DetailPrint " // Downloading downgrade 435878 (Automatron DLC, Portuguese-Brazil)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.984/435878.7z" "435878.7z" "b61419be62f1c5bc6658c6c6be98de9c9be4c323"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.984/435878.7z" "435878.7z" "bf993388122e3531be7966f9d066a27fdff8b968"
                 !insertmacro NSIS7Z_EXTRACT "435878.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "cn"
                 DetailPrint " // Downloading downgrade 435879 (Automatron DLC, Chinese-Traditional)"
-                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.984/435879.7z" "435879.7z" "ebbde5bc09bc40fe6f990469ace3ab554417fba1"
+                !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.984/435879.7z" "435879.7z" "237e75c127763f423e53556f5814bf82b918a77d"
                 !insertmacro NSIS7Z_EXTRACT "435879.7z" ".\" "AUTO_DELETE"
             ${EndIf}
         ${EndIf}
 
         ${If} $DLC_Workshop == "yes"
             DetailPrint " // Downloading downgrade 435880 (Wasteland Workshop DLC)"
-            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.10.984/435880.7z" "435880.7z" "6efce4ef3afc283f9ed0dd5ab7634fef8e48dabe"
+            !insertmacro DOWNLOAD_1 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.10.984/435880.7z" "435880.7z" "6c4e0d8610acdb1b99ad7dd97875b214acc5d85e"
             !insertmacro NSIS7Z_EXTRACT "435880.7z" ".\" "AUTO_DELETE"
         ${EndIf}
     SectionEnd
 
-    Section /o "v1.11.169 (anniversary, november patch)" version_1_11_169
+    Section /o "v1.11.169 (anniversary, november patch 1)" version_1_11_169
         AddSize 28672
         SetOutPath "$INSTDIR"
         !insertmacro ABORT_IF_UNSUPPORTED_VERSION
         !insertmacro ABORT_IF_USER_REFUSES
 
         DetailPrint " // Downloading downgrade 377162 (Base game)"
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.11.169/377162.7z" \
-                                "https://www.mediafire.com/file_premium/0na5b7y2y7u0mv1/377162.7z/file" \
-                                "377162.7z" "3c57c147f144d1d17387816899a485065de121fe"
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.169/377162.7z" \
+                                "https://www.mediafire.com/file_premium/9lg6ypd8gr7ynak/377162.7z/file" \
+                                "377162.7z" "ccc65943d17de780b88cd9d7b0fa252332115113"
         !insertmacro NSIS7Z_EXTRACT "377162.7z" ".\" "AUTO_DELETE"
 
         DetailPrint " // Downloading downgrade 377163 (Base game)"
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.11.169/377163.7z" \
-                                "https://www.mediafire.com/file_premium/plezp3jxxzapjg4/377163.7z/file" \
-                                "377163.7z" "71631610d1d6494df42b39b1426f8d7858347931"
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.169/377163.7z" \
+                                "https://www.mediafire.com/file_premium/des5849agr2klb3/377163.7z/file" \
+                                "377163.7z" "5b7023f7bf6bb23b10269fd85dcf10d8f451d8d1"
         !insertmacro NSIS7Z_EXTRACT "377163.7z" ".\" "AUTO_DELETE"
 
         ${If} $DLC_Automatron == "yes"
             ${If} $F4_Language == "ja"
                 DetailPrint " // Downloading downgrade 404091 (Automatron DLC, Japanese)"
-                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.11.169/404091.7z" \
-                                        "https://www.mediafire.com/file_premium/zpdamcqbtvbku7w/404091.7z/file" \
-                                        "404091.7z" "0d6f76c6f26e22e565e6e7499e61a8adb162082e"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.169/404091.7z" \
+                                        "https://www.mediafire.com/file_premium/cnyge9ijzlr37ns/404091.7z/file" \
+                                        "404091.7z" "063526c3b0dc8585c58ec7fcec7a978c4c2b5757"
                 !insertmacro NSIS7Z_EXTRACT "404091.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "en"
                 DetailPrint " // Downloading downgrade 435871 (Automatron DLC, English)"
-                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.11.169/435871.7z" \
-                                        "https://www.mediafire.com/file_premium/g89xyxayy3shhld/435871.7z/file" \
-                                        "435871.7z" "33c24b4e2acfdd6d06e57e69c61cdd92f7142df3"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.169/435871.7z" \
+                                        "https://www.mediafire.com/file_premium/p3uko1sw9r1jq7z/435871.7z/file" \
+                                        "435871.7z" "aa849f239e7e8bb56b3a0e95f7775a3d0c8865e1"
                 !insertmacro NSIS7Z_EXTRACT "435871.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "fr"
                 DetailPrint " // Downloading downgrade 435872 (Automatron DLC, French)"
-                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.11.169/435872.7z" \
-                                        "https://www.mediafire.com/file_premium/cgdjxszk1xrgt0p/435872.7z/file" \
-                                        "435872.7z" "e5ad185af2ce2530febab74ea31fc6cb682246df"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.169/435872.7z" \
+                                        "https://www.mediafire.com/file_premium/j484j7uatopm87g/435872.7z/file" \
+                                        "435872.7z" "94d962bed08e8b551891f771b9edec4cda1c3f7b"
                 !insertmacro NSIS7Z_EXTRACT "435872.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "de"
                 DetailPrint " // Downloading downgrade 435873 (Automatron DLC, German)"
-                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.11.169/435873.7z" \
-                                        "https://www.mediafire.com/file_premium/6m1kimdv30weag9/435873.7z/file" \
-                                        "435873.7z" "6263a95783b243c71dd43c0afebe6c5818001cce"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.169/435873.7z" \
+                                        "https://www.mediafire.com/file_premium/j1y5j1a01apipnc/435873.7z/file" \
+                                        "435873.7z" "2056cb214f407fcff1dd4890667c7667c4106489"
                 !insertmacro NSIS7Z_EXTRACT "435873.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "it"
                 DetailPrint " // Downloading downgrade 435874 (Automatron DLC, Italian)"
-                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.11.169/435874.7z" \
-                                        "https://www.mediafire.com/file_premium/cj9qlcu5j2mnlkq/435874.7z/file" \
-                                        "435874.7z" "f5bb0645c89b1ff22b5847e97fa897f97d635d27"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.169/435874.7z" \
+                                        "https://www.mediafire.com/file_premium/roasro7g0e9q6ml/435874.7z/file" \
+                                        "435874.7z" "0be9f3461dcea8fd8016b6517ef183afb4230b42"
                 !insertmacro NSIS7Z_EXTRACT "435874.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "es"
                 DetailPrint " // Downloading downgrade 435875 (Automatron DLC, Spanish)"
-                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.11.169/435875.7z" \
-                                        "https://www.mediafire.com/file_premium/pxov1tfjrfosu85/435875.7z/file" \
-                                        "435875.7z" "21c31aac05292112740c8ed760b7859dc8f11c47"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.169/435875.7z" \
+                                        "https://www.mediafire.com/file_premium/l9uzxz4s8upjo3u/435875.7z/file" \
+                                        "435875.7z" "060c37b31abcd5d3ea9e2a579a987b2a324c60c5"
                 !insertmacro NSIS7Z_EXTRACT "435875.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "pl"
                 DetailPrint " // Downloading downgrade 435876 (Automatron DLC, Polish)"
-                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.11.169/435876.7z" \
-                                        "https://www.mediafire.com/file_premium/1dhrmbuivnv9tei/435876.7z/file" \
-                                        "435876.7z" "af766531c1b3d92ab9f54d2d601a3aa9e24eaa07"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.169/435876.7z" \
+                                        "https://www.mediafire.com/file_premium/2w8xqbqinousdvb/435876.7z/file" \
+                                        "435876.7z" "e08e0161bf7bb3e159ebf97958b1dd22d7a6c632"
                 !insertmacro NSIS7Z_EXTRACT "435876.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "ru"
                 DetailPrint " // Downloading downgrade 435877 (Automatron DLC, Russian)"
-                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.11.169/435877.7z" \
-                                        "https://www.mediafire.com/file_premium/qxi4c7b7pha4h0e/435877.7z/file" \
-                                        "435877.7z" "8b1144a74b315da624c9c7028c20d58ccf218c90"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.169/435877.7z" \
+                                        "https://www.mediafire.com/file_premium/mtmkvklvgo9hmh8/435877.7z/file" \
+                                        "435877.7z" "104e682ca2cfa23b9f25267160726ca1d8afc21f"
                 !insertmacro NSIS7Z_EXTRACT "435877.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "ptbr"
                 DetailPrint " // Downloading downgrade 435878 (Automatron DLC, Portuguese-Brazil)"
-                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.11.169/435878.7z" \
-                                        "https://www.mediafire.com/file_premium/jn73tcov6x2vdmm/435878.7z/file" \
-                                        "435878.7z" "cfca6d2cbffbe8b2d81f943766bb7f3e8afab61c"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.169/435878.7z" \
+                                        "https://www.mediafire.com/file_premium/aocotp40c8yl8rn/435878.7z/file" \
+                                        "435878.7z" "5118d3787f65d4047c96acf92ed28ebc1f741071"
                 !insertmacro NSIS7Z_EXTRACT "435878.7z" ".\" "AUTO_DELETE"
             ${ElseIf} $F4_Language == "cn"
                 DetailPrint " // Downloading downgrade 435879 (Automatron DLC, Chinese-Traditional)"
-                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.11.169/435879.7z" \
-                                        "https://www.mediafire.com/file_premium/i2x8m43wk0b3kza/435879.7z/file" \
-                                        "435879.7z" "880a0ca42b6fce124e28e16d4a8c28b0c86f3bd2"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.169/435879.7z" \
+                                        "https://www.mediafire.com/file_premium/0c5tt9r1ufsjbps/435879.7z/file" \
+                                        "435879.7z" "b3173d12befa4775f94acad3bef9be65a8017041"
                 !insertmacro NSIS7Z_EXTRACT "435879.7z" ".\" "AUTO_DELETE"
             ${EndIf}
         ${EndIf}
 
         ${If} $DLC_Workshop == "yes"
             DetailPrint " // Downloading downgrade 435880 (Wasteland Workshop DLC)"
-            !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.191_to_1.11.169/435880.7z" \
-                                    "https://www.mediafire.com/file_premium/dyn9lol4t7jzxen/435880.7z/file" \
-                                    "435880.7z" "e4e8fbc9ba565604c184c1d463e9d0ebf4328a66"
+            !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.169/435880.7z" \
+                                    "https://www.mediafire.com/file_premium/rzdj6yp7d2exafz/435880.7z/file" \
+                                    "435880.7z" "6db5cd321f3eabc54b33a7b8d78fe423c763938a"
+            !insertmacro NSIS7Z_EXTRACT "435880.7z" ".\" "AUTO_DELETE"
+        ${EndIf}
+    SectionEnd
+
+    Section /o "v1.11.191 (anniversary, december patch 2)" version_1_11_191
+        AddSize 28672
+        SetOutPath "$INSTDIR"
+        !insertmacro ABORT_IF_UNSUPPORTED_VERSION
+        !insertmacro ABORT_IF_USER_REFUSES
+
+        DetailPrint " // Downloading downgrade 377162 (Base game)"
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.191/377162.7z" \
+                                "https://www.mediafire.com/file_premium/45kdc196xfn9sc6/377162.7z/file" \
+                                "377162.7z" "97b2e842b566681704eb750d683b84fcdc773877"
+        !insertmacro NSIS7Z_EXTRACT "377162.7z" ".\" "AUTO_DELETE"
+
+        DetailPrint " // Downloading downgrade 377163 (Base game)"
+        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.191/377163.7z" \
+                                "https://www.mediafire.com/file_premium/5qu763yv5couirh/377163.7z/file" \
+                                "377163.7z" "34f18a8711539abe975b15233999e414919c3fdd"
+        !insertmacro NSIS7Z_EXTRACT "377163.7z" ".\" "AUTO_DELETE"
+
+        ${If} $DLC_Automatron == "yes"
+            ${If} $F4_Language == "ja"
+                DetailPrint " // Downloading downgrade 404091 (Automatron DLC, Japanese)"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.191/404091.7z" \
+                                        "https://www.mediafire.com/file_premium/gyag65rwwi7pv5u/404091.7z/file" \
+                                        "404091.7z" "5dc2197131994f9e454f059edc74effa474862d2"
+                !insertmacro NSIS7Z_EXTRACT "404091.7z" ".\" "AUTO_DELETE"
+            ${ElseIf} $F4_Language == "en"
+                DetailPrint " // Downloading downgrade 435871 (Automatron DLC, English)"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.191/435871.7z" \
+                                        "https://www.mediafire.com/file_premium/gkljwt0cr97l2gz/435871.7z/file" \
+                                        "435871.7z" "fe24456646aff7d594bf201c88d5962357e13de3"
+                !insertmacro NSIS7Z_EXTRACT "435871.7z" ".\" "AUTO_DELETE"
+            ${ElseIf} $F4_Language == "fr"
+                DetailPrint " // Downloading downgrade 435872 (Automatron DLC, French)"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.191/435872.7z" \
+                                        "https://www.mediafire.com/file_premium/5q1ywhug3mn0txa/435872.7z/file" \
+                                        "435872.7z" "1eb646c9b189e5c2b139d53d5095d0dd9c7e915b"
+                !insertmacro NSIS7Z_EXTRACT "435872.7z" ".\" "AUTO_DELETE"
+            ${ElseIf} $F4_Language == "de"
+                DetailPrint " // Downloading downgrade 435873 (Automatron DLC, German)"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.191/435873.7z" \
+                                        "https://www.mediafire.com/file_premium/d06m6w6hypj55fp/435873.7z/file" \
+                                        "435873.7z" "5e30b23a8919a05dc60a57af78f74d44840b1f39"
+                !insertmacro NSIS7Z_EXTRACT "435873.7z" ".\" "AUTO_DELETE"
+            ${ElseIf} $F4_Language == "it"
+                DetailPrint " // Downloading downgrade 435874 (Automatron DLC, Italian)"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.191/435874.7z" \
+                                        "https://www.mediafire.com/file_premium/1ed0nikovk30ov9/435874.7z/file" \
+                                        "435874.7z" "649d4b212c378e67a174cd51dc7739a1303c1d64"
+                !insertmacro NSIS7Z_EXTRACT "435874.7z" ".\" "AUTO_DELETE"
+            ${ElseIf} $F4_Language == "es"
+                DetailPrint " // Downloading downgrade 435875 (Automatron DLC, Spanish)"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.191/435875.7z" \
+                                        "https://www.mediafire.com/file_premium/c6d6n2fx6tlo6t2/435875.7z/file" \
+                                        "435875.7z" "711976e1fce0197b7d2946740619ea45988ed6ae"
+                !insertmacro NSIS7Z_EXTRACT "435875.7z" ".\" "AUTO_DELETE"
+            ${ElseIf} $F4_Language == "pl"
+                DetailPrint " // Downloading downgrade 435876 (Automatron DLC, Polish)"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.191/435876.7z" \
+                                        "https://www.mediafire.com/file_premium/9wi44aflhbsqdpe/435876.7z/file" \
+                                        "435876.7z" "bbc6e70a1a3c8fd8863608421dad7563a0131539"
+                !insertmacro NSIS7Z_EXTRACT "435876.7z" ".\" "AUTO_DELETE"
+            ${ElseIf} $F4_Language == "ru"
+                DetailPrint " // Downloading downgrade 435877 (Automatron DLC, Russian)"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.191/435877.7z" \
+                                        "https://www.mediafire.com/file_premium/hdqfot07dlueix9/435877.7z/file" \
+                                        "435877.7z" "1d45c0fb12662dd6702c50cf1ab2554c28c6cb48"
+                !insertmacro NSIS7Z_EXTRACT "435877.7z" ".\" "AUTO_DELETE"
+            ${ElseIf} $F4_Language == "ptbr"
+                DetailPrint " // Downloading downgrade 435878 (Automatron DLC, Portuguese-Brazil)"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.191/435878.7z" \
+                                        "https://www.mediafire.com/file_premium/fto38a2i9d9waey/435878.7z/file" \
+                                        "435878.7z" "d9cdacd1f8e115e3753b157b2cefb7ebba341f43"
+                !insertmacro NSIS7Z_EXTRACT "435878.7z" ".\" "AUTO_DELETE"
+            ${ElseIf} $F4_Language == "cn"
+                DetailPrint " // Downloading downgrade 435879 (Automatron DLC, Chinese-Traditional)"
+                !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.191/435879.7z" \
+                                        "https://www.mediafire.com/file_premium/fbtbn2oxfnnveq9/435879.7z/file" \
+                                        "435879.7z" "b51e3ce8d5100285c235ce3eab92f0f592c0bb9b"
+                !insertmacro NSIS7Z_EXTRACT "435879.7z" ".\" "AUTO_DELETE"
+            ${EndIf}
+        ${EndIf}
+
+        ${If} $DLC_Workshop == "yes"
+            DetailPrint " // Downloading downgrade 435880 (Wasteland Workshop DLC)"
+            !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/fallout-4/steam-downgrader_1.11.221_to_1.11.191/435880.7z" \
+                                    "https://www.mediafire.com/file_premium/skujm5rmb67lxbf/435880.7z/file" \
+                                    "435880.7z" "aa8351ed9a7ccb4df5b1c4b436918cb2b18f0771"
             !insertmacro NSIS7Z_EXTRACT "435880.7z" ".\" "AUTO_DELETE"
         ${EndIf}
     SectionEnd
@@ -394,6 +486,7 @@ Function .onSelChange
             !insertmacro RadioButton ${version_1_10_163}
             !insertmacro RadioButton ${version_1_10_984}
             !insertmacro RadioButton ${version_1_11_169}
+            !insertmacro RadioButton ${version_1_11_191}
         !insertmacro EndRadioButtons
     ${EndIf}
 FunctionEnd
