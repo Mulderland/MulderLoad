@@ -1,0 +1,368 @@
+{
+  "game": {
+    "title": "Penumbra: Black Plague",
+    "originalExe": "redist\\Penumbra.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Resolution",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "1280x800 (16/10)" },
+        { "value": "1920x1080 (16/9)" },
+        { "value": "2560x1440 (16/9)" },
+        { "value": "3840x2160 (16/9)" },
+        { "value": "2560x1080 (21/9)" },
+        { "value": "3440x1440 (21/9)" },
+        { "value": "5120x2160 (21/9)" },
+        { "value": "3840x1080 (32/9)" },
+        { "value": "5120x1440 (32/9)" },
+        { "value": "7680x2160 (32/9)" }
+      ]
+    },
+    {
+      "name": "Horizontal FOV",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "80" },
+        { "value": "86 (default)" },
+        { "value": "90" },
+        { "value": "95" },
+        { "value": "100" },
+        { "value": "105" },
+        { "value": "110" }
+      ]
+    },
+    {
+      "name": "Language",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "English" },
+        { "value": "French" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Enable quick save (F4) and quick load (F5)" },
+        { "value": "Skip intro videos" },
+        { "value": "Windowed" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "*Resolution": "1280x" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "Width=\"[^\"]*\"",
+        "replacement": "Width=\"1280\""
+      },
+      {
+        "when": [ { "*Resolution": "1920x" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "Width=\"[^\"]*\"",
+        "replacement": "Width=\"1920\""
+      },
+      {
+        "when": [ { "*Resolution": "2560x" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "Width=\"[^\"]*\"",
+        "replacement": "Width=\"2560\""
+      },
+      {
+        "when": [ { "*Resolution": "3440x" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "Width=\"[^\"]*\"",
+        "replacement": "Width=\"3440\""
+      },
+      {
+        "when": [ { "*Resolution": "3840x" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "Width=\"[^\"]*\"",
+        "replacement": "Width=\"3840\""
+      },
+      {
+        "when": [ { "*Resolution": "5120x" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "Width=\"[^\"]*\"",
+        "replacement": "Width=\"5120\""
+      },
+      {
+        "when": [ { "*Resolution": "7680x" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "Width=\"[^\"]*\"",
+        "replacement": "Width=\"7680\""
+      },
+      {
+        "when": [ { "*Resolution": "x800" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "Height=\"[^\"]*\"",
+        "replacement": "Height=\"800\""
+      },
+      {
+        "when": [ { "*Resolution": "x1080" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "Height=\"[^\"]*\"",
+        "replacement": "Height=\"1080\""
+      },
+      {
+        "when": [ { "*Resolution": "x1440" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "Height=\"[^\"]*\"",
+        "replacement": "Height=\"1440\""
+      },
+      {
+        "when": [ { "*Resolution": "x2160" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "Height=\"[^\"]*\"",
+        "replacement": "Height=\"2160\""
+      },
+
+
+
+      
+      {
+        "when": [ ],
+        "operation": "copy",
+        "source": "@mulderland\\Penumbra_GOG_LAA.exe",
+        "target": "redist\\Penumbra.exe"
+      },
+      {
+        "when": [ { "Horizontal FOV": "80" } ],
+        "operation": "patchBytes",
+        "files": ["redist\\Penumbra.exe"],
+        "patches": [
+            { "offset": "0x9D8A1", "bytes": "80 42" },
+            { "offset": "0xA6DD4", "bytes": "80 42" }
+        ]
+      },
+      {
+        "when": [ { "Horizontal FOV": "90" } ],
+        "operation": "patchBytes",
+        "files": ["redist\\Penumbra.exe"],
+        "patches": [
+            { "offset": "0x9D8A1", "bytes": "94 42" },
+            { "offset": "0xA6DD4", "bytes": "94 42" }
+        ]
+      },
+      {
+        "when": [ { "Horizontal FOV": "95" } ],
+        "operation": "patchBytes",
+        "files": ["redist\\Penumbra.exe"],
+        "patches": [
+            { "offset": "0x9D8A1", "bytes": "9E 42" },
+            { "offset": "0xA6DD4", "bytes": "9E 42" }
+        ]
+      },
+      {
+        "when": [ { "Horizontal FOV": "100" } ],
+        "operation": "patchBytes",
+        "files": ["redist\\Penumbra.exe"],
+        "patches": [
+            { "offset": "0x9D8A1", "bytes": "A8 42" },
+            { "offset": "0xA6DD4", "bytes": "A8 42" }
+        ]
+      },
+      {
+        "when": [ { "Horizontal FOV": "105" } ],
+        "operation": "patchBytes",
+        "files": ["redist\\Penumbra.exe"],
+        "patches": [
+            { "offset": "0x9D8A1", "bytes": "B2 42" },
+            { "offset": "0xA6DD4", "bytes": "B2 42" }
+        ]
+      },
+      {
+        "when": [ { "Horizontal FOV": "110" } ],
+        "operation": "patchBytes",
+        "files": ["redist\\Penumbra.exe"],
+        "patches": [
+            { "offset": "0x9D8A1", "bytes": "BC 42" },
+            { "offset": "0xA6DD4", "bytes": "BC 42" }
+        ]
+      },
+
+
+
+    
+      {
+        "when": [ ],
+        "operation": "copy",
+        "source": "@mulderland\\Requiem_GOG_LAA.exe",
+        "target": "redist\\Requiem.exe"
+      },
+      {
+        "when": [ { "Horizontal FOV": "80" } ],
+        "operation": "patchBytes",
+        "files": ["redist\\Requiem.exe"],
+        "patches": [
+            { "offset": "0x9EB17", "bytes": "80 42" },
+            { "offset": "0xA8014", "bytes": "80 42" }
+        ]
+      },
+      {
+        "when": [ { "Horizontal FOV": "90" } ],
+        "operation": "patchBytes",
+        "files": ["redist\\Requiem.exe"],
+        "patches": [
+            { "offset": "0x9EB17", "bytes": "94 42" },
+            { "offset": "0xA8014", "bytes": "94 42" }
+        ]
+      },
+      {
+        "when": [ { "Horizontal FOV": "95" } ],
+        "operation": "patchBytes",
+        "files": ["redist\\Requiem.exe"],
+        "patches": [
+            { "offset": "0x9EB17", "bytes": "9E 42" },
+            { "offset": "0xA8014", "bytes": "9E 42" }
+        ]
+      },
+      {
+        "when": [ { "Horizontal FOV": "100" } ],
+        "operation": "patchBytes",
+        "files": ["redist\\Requiem.exe"],
+        "patches": [
+            { "offset": "0x9EB17", "bytes": "A8 42" },
+            { "offset": "0xA8014", "bytes": "A8 42" }
+        ]
+      },
+      {
+        "when": [ { "Horizontal FOV": "105" } ],
+        "operation": "patchBytes",
+        "files": ["redist\\Requiem.exe"],
+        "patches": [
+            { "offset": "0x9EB17", "bytes": "B2 42" },
+            { "offset": "0xA8014", "bytes": "B2 42" }
+        ]
+      },
+      {
+        "when": [ { "Horizontal FOV": "110" } ],
+        "operation": "patchBytes",
+        "files": ["redist\\Requiem.exe"],
+        "patches": [
+            { "offset": "0x9EB17", "bytes": "BC 42" },
+            { "offset": "0xA8014", "bytes": "BC 42" }
+        ]
+      },
+
+
+
+
+      {
+        "when": [ { "Language": "English" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg"],
+        "pattern": "LanguageFile=\"[^\"]*\"",
+        "replacement": "LanguageFile=\"English.lang\""
+      },
+      {
+        "when": [ { "Language": "English" } ],
+        "operation": "replaceText",
+        "optionalFiles": ["redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "LanguageFile=\"[^\"]*\"",
+        "replacement": "LanguageFile=\"English_exp.lang\""
+      },
+      {
+        "when": [ { "Language": "French" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg"],
+        "pattern": "LanguageFile=\"[^\"]*\"",
+        "replacement": "LanguageFile=\"Francais.lang\""
+      },
+      {
+        "when": [ { "Language": "French" } ],
+        "operation": "replaceText",
+        "optionalFiles": ["redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "LanguageFile=\"[^\"]*\"",
+        "replacement": "LanguageFile=\"Francais_exp.lang\""
+      },
+
+
+
+
+      {
+        "when": [ { "!Misc": "Enable quick save (F4) and quick load (F5)" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "AllowQuickSave=\"[^\"]*\"",
+        "replacement": "AllowQuickSave=\"false\""
+      },
+      {
+        "when": [ { "Misc": "Enable quick save (F4) and quick load (F5)" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "AllowQuickSave=\"[^\"]*\"",
+        "replacement": "AllowQuickSave=\"true\""
+      },
+
+
+
+
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "ShowPreMenu=\"[^\"]*\"",
+        "replacement": "ShowPreMenu=\"true\""
+      },
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "ShowPreMenu=\"[^\"]*\"",
+        "replacement": "ShowPreMenu=\"false\""
+      },
+
+
+
+      
+      {
+        "when": [ { "!Misc": "Windowed" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "FullScreen=\"[^\"]*\"",
+        "replacement": "FullScreen=\"true\""
+      },
+      {
+        "when": [ { "Misc": "Windowed" } ],
+        "operation": "replaceText",
+        "files": ["redist\\config\\default_settings.cfg"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Penumbra\\Black Plague\\settings.cfg", "redist\\expansion01\\config\\default_settings.cfg", "%USERPROFILE%\\Documents\\Penumbra\\Requiem\\settings.cfg"],
+        "pattern": "FullScreen=\"[^\"]*\"",
+        "replacement": "FullScreen=\"false\""
+      }
+    ]
+  }
+}

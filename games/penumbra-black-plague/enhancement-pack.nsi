@@ -1,0 +1,70 @@
+!define MUI_WELCOMEPAGE_TEXT "\
+This is an Enhancement Pack for Penumbra: Black Plague, aiming to provide a modern vanilla experience. It includes:$\r$\n\
+- Max Quality CFG$\r$\n\
+- Upscaled Textures from the Penumbra: Quality Of Life project (by sk8er_boi6000)$\r$\n\
+- 4GB Patched GOG Executable (by NTCore)$\r$\n\
+- MulderConfig to allow resolution and FOV modifications, optional french patch and other tweaks.$\r$\n\
+$\r$\n\
+${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
+$\r$\n\
+Special thanks to sk8er_boi6000 for his Quality of Life project!"
+
+!define MUI_FINISHPAGE_RUN "$INSTDIR\MulderConfig.exe"
+!define MUI_FINISHPAGE_RUN_TEXT "Run MulderConfig"
+!include "..\..\includes\templates\SelectTemplate.nsh"
+
+Name "Penumbra: Black Plague [Enhancement Pack]"
+
+Section "Max Quality CFG"
+    SetOutPath "$INSTDIR\redist\config"
+    File resources\default_settings.cfg
+
+    SetOutPath "$INSTDIR\redist\expansion01\config"
+    File resources\requiem_default_settings.cfg
+
+    MessageBox MB_YESNO|MB_DEFBUTTON1 "Delete existing settings?$\r$\n$\r$\nIt is recommended to ensure max quality settings are applied." IDYES settings_delete IDNO settings_keep
+    settings_delete:
+        Delete "$PROFILE\Documents\Penumbra\Black Plague\settings.cfg"
+        Delete "$PROFILE\Documents\Penumbra\Requiem\settings.cfg"
+    settings_keep:
+SectionEnd
+
+Section "Upscaled Textures v1.3.1 (QoL Project by sk8er_boi6000)"
+    SetOutPath "$INSTDIR\redist"
+
+    # https://www.moddb.com/mods/penumbra-qol-project/downloads/penumbra-black-plague-texture-upscale-mod
+    !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/190439" \
+                            "https://cdn1.mulderload.eu/games/penumbra-overture/Overture-Mod-1.1.1.7z" \
+                            "BlackPlague-QOL-1.3.1.7z" "7acb3721d40e8479e516168d61c1835d"
+    !insertmacro NSIS7Z_EXTRACT "BlackPlague-QOL-1.3.1.7z" ".\" "AUTO_DELETE"
+    AddSize 2548040
+SectionEnd
+
+Section "MulderConfig (latest)"
+    SetOutPath "$INSTDIR\@mulderland"
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/penumbra-black-plague/Penumbra_GOG_LAA.7z" \
+                            "https://www.mediafire.com/file_premium/ttmolxr6tc7t0r6/Penumbra_GOG_LAA.7z/file" \
+                            "Penumbra_GOG_LAA.7z" "3b1f52d883e7e7148aabe078c60ee53f836bc46d"
+    !insertmacro NSIS7Z_EXTRACT "Penumbra_GOG_LAA.7z" ".\" "AUTO_DELETE"
+    AddSize 5844
+
+    SetOutPath "$INSTDIR\redist\config"
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/penumbra-black-plague/Francais.lang" \
+                            "https://www.mediafire.com/file_premium/bsrrg5cui5ik8l7/Francais.lang/file" \
+                            "Francais.lang" "37a1a45bec751e53acf34367112e046d4ce61fff"
+    AddSize 192
+
+    SetOutPath "$INSTDIR\redist\expansion01\config"
+    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/penumbra-black-plague/Francais_exp.lang" \
+                            "https://www.mediafire.com/file_premium/mfacqbslqlk3ewr/Francais_exp.lang/file" \
+                            "Francais.lang" "51518d9d1b1cb6434b2b64a19247f2cf909651a2"
+    AddSize 61
+
+    !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
+SectionEnd
+
+Function .onInit
+    StrCpy $SELECT_FILENAME "Penumbra.exe"
+    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Penumbra Overture\redist"
+    StrCpy $SELECT_RELATIVE_INSTDIR ".."
+FunctionEnd
