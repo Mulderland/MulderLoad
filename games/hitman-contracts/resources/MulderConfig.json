@@ -524,7 +524,7 @@
         "operation": "replaceLine",
         "files": ["HitmanContracts.ini"],
         "pattern": "^DefaultScene=.*$",
-        "replacement": "DefaultScene=AllLevels\\\\Logos.gms"
+        "replacement": "DefaultScene=AllLevels\\Logos.gms"
       }
     ]
   }
