@@ -75,6 +75,8 @@ Section "Widescreen fix (by nemesis2000) + dgVoodoo2"
                             "Hitman 2 Silent Assassin Widescreen Fix.zip" "9a2c7e17e4a303e2dec640b3ce23f90192bc2398"
     !insertmacro NSISUNZ_EXTRACT_ONE "Hitman 2 Silent Assassin Widescreen Fix.zip" ".\" "scripts\h2.ini" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "Hitman 2 Silent Assassin Widescreen Fix.zip" ".\" "scripts\h2w.asi" "AUTO_DELETE"
+    !insertmacro FILE_STR_REPLACE "LOD_Distance_Multiplier = 10.0" "LOD_Distance_Multiplier = 1.0" 1 1 "$INSTDIR\scripts\h2.ini"
+    !insertmacro FILE_STR_REPLACE "Draw_Distance = 2.4" "Draw_Distance = 1.2" 1 1 "$INSTDIR\scripts\h2.ini"
 
     # Configure dgVoodoo
     !insertmacro FILE_STR_REPLACE "FPSLimit                             = 0" "FPSLimit                             = 60" 1 1 "$INSTDIR\dgVoodoo.conf"
