@@ -104,8 +104,8 @@ Section "HD Textures (LCD v1.5 + Lava Fix + Random HD Textures + HD Player Messa
     !insertmacro FOLDER_MERGE "$INSTDIR\dsfix\tex_override\Demon Ruins" "$INSTDIR\dsfix\tex_override"
     !insertmacro FOLDER_MERGE "$INSTDIR\dsfix\tex_override\Duke's Archives" "$INSTDIR\dsfix\tex_override"
 
-    # https://www.nexusmods.com/darksouls/mods/268
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/darksouls/mods/268?tab=files&file_id=1000000511" \
+    # https://www.nexusmods.com/darksouls/mods/389
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/darksouls/mods/389?tab=files&file_id=1000000337" \
                             "HD Player Messages DDS Version.rar" "1ca3bca8c1aec66604919150908ff6dc98b7dbe1"
     !insertmacro 7Z_EXTRACT "HD Player Messages DDS Version.rar" "." "AUTO_DELETE"
 SectionEnd
