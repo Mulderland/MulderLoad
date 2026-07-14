@@ -19,6 +19,9 @@ Function FileHashEquals
     ${ElseIf} $R0 == 32
         NScurl::md5 -file "$0"
         Pop $R1
+    ${ElseIf} $R0 == 64
+        NScurl::sha256 -file "$0"
+        Pop $R1
     ${ElseIf} $R0 == 23
         NScurl::sha1 -file "$0"
         Pop $R1
