@@ -22,29 +22,30 @@
         AddSize 1824
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis-2/steam_to_gog_1.0hotfix3_full.7z" \
-                                "https://www.mediafire.com/file_premium/1neorsjywl8zp6s/steam_to_gog_1.0hotfix3_full.7z/file" \
-                                "steam_to_gog_1.0hotfix3_full.7z" "577108ba1bd00eaf1952e417177a6875ea802f8b"
-        !insertmacro NSIS7Z_EXTRACT "steam_to_gog_1.0hotfix3_full.7z" ".\" "AUTO_DELETE"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/dino-crisis-2/downgrade/Steam to GOG v1.0 hotfix 3 [MLD].7z" \
+                                "Steam to GOG v1.0 hotfix 3 [MLD].7z" \
+                                "577108ba1bd00eaf1952e417177a6875ea802f8b"
+
+        !insertmacro NSIS7Z_EXTRACT "Steam to GOG v1.0 hotfix 3 [MLD].7z" ".\" "AUTO_DELETE"
     SectionEnd
 !endif
 
 Section "Fix GOG/Steam corrupted files with Retail files"
     SetOutPath "$INSTDIR"
 
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis-2/Data%20Retail%20[MLD].7z" \
-                            "https://www.mediafire.com/file_premium/kp9hfi5ezdtrvrm/Data_Retail_%255BMLD%255D.7z/file" \
-                            "Data Retail [MLD].7z" "a19474b1846eed0fe9564bb6516740ba6b26d268"
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/dino-crisis-2/fix/Retail File Restoration Pack [MLD].7z" \
+                            "Retail File Restoration Pack [MLD].7z" \
+                            "a19474b1846eed0fe9564bb6516740ba6b26d268"
 
     !ifdef GOG_ENHANCEMENT_PACK_NSI
-        !insertmacro NSIS7Z_EXTRACT "Data Retail [MLD].7z" ".\" "AUTO_DELETE"
+        !insertmacro NSIS7Z_EXTRACT "Retail File Restoration Pack [MLD].7z" ".\" "AUTO_DELETE"
     !else ; If Steam
-        !insertmacro NSIS7Z_EXTRACT "$INSTDIR\Data Retail [MLD].7z" "$INSTDIR\english" ""
-        !insertmacro NSIS7Z_EXTRACT "$INSTDIR\Data Retail [MLD].7z" "$INSTDIR\japanese" ""
+        !insertmacro NSIS7Z_EXTRACT "$INSTDIR\Retail File Restoration Pack [MLD].7z" "$INSTDIR\english" ""
+        !insertmacro NSIS7Z_EXTRACT "$INSTDIR\Retail File Restoration Pack [MLD].7z" "$INSTDIR\japanese" ""
         ${If} ${FileExists} "$INSTDIR\rebirth\Data\MF_0400.DAT"
-            !insertmacro NSIS7Z_EXTRACT "$INSTDIR\Data Retail [MLD].7z" "$INSTDIR\rebirth" ""
+            !insertmacro NSIS7Z_EXTRACT "$INSTDIR\Retail File Restoration Pack [MLD].7z" "$INSTDIR\rebirth" ""
         ${EndIf}
-        Delete "$INSTDIR\Data Retail [MLD].7z"
+        Delete "$INSTDIR\Retail File Restoration Pack [MLD].7z"
     !endif
 SectionEnd
 
@@ -75,16 +76,18 @@ SectionGroup /e "Dino Crisis 2 Classic REbirth"
         File resources\config.ini
 
         # Windows XP Patch
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis-2/Dino2-xp.7z" \
-                                "https://www.mediafire.com/file_premium/fjni41t9im4kqli/Dino2-xp.7z/file" \
-                                "Dino2-xp.7z" "47107fbdaaec9ad62114e071c478545beac97b7f"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/dino-crisis-2/fix/Dino2-xp.7z" \
+                                "Dino2-xp.7z" \
+                                "47107fbdaaec9ad62114e071c478545beac97b7f"
+
         !insertmacro NSIS7Z_EXTRACT "Dino2-xp.7z" ".\" "AUTO_DELETE"
 
         # Classic REbirth DLL
         AddSize 3545
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis-2/dc2cr-2024-05-05.7z" \
-                                "https://www.mediafire.com/file_premium/69dozi4wa1dfwlm/dc2cr-2024-05-05.7z/file" \
-                                "dc2cr-2024-05-05.7z" "2d84b2e9b3ebac15ede3fd4beee8bb5a5eaf90e0"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/dino-crisis-2/impr_misc/dc2cr-2024-05-05.7z" \
+                                "dc2cr-2024-05-05.7z" \
+                                "2d84b2e9b3ebac15ede3fd4beee8bb5a5eaf90e0"
+
         !insertmacro NSIS7Z_EXTRACT "dc2cr-2024-05-05.7z" ".\" "AUTO_DELETE"
 
         #
@@ -95,9 +98,10 @@ SectionGroup /e "Dino Crisis 2 Classic REbirth"
         AddSize 293888
         SetOutPath "$REBIRTHDIR"
 
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis-2/dc2cr_hq_movie_2024-04-29.7z" \
-                                "https://www.mediafire.com/file_premium/5gbygmau33k9bfe/dc2cr_hq_movie_2024-04-29.7z/file" \
-                                "dc2cr_hq_movie_2024-04-29.7z" "2a8720c19ced0d6f40f598475bfc188aef038edc"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/dino-crisis-2/impr_video/dc2cr_hq_movie_2024-04-29.7z" \
+                                "dc2cr_hq_movie_2024-04-29.7z" \
+                                "2a8720c19ced0d6f40f598475bfc188aef038edc"
+
         !insertmacro NSIS7Z_EXTRACT "dc2cr_hq_movie_2024-04-29.7z" ".\" "AUTO_DELETE"
 
         !ifndef GOG_ENHANCEMENT_PACK_NSI ; If Steam
@@ -113,9 +117,10 @@ SectionGroup /e "Dino Crisis 2 Classic REbirth"
         AddSize 13619
         SetOutPath "$REBIRTHDIR"
 
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis-2/dc2cr_hq_sfx_2024-04-29.7z" \
-                                "https://www.mediafire.com/file_premium/dla43867fkmlq31/dc2cr_hq_sfx_2024-04-29.7z/file" \
-                                "dc2cr_hq_sfx_2024-04-29.7z" "87693f542928bffb4614e647f9856e7ef11f8085"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/dino-crisis-2/impr_gfx/dc2cr_hq_sfx_2024-04-29.7z" \
+                                "dc2cr_hq_sfx_2024-04-29.7z" \
+                                "87693f542928bffb4614e647f9856e7ef11f8085"
+
         !insertmacro NSIS7Z_EXTRACT "dc2cr_hq_sfx_2024-04-29.7z" ".\" "AUTO_DELETE"
     SectionEnd
 SectionGroupEnd
@@ -123,9 +128,9 @@ SectionGroupEnd
 Section "High Quality Textures (Rex-HD Project Preview)" rexhd
     AddSize 437248
     SetOutPath "$INSTDIR"
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dino-crisis-2/DC2_RexHD_Preview1.zip" \
-                            "https://www.mediafire.com/file_premium/1pwow7ayyor8h9c/DC2_RexHD_Preview1.zip/file" \
-                            "DC2_RexHD_Preview1.zip" "aee5544e2ef6d10dc7d1692158771dd21bc85294"
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/dino-crisis-2/impr_gfx/DC2_RexHD_Preview1.zip" \
+                            "DC2_RexHD_Preview1.zip" \
+                            "aee5544e2ef6d10dc7d1692158771dd21bc85294"
 
     !ifdef GOG_ENHANCEMENT_PACK_NSI
         !insertmacro NSISUNZ_EXTRACT "DC2_RexHD_Preview1.zip" ".\" "AUTO_DELETE"

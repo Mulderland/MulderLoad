@@ -49,17 +49,19 @@ SectionGroup "Die Hard: Nakatomi Plaza (Full Installation)"
     Section "Official Patch v1.04"
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_2 "https://community.pcgamingwiki.com/files/file/381-die-hard-nakatomi-plaza-patch-104/#776" \
-                                "https://cdn1.mulderload.eu/games/die-hard-nakatomi-plaza/si_dhnp_en_update_10_1041.rar" \
-                                "si_dhnp_en_update_10_1041.rar" "c3e0f4a1345678759a581023d46f4597757d6967"
+        !insertmacro DOWNLOAD_1 "https://community.pcgamingwiki.com/files/file/381-die-hard-nakatomi-plaza-patch-104/" \
+                                "si_dhnp_en_update_10_1041.rar" \
+                                "c3e0f4a1345678759a581023d46f4597757d6967"
+
         !insertmacro 7Z_EXTRACT "si_dhnp_en_update_10_1041.rar" ".\" "AUTO_DELETE"
         !insertmacro FOLDER_MERGE "$INSTDIR\si_dhnp_en_update_10_1041" "$INSTDIR\"
     SectionEnd
 
     Section "Remove legacy disc check"
-        !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/m4og74rtjsyvv6n/clsdh04c.rar/file" \
-                                "https://cdn1.mulderload.eu/games/die-hard-nakatomi-plaza/clsdh04c.rar" \
-                                "clsdh04c.rar" "cdd544e6bf1c7227c9ba7c21cb6b0012509e286b"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/die-hard-nakatomi-plaza/update/clsdh04c.rar" \
+                                "clsdh04c.rar" \
+                                "cdd544e6bf1c7227c9ba7c21cb6b0012509e286b"
+
         !insertmacro FORCE_RENAME "Nakatomi.exe" "Nakatomi.exe.bak"
         !insertmacro 7Z_EXTRACT "clsdh04c.rar" ".\" "AUTO_DELETE"
     SectionEnd
@@ -68,9 +70,9 @@ SectionGroupEnd
 Section "Mouse Fix / Crash Fix (by demon27248)"
     AddSize 147
     SetOutPath "$INSTDIR"
-    !insertmacro DOWNLOAD_2 "https://community.pcgamingwiki.com/files/file/2528-no-one-lives-forever-mouse-input-fix-dinputdll/#12670" \
-                            "https://cdn1.mulderload.eu/games/die-hard-nakatomi-plaza/dinput.dll" \
-                            "dinput.dll" "1f0636f8821c8a862cef94bf83f68edbc35f372d"
+    !insertmacro DOWNLOAD_1 "https://community.pcgamingwiki.com/files/file/2528-no-one-lives-forever-mouse-input-fix-dinputdll/" \
+                            "dinput.dll" \
+                            "1f0636f8821c8a862cef94bf83f68edbc35f372d"
 SectionEnd
 
 Section "FOV Fix v1.4.1 (by alphayellow)"
@@ -78,12 +80,19 @@ Section "FOV Fix v1.4.1 (by alphayellow)"
     SetOutPath "$INSTDIR"
 
     # ThirteenAG's Ultimate ASI Loader
-    !insertmacro DOWNLOAD_1 "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/Win32-latest/winmm-Win32.zip" "winmm.zip" ""
+    !insertmacro DOWNLOAD_1 "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/Win32-latest/winmm-Win32.zip" \
+                            "winmm.zip" \
+                            ""
+
     !insertmacro NSISUNZ_EXTRACT_ONE "winmm.zip" ".\" "winmm.dll" "AUTO_DELETE"
 
     # alphayellow's FOV Fix
     SetOutPath "$INSTDIR\scripts"
-    !insertmacro DOWNLOAD_1 "https://github.com/alphayellow1/AlphaYellowWidescreenFixes/releases/download/diehardnakatomiplaza/Die.Hard.Nakatomi.Plaza.-.FOV.Fix.v1.4.1.rar" "Die.Hard.Nakatomi.Plaza.-.FOV.Fix.rar" ""
+    !insertmacro DOWNLOAD_2 "https://github.com/alphayellow1/AlphaYellowWidescreenFixes/releases/download/diehardnakatomiplaza/Die.Hard.Nakatomi.Plaza.-.FOV.Fix.v1.4.1.rar" \
+                            "https://cdn.mulderload.eu/games/die-hard-nakatomi-plaza/impr_gfx/Die.Hard.Nakatomi.Plaza.-.FOV.Fix.v1.4.1.rar" \
+                            "Die.Hard.Nakatomi.Plaza.-.FOV.Fix.rar" \
+                            "a3e1c210d62bf37a9db66512e14bb0ae2f1065906c1f14ebc9e5c01dad4878d6"
+
     !insertmacro 7Z_EXTRACT "Die.Hard.Nakatomi.Plaza.-.FOV.Fix.rar" ".\" "AUTO_DELETE"
 SectionEnd
 
@@ -121,9 +130,10 @@ Section "[MOD] Die Hard Improved Edition v2 beta (by ReiKaz316)" mod
     CopyFiles "$INSTDIR\Nakatomi.rez" "$INSTDIR\backup\Nakatomi.rez"
 
     DetailPrint " // Downloading mod"
-    !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/4zrmpgfl5j8a6gm/DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z/file" \
-                            "https://cdn1.mulderload.eu/games/die-hard-nakatomi-plaza/DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z" \
-                            "DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z" "28ffcac1db43d7e7b1df6ff2cc5697a9fb7a95ca"
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/die-hard-nakatomi-plaza/impr_misc/DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z" \
+                            "DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z" \
+                            "28ffcac1db43d7e7b1df6ff2cc5697a9fb7a95ca"
+
     !insertmacro NSIS7Z_EXTRACT "DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z" ".\" "AUTO_DELETE"
 
     DetailPrint " // Applying xdelta patch"
@@ -159,9 +169,11 @@ SectionGroup "Language" lang
 
         DetailPrint " // Download french audio xdelta"
         SetOutPath "$INSTDIR"
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/die-hard-nakatomi-plaza/french_audio_xdelta.7z" \
-                                "https://www.mediafire.com/file_premium/qee1r6m9urs88ej/french_audio_xdelta.7z/file" \
-                                "french_audio_xdelta.7z" "50474270dc911a1b37ec974e259787cbe6b5297c"
+
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/die-hard-nakatomi-plaza/translation/french_audio_xdelta.7z" \
+                                "french_audio_xdelta.7z" \
+                                "50474270dc911a1b37ec974e259787cbe6b5297c"
+
         !insertmacro NSIS7Z_EXTRACT "french_audio_xdelta.7z" ".\" "AUTO_DELETE"
 
         DetailPrint " // Applying xdelta patches"

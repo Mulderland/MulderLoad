@@ -28,7 +28,9 @@ Section "Duke Nukem 64 + Rednukem x64 r14331"
     CopyFiles "$byofPath_ROM" "$INSTDIR\$0"
 
     !insertmacro DOWNLOAD_2 "https://github.com/NBlood/NBlood/releases/download/r14331/rednukem_win64_20260108-r14331.7z" \
-                            "https://cdn1.mulderload.eu/games/duke-nukem-64/rednukem_win64_20260108-r14331.7z" \
-                            "rednukem.7z" "bcfebf0304d33823714952e9a839e1a1738a7dab"
+                            "https://cdn.mulderload.eu/games/duke-nukem-64/base/rednukem_win64_20260108-r14331.7z" \
+                            "rednukem.7z" \
+                            "bcfebf0304d33823714952e9a839e1a1738a7dab"
+
     !insertmacro NSIS7Z_EXTRACT "rednukem.7z" ".\" "AUTO_DELETE"
 SectionEnd

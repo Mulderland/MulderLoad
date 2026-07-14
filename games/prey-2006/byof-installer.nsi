@@ -44,10 +44,9 @@ SectionGroup "Prey 2006 (Full installation)"
         SetOutPath "$INSTDIR\@mulderload\update"
         AddSize 40960
 
-        !insertmacro DOWNLOAD_3 "https://community.pcgamingwiki.com/files/file/1063-prey-patches/#4142" \
-                                "https://cdn1.mulderload.eu/games/prey-2006/prey_14.zip" \
-                                "https://www.mediafire.com/file_premium/4mbewp42mr6pjfd/prey_14.zip/file" \
-                                "prey_14.zip" "1a289de4a563e3c815d13658c7ab46108a9eca1e"
+        !insertmacro DOWNLOAD_1 "https://community.pcgamingwiki.com/files/file/1063-prey-patches/?r=4142" \
+                                "prey_14.zip" \
+                                "1a289de4a563e3c815d13658c7ab46108a9eca1e"
 
         !insertmacro NSISUNZ_EXTRACT "prey_14.zip" ".\" "AUTO_DELETE"
 

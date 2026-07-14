@@ -19,9 +19,11 @@ Section "[Steam] Missing sound effects (ThirteenAG)"
     AddSize 632832
     SetOutPath "$INSTDIR"
 
-    !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/WidescreenFixesPack/releases/download/condemned/Condemned.MissingSteamFilesFix.zip" \
-                            "https://cdn1.mulderload.eu/games/condemned-criminal-origins/Condemned.MissingSteamFilesFix.zip" \
-                            "Condemned.MissingSteamFilesFix.zip" ""
+    !insertmacro DOWNLOAD_2 "https://cdn.mulderload.eu/games/condemned-criminal-origins/fix/Condemned.MissingSteamFilesFix-b3e1001.zip" \
+                            "https://github.com/ThirteenAG/WidescreenFixesPack/releases/download/condemned/Condemned.MissingSteamFilesFix.zip" \
+                            "Condemned.MissingSteamFilesFix.zip" \
+                            "b3e10011c7f0e2fc1a44421fa15ba442e0c91b63"
+
     !insertmacro NSISUNZ_EXTRACT_ONE "Condemned.MissingSteamFilesFix.zip" "Game\" "Condemned.MissingSteamFilesFix\Game\CondemnedX.Arch00" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "Condemned.MissingSteamFilesFix.zip" ".\" "Condemned.MissingSteamFilesFix\default.archcfg" "AUTO_DELETE"
     Rename "Game\CondemnedX.Arch00" "Game\CondemnedB.Arch00"
@@ -33,8 +35,10 @@ Section "Widescreen & Framerate Fix (ThirteenAG)"
     SetOutPath "$INSTDIR"
 
     !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/WidescreenFixesPack/releases/download/condemned/Condemned.WidescreenFix.zip" \
-                            "https://cdn1.mulderload.eu/games/condemned-criminal-origins/Condemned.WidescreenFix.zip" \
-                            "Condemned.WidescreenFix.zip" ""
+                            "https://cdn.mulderload.eu/games/condemned-criminal-origins/impr_gfx/Condemned.WidescreenFix-d7e4d48.zip" \
+                            "Condemned.WidescreenFix.zip" \
+                            "d7e4d487621898a9c97c60e05ed8877da6b06f2fcf7619513a40a3920eeb34e3"
+
     !insertmacro NSISUNZ_EXTRACT "Condemned.WidescreenFix.zip" ".\" "AUTO_DELETE"
 SectionEnd
 
@@ -65,9 +69,11 @@ SectionGroup /e "AI Upscaled Textures (Neural Origins 0.9)"
     Section # 4GB Patch
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_2 "https://ntcore.com/files/4gb_patch.zip" \
-                                "https://cdn1.mulderload.eu/games/_common/ntcore_4gb_patch_v1.0.0.1.zip" \
-                                "4gb_patch.zip" "c8b0d61937cb54fc8215124c0f737a1d29479c97"
+        !insertmacro DOWNLOAD_2 "https://cdn.mulderload.eu/tools/ntcore/4gb_patch.zip" \
+                                "https://ntcore.com/files/4gb_patch.zip" \
+                                "4gb_patch.zip" \
+                                "c8b0d61937cb54fc8215124c0f737a1d29479c97"
+
         !insertmacro NSISUNZ_EXTRACT "4gb_patch.zip" ".\" "AUTO_DELETE"
 
         ExecWait '4gb_patch.exe Condemned.exe' $0
@@ -78,11 +84,9 @@ SectionGroup /e "AI Upscaled Textures (Neural Origins 0.9)"
         AddSize 9785344
         SetOutPath "$INSTDIR\Game\CondemnedC.Arch00"
 
-        # https://www.moddb.com/mods/neural-origins/downloads/09
-        !insertmacro DOWNLOAD_3 "https://www.moddb.com/downloads/start/185281" \
-                                "https://www.mediafire.com/file_premium/psh39fggqk9li8y/Data.zip/file" \
-                                "https://cdn1.mulderload.eu/games/condemned-criminal-origins/Data.zip" \
-                                "Data.zip" "7c80e43f9f252bf55fba7b9b37df5a5e"
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/neural-origins/downloads/09" \
+                                "Data.zip" \
+                                "7c80e43f9f252bf55fba7b9b37df5a5e"
 
         # Extract with 7z (NSIS built-in unzip can't handle files > 4Gb)
         !insertmacro 7Z_GET
@@ -95,11 +99,10 @@ SectionGroup /e "AI Upscaled Textures (Neural Origins 0.9)"
         AddSize 768
         SetOutPath "$INSTDIR\Game\CondemnedC.Arch00"
 
-        # https://www.moddb.com/mods/neural-origins/addons/green-hud-for-oled
-        !insertmacro DOWNLOAD_3 "https://www.moddb.com/addons/start/185307" \
-                                "https://cdn1.mulderload.eu/games/condemned-criminal-origins/global.1.zip" \
-                                "https://www.mediafire.com/file_premium/b8cj2zfjy0vdpab/global.1.zip/file" \
-                                "global.1.zip" "4fffb4b00087115d21d7dc1ff8255c3b"
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/neural-origins/addons/green-hud-for-oled" \
+                                "global.1.zip" \
+                                "4fffb4b00087115d21d7dc1ff8255c3b"
+
         !insertmacro NSISUNZ_EXTRACT "global.1.zip" ".\" "AUTO_DELETE"
     SectionEnd
 SectionGroupEnd

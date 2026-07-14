@@ -17,10 +17,10 @@ Section "The Stanley Parable v1.4"
     AddSize 77722
     SetOutPath "$INSTDIR"
 
-    !insertmacro DOWNLOAD_3 "https://www.moddb.com/downloads/start/37782" \
-                            "https://cdn1.mulderload.eu/games/the-stanley-parable-mod/The_Stanley_Parable_v1.4.zip" \
-                            "https://www.mediafire.com/file_premium/xffffm9ryi03mz6/The_Stanley_Parable_v1.4.zip/file" \
-                            "The_Stanley_Parable_v1.4.zip" "72f33f83ed50e4b79affe781632c6e8814cc2de1"
+    !insertmacro DOWNLOAD_1 "https://www.moddb.com/downloads/the-stanley-parable-v14" \
+                            "The_Stanley_Parable_v1.4.zip" \
+                            "4f142964b842331c93a0801c1b41b43b"
+
     !insertmacro NSISUNZ_EXTRACT "The_Stanley_Parable_v1.4.zip" ".\" "AUTO_DELETE"
 
     RMDir /r "$INSTDIR\__MACOSX"

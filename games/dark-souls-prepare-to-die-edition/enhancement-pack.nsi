@@ -18,25 +18,25 @@ SectionGroup /e "DSFix v2.4 + FPSFix-Plus + Morten242's UI v1.5.1"
         AddSize 1024
         SetOutPath "$INSTDIR"
 
-        # https://www.moddb.com/games/dark-souls-prepare-to-die-edition/downloads/dsfix
-        !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/133206" \
-                                "https://cdn1.mulderload.eu/games/dark-souls-prepare-to-die-edition/DSfix24.zip" \
-                                "DSfix.zip" "efb76063fef728737d2204f21099261c"
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/games/dark-souls-prepare-to-die-edition/downloads/dsfix" \
+                                "DSfix.zip" \
+                                "efb76063fef728737d2204f21099261c"
+
         !insertmacro NSISUNZ_EXTRACT "DSfix.zip" ".\" "AUTO_DELETE"
 
-        # https://github.com/SeanPesce/FPSFix-Plus
         !insertmacro DOWNLOAD_2 "https://github.com/SeanPesce/FPSFix-Plus/releases/download/2017-09-01/FPSFix-Plus-Bundle_v2017-09-07.zip" \
-                                "https://cdn1.mulderload.eu/games/dark-souls-prepare-to-die-edition/FPSFix-Plus-Bundle_v2017-09-07.zip" \
-                                "FPSFix-Plus-Bundle.zip" "19690f7dea168f7971cc79c75047338a2b5367f0"
+                                "https://cdn.mulderload.eu/games/dark-souls-prepare-to-die-edition/impr_gfx/FPSFix-Plus-Bundle_v2017-09-07.zip" \
+                                "FPSFix-Plus-Bundle.zip" \
+                                "19690f7dea168f7971cc79c75047338a2b5367f0"
+
         !insertmacro NSISUNZ_EXTRACT_ONE "FPSFix-Plus-Bundle.zip" ".\" "d3dx9_43\d3dx9_43.dll" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "FPSFix-Plus-Bundle.zip" ".\" "d3dx9_43\FPSFix-Plus-Readme.txt" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "FPSFix-Plus-Bundle.zip" ".\" "d3dx9_43\FPSFix.ini" "AUTO_DELETE"
 
-        # https://www.nexusmods.com/darksouls/mods/45
-        !insertmacro DOWNLOAD_3 "https://cdn1.mulderload.eu/games/dark-souls-prepare-to-die-edition/Morten242s%20UI%20for%20DSfix-45-1-5-1.zip" \
-                                "https://www.nexusmods.com/darksouls/mods/45?tab=files&file_id=1000001121" \
-                                "https://www.mediafire.com/file_premium/20g9u40b5ny82gl/Morten242s_UI_for_DSfix-45-1-5-1.zip/file" \
-                                "Morten242s UI for DSfix.zip" "bd969141f065c731b8d19eced2ae3cde2c3258c5"
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/darksouls/mods/45?tab=files&file_id=1000001121" \
+                                "Morten242s UI for DSfix.zip" \
+                                "bd969141f065c731b8d19eced2ae3cde2c3258c5"
+
         !insertmacro NSISUNZ_EXTRACT "Morten242s UI for DSfix.zip" ".\" "AUTO_DELETE"
     SectionEnd
 
@@ -67,46 +67,49 @@ Section "HD Interface (Fonts + Controller Icons)"
     AddSize 11949
     SetOutPath "$INSTDIR\dsfix\tex_override"
 
-    # https://www.nexusmods.com/darksouls/mods/21
-    !insertmacro DOWNLOAD_3 "https://cdn1.mulderload.eu/games/dark-souls-prepare-to-die-edition/Dark%20Souls%20-%20High-Res%20UI%20and%20Subtitles-21-1-211.rar" \
-                            "https://www.nexusmods.com/darksouls/mods/21?tab=files&file_id=209" \
-                            "https://www.mediafire.com/file_premium/1b88j62fs5mttv2/Dark_Souls_-_High-Res_UI_and_Subtitles-21-1-211.rar/file" \
-                            "Dark Souls - High-Res UI and Subtitles.rar" "4e8ca9a729b63eea36fc40169b0d13e1a2f9a0ce"
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/darksouls/mods/21?tab=files&file_id=209" \
+                            "Dark Souls - High-Res UI and Subtitles.rar" \
+                            "4e8ca9a729b63eea36fc40169b0d13e1a2f9a0ce"
+
     !insertmacro 7Z_EXTRACT "Dark Souls - High-Res UI and Subtitles.rar" "." "AUTO_DELETE"
 
     # https://www.nexusmods.com/darksouls/mods/171 (converted to DDS format for better performance)
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dark-souls-prepare-to-die-edition/Xbox%20360%20HD%20Interface%20Icons-171-1%20-%20DDS.7z" \
-                            "https://www.mediafire.com/file_premium/7rd2k0h26rnifuv/Xbox_360_HD_Interface_Icons-171-1_-_DDS.7z/file" \
-                            "Xbox 360 HD Interface Icons.7z" "9717ac0593c69f4026e166d39be8544174d4ea42"
-    !insertmacro NSIS7Z_EXTRACT "Xbox 360 HD Interface Icons.7z" ".\" "AUTO_DELETE"
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/dark-souls-prepare-to-die-edition/impr_gfx/Xbox 360 HD Interface Icons-171-1 [DDS Repack-MLD].7z" \
+                            "Xbox 360 HD Interface Icons-171-1 [DDS Repack-MLD].7z" \
+                            "9717ac0593c69f4026e166d39be8544174d4ea42"
+
+    !insertmacro NSIS7Z_EXTRACT "Xbox 360 HD Interface Icons-171-1 [DDS Repack-MLD].7z" ".\" "AUTO_DELETE"
 SectionEnd
 
 Section "HD Textures (LCD v1.5 + Lava Fix + Random HD Textures + HD Player Messages)"
     AddSize 20583
     SetOutPath "$INSTDIR\dsfix\tex_override"
 
-    # https://www.nexusmods.com/darksouls/mods/268
     !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/darksouls/mods/268?tab=files&file_id=1000000511" \
-                            "LCD Textures.zip" "6115e33a9078f9bbe0108b976e3e2b5d4969790c"
+                            "LCD Textures.zip" \
+                            "6115e33a9078f9bbe0108b976e3e2b5d4969790c"
+
     !insertmacro NSISUNZ_EXTRACT "LCD Textures.zip" ".\" "AUTO_DELETE"
 
-    # https://www.nexusmods.com/darksouls/mods/1025
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/dark-souls-prepare-to-die-edition/Lava%20Fix%20High%20Res-1025-1-0.zip" \
-                            "https://www.mediafire.com/file_premium/wmvexfxai9un328/Lava_Fix_High_Res-1025-1-0.zip/file" \
-                            "Lava Fix High Res.zip" "bf74be6aa7a2dfcbb21cd8d140098a0b3a55f64f"
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/darksouls/mods/1025?tab=files&file_id=1000001471" \
+                            "Lava Fix High Res.zip" \
+                            "bf74be6aa7a2dfcbb21cd8d140098a0b3a55f64f"
+
     !insertmacro NSISUNZ_EXTRACT "Lava Fix High Res.zip" ".\" "AUTO_DELETE"
     !insertmacro FOLDER_MERGE "$INSTDIR\dsfix\tex_override\Lava Fix High Res" "$INSTDIR\dsfix\tex_override"
 
-    # https://www.nexusmods.com/darksouls/mods/1670
     !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/darksouls/mods/1670?tab=files&file_id=1000003291" \
-                            "HD Textures.zip" "f28998684a8e81e32a06380cba7b6fa6acd93e72"
+                            "HD Textures.zip" \
+                            "f28998684a8e81e32a06380cba7b6fa6acd93e72"
+
     !insertmacro NSISUNZ_EXTRACT "HD Textures.zip" ".\" "AUTO_DELETE"
     !insertmacro FOLDER_MERGE "$INSTDIR\dsfix\tex_override\Demon Ruins" "$INSTDIR\dsfix\tex_override"
     !insertmacro FOLDER_MERGE "$INSTDIR\dsfix\tex_override\Duke's Archives" "$INSTDIR\dsfix\tex_override"
 
-    # https://www.nexusmods.com/darksouls/mods/389
     !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/darksouls/mods/389?tab=files&file_id=1000000337" \
-                            "HD Player Messages DDS Version.rar" "1ca3bca8c1aec66604919150908ff6dc98b7dbe1"
+                            "HD Player Messages DDS Version.rar" \
+                            "1ca3bca8c1aec66604919150908ff6dc98b7dbe1"
+
     !insertmacro 7Z_EXTRACT "HD Player Messages DDS Version.rar" "." "AUTO_DELETE"
 SectionEnd
 

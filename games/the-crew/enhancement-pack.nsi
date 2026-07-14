@@ -30,8 +30,9 @@ SectionGroup /e "The Crew Unlimited (Server Emulator) v1.2.0.1"
         AddSize 10000
 
         !insertmacro DOWNLOAD_2 "https://thecrewunlimited.com/TCUNet/TCULauncher/TCULauncher-1.2.0.1.7z" \
-                                "https://cdn1.mulderload.eu/games/the-crew/TCULauncher-1.2.0.1.7z" \
-                                "TCULauncher.7z" "0db2211ac432ee5740423aaba10c40f835b6aa1e"
+                                "https://cdn.mulderload.eu/games/the-crew/impr_misc/TCULauncher-1.2.0.1.7z" \
+                                "TCULauncher.7z" \
+                                "0db2211ac432ee5740423aaba10c40f835b6aa1e"
 
         !insertmacro NSIS7Z_EXTRACT "TCULauncher.7z" ".\" "AUTO_DELETE"
 
@@ -40,13 +41,15 @@ SectionGroup /e "The Crew Unlimited (Server Emulator) v1.2.0.1"
         nsExec::ExecToLog /OEM 'icacls "$INSTDIR" /grant *S-1-5-32-545:(OI)(CI)M /T'
     SectionEnd
 
-    Section "Microsoft .NET Desktop Runtime 8.0.26 (x64)"
+    Section "Microsoft .NET Desktop Runtime 8.0.28 (x64)"
         SetOutPath "$INSTDIR"
         AddSize 100000
 
-        !insertmacro DOWNLOAD_2 "https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.26/windowsdesktop-runtime-8.0.26-win-x64.exe" \
-                                "https://cdn1.mulderload.eu/games/_redist/windowsdesktop-runtime-8.0.26-win-x64.exe" \
-                                "windowsdesktop-runtime-win-x64.exe" "0a25dfd2bef2646551dcaceb8322fb3f136ff186"
+        !insertmacro DOWNLOAD_2 "https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.28/windowsdesktop-runtime-8.0.28-win-x64.exe" \
+                                "https://cdn.mulderload.eu/redistributables/microsoft/dotnet/windowsdesktop-runtime-8.0.28-win-x64.exe" \
+                                "windowsdesktop-runtime-win-x64.exe" \
+                                "bd9fe2fe81c6a74f01e2abfcb79921c226e2827b"
+
         ExecWait '"windowsdesktop-runtime-win-x64.exe" /Q' $0
         Delete "windowsdesktop-runtime-win-x64.exe"
     SectionEnd
@@ -60,11 +63,9 @@ Section "Fix launch time too long"
     SetOutPath "$INSTDIR"
     AddSize 13
 
-    # https://www.nexusmods.com/watchdogs/mods/393?tab=description
-    !insertmacro DOWNLOAD_3 "https://cdn1.mulderload.eu/games/the-crew/systemdetection64.dll-393-1-1-1748052023.zip" \
-                            "https://www.nexusmods.com/watchdogs/mods/393?tab=files&file_id=1268" \
-                            "https://www.mediafire.com/file_premium/ouy57nd6chas25y/systemdetection64.dll-393-1-1-1748052023.zip/file" \
-                            "systemdetection64.dll.zip" "718fc899835316ceca1719191a72d7d47f579d50"
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/watchdogs/mods/393?tab=files&file_id=1268" \
+                            "systemdetection64.dll.zip" \
+                            "718fc899835316ceca1719191a72d7d47f579d50"
 
     !insertmacro NSISUNZ_EXTRACT_ONE "systemdetection64.dll.zip" ".\" "systemdetection64.dll" "AUTO_DELETE"
 SectionEnd

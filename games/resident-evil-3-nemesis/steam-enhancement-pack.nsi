@@ -38,10 +38,11 @@ SectionEnd
         AddSize 45204
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-3/steam_to_gog_1.0hotfix4.7z" \
-                                "https://www.mediafire.com/file_premium/wc2wryeaa2emd8l/steam_to_gog_1.0hotfix4.7z/file" \
-                                "steam_to_gog_1.0hotfix4.7z" "fcb163b8dc298817f79670e573090dc713e7ec0d"
-        !insertmacro NSIS7Z_EXTRACT "steam_to_gog_1.0hotfix4.7z" ".\" "AUTO_DELETE"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil-3-nemesis/downgrade/Steam to GOG v1.0 hotfix 4 [MLD].7z" \
+                                "Steam to GOG v1.0 hotfix 4 [MLD].7z" \
+                                "fcb163b8dc298817f79670e573090dc713e7ec0d"
+
+        !insertmacro NSIS7Z_EXTRACT "Steam to GOG v1.0 hotfix 4 [MLD].7z" ".\" "AUTO_DELETE"
     SectionEnd
 !endif
 
@@ -72,19 +73,20 @@ SectionGroup "Resident Evil 3 Classic REbirth (by Gemini)"
         SetOutPath "$REBIRTHDIR"
 
         # Sourcenext Update
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-3/sourcenext/sourcenext_update_xdelta.7z" \
-                                "https://www.mediafire.com/file_premium/ugv06mkgggidl2x/sourcenext_update_xdelta.7z/file" \
-                                "sourcenext_update_xdelta.7z" "29f132c9cf36a03f029d78821e2ae2316988276b"
-        !insertmacro NSIS7Z_EXTRACT "sourcenext_update_xdelta.7z" ".\" "AUTO_DELETE"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil-3-nemesis/update/Sourcenext Update [MLD].7z" \
+                                "Sourcenext Update [MLD].7z" \
+                                "29f132c9cf36a03f029d78821e2ae2316988276b"
+
+        !insertmacro NSIS7Z_EXTRACT "Sourcenext Update [MLD].7z" ".\" "AUTO_DELETE"
         !insertmacro XDELTA3_GET
         !insertmacro XDELTA3_PATCH_FOLDER "$REBIRTHDIR"
         !insertmacro XDELTA3_REMOVE
         AddSize 94
 
-        # Sourcenext Patch 1.1.0 - https://community.pcgamingwiki.com/files/file/1224-biohazard-3-last-escape-sourcenext-110-patch/
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-3/sourcenext/bio3patch1.1.0.7z" \
-                                "https://www.mediafire.com/file_premium/aku4b2sdspik3rh/bio3patch1.1.0.7z/file" \
-                                "bio3patch1.1.0.7z" "ad1dfc85621e0be8a55ecbe5d7dbfc66431be287"
+        !insertmacro DOWNLOAD_1 "https://community.pcgamingwiki.com/files/file/1224-biohazard-3-last-escape-sourcenext-110-patch/?r=8005" \
+                                "bio3patch1.1.0.7z" \
+                                "ad1dfc85621e0be8a55ecbe5d7dbfc66431be287"
+
         !insertmacro NSIS7Z_EXTRACT "bio3patch1.1.0.7z" ".\" "AUTO_DELETE"
         AddSize 11916
         !ifdef GOG_ENHANCEMENT_PACK_NSI
@@ -92,17 +94,19 @@ SectionGroup "Resident Evil 3 Classic REbirth (by Gemini)"
         !endif
 
         # Classic REbirth DLL
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-3/re3cr-2021-08-04.7z" \
-                                "https://www.mediafire.com/file_premium/mka6lcsleqrs364/re3cr-2021-08-04.7z/file" \
-                                "re3cr-2021-08-04.7z" "6748b432ff69e923d5bf29fccf3e18c68afb218b"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil-3-nemesis/impr_misc/re3cr-2021-08-04.7z" \
+                                "re3cr-2021-08-04.7z" \
+                                "6748b432ff69e923d5bf29fccf3e18c68afb218b"
+
         !insertmacro NSIS7Z_EXTRACT "re3cr-2021-08-04.7z" ".\" "AUTO_DELETE"
         AddSize 4566
 
         # Clocktower Bug Fix
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-3/clocktower_bugfix.7z" \
-                                "https://www.mediafire.com/file_premium/8ql3mg92omkbazw/clocktower_bugfix.7z/file" \
-                                "clocktower_bugfix.7z" "6fde3f4086573a8bf264192d147dc4d1db8579d4"
-        !insertmacro NSIS7Z_EXTRACT "clocktower_bugfix.7z" ".\" "AUTO_DELETE"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil-3-nemesis/fix/Clocktower Bugfix [MLD].7z" \
+                                "Clocktower Bugfix [MLD].7z" \
+                                "6fde3f4086573a8bf264192d147dc4d1db8579d4"
+
+        !insertmacro NSIS7Z_EXTRACT "Clocktower Bugfix [MLD].7z" ".\" "AUTO_DELETE"
         AddSize 9
 
         # Clocktower Bug Fix 2
@@ -113,15 +117,18 @@ SectionGroup "Resident Evil 3 Classic REbirth (by Gemini)"
         !endif
 
         # XAudio DLL
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-3/xaudio2_9.dll" \
-                                "https://www.mediafire.com/file_premium/q3vqb6vbgfhveit/xaudio2_9.dll/file" \
-                                "xaudio2_9.dll" "cf9b9ae1237b1094bead8d44ef65c55a19ec325e"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/tools/xaudio/xaudio2_9.dll" \
+                                "xaudio2_9.dll" \
+                                "cf9b9ae1237b1094bead8d44ef65c55a19ec325e"
+
         AddSize 719
 
         # Apply 4GB Patch
-        !insertmacro DOWNLOAD_2 "https://ntcore.com/files/4gb_patch.zip" \
-                                "https://cdn1.mulderload.eu/games/_common/ntcore_4gb_patch_v1.0.0.1.zip" \
-                                "4gb_patch.zip" "c8b0d61937cb54fc8215124c0f737a1d29479c97"
+        !insertmacro DOWNLOAD_2 "https://cdn.mulderload.eu/tools/ntcore/4gb_patch.zip" \
+                                "https://ntcore.com/files/4gb_patch.zip" \
+                                "4gb_patch.zip" \
+                                "c8b0d61937cb54fc8215124c0f737a1d29479c97"
+
         !insertmacro NSISUNZ_EXTRACT "4gb_patch.zip" ".\" "AUTO_DELETE"
         !ifdef GOG_ENHANCEMENT_PACK_NSI
             ExecWait '4gb_patch.exe "BH3Launcher.exe"' $0
@@ -133,16 +140,16 @@ SectionGroup "Resident Evil 3 Classic REbirth (by Gemini)"
     SectionEnd
 
     Section "Modern Controls+ v1.2 (by X4vv, Rebrond)"
-        !insertmacro DOWNLOAD_2 "https://www.nexusmods.com/residentevil3nemesis/mods/73?tab=files&file_id=313" \
-                                "https://cdn1.mulderload.eu/games/resident-evil-3/mods/mod_ModernControlsPlus-73-v1-2-1775428418.7z" \
-                                "$REBIRTHDIR\mod_ModernControlsPlus.7z" "b867d4362b819dd1cfb4894c84213045fa65e823"
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/residentevil3nemesis/mods/73?tab=files&file_id=313" \
+                                "$REBIRTHDIR\mod_ModernControlsPlus.7z" \
+                                "b867d4362b819dd1cfb4894c84213045fa65e823"
         AddSize 68
     SectionEnd
 
     Section "Quick Knife Mod v1.1 (by X4vv)"
-        !insertmacro DOWNLOAD_2 "https://www.nexusmods.com/residentevil3nemesis/mods/72?tab=files&file_id=307" \
-                                "https://cdn1.mulderload.eu/games/resident-evil-3/mods/mod_quickknife-72-v-1-1-1774895747.7z" \
-                                "$REBIRTHDIR\mod_quickknife.7z" "5366ab0583491baa36ef2ef266a390b0453caa94"
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/residentevil3nemesis/mods/72?tab=files&file_id=307" \
+                                "$REBIRTHDIR\mod_quickknife.7z" \
+                                "5366ab0583491baa36ef2ef266a390b0453caa94"
         AddSize 48
     SectionEnd
 SectionGroupEnd
@@ -150,9 +157,10 @@ SectionGroupEnd
 SectionGroup "Translation patches"
     Section /o "German patch (by Accandon)"
         SetOutPath "$REBIRTHDIR"
-        !insertmacro DOWNLOAD_2 "https://www.nexusmods.com/residentevil3nemesis/mods/5?tab=files&file_id=123" \
-                                "https://cdn1.mulderload.eu/games/resident-evil-3/translation/Mod_BH3_DEU_1_2-5-1-2-0-1727483006.zip" \
-                                "Mod_BH3_DEU_1_2-5-1-2-0-1727483006.zip" "c8bffda3ecae81f27ae88db1212095aab15c8d4d"
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/residentevil3nemesis/mods/5?tab=files&file_id=123" \
+                                "Mod_BH3_DEU_1_2-5-1-2-0-1727483006.zip" \
+                                "c8bffda3ecae81f27ae88db1212095aab15c8d4d"
+
         !insertmacro NSISUNZ_EXTRACT "Mod_BH3_DEU_1_2-5-1-2-0-1727483006.zip" ".\" "AUTO_DELETE"
         AddSize 2817
     SectionEnd
@@ -162,14 +170,17 @@ SectionGroup "Translation patches"
 
         !insertmacro 7Z_GET
 
-        # https://www.moddb.com/mods/resident-evil-3-spanish-hd-patch/downloads/resident-evil-3-spanish-hd-patch-for-pc-sourcenext (repacked, see README for more information)
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/residentevil3nemesis/mods/4?tab=files&file_id=11" \
-                                "RE3 Spanish Tranlation-4-1-0-1622918098.rar" "59a6a98b23eb2045c8abfbd9f4828f8c330498f2"
+                                "RE3 Spanish Tranlation-4-1-0-1622918098.rar" \
+                                "59a6a98b23eb2045c8abfbd9f4828f8c330498f2"
+
         !insertmacro 7Z_EXTRACT "RE3 Spanish Tranlation-4-1-0-1622918098.rar" ".\" "AUTO_DELETE"
         AddSize 2975
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/residentevil3nemesis/mods/31?tab=files&file_id=94" \
-                                "RE3 Nemesis Spanish HD-31-1-02-1703275848.rar" "adf0cd5430a717180a6ae0ad58965958da9de147"
+                                "RE3 Nemesis Spanish HD-31-1-02-1703275848.rar" \
+                                "adf0cd5430a717180a6ae0ad58965958da9de147"
+
         !insertmacro 7Z_EXTRACT "RE3 Nemesis Spanish HD-31-1-02-1703275848.rar" ".\" "AUTO_DELETE"
         !insertmacro FOLDER_MERGE "$REBIRTHDIR\RE3 Nemesis Castellano HD" "$REBIRTHDIR"
         AddSize 8684
@@ -183,15 +194,18 @@ SectionGroup "Graphical improvements"
         SetOutPath "$REBIRTHDIR"
 
         # https://www.moddb.com/mods/resident-evil-3-hd-mod/downloads/resident-evil-3-hd-mod (repacked, see README for more information)
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-3/gfx/Resident_Evil_3_HD_mod_v20220716%20%5BRepack-MLD%5D.7z" \
-                                "https://www.mediafire.com/file_premium/vpoxedcjxygp52a/Resident_Evil_3_HD_mod_v20220716_%255BRepack-MLD%255D.7z/file" \
-                                "Resident_Evil_3_HD_mod_v20220716 [Repack-MLD].7z" "fd86b5ba762a7caea237610154737f44fe5a1a15"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil-3-nemesis/impr_gfx/Resident_Evil_3_HD_mod_v20220716 [Repack-MLD].7z" \
+                                "Resident_Evil_3_HD_mod_v20220716 [Repack-MLD].7z" \
+                                "fd86b5ba762a7caea237610154737f44fe5a1a15"
+
         !insertmacro NSIS7Z_EXTRACT "Resident_Evil_3_HD_mod_v20220716 [Repack-MLD].7z" ".\" "AUTO_DELETE"
         AddSize 83064
 
         # Get latest Ultimate ASI Loader
         !insertmacro DOWNLOAD_1 "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/Win32-latest/dinput8-Win32.zip" \
-                                "dinput8-Win32.zip" ""
+                                "dinput8-Win32.zip" \
+                                ""
+
         !insertmacro NSISUNZ_EXTRACT_ONE "dinput8-Win32.zip" ".\" "dinput8.dll" "AUTO_DELETE"
         AddSize 5264
 
@@ -200,9 +214,10 @@ SectionGroup "Graphical improvements"
         EnumRegKey $R0 HKCU "Software\Wine" ""
         ${If} $R0 != ""
             DetailPrint " // HD Mod: Wine/Proton detected, download patched asi"
-            !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-3/gfx/RE3-Linux.zip" \
-                                    "https://www.mediafire.com/file_premium/lt1dpezsrywj4rg/RE3-Linux.zip/file" \
-                                    "RE3-Linux.zip" "70ccfce8c1d3946c2bb1757116cb4e2d21ea254f"
+            !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil-3-nemesis/impr_gfx/RE3-Linux.zip" \
+                                    "RE3-Linux.zip" \
+                                    "70ccfce8c1d3946c2bb1757116cb4e2d21ea254f"
+
             !insertmacro NSISUNZ_EXTRACT_ONE "RE3-Linux.zip" ".\" "bio3hd.asi" "AUTO_DELETE"
         ${EndIf}
         Pop $R0
@@ -212,9 +227,10 @@ SectionGroup "Graphical improvements"
         SetOutPath "$REBIRTHDIR"
 
         # https://www.moddb.com/mods/resident-evil-3-nemesis-seamless-hd-project/downloads/resident-evil-3-nemesis-seamless-hd-project-for-pc-sourcenext (repacked, see README for more information)
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-3/gfx/RE3_SHDP_2.0_update_for_TeamX_HD_patch%20%5BRepack-MLD%5D.7z" \
-                                "https://www.mediafire.com/file_premium/er2u0ecot4gnyej/RE3_SHDP_2.0_update_for_TeamX_HD_patch_%255BRepack-MLD%255D.7z/file" \
-                                "RE3_SHDP_2.0_update_for_TeamX_HD_patch [Repack-MLD].7z" "ac731650f2310e3174c5dea459e98af4e7f953ca"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil-3-nemesis/impr_gfx/RE3_SHDP_2.0_update_for_TeamX_HD_patch [Repack-MLD].7z" \
+                                "RE3_SHDP_2.0_update_for_TeamX_HD_patch [Repack-MLD].7z" \
+                                "ac731650f2310e3174c5dea459e98af4e7f953ca"
+
         !insertmacro NSIS7Z_EXTRACT "RE3_SHDP_2.0_update_for_TeamX_HD_patch [Repack-MLD].7z" ".\" "AUTO_DELETE"
         AddSize 78926
     SectionEnd
@@ -222,10 +238,10 @@ SectionGroup "Graphical improvements"
     Section "RE-Enhance RE3 v2.2 (by SonicB00M)" gfx3
         SetOutPath "$REBIRTHDIR"
 
-        # https://www.moddb.com/mods/reenhance-re3/downloads/re-enhance-re3-v22
-        !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/290445" \
-                                "https://cdn1.mulderload.eu/games/resident-evil-3/gfx/RE-ENHANCE_RE3_v2.2.zip" \
-                                "RE-ENHANCE_RE3_v2.2.zip" "41d9137e2a5250740bde71da3dc4eb11"
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/reenhance-re3/downloads/re-enhance-re3-v22" \
+                                "RE-ENHANCE_RE3_v2.2.zip" \
+                                "41d9137e2a5250740bde71da3dc4eb11"
+
         !insertmacro NSISUNZ_EXTRACT "RE-ENHANCE_RE3_v2.2.zip" ".\" "AUTO_DELETE"
         AddSize 1357902
     SectionEnd
@@ -235,10 +251,10 @@ SectionGroup "High Quality FMVs" fmv
     Section "960p - RE-Enhance FMV 1.0 (by SonicB00M)" fmv1
         SetOutPath "$REBIRTHDIR"
 
-        # https://www.moddb.com/mods/reenhance-re3/downloads/re-enhance-re3-fmv-pack-v10
-        !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/291398" \
-                                "https://cdn1.mulderload.eu/games/resident-evil-3/videos/RE-ENHANCE_RE3_FMV-Pack_V1.0.zip" \
-                                "RE-ENHANCE_RE3_FMV-Pack_V1.0.zip" "2ecba4d9ed4699e89b41d1d23f7d260d"
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/reenhance-re3/downloads/re-enhance-re3-fmv-pack-v10" \
+                                "RE-ENHANCE_RE3_FMV-Pack_V1.0.zip" \
+                                "2ecba4d9ed4699e89b41d1d23f7d260d"
+
         !insertmacro NSISUNZ_EXTRACT "RE-ENHANCE_RE3_FMV-Pack_V1.0.zip" ".\" "AUTO_DELETE"
         Delete "zmovie\snl_SOURCENEXT.dat"
         AddSize 837305
@@ -247,21 +263,25 @@ SectionGroup "High Quality FMVs" fmv
     Section /o "960p - FMVs from HD Mod (by TeamX)" fmv2
         SetOutPath "$REBIRTHDIR"
 
-        # https://www.moddb.com/mods/resident-evil-hd-mod (repacked to keep exclusives hires + remove other things)
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-3/videos/Resident_Evil_3_HD_mod_v20220716%20%5BVideos%20Only%5D.7z" \
-                                "https://www.mediafire.com/file_premium/rtk95ffhinrqpqo/Resident_Evil_3_HD_mod_v20220716_%255BVideos_Only%255D.7z/file" \
-                                "Resident_Evil_3_HD_mod_v20220716 [Videos Only].7z" "9f0a30d1887728b3f6852c79e7c8b164cc9ae2eb"
-        !insertmacro NSIS7Z_EXTRACT "Resident_Evil_3_HD_mod_v20220716 [Videos Only].7z" ".\" "AUTO_DELETE"
+        # https://www.moddb.com/mods/resident-evil-hd-mod (repacked to keep only videos)
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil-3-nemesis/impr_video/Resident_Evil_3_HD_mod_v20220716 [Videos-MLD].7z" \
+                                "Resident_Evil_3_HD_mod_v20220716 [Videos-MLD].7z" \
+                                "9f0a30d1887728b3f6852c79e7c8b164cc9ae2eb"
+
+        !insertmacro NSIS7Z_EXTRACT "Resident_Evil_3_HD_mod_v20220716 [Videos-MLD].7z" ".\" "AUTO_DELETE"
         AddSize 430347
     SectionEnd
 
     Section /o "480p - FMVs from Sourcenext release" fmv3
         SetOutPath "$REBIRTHDIR"
 
-        !insertmacro DOWNLOAD_RANGE_1 "https://cdn1.mulderload.eu/games/resident-evil-3/videos/sourcenext_videos.7z.001" \
-                                      "sourcenext_videos.7z.001" "360467c3d9c6141d6e0aa60884dc6ad2eb19486c" 3
-        !insertmacro NSIS7Z_EXTRACT "sourcenext_videos.7z.001" ".\" ""
-        !insertmacro DELETE_RANGE "sourcenext_videos.7z.001" 3
+        !insertmacro DOWNLOAD_RANGE_1 "https://cdn.mulderload.eu/games/resident-evil-3-nemesis/impr_video/Sourcenext Videos [MLD].7z.001" \
+                                      "Sourcenext Videos [MLD].7z.001" \
+                                      "360467c3d9c6141d6e0aa60884dc6ad2eb19486c" \
+                                      3
+
+        !insertmacro NSIS7Z_EXTRACT "Sourcenext Videos [MLD].7z.001" ".\" ""
+        !insertmacro DELETE_RANGE "Sourcenext Videos [MLD].7z.001" 3
         AddSize 1668823
     SectionEnd
 SectionGroupEnd
@@ -272,10 +292,11 @@ SectionGroup "High Quality Audio v2023 (by lexas87)" audio
     Section "High Quality Audio - Lossless version" audio1
         SetOutPath "$REBIRTHDIR"
 
-        # https://www.moddb.com/mods/re3-high-quality-audio/downloads/re3-high-quality-audio-v2023
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-3/audio/Resident%20Evil%203%20Classic%20REbirth%20HQ%20Audio%2008-11-2023%20Lossless%20%5BRepack-MLD%5D.7z" \
-                                "https://www.mediafire.com/file_premium/tcyvw24o14l4ekm/Resident_Evil_3_Classic_REbirth_HQ_Audio_08-11-2023_Lossless_%255BRepack-MLD%255D.7z/file" \
-                                "Resident Evil 3 Classic REbirth HQ Audio 08-11-2023 Lossless [Repack-MLD].7z" "54fe9c29600371410128f98266a54923348b4bbb"
+        # https://www.moddb.com/mods/re3-high-quality-audio/downloads/re3-high-quality-audio-v2023 (Repack)
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil-3-nemesis/impr_audio/Resident Evil 3 Classic REbirth HQ Audio 08-11-2023 Lossless [Repack-MLD].7z" \
+                                "Resident Evil 3 Classic REbirth HQ Audio 08-11-2023 Lossless [Repack-MLD].7z" \
+                                "54fe9c29600371410128f98266a54923348b4bbb"
+
         !insertmacro NSIS7Z_EXTRACT "Resident Evil 3 Classic REbirth HQ Audio 08-11-2023 Lossless [Repack-MLD].7z" ".\" "AUTO_DELETE"
         AddSize 727083
     SectionEnd
@@ -283,10 +304,11 @@ SectionGroup "High Quality Audio v2023 (by lexas87)" audio
     Section /o "High Quality Audio - Dreamcast version" audio2
         SetOutPath "$REBIRTHDIR"
 
-        # https://www.moddb.com/mods/re3-high-quality-audio/downloads/re3-high-quality-audio-v2023
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-3/audio/Resident%20Evil%203%20Classic%20REbirth%20HQ%20Audio%2008-11-2023%20Dreamcast%20%5BRepack-MLD%5D.7z" \
-                                "https://www.mediafire.com/file_premium/jb84vzvqi2cgqwn/Resident_Evil_3_Classic_REbirth_HQ_Audio_08-11-2023_Dreamcast_%255BRepack-MLD%255D.7z/file" \
-                                "Resident Evil 3 Classic REbirth HQ Audio 08-11-2023 Dreamcast [Repack-MLD].7z" "21ba9a3d4e825b5028e0a6d8b0dccd3a2f4f8810"
+        # https://www.moddb.com/mods/re3-high-quality-audio/downloads/re3-high-quality-audio-v2023 (Repack)
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil-3-nemesis/impr_audio/Resident Evil 3 Classic REbirth HQ Audio 08-11-2023 Dreamcast [Repack-MLD].7z" \
+                                "Resident Evil 3 Classic REbirth HQ Audio 08-11-2023 Dreamcast [Repack-MLD].7z" \
+                                "21ba9a3d4e825b5028e0a6d8b0dccd3a2f4f8810"
+
         !insertmacro NSIS7Z_EXTRACT "Resident Evil 3 Classic REbirth HQ Audio 08-11-2023 Dreamcast [Repack-MLD].7z" ".\" "AUTO_DELETE"
         AddSize 715313
     SectionEnd

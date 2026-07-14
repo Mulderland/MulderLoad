@@ -31,9 +31,10 @@ Section "Widescreen fix (by nemesis2000) + Wrappers"
     SetOutPath "$INSTDIR\scripts"
 
     # Install nemesis2000's Widescreen Fix
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/hitman-blood-money/h4widescreen.zip" \
-                            "https://www.mediafire.com/file_premium/br9ggzlws789s3u/h4widescreen.zip/file" \
-                            "h4widescreen.zip" "9c64eacc2c5f9ea0ec67b5ccedab887a223387f1"
+    !insertmacro DOWNLOAD_1 "https://community.pcgamingwiki.com/files/file/3534-hitman-blood-money-widescreen-fix-by-nemesis2000/" \
+                            "h4widescreen.zip" \
+                            "9c64eacc2c5f9ea0ec67b5ccedab887a223387f1"
+
     !insertmacro NSISUNZ_EXTRACT_ONE "h4widescreen.zip" ".\" "h4.ini" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "h4widescreen.zip" ".\" "h4w.dll" "AUTO_DELETE"
 
@@ -61,8 +62,10 @@ Section "Widescreen fix (by nemesis2000) + Wrappers"
 
     # Install DXVK
     !insertmacro DOWNLOAD_2 "https://github.com/doitsujin/dxvk/releases/download/v2.7.1/dxvk-2.7.1.tar.gz" \
-                            "https://cdn1.mulderload.eu/games/_common/dxvk-2.7.1.tar.gz" \
-                            "dxvk-2.7.1.tar.gz" "16e277f63aca1bb9d6b9ecf823dd0d7aab9b11be"
+                            "https://cdn.mulderload.eu/tools/dxvk/dxvk-2.7.1.tar.gz" \
+                            "dxvk-2.7.1.tar.gz" \
+                            "16e277f63aca1bb9d6b9ecf823dd0d7aab9b11be"
+
     !insertmacro 7Z_EXTRACT "dxvk-2.7.1.tar.gz" ".\" "AUTO_DELETE"
     !insertmacro 7Z_EXTRACT_ONE "dxvk-2.7.1.tar" ".\" "dxvk-2.7.1\x32\d3d9.dll" "AUTO_DELETE"
     !insertmacro FORCE_RENAME "d3d9.dll" "d3d9_dxvk.dll"
@@ -90,18 +93,20 @@ Section "Add controller support (by JerichoRex)"
     SetOutPath "$INSTDIR\@mulderload"
 
     # https://www.nexusmods.com/hitmanbloodmoney/mods/36
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/hitman-blood-money/Xinput%20Xbox%20controller%20support%20for%20hitmanBM-36-1-0-1711272817.zip" \
-                            "https://www.mediafire.com/file_premium/r1thdyg2qeudn8w/Xinput_Xbox_controller_support_for_hitmanBM-36-1-0-1711272817.zip/file" \
-                            "Xinput Xbox controller support for hitmanBM-36-1-0-1711272817.zip" "7c14560e73b8bc231de4e4f354cc065deb2ca057"
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/hitman-blood-money/impr_control/Xinput Xbox controller support for hitmanBM-36-1-0-1711272817.zip" \
+                            "Xinput Xbox controller support for hitmanBM-36-1-0-1711272817.zip" \
+                            "7c14560e73b8bc231de4e4f354cc065deb2ca057"
+
     !insertmacro NSISUNZ_EXTRACT "Xinput Xbox controller support for hitmanBM-36-1-0-1711272817.zip" ".\" "AUTO_DELETE"
     Rename "Xinput Xbox controller  support for hitman blood money\Controller Support V10 For Gog release adds prompt buttons\Copy to install folder\Hitman.cfg" "Xinput Xbox controller  support for hitman blood money\Controller Support V10 For Gog release adds prompt buttons\Copy to install folder\Hitman_gamepad.cfg"
     !insertmacro FOLDER_MERGE "Xinput Xbox controller  support for hitman blood money\Controller Support V10 For Gog release adds prompt buttons\Copy to install folder" "$INSTDIR"
     RMDIr /r "$INSTDIR\@mulderload\Xinput Xbox controller  support for hitman blood money"
 
     # Get V10 exe (with 1.1 update)
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/hitman-blood-money/HitmanBloodMoney_XInput_v1.1.7z" \
-                            "https://www.mediafire.com/file_premium/4mxxzs94p0xyos8/HitmanBloodMoney_XInput_v1.1.7z/file" \
-                            "HitmanBloodMoney_XInput_v1.1.7z" "f90cf5e19dc7c8846e360fdd00106e1217a4584d"
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/hitman-blood-money/impr_control/HitmanBloodMoney_XInput_v1.1.7z" \
+                            "HitmanBloodMoney_XInput_v1.1.7z" \
+                            "f90cf5e19dc7c8846e360fdd00106e1217a4584d"
+
     !insertmacro NSIS7Z_EXTRACT "HitmanBloodMoney_XInput_v1.1.7z" ".\" "AUTO_DELETE"
     Rename "HitmanBloodMoney.exe" "$INSTDIR\_HitmanBloodMoney_gamepad.exe.bak"
 SectionEnd
@@ -114,19 +119,20 @@ Section /o "Upscaled Textures (BM Premastered by V01DXIX)"
     AddSize 5274337
     SetOutPath "$INSTDIR"
 
-    # https://www.moddb.com/mods/blood-money-premastered/addons/hbm-premaster-v15
-    !insertmacro DOWNLOAD_2 "https://www.moddb.com/addons/start/304733" \
-                            "https://cdn1.mulderload.eu/games/hitman-blood-money/HBM_PREMASTER_V1.5.zip" \
-                            "HBM_PREMASTER_V1.5.zip" "f02da72221a6cdec6e950d910423df5b"
+    !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/blood-money-premastered/addons/hbm-premaster-v15" \
+                            "HBM_PREMASTER_V1.5.zip" \
+                            "f02da72221a6cdec6e950d910423df5b"
 
     !insertmacro 7Z_EXTRACT "HBM_PREMASTER_V1.5.zip" ".\" "AUTO_DELETE"
     !insertmacro FORCE_RENAME "README.txt" "README_PREMASTER.txt"
     Delete "HitmanLaaPatcher.exe"
 
     # NTCore 4GB Patch
-    !insertmacro DOWNLOAD_2 "https://ntcore.com/files/4gb_patch.zip" \
-                            "https://cdn1.mulderload.eu/games/_common/ntcore_4gb_patch_v1.0.0.1.zip" \
-                            "4gb_patch.zip" "c8b0d61937cb54fc8215124c0f737a1d29479c97"
+    !insertmacro DOWNLOAD_2 "https://cdn.mulderload.eu/tools/ntcore/4gb_patch.zip" \
+                            "https://ntcore.com/files/4gb_patch.zip" \
+                            "4gb_patch.zip" \
+                            "c8b0d61937cb54fc8215124c0f737a1d29479c97"
+
     !insertmacro NSISUNZ_EXTRACT "4gb_patch.zip" ".\" "AUTO_DELETE"
     ExecWait '4gb_patch.exe HitmanBloodMoney.exe' $0
     ExecWait '4gb_patch.exe _HitmanBloodMoney_gamepad.exe.bak' $0

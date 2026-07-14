@@ -1,8 +1,10 @@
 !macro I6COMP_GET
     DetailPrint " // Getting I6Comp Unpacker"
-    !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/mwprn986gyuhlwd/i6comp02.zip/file" \
-                            "https://cdn1.mulderload.eu/games/_tools/i6comp02.zip" \
-                            "$INSTDIR\@mulderload\i6comp\i6comp02.zip" "d42bc9b2f7aa035a966320ed5ae8f38b8049c104"
+    !insertmacro DOWNLOAD_2 "https://cdn.mulderload.eu/dependencies/i6comp/i6comp02.zip" \
+                            "https://www.sac.sk/download/pack/i6comp02.zip" \
+                            "$INSTDIR\@mulderload\i6comp\i6comp02.zip" \
+                            "d42bc9b2f7aa035a966320ed5ae8f38b8049c104"
+
     !insertmacro NSISUNZ_EXTRACT_ONE "$INSTDIR\@mulderload\i6comp\i6comp02.zip" "$INSTDIR\@mulderload\i6comp" "Release\i6comp.exe" "AUTO_DELETE"
 !macroend
 

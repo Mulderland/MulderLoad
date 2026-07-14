@@ -33,8 +33,10 @@ SectionGroup /e "Ultimate ASI Loader (by ThirteenAG)"
         SetOutPath "$INSTDIR\scripts"
 
         !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/WidescreenFixesPack/releases/download/re0/ResidentEvil0.FusionFix.zip" \
-                                "https://cdn1.mulderload.eu/games/resident-evil-0-hd-remaster/ResidentEvil0.FusionFix.zip" \
-                                "ResidentEvil0.FusionFix.zip" "2a8767c284c5d921b81cad31a3eed531aee92488"
+                                "https://cdn.mulderload.eu/games/resident-evil-0-hd-remaster/impr_misc/ResidentEvil0.FusionFix.zip" \
+                                "ResidentEvil0.FusionFix.zip" \
+                                "2a8767c284c5d921b81cad31a3eed531aee92488"
+
         !insertmacro NSISUNZ_EXTRACT_ONE "ResidentEvil0.FusionFix.zip" ".\" "scripts\ResidentEvil0.FusionFix.asi" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "ResidentEvil0.FusionFix.zip" ".\" "scripts\ResidentEvil0.FusionFix.ini" "AUTO_DELETE"
         !insertmacro FILE_STR_REPLACE "BorderlessWindowed = 1" "BorderlessWindowed = 0" 1 1 "$INSTDIR\scripts\ResidentEvil0.FusionFix.ini"
@@ -44,10 +46,10 @@ SectionGroup /e "Ultimate ASI Loader (by ThirteenAG)"
         AddSize 2980
         SetOutPath "$INSTDIR\@itembox"
 
-        # https://www.nexusmods.com/residentevil0biohazard0hdremaster/mods/39
-        !insertmacro DOWNLOAD_2 "https://www.nexusmods.com/residentevil0biohazard0hdremaster/mods/39?tab=files&file_id=152" \
-                                "https://cdn1.mulderload.eu/games/resident-evil-0-hd-remaster/Item%20Box%20v0.5.2-39-0-5-2-1771919806.zip" \
-                                "Item Box.zip" "cbdaa855ef84889d574d23270c38e65205668ec9"
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/residentevil0biohazard0hdremaster/mods/39?tab=files&file_id=152" \
+                                "Item Box.zip" \
+                                "cbdaa855ef84889d574d23270c38e65205668ec9"
+
         !insertmacro NSISUNZ_EXTRACT "Item Box.zip" ".\" "AUTO_DELETE"
 
         Delete "dinput8.dll"
@@ -68,10 +70,10 @@ Section /o "Upscaled FMV (by SonicB00M)"
     AddSize 1321206
     SetOutPath "$INSTDIR"
 
-    # https://www.moddb.com/mods/reenhance-re0-fmv-pack
-    !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/292446" \
-                            "https://cdn1.mulderload.eu/games/resident-evil-0-hd-remaster/RE-ENHANCE_RE0_FMV-Pack_V1.0.zip" \
-                            "RE-ENHANCE_RE0_FMV-Pack_V1.0.zip" "990188fe24561d7264687f161aa17781"
+    !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/reenhance-re0-fmv-pack/downloads/re-enhance-re0-fmv-pack-v10" \
+                            "RE-ENHANCE_RE0_FMV-Pack_V1.0.zip" \
+                            "990188fe24561d7264687f161aa17781"
+
     !insertmacro NSISUNZ_EXTRACT "RE-ENHANCE_RE0_FMV-Pack_V1.0.zip" ".\" "AUTO_DELETE"
 SectionEnd
 
@@ -79,10 +81,10 @@ Section "Remastered Weapons Sounds (by TheSorrow55)"
     AddSize 21
     SetOutPath "$INSTDIR"
 
-    # https://www.nexusmods.com/residentevil0biohazard0hdremaster/mods/48
-    !insertmacro DOWNLOAD_2 "https://www.nexusmods.com/residentevil0biohazard0hdremaster/mods/48?tab=files&file_id=97" \
-                            "https://cdn1.mulderload.eu/games/resident-evil-0-hd-remaster/Resident%20Evil%200%20hd%20remastered%20weapons%20sounds%20MOD-48-V2-1722805841.rar" \
-                            "Resident Evil 0 hd remastered weapons sounds MOD.rar" "a560f1f91910e062f16927c31c4f5f9f36f7421a"
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/residentevil0biohazard0hdremaster/mods/48?tab=files&file_id=97" \
+                            "Resident Evil 0 hd remastered weapons sounds MOD.rar" \
+                            "a560f1f91910e062f16927c31c4f5f9f36f7421a"
+
     !insertmacro 7Z_EXTRACT "Resident Evil 0 hd remastered weapons sounds MOD.rar" ".\" "AUTO_DELETE"
     !insertmacro FOLDER_MERGE "$INSTDIR\RE0 WEAPONS SOUNDS MOD" "$INSTDIR\nativePC\arc\sound\se\weapon"
 SectionEnd
@@ -91,18 +93,20 @@ Section "Restored GameCube Fonts (by MrBunny)"
     SetOutPath "$INSTDIR"
 
     # https://residentevilmodding.boards.net/thread/5800/original-re0-font-mod
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-0-hd-remaster/Original%20RE0%20Font%20Update%201.zip" \
-                            "https://www.mediafire.com/file_premium/i7u9te4ofeuasod/Original_RE0_Font_Update_1.zip/file" \
-                            "Original RE0 Font Update 1.zip" "ea9ad0686f570cfe22cf7bf52c6e91687df84a0a"
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil-0-hd-remaster/impr_gfx/Original RE0 Font Update 1.zip" \
+                            "Original RE0 Font Update 1.zip" \
+                            "ea9ad0686f570cfe22cf7bf52c6e91687df84a0a"
+
     !insertmacro NSISUNZ_EXTRACT "Original RE0 Font Update 1.zip" ".\" "AUTO_DELETE"
     !insertmacro FOLDER_MERGE "$INSTDIR\Original RE0 Font\nativepc" "$INSTDIR\nativepc"
     RMDir /r "$INSTDIR\Original RE0 Font"
 
-    # Mulder Repack for Item Box
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-0-hd-remaster/Original%20RE0%20Font%20Update%201%20(Item%20Box).zip" \
-                            "https://www.mediafire.com/file_premium/5p0qz550vsrhzuc/Original_RE0_Font_Update_1_%2528Item_Box%2529.zip/file" \
-                            "Original RE0 Font Update 1 (Item Box).zip" "0a36f7016acd2c00637cf4ab6fe3bb1b4b27dee8"
-    !insertmacro NSISUNZ_EXTRACT "Original RE0 Font Update 1 (Item Box).zip" ".\" "AUTO_DELETE"
+    # Repack-MLD for Item Box
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil-0-hd-remaster/impr_gfx/Original RE0 Font Update 1 [Item Box Repack-MLD].zip" \
+                            "Original RE0 Font Update 1 [Item Box Repack-MLD].zip" \
+                            "0a36f7016acd2c00637cf4ab6fe3bb1b4b27dee8"
+
+    !insertmacro NSISUNZ_EXTRACT "Original RE0 Font Update 1 [Item Box Repack-MLD].zip" ".\" "AUTO_DELETE"
 SectionEnd
 
 Section "dgVoodoo2 (by Dege)"
@@ -125,9 +129,10 @@ Section "FPS Fix (by megatenfreak)"
     AddSize 555
     SetOutPath "$INSTDIR"
 
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil-0-hd-remaster/RE0FixV2.rar" \
-                            "https://www.mediafire.com/file_premium/y4q8g8tlraut3y9/RE0FixV2.rar/file" \
-                            "RE0FixV2.rar" "92f4070f04b4742f8098d4786db95dbb1a13c5ab"
+    !insertmacro DOWNLOAD_1 "https://community.pcgamingwiki.com/files/file/3885-resident-evil-0-hd-remaster-fps-fix-by-megatenfreak/" \
+                            "RE0FixV2.rar" \
+                            "92f4070f04b4742f8098d4786db95dbb1a13c5ab"
+
     !insertmacro 7Z_EXTRACT "RE0FixV2.rar" ".\" "AUTO_DELETE"
     !insertmacro FORCE_RENAME "$INSTDIR\d3d9.dll" "$INSTDIR\_half.dll.bak"
 SectionEnd

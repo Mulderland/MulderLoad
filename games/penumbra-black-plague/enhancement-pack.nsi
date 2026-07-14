@@ -34,10 +34,10 @@ SectionGroup /e "Quality of Life Project (by sk8er_boi6000)"
     Section "Black Plague Upscaled Textures (and more) v1.3.1"
         SetOutPath "$INSTDIR\redist"
 
-        # https://www.moddb.com/mods/penumbra-qol-project/downloads/penumbra-black-plague-texture-upscale-mod
-        !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/190439" \
-                                "https://cdn1.mulderload.eu/games/penumbra-black-plague/BlackPlague-QOL-1.3.1.7z" \
-                                "BlackPlague-QOL-1.3.1.7z" "7acb3721d40e8479e516168d61c1835d"
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/penumbra-qol-project/downloads/penumbra-black-plague-texture-upscale-mod" \
+                                "BlackPlague-QOL-1.3.1.7z" \
+                                "7acb3721d40e8479e516168d61c1835d"
+
         !insertmacro NSIS7Z_EXTRACT "BlackPlague-QOL-1.3.1.7z" ".\" "AUTO_DELETE"
         AddSize 2548040
     SectionEnd
@@ -45,10 +45,10 @@ SectionGroup /e "Quality of Life Project (by sk8er_boi6000)"
     Section "Requiem Upscaled Textures (and more) v1.1" requiem_textures
         SetOutPath "$INSTDIR\redist\expansion01"
 
-        # https://www.moddb.com/mods/penumbra-requiem-texture-upscale-mod/downloads/penumbra-requiem-texture-upscale-mod
-        !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/190440" \
-                                "https://cdn1.mulderload.eu/games/penumbra-black-plague/Requiem-US-1.1.7z " \
-                                "Requiem-US-1.1.7z" "48da476c1275e993c34a084444908ed6"
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/penumbra-requiem-texture-upscale-mod/downloads/penumbra-requiem-texture-upscale-mod" \
+                                "Requiem-US-1.1.7z" \
+                                "48da476c1275e993c34a084444908ed6"
+
         !insertmacro NSIS7Z_EXTRACT "Requiem-US-1.1.7z" ".\" "AUTO_DELETE"
         AddSize 1193861
     SectionEnd
@@ -56,23 +56,24 @@ SectionGroupEnd
 
 Section "MulderConfig (latest)"
     SetOutPath "$INSTDIR\@mulderland"
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/penumbra-black-plague/Penumbra_GOG_LAA.7z" \
-                            "https://www.mediafire.com/file_premium/ttmolxr6tc7t0r6/Penumbra_GOG_LAA.7z/file" \
-                            "Penumbra_GOG_LAA.7z" "3b1f52d883e7e7148aabe078c60ee53f836bc46d"
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/penumbra-black-plague/base/Penumbra_GOG_LAA.7z" \
+                            "Penumbra_GOG_LAA.7z" \
+                            "3b1f52d883e7e7148aabe078c60ee53f836bc46d"
+
     !insertmacro NSIS7Z_EXTRACT "Penumbra_GOG_LAA.7z" ".\" "AUTO_DELETE"
     AddSize 5844
 
     SetOutPath "$INSTDIR\redist\config"
     !insertmacro FORCE_RENAME "Francais.lang" "Francais.lang.bak"
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/penumbra-black-plague/Francais.lang" \
-                            "https://www.mediafire.com/file_premium/bsrrg5cui5ik8l7/Francais.lang/file" \
-                            "Francais.lang" "37a1a45bec751e53acf34367112e046d4ce61fff"
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/penumbra-black-plague/translation/Francais.lang" \
+                            "Francais.lang" \
+                            "37a1a45bec751e53acf34367112e046d4ce61fff"
     AddSize 192
 
     SetOutPath "$INSTDIR\redist\expansion01\config"
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/penumbra-black-plague/Francais_exp.lang" \
-                            "https://www.mediafire.com/file_premium/mfacqbslqlk3ewr/Francais_exp.lang/file" \
-                            "Francais_exp.lang" "51518d9d1b1cb6434b2b64a19247f2cf909651a2"
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/penumbra-black-plague/translation/Francais_exp.lang" \
+                            "Francais_exp.lang" \
+                            "51518d9d1b1cb6434b2b64a19247f2cf909651a2"
     AddSize 61
 
     !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"

@@ -24,8 +24,10 @@ Section "AM2R v1.1 + AM2RLauncher v2.3"
     AddSize 86016
 
     !insertmacro DOWNLOAD_2 "https://github.com/AM2R-Community-Developers/AM2RLauncher/releases/download/2.3.0/AM2RLauncher_2.3.0_win_DownloadMe.zip" \
-                            "https://cdn1.mulderload.eu/games/am2r/AM2RLauncher_2.3.0_win_DownloadMe.zip" \
-                            "AM2RLauncher.zip" "0fd83bd8c337b74e9e4e6e0af82cbc8bdcb639f5"
+                            "https://cdn.mulderload.eu/games/am2r/impr_misc/AM2RLauncher_2.3.0_win_DownloadMe.zip" \
+                            "AM2RLauncher.zip" \
+                            "0fd83bd8c337b74e9e4e6e0af82cbc8bdcb639f5"
+
     !insertmacro NSISUNZ_EXTRACT "AM2RLauncher.zip" ".\" "AUTO_DELETE"
 
     CopyFiles "$byofPath_BACKUP" "$INSTDIR\AM2R_11.zip"

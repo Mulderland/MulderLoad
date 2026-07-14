@@ -16,26 +16,26 @@ SectionGroup /e "Wolfram v1.1 (Full installation)" lang
         AddSize 197632
         SetOutPath "$INSTDIR\@mulderload"
 
-        !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/43717" \
-                                "https://cdn2.mulderload.eu/tmp/wolfram/wolfram_win32_us.exe" \
-                                "wolfram_win32.exe" "7d2d93f4a5968bb70e68c94dcb41be60"
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/games/wolfram/downloads/wolfram-us-version" \
+                                "wolfram_win32.exe" \
+                                "7d2d93f4a5968bb70e68c94dcb41be60"
 
-        !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/43925" \
-                                "https://cdn2.mulderload.eu/tmp/wolfram/wolfram_win32_patch_1_1_en.exe" \
-                                "wolfram_win32_patch_1_1.exe" "68a52ce17b7732c4aa7298714c90c13c"
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/games/wolfram/downloads/wolfram-patch-11-english-version" \
+                                "wolfram_win32_patch_1_1.exe" \
+                                "68a52ce17b7732c4aa7298714c90c13c"
     SectionEnd
 
     Section /o "Russian Version" lang_ru
         AddSize 197632
         SetOutPath "$INSTDIR\@mulderload"
 
-        !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/43718" \
-                                "https://cdn2.mulderload.eu/tmp/wolfram/wolfram_win32_ru.exe" \
-                                "wolfram_win32.exe" "1896d30fc2b770125beb1c268be1e414"
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/games/wolfram/downloads/wolfram-russian-version" \
+                                "wolfram_win32.exe" \
+                                "1896d30fc2b770125beb1c268be1e414"
 
-        !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/43924" \
-                                "https://cdn2.mulderload.eu/tmp/wolfram/wolfram_win32_patch_1_1_ru.exe" \
-                                "wolfram_win32_patch_1_1.exe" "ab49b227a59ba135514c6376f570c64d"
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/games/wolfram/downloads/wolfram-patch-11-russian-version" \
+                                "wolfram_win32_patch_1_1.exe" \
+                                "ab49b227a59ba135514c6376f570c64d"
     SectionEnd
 
     Section

@@ -38,10 +38,10 @@ Section "Downgrade Steam v1.02 (if detected) to v1.01"
         goto skip_section
     ${EndIf}
 
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/hitman-2-silent-assassin/Steam_v1.02_to_GOG_v1.01.7z" \
-                            "https://www.mediafire.com/file_premium/kmtlx5kesjpq3gr/Steam_v1.02_to_GOG_v1.01.7z/file" \
-                            "Steam_v1.02_to_GOG_v1.01.7z" "51f3f6f74b621ef08762720aaf446d72edb3d418"
-    !insertmacro NSIS7Z_EXTRACT "Steam_v1.02_to_GOG_v1.01.7z" ".\" "AUTO_DELETE"
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/hitman-2-silent-assassin/downgrade/Steam v1.02 to GOG v1.01 [MLD].7z" \
+                            "Steam v1.02 to GOG v1.01 [MLD].7z" \
+                            "51f3f6f74b621ef08762720aaf446d72edb3d418"
+    !insertmacro NSIS7Z_EXTRACT "Steam v1.02 to GOG v1.01 [MLD].7z" ".\" "AUTO_DELETE"
     skip_section:
 SectionEnd
 
@@ -62,17 +62,20 @@ Section "Widescreen fix (by nemesis2000) + dgVoodoo2"
 
     # Install ThirteenAG's Ultimate ASI Loader (stick to 9.5, higher doesnt seem to work on GOG release)
     !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/v9.5.0/Ultimate-ASI-Loader.zip" \
-                            "https://cdn1.mulderload.eu/games/_common/Ultimate-ASI-Loader-9.5.zip" \
-                            "Ultimate-ASI-Loader.zip" "418b117c22ff2a798cf9173ba20f8cdfde3c456e"
+                            "https://cdn.mulderload.eu/tools/ultimate-asi-loader/Ultimate-ASI-Loader-v9.5.0.zip" \
+                            "Ultimate-ASI-Loader.zip" \
+                            "418b117c22ff2a798cf9173ba20f8cdfde3c456e"
+
     !insertmacro NSISUNZ_EXTRACT "Ultimate-ASI-Loader.zip" ".\" "AUTO_DELETE"
     !insertmacro FORCE_RENAME "dinput8.dll" "d3d8.dll"
 
     SetOutPath "$INSTDIR\scripts"
 
     # Install nemesis2000's Widescreen Fix
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/hitman-2-silent-assassin/Hitman%202%20Silent%20Assassin%20Widescreen%20Fix.zip" \
-                            "https://community.pcgamingwiki.com/files/file/2787-hitman-2-silent-assassin-widescreen-fix/#13816" \
-                            "Hitman 2 Silent Assassin Widescreen Fix.zip" "9a2c7e17e4a303e2dec640b3ce23f90192bc2398"
+    !insertmacro DOWNLOAD_1 "https://community.pcgamingwiki.com/files/file/2787-hitman-2-silent-assassin-widescreen-fix/" \
+                            "Hitman 2 Silent Assassin Widescreen Fix.zip" \
+                            "9a2c7e17e4a303e2dec640b3ce23f90192bc2398"
+
     !insertmacro NSISUNZ_EXTRACT_ONE "Hitman 2 Silent Assassin Widescreen Fix.zip" ".\" "scripts\h2.ini" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "Hitman 2 Silent Assassin Widescreen Fix.zip" ".\" "scripts\h2w.asi" "AUTO_DELETE"
     !insertmacro FILE_STR_REPLACE "LOD_Distance_Multiplier = 10.0" "LOD_Distance_Multiplier = 1.0" 1 1 "$INSTDIR\scripts\h2.ini"
@@ -88,9 +91,10 @@ SectionEnd
 Section "Add Xinput Controller support (by mutantx20)"
     AddSize 862
     SetOutPath "$INSTDIR"
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/hitman-2-silent-assassin/hitman%202%20controller.7z" \
-                            "https://community.pcgamingwiki.com/files/file/2820-hitman-2-controller-fix/#13930" \
-                            "hitman 2 controller.7z" "bbe6e442e121dd968e138f57a14ce1517e7d6de1"
+    !insertmacro DOWNLOAD_1 "https://community.pcgamingwiki.com/files/file/2820-hitman-2-controller-fix/" \
+                            "hitman 2 controller.7z" \
+                            "bbe6e442e121dd968e138f57a14ce1517e7d6de1"
+
     !insertmacro NSIS7Z_EXTRACT "hitman 2 controller.7z" ".\" "AUTO_DELETE"
     Delete "alec 360.txt"
 SectionEnd
@@ -104,40 +108,44 @@ SectionGroup /e "Language Patch" lang
         AddSize 9216
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/hitman-2-silent-assassin/GOG_v1.01_to_French.7z" \
-                                "https://www.mediafire.com/file_premium/mkouexkozv8wk2e/GOG_v1.01_to_French.7z/file" \
-                                "GOG_v1.01_to_French.7z" "eb2d3939dce87824ecd09945aaca8b417379de96"
-        !insertmacro NSIS7Z_EXTRACT "GOG_v1.01_to_French.7z" ".\" "AUTO_DELETE"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/hitman-2-silent-assassin/translation/GOG v1.01 to French [Repack-MLD].7z" \
+                                "GOG v1.01 to French [Repack-MLD].7z" \
+                                "eb2d3939dce87824ecd09945aaca8b417379de96"
+
+        !insertmacro NSIS7Z_EXTRACT "GOG v1.01 to French [Repack-MLD].7z" ".\" "AUTO_DELETE"
     SectionEnd
 
     Section /o "German Patch" lang_de
         AddSize 5120
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/hitman-2-silent-assassin/GOG_v1.01_to_German.7z" \
-                                "https://www.mediafire.com/file_premium/83pstsv4tqlild9/GOG_v1.01_to_German.7z/file" \
-                                "GOG_v1.01_to_German.7z" "47949c437016aff4c4267b93383814bc3e6360a5"
-        !insertmacro NSIS7Z_EXTRACT "GOG_v1.01_to_German.7z" ".\" "AUTO_DELETE"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/hitman-2-silent-assassin/translation/GOG v1.01 to German [Repack-MLD].7z" \
+                                "GOG v1.01 to German [Repack-MLD].7z" \
+                                "47949c437016aff4c4267b93383814bc3e6360a5"
+
+        !insertmacro NSIS7Z_EXTRACT "GOG v1.01 to German [Repack-MLD].7z" ".\" "AUTO_DELETE"
     SectionEnd
 
     Section /o "Italian Patch" lang_it
         AddSize 0 ; actually it reduces the game size by 4MB
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/hitman-2-silent-assassin/GOG_v1.01_to_Italian.7z" \
-                                "https://www.mediafire.com/file_premium/lcui99srndupt46/GOG_v1.01_to_Italian.7z/file" \
-                                "GOG_v1.01_to_Italian.7z" "47949c437016aff4c4267b93383814bc3e6360a5"
-        !insertmacro NSIS7Z_EXTRACT "GOG_v1.01_to_Italian.7z" ".\" "AUTO_DELETE"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/hitman-2-silent-assassin/translation/GOG v1.01 to Italian [Repack-MLD].7z" \
+                                "GOG v1.01 to Italian [Repack-MLD].7z" \
+                                "47949c437016aff4c4267b93383814bc3e6360a5"
+
+        !insertmacro NSIS7Z_EXTRACT "GOG v1.01 to Italian [Repack-MLD].7z" ".\" "AUTO_DELETE"
     SectionEnd
 
     Section /o "Spanish Patch" lang_es
         AddSize 14336
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/hitman-2-silent-assassin/GOG_v1.01_to_Spanish.7z" \
-                                "https://www.mediafire.com/file_premium/ayq17f6mj4j93jp/GOG_v1.01_to_Spanish.7z/file" \
-                                "GOG_v1.01_to_Spanish.7z" "38c8bb6a5674910c753b602229192797776abd96"
-        !insertmacro NSIS7Z_EXTRACT "GOG_v1.01_to_Spanish.7z" ".\" "AUTO_DELETE"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/hitman-2-silent-assassin/translation/GOG v1.01 to Spanish [Repack-MLD].7z" \
+                                "GOG v1.01 to Spanish [Repack-MLD].7z" \
+                                "38c8bb6a5674910c753b602229192797776abd96"
+
+        !insertmacro NSIS7Z_EXTRACT "GOG v1.01 to Spanish [Repack-MLD].7z" ".\" "AUTO_DELETE"
     SectionEnd
 SectionGroupEnd
 

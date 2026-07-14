@@ -35,10 +35,11 @@ SectionEnd
         AddSize 1
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/steam_to_gog_1.0hotfix4.7z" \
-                                "https://www.mediafire.com/file_premium/icjvuvpl5598q70/steam_to_gog_1.0hotfix4.7z/file" \
-                                "steam_to_gog_1.0hotfix4.7z" "9bd48a912e467bfbce5441ed3e570d828f79c7fd"
-        !insertmacro NSIS7Z_EXTRACT "steam_to_gog_1.0hotfix4.7z" ".\" "AUTO_DELETE"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil/downgrade/Steam to GOG v1.0 hotfix 4 [MLD].7z" \
+                                "Steam to GOG v1.0 hotfix 4 [MLD].7z" \
+                                "9bd48a912e467bfbce5441ed3e570d828f79c7fd"
+
+        !insertmacro NSIS7Z_EXTRACT "Steam to GOG v1.0 hotfix 4 [MLD].7z" ".\" "AUTO_DELETE"
     SectionEnd
 !endif
 
@@ -98,16 +99,18 @@ Section "Resident Evil Classic REbirth"
     SetOutPath "$REBIRTHDIR"
 
     # Patch 1.01 (MediaKite)
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/mediakite%201.01.7z" \
-                            "https://www.mediafire.com/file_premium/reo1sd8svembozn/mediakite_1.01.7z/file" \
-                            "mediakite 1.01.7z" "de61e404e2cd54466bc2ac3cc5d4e628cad32f3d"
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil/update/mediakite 1.01.7z" \
+                            "mediakite 1.01.7z" \
+                            "de61e404e2cd54466bc2ac3cc5d4e628cad32f3d"
+
     !insertmacro NSIS7Z_EXTRACT "mediakite 1.01.7z" ".\" "AUTO_DELETE"
     AddSize 940
 
     # Classic REbirth DLL
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/re1cr-2020-12-06.7z" \
-                            "https://www.mediafire.com/file_premium/tg8fas77fql687m/re1cr-2020-12-06.7z/file" \
-                            "re1cr-2020-12-06.7z" "e5615c3fb0711e2d692a8eec1725ffde5993a189"
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil/impr_misc/re1cr-2020-12-06.7z" \
+                            "re1cr-2020-12-06.7z" \
+                            "e5615c3fb0711e2d692a8eec1725ffde5993a189"
+
     !insertmacro NSIS7Z_EXTRACT "re1cr-2020-12-06.7z" ".\" "AUTO_DELETE"
     AddSize 3181
 
@@ -118,9 +121,11 @@ Section "Resident Evil Classic REbirth"
     WriteRegStr HKCU "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" "$REBIRTHDIR\Biohazard.exe" "~ HIGHDPIAWARE"
 
     # Apply 4GB Patch
-    !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/_common/ntcore_4gb_patch_v1.0.0.1.zip" \
+    !insertmacro DOWNLOAD_2 "https://cdn.mulderload.eu/tools/ntcore/4gb_patch.zip" \
                             "https://ntcore.com/files/4gb_patch.zip" \
-                            "4gb_patch.zip" "c8b0d61937cb54fc8215124c0f737a1d29479c97"
+                            "4gb_patch.zip" \
+                            "c8b0d61937cb54fc8215124c0f737a1d29479c97"
+
     !insertmacro NSISUNZ_EXTRACT "4gb_patch.zip" ".\" "AUTO_DELETE"
     ExecWait '4gb_patch.exe Biohazard.exe' $0
     Delete "4gb_patch.exe"
@@ -129,38 +134,39 @@ SectionEnd
 
 SectionGroup "Translation patches"
     Section /o "French patch (by Vonmalvarius)"
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/mod_fr_V1.3.1.7z" \
-                                "https://www.mediafire.com/file_premium/gcz0nmcto6zv1lt/mod_fr_V1.3.1.7z/file" \
-                                "$REBIRTHDIR\mod_fr_V1.3.1.7z" "e60b30797a5856e8edee518327efe517bbfdeb75"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil/translation/mod_fr_V1.3.1.7z" \
+                                "$REBIRTHDIR\mod_fr_V1.3.1.7z" \
+                                "e60b30797a5856e8edee518327efe517bbfdeb75"
         AddSize 483
     SectionEnd
 
     Section /o "German patch (by Accandon)"
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/mod_german_1_0_1_crypto.7z" \
-                                "https://www.mediafire.com/file_premium/9xqqsj3owxqs7bw/mod_german_1_0_1_crypto.7z/file" \
-                                "$REBIRTHDIR\mod_german_1_0_1_crypto.7z" "c6abde7a312c22cb1d87c59c4cf5f5dc5e86c67a"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil/translation/mod_german_1_0_1_crypto.7z" \
+                                "$REBIRTHDIR\mod_german_1_0_1_crypto.7z" \
+                                "c6abde7a312c22cb1d87c59c4cf5f5dc5e86c67a"
         AddSize 372
     SectionEnd
 
     Section /o "Italian patch (by menmacchi)"
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/Mod_RE_Italian_V1.1_Classic.7z" \
-                                "https://www.mediafire.com/file_premium/uel8ssivbpzwz5r/Mod_RE_Italian_V1.1_Classic.7z/file" \
-                                "$REBIRTHDIR\Mod_RE_Italian_V1.1_Classic.7z" "a577108600077cbd0f49d1077420d1ac311441b0"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil/translation/Mod_RE_Italian_V1.1_Classic.7z" \
+                                "$REBIRTHDIR\Mod_RE_Italian_V1.1_Classic.7z" \
+                                "a577108600077cbd0f49d1077420d1ac311441b0"
         AddSize 403
     SectionEnd
 
     Section /o "Russian patch (by CasperPRO)"
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/translation/mod_russian.7z" \
-                                "https://www.mediafire.com/file_premium/b3linupnamnx281/mod_russian.7z/file" \
-                                "$REBIRTHDIR\mod_russian.7z" "7f27bb864bf032ac42701e1ecb548e2ae6a35ae1"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil/translation/mod_russian.7z" \
+                                "$REBIRTHDIR\mod_russian.7z" \
+                                "7f27bb864bf032ac42701e1ecb548e2ae6a35ae1"
         AddSize 344
     SectionEnd
 
     Section /o "Spanish patch (by LeigiBoy)"
         SetOutPath "$REBIRTHDIR"
-        !insertmacro DOWNLOAD_2 "https://www.nexusmods.com/residentevil1996/mods/2?tab=files&file_id=6" \
-                                "https://cdn1.mulderload.eu/games/resident-evil/translation/Spanish%20translation%20(fixed)-2-1-1-1603507505.zip" \
-                                "Spanish translation (fixed)-2-1-1-1603507505.zip" "fe0873b2cd3ac8a6a6c1a035747f4e203c24ad4c"
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/residentevil1996/mods/2?tab=files&file_id=6" \
+                                "Spanish translation (fixed)-2-1-1-1603507505.zip" \
+                                "fe0873b2cd3ac8a6a6c1a035747f4e203c24ad4c"
+
         !insertmacro NSISUNZ_EXTRACT "Spanish translation (fixed)-2-1-1-1603507505.zip" ".\" "AUTO_DELETE"
         AddSize 405
     SectionEnd
@@ -171,15 +177,18 @@ SectionGroup "Graphical improvements" gfx
         SetOutPath "$REBIRTHDIR"
 
         # https://www.moddb.com/mods/resident-evil-hd-mod (repacked, see README for more information)
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/Resident_Evil_HD_mod_v20220831%20%5BRepack-MLD%5D.7z" \
-                                "https://www.mediafire.com/file_premium/q35tg41d1fvhgas/Resident_Evil_HD_mod_v20220831_%255BRepack-MLD%255D.7z/file" \
-                                "Resident_Evil_HD_mod_v20220831 [Repack-MLD].7z" "c803ec117013ec0dc43b13bc2768cf119cc2e8af"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil/impr_gfx/Resident_Evil_HD_mod_v20220831 [Repack-MLD].7z" \
+                                "Resident_Evil_HD_mod_v20220831 [Repack-MLD].7z" \
+                                "c803ec117013ec0dc43b13bc2768cf119cc2e8af"
+
         !insertmacro NSIS7Z_EXTRACT "Resident_Evil_HD_mod_v20220831 [Repack-MLD].7z" ".\" "AUTO_DELETE"
         AddSize 4495
 
         # Get latest Ultimate ASI Loader
         !insertmacro DOWNLOAD_1 "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/Win32-latest/dinput8-Win32.zip" \
-                                "dinput8-Win32.zip" ""
+                                "dinput8-Win32.zip" \
+                                ""
+
         !insertmacro NSISUNZ_EXTRACT_ONE "dinput8-Win32.zip" ".\" "dinput8.dll" "AUTO_DELETE"
         AddSize 5264
     SectionEnd
@@ -188,9 +197,10 @@ SectionGroup "Graphical improvements" gfx
         SetOutPath "$REBIRTHDIR"
 
         # https://www.moddb.com/mods/resident-evil-seamless-hd-project/downloads/resident-evil-seamless-hd-project-for-pc-mediakite (repacked, see README for more information)
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/RE_SHDP_1.1%20%5BRepack-MLD%5D.7z" \
-                                "https://www.mediafire.com/file_premium/8yh2ultux4rnp1i/RE_SHDP_1.1_%255BRepack-MLD%255D.7z/file" \
-                                "RE_SHDP_1.1 [Repack-MLD].7z" "61862c4f6afe0b81735e9d6cddc68444d675adea"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil/impr_gfx/RE_SHDP_1.1 [Repack-MLD].7z" \
+                                "RE_SHDP_1.1 [Repack-MLD].7z" \
+                                "61862c4f6afe0b81735e9d6cddc68444d675adea"
+
         !insertmacro NSIS7Z_EXTRACT "RE_SHDP_1.1 [Repack-MLD].7z" ".\" "AUTO_DELETE"
         AddSize 104448
     SectionEnd
@@ -198,10 +208,10 @@ SectionGroup "Graphical improvements" gfx
     Section "RE-Enhance v2.0 (by SonicB00M)" gfx3
         SetOutPath "$REBIRTHDIR"
 
-        # https://www.moddb.com/mods/reenhance-re1/downloads/re-enhance-re1-v2
-        !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/288416" \
-                                "https://cdn1.mulderload.eu/games/resident-evil/RE-ENHANCE_RE1_v2.0.zip" \
-                                "RE-ENHANCE_RE1_v2.0.zip" "176d9bc3143b01521a1abca58963cda5"
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/reenhance-re1/downloads/re-enhance-re1-v2" \
+                                "RE-ENHANCE_RE1_v2.0.zip" \
+                                "176d9bc3143b01521a1abca58963cda5"
+
         !insertmacro NSISUNZ_EXTRACT "RE-ENHANCE_RE1_v2.0.zip" ".\" "AUTO_DELETE"
         AddSize 334848
     SectionEnd
@@ -210,9 +220,10 @@ SectionGroup "Graphical improvements" gfx
         SetOutPath "$REBIRTHDIR"
 
         # This particular game requires exactly the v2.64 version
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/dgVoodoo2_64_nopassword.zip" \
-                                "https://www.mediafire.com/file_premium/dudqbe1p5r0vtge/dgVoodoo2_64_nopassword.zip/file" \
-                                "dgVoodoo2.zip" "38815d63c33501dcb732f405b985d7339fc3c328"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/tools/dgvoodoo/dgVoodoo2_64_nopassword.zip" \
+                                "dgVoodoo2.zip" \
+                                "38815d63c33501dcb732f405b985d7339fc3c328"
+
         !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "dgVoodoo.conf" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "dgVoodooCpl.exe" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\JPN\" "MS\x86\DDraw.dll" ""
@@ -231,10 +242,10 @@ SectionGroup /e "High Quality FMVs" fmv
     Section "960p - RE-Enhance FMV V1.1 (by SonicB00M)" fmv1
         SetOutPath "$REBIRTHDIR"
 
-        # https://www.moddb.com/mods/reenhance-re1/downloads/re-enhance-re1-fmv-pack-v11
-        !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/291051" \
-                                "https://cdn1.mulderload.eu/games/resident-evil/RE-ENHANCE_RE1_FMV-Pack_V1.1.zip" \
-                                "RE-ENHANCE_RE1_FMV-Pack_V1.1.zip" "a4f3ddfc6a75f038218885beecb6e8d3"
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/reenhance-re1/downloads/re-enhance-re1-fmv-pack-v11" \
+                                "RE-ENHANCE_RE1_FMV-Pack_V1.1.zip" \
+                                "a4f3ddfc6a75f038218885beecb6e8d3"
+
         !insertmacro NSISUNZ_EXTRACT "RE-ENHANCE_RE1_FMV-Pack_V1.1.zip" ".\" "AUTO_DELETE"
         AddSize 1583350
     SectionEnd
@@ -242,11 +253,12 @@ SectionGroup /e "High Quality FMVs" fmv
     Section /o "480p - FMVs from HD Mod (by TeamX)" fmv2
         SetOutPath "$REBIRTHDIR"
 
-        # https://www.moddb.com/mods/resident-evil-hd-mod (repacked to keep exclusives hires + remove other things)
-        !insertmacro DOWNLOAD_2 "https://cdn1.mulderload.eu/games/resident-evil/Resident_Evil_HD_mod_v20220831%20%5BVideos%20Only%5D.7z" \
-                                "https://www.mediafire.com/file_premium/ev5hlatthp3dzhw/Resident_Evil_HD_mod_v20220831_%255BVideos_Only%255D.7z/file" \
-                                "Resident_Evil_HD_mod_v20220831 [Videos Only].7z" "8bef4df7d857a831650a6c319e056c7b3cd1c55e"
-        !insertmacro NSIS7Z_EXTRACT "Resident_Evil_HD_mod_v20220831 [Videos Only].7z" ".\" "AUTO_DELETE"
+        # https://www.moddb.com/mods/resident-evil-hd-mod (repacked to keep only videos)
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil/impr_video/Resident_Evil_HD_mod_v20220831 [Videos-MLD].7z" \
+                                "Resident_Evil_HD_mod_v20220831 [Videos-MLD].7z" \
+                                "8bef4df7d857a831650a6c319e056c7b3cd1c55e"
+
+        !insertmacro NSIS7Z_EXTRACT "Resident_Evil_HD_mod_v20220831 [Videos-MLD].7z" ".\" "AUTO_DELETE"
     SectionEnd
 SectionGroupEnd
 
@@ -254,8 +266,11 @@ Section "High Quality Audio v2020 (by lexas87)"
     SetOutPath "$REBIRTHDIR"
 
     # http://re123.bplaced.net/board/viewtopic.php?f=21&t=296 (repack to keep only sound & voice)
-    !insertmacro DOWNLOAD_RANGE_1 "https://cdn1.mulderload.eu/games/resident-evil/Resident%20Evil%201%20HQ%20Sound%20Pack%20v8.5%20%5BRepack-MLD%5D.7z.001" \
-                                  "Resident Evil 1 HQ Sound Pack v8.5 [Repack-MLD].7z.001" "f95afa7be268de4394f0a595a4c12207a90c09c6" 2
+    !insertmacro DOWNLOAD_RANGE_1 "https://cdn.mulderload.eu/games/resident-evil/impr_sound/Resident Evil 1 HQ Sound Pack v8.5 [Repack-MLD].7z.001" \
+                                  "Resident Evil 1 HQ Sound Pack v8.5 [Repack-MLD].7z.001" \
+                                  "f95afa7be268de4394f0a595a4c12207a90c09c6" \
+                                  2
+
     !insertmacro NSIS7Z_EXTRACT "Resident Evil 1 HQ Sound Pack v8.5 [Repack-MLD].7z.001" ".\" "AUTO_DELETE"
     Delete "Resident Evil 1 HQ Sound Pack v8.5 [Repack-MLD].7z.002"
     AddSize 1020355

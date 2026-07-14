@@ -1,8 +1,10 @@
 ﻿!macro UNSHIELD_GET
     DetailPrint " // Getting Unshield"
-    !insertmacro DOWNLOAD_2 "https://www.mediafire.com/file_premium/g1dnl1mvl64u2u3/unshield-1.5.1.7z/file" \
-                            "https://cdn1.mulderload.eu/games/_tools/unshield-1.5.1.7z" \
-                            "$INSTDIR\@mulderload\unshield\unshield.7z" "c3ff078e0016d423476437edfdfbdb9ac7ef19a7"
+    !insertmacro DOWNLOAD_2 "https://cdn.mulderload.eu/dependencies/unshield/unshield-1.5.1.7z" \
+                            "https://github.com/ScoopInstaller/Binary/raw/master/unshield/unshield-1.5.1.7z" \
+                            "$INSTDIR\@mulderload\unshield\unshield.7z" \
+                            "c3ff078e0016d423476437edfdfbdb9ac7ef19a7"
+
     !insertmacro NSIS7Z_EXTRACT "$INSTDIR\@mulderload\unshield\unshield.7z" "$INSTDIR\@mulderload\unshield" "AUTO_DELETE"
 !macroend
 

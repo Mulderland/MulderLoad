@@ -21,10 +21,10 @@ SectionGroup /e "TemplarGFX's ACM Overhaul v6.2"
         AddSize 1289748
         SetOutPath "$INSTDIR"
 
-        # https://www.moddb.com/mods/templargfxs-acm-overhaul/downloads/acmo-v6-moddb-sep2020
-        !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/200240" \
-                                "https://cdn1.mulderload.eu/games/aliens-colonial-marines/ACMO_V6_MODDB_SEP2020.zip" \
-                                "ACMO_V6_MODDB_SEP2020.zip" "34501c84738b72044027758915c49875"
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/templargfxs-acm-overhaul/downloads/acmo-v6-moddb-sep2020" \
+                                "ACMO_V6_MODDB_SEP2020.zip" \
+                                "34501c84738b72044027758915c49875"
+
         !insertmacro NSISUNZ_EXTRACT "ACMO_V6_MODDB_SEP2020.zip" ".\" "AUTO_DELETE"
 
         # Delete ACMOverhaulV6Install.bat and do what it does instead
@@ -38,10 +38,10 @@ SectionGroup /e "TemplarGFX's ACM Overhaul v6.2"
         Delete "Binaries\Win32\_ACM.exe"
         Rename "Binaries\Win32\ACM_fix.exe" "Binaries\Win32\ACM.exe"
 
-        # https://www.moddb.com/mods/templargfxs-acm-overhaul/downloads/acm-overhaul-v62-patch
-        !insertmacro DOWNLOAD_2 "https://www.moddb.com/downloads/start/200348" \
-                                "https://cdn1.mulderload.eu/games/aliens-colonial-marines/ACMO_V6-2_PATCH_MODDB_SEP2020.zip" \
-                                "ACMO_V6-2_PATCH_MODDB_SEP2020.zip" "f10d3081708c6fe16734afa36316b043"
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/templargfxs-acm-overhaul/downloads/acm-overhaul-v62-patch" \
+                                "ACMO_V6-2_PATCH_MODDB_SEP2020.zip" \
+                                "f10d3081708c6fe16734afa36316b043"
+
         !insertmacro NSISUNZ_EXTRACT "ACMO_V6-2_PATCH_MODDB_SEP2020.zip" ".\" "AUTO_DELETE"
     SectionEnd
 SectionGroupEnd

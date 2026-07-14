@@ -19,8 +19,10 @@ SectionGroup /e "Graphical improvements"
         SetOutPath "$INSTDIR"
 
         !insertmacro DOWNLOAD_2 "https://github.com/aliasIsolation/aliasIsolation/releases/download/v1.2.0/AliasIsolation-v1.2.0.7z" \
-                                "https://cdn1.mulderload.eu/games/alien-isolation/AliasIsolation-v1.2.0.7z" \
-                                "AliasIsolation.7z" "1ca067b0e60531223746e1bda88fd38e7d2091b4"
+                                "https://cdn.mulderload.eu/games/alien-isolation/impr_gfx/AliasIsolation-v1.2.0.7z" \
+                                "AliasIsolation.7z" \
+                                "1ca067b0e60531223746e1bda88fd38e7d2091b4"
+
         !insertmacro NSIS7Z_EXTRACT "AliasIsolation.7z" ".\" "AUTO_DELETE"
 
         MessageBox MB_ICONINFORMATION "For TAA mod to work properly, you will need to set this settings ingame :\
@@ -34,7 +36,8 @@ SectionGroup /e "Graphical improvements"
         SetOutPath "$INSTDIR\DATA"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/alienisolation/mods/34?tab=files&file_id=123" \
-                                "Enhanced_Graphics_Alternate.rar" "2ff3a3f45aa1ab780765a30b343427ce22375b21"
+                                "Enhanced_Graphics_Alternate.rar" \
+                                "2ff3a3f45aa1ab780765a30b343427ce22375b21"
 
         !insertmacro 7Z_GET
         !insertmacro 7Z_EXTRACT "Enhanced_Graphics_Alternate.rar" ".\" "AUTO_DELETE"
@@ -57,9 +60,11 @@ Section /o "[Mod] Skip save confirmation dialog"
     AddSize 2382
     SetOutPath "$INSTDIR"
 
-    !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/AlienIsolation.SkipSaveConfirmationDialog/releases/latest/download/AlienIsolation.SkipSaveConfirmationDialog.zip" \
-                            "https://cdn1.mulderload.eu/games/alien-isolation/AlienIsolation.SkipSaveConfirmationDialog.zip"  \
-                            "SkipSaveConfirmationDialog.zip" ""
+    !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/AlienIsolation.SkipSaveConfirmationDialog/releases/download/AlienIsolation.SkipSaveConfirmationDialog-v1.4/AlienIsolation.SkipSaveConfirmationDialog.zip" \
+                            "https://cdn.mulderload.eu/games/alien-isolation/mod/AlienIsolation.SkipSaveConfirmationDialog-v1.4.zip"  \
+                            "SkipSaveConfirmationDialog.zip" \
+                            "cc20a5043b952bbcc5aaf30b4d6d6694fa1b79bf96c5b866f5a22ff6ac240541"
+
     !insertmacro NSISUNZ_EXTRACT_ONE "SkipSaveConfirmationDialog.zip" ".\" "AlienIsolation.SkipSaveConfirmationDialog.asi" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "SkipSaveConfirmationDialog.zip" ".\" "winmm.dll" "AUTO_DELETE"
 SectionEnd
