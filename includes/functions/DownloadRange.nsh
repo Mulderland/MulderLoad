@@ -62,10 +62,13 @@ Function DownloadRange
     ${EndIf}
 
     DownloadRange_loop:
-        # Download(currentUrl, currentFilePath, expectedHashForThisPart) -> $R4
-        !insertmacro _DOWNLOAD $R0 $R1 $R2 $R4
+        Push $R2
+        Push $R1
+        Push $R0
+        Call Download
+        Pop $R4
 
-        ${If} $R4 != 1
+        ${If} $R4 != "OK"
             StrCpy $R4 0
             Goto DownloadRange_end
         ${EndIf}
@@ -110,24 +113,5 @@ FunctionEnd
     !macroend
 !endif
 
-!ifmacrondef DOWNLOAD_RANGE_2
-    !macro DOWNLOAD_RANGE_2 URL1 URL2 FILE_PATH EXPECTED_HASH NB_PARTS
-        !insertmacro _DOWNLOAD_RANGE "${URL1}" "${FILE_PATH}" "${EXPECTED_HASH}" "${NB_PARTS}"
-        ${If} $0 != 1
-            MessageBox MB_ICONEXCLAMATION "Download or hash check failed for ${FILE_PATH}, trying alternative URL..."
-            !insertmacro DOWNLOAD_RANGE_1 "${URL2}" "${FILE_PATH}" "${EXPECTED_HASH}" "${NB_PARTS}"
-        ${EndIf}
-    !macroend
-!endif
-
-!ifmacrondef DOWNLOAD_RANGE_3
-    !macro DOWNLOAD_RANGE_3 URL1 URL2 URL3 FILE_PATH EXPECTED_HASH NB_PARTS
-        !insertmacro _DOWNLOAD_RANGE "${URL1}" "${FILE_PATH}" "${EXPECTED_HASH}" "${NB_PARTS}"
-        ${If} $0 != 1
-            MessageBox MB_ICONEXCLAMATION "Download or hash check failed for ${FILE_PATH}, trying alternative URL..."
-            !insertmacro DOWNLOAD_RANGE_2 "${URL2}" "${URL3}" "${FILE_PATH}" "${EXPECTED_HASH}" "${NB_PARTS}"
-        ${EndIf}
-    !macroend
-!endif
 
 !endif ; __DOWNLOADRANGE_NSH__
