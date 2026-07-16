@@ -74,7 +74,7 @@ SectionGroup /e "Downgrade Steam version (v1.11.221) to" version
         Delete "Data\ccSBJFO4003-Grenade.esl"
         Delete "Data\Fallout4 - TexturesPatch.ba2"
         Delete "Fallout4IDs.ccc"
-        !insertmacro DOWNLOAD_RANGE_1 "https://cdn.mulderload.eu/games/fallout-4/steam-downgrader/1.11.221_to_1.10.163/377163.7z.001" "377163.7z.001" "d14f02bfdbdfde7d48725da6e559c26138f24a68" 22
+        !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/fallout-4/steam-downgrader/1.11.221_to_1.10.163/377163.7z.001" "377163.7z.001" "d14f02bfdbdfde7d48725da6e559c26138f24a68" 22
         !insertmacro NSIS7Z_EXTRACT "377163.7z.001" ".\" ""
         !insertmacro DELETE_RANGE "377163.7z.001" 22
 
@@ -108,7 +108,7 @@ SectionGroup /e "Downgrade Steam version (v1.11.221) to" version
             !insertmacro NSIS7Z_EXTRACT "393882.7z" ".\" "AUTO_DELETE"
         ${ElseIf} $F4_Language == "cn"
             DetailPrint " // Downloading downgrade 393883 (Base game, Chinese-Traditional)"
-            !insertmacro DOWNLOAD_RANGE_1 "https://cdn.mulderload.eu/games/fallout-4/steam-downgrader/1.11.221_to_1.10.163/393883.7z.001" "393883.7z.001" "b1d63afee69343bfe09a249757c2320619655ef6" 6
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/fallout-4/steam-downgrader/1.11.221_to_1.10.163/393883.7z.001" "393883.7z.001" "b1d63afee69343bfe09a249757c2320619655ef6" 6
             !insertmacro NSIS7Z_EXTRACT "393883.7z.001" ".\" ""
             !insertmacro DELETE_RANGE "393883.7z.001" 6
         ${ElseIf} $F4_Language == "ja"
@@ -128,7 +128,7 @@ SectionGroup /e "Downgrade Steam version (v1.11.221) to" version
             Rename "Data\Video\LUCK_ja.bk2" "Data\Video\LUCK.bk2"
             Rename "Data\Video\PERCEPTION_ja.bk2" "Data\Video\PERCEPTION.bk2"
             Rename "Data\Video\STRENGTH_ja.bk2" "Data\Video\STRENGTH.bk2"
-            !insertmacro DOWNLOAD_RANGE_1 "https://cdn.mulderload.eu/games/fallout-4/steam-downgrader/1.11.221_to_1.10.163/393884.7z.001" "393884.7z.001" "9b2322f755d83b42e793235ff88ec49ea3653086" 4
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/fallout-4/steam-downgrader/1.11.221_to_1.10.163/393884.7z.001" "393884.7z.001" "9b2322f755d83b42e793235ff88ec49ea3653086" 4
             !insertmacro NSIS7Z_EXTRACT "393884.7z.001" ".\" ""
             !insertmacro DELETE_RANGE "393884.7z.001" 4
         ${EndIf}
@@ -204,7 +204,7 @@ SectionGroup /e "Downgrade Steam version (v1.11.221) to" version
 
         DetailPrint " // Downloading downgrade 377163 (Base game)"
         Delete "Data\Fallout4 - TexturesPatch.ba2"
-        !insertmacro DOWNLOAD_RANGE_1 "https://cdn.mulderload.eu/games/fallout-4/steam-downgrader/1.11.221_to_1.10.984/377163.7z.001" "377163.7z.001" "c7211ce2e42240d1c05825999ff436c05c39a6b5" 4
+        !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/fallout-4/steam-downgrader/1.11.221_to_1.10.984/377163.7z.001" "377163.7z.001" "c7211ce2e42240d1c05825999ff436c05c39a6b5" 4
         !insertmacro NSIS7Z_EXTRACT "377163.7z.001" ".\" ""
         !insertmacro DELETE_RANGE "377163.7z.001" 4
 

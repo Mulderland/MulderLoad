@@ -275,10 +275,10 @@ SectionGroup "High Quality FMVs" fmv
     Section /o "480p - FMVs from Sourcenext release" fmv3
         SetOutPath "$REBIRTHDIR"
 
-        !insertmacro DOWNLOAD_RANGE_1 "https://cdn.mulderload.eu/games/resident-evil-3-nemesis/impr_video/Sourcenext Videos [MLD].7z.001" \
-                                      "Sourcenext Videos [MLD].7z.001" \
-                                      "360467c3d9c6141d6e0aa60884dc6ad2eb19486c" \
-                                      3
+        !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/resident-evil-3-nemesis/impr_video/Sourcenext Videos [MLD].7z.001" \
+                                    "Sourcenext Videos [MLD].7z.001" \
+                                    "360467c3d9c6141d6e0aa60884dc6ad2eb19486c" \
+                                    3
 
         !insertmacro NSIS7Z_EXTRACT "Sourcenext Videos [MLD].7z.001" ".\" ""
         !insertmacro DELETE_RANGE "Sourcenext Videos [MLD].7z.001" 3

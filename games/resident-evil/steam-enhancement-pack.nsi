@@ -266,10 +266,10 @@ Section "High Quality Audio v2020 (by lexas87)"
     SetOutPath "$REBIRTHDIR"
 
     # http://re123.bplaced.net/board/viewtopic.php?f=21&t=296 (repack to keep only sound & voice)
-    !insertmacro DOWNLOAD_RANGE_1 "https://cdn.mulderload.eu/games/resident-evil/impr_sound/Resident Evil 1 HQ Sound Pack v8.5 [Repack-MLD].7z.001" \
-                                  "Resident Evil 1 HQ Sound Pack v8.5 [Repack-MLD].7z.001" \
-                                  "f95afa7be268de4394f0a595a4c12207a90c09c6" \
-                                  2
+    !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/resident-evil/impr_sound/Resident Evil 1 HQ Sound Pack v8.5 [Repack-MLD].7z.001" \
+                                "Resident Evil 1 HQ Sound Pack v8.5 [Repack-MLD].7z.001" \
+                                "f95afa7be268de4394f0a595a4c12207a90c09c6" \
+                                2
 
     !insertmacro NSIS7Z_EXTRACT "Resident Evil 1 HQ Sound Pack v8.5 [Repack-MLD].7z.001" ".\" "AUTO_DELETE"
     Delete "Resident Evil 1 HQ Sound Pack v8.5 [Repack-MLD].7z.002"

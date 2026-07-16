@@ -10110,9 +10110,10 @@ Section "Dirt 3 Complete Edition (Full Installation)"
 
 	!insertmacro NSIS7Z_EXTRACT "RetailCab to Retail [MLD].7z" ".\" "AUTO_DELETE"
 
-	!insertmacro DOWNLOAD_RANGE_1 "https://cdn.mulderload.eu/games/dirt-3/update/Retail To Complete [MLD].7z.001" \
-                                  "Retail To Complete [MLD].7z.001" \
-                                  "f2727bbbc6f258870ebea956005db7f6a523d415" 2
+	!insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/dirt-3/update/Retail To Complete [MLD].7z.001" \
+                                "Retail To Complete [MLD].7z.001" \
+                                "f2727bbbc6f258870ebea956005db7f6a523d415" \
+                                2
 
 	!insertmacro NSIS7Z_EXTRACT "Retail To Complete [MLD].7z.001" ".\" "AUTO_DELETE"
 	Delete "Retail To Complete [MLD].7z.002"

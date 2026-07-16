@@ -85,10 +85,10 @@ SectionGroup "Bug fixes"
     Section "Normalized Soundtrack (by zeikar & MrBunny)"
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_RANGE_1 "https://cdn.mulderload.eu/games/resident-evil-hd-remaster/fix/Normalized Soundtrack Mod [Repack-MLD].7z.001" \
-                                      "Normalized Soundtrack Mod [Repack-MLD].7z.001" \
-                                      "8e3632372fb1746839b865d4f5adeecabbecfa03" \
-                                      2
+        !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/resident-evil-hd-remaster/fix/Normalized Soundtrack Mod [Repack-MLD].7z.001" \
+                                    "Normalized Soundtrack Mod [Repack-MLD].7z.001" \
+                                    "8e3632372fb1746839b865d4f5adeecabbecfa03" \
+                                    2
 
         !insertmacro NSIS7Z_EXTRACT "Normalized Soundtrack Mod [Repack-MLD].7z.001" ".\" "AUTO_DELETE"
         AddSize 386423

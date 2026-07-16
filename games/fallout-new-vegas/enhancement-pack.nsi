@@ -208,7 +208,11 @@ Section /o "NVTUP (FNV Texture Upscale Project) v2.0"
     AddSize 28626125
     SetOutPath "$INSTDIR\Data"
 
-    !insertmacro DOWNLOAD_RANGE_1 "https://cdn.mulderload.eu/games/fallout-new-vegas/impr_gfx/nvtup-v2.0/FNV Texture Upscale Project (NVTUP) 2.0-93775-2-0-1765930818.7z.001" "NVTUP.7z.001" "b11a479853b39beb99a8e97b3c29324cac61bd5f" 16
+    !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/fallout-new-vegas/impr_gfx/nvtup-v2.0/FNV Texture Upscale Project (NVTUP) 2.0-93775-2-0-1765930818.7z.001" \
+                                "NVTUP.7z.001" \
+                                "b11a479853b39beb99a8e97b3c29324cac61bd5f" \
+                                16
+
     !insertmacro NSIS7Z_EXTRACT "NVTUP.7z.001" ".\" ""
     !insertmacro DELETE_RANGE "NVTUP.7z.001" 16
 SectionEnd

@@ -47,13 +47,13 @@ Function DownloadRange
     # $1: filePath (ending with .001)
     # $2: expectedHash (only for the .001 file)
     # $3: nbParts
-    # Returns: 1 on success, 0 on failure
+    # Returns: OK, ERR_DOWNLOAD, ERR_HASH
 
-    StrCpy $R0 $0  ; current url
-    StrCpy $R1 $1  ; current filePath
-    StrCpy $R2 $2  ; expected hash (part 1 only)
-    StrCpy $R3 1   ; currentPart
-    StrCpy $R4 1   ; result (optimistic)
+    StrCpy $R0 $0   ; current url
+    StrCpy $R1 $1   ; current filePath
+    StrCpy $R2 $2   ; expected hash (part 1 only)
+    StrCpy $R3 1    ; currentPart
+    StrCpy $R4 "OK" ; result (optimistic)
 
     # Guard: nbParts must be >= 1
     ${If} $3 < 1
@@ -69,7 +69,6 @@ Function DownloadRange
         Pop $R4
 
         ${If} $R4 != "OK"
-            StrCpy $R4 0
             Goto DownloadRange_end
         ${EndIf}
 
@@ -92,26 +91,22 @@ Function DownloadRange
     !insertmacro STACKFRAME_END 4 5
 FunctionEnd
 
-!ifmacrondef _DOWNLOAD_RANGE
-    !macro _DOWNLOAD_RANGE URL FILE_PATH EXPECTED_HASH NB_PARTS
+!ifmacrondef DOWNLOAD_RANGE
+    !macro DOWNLOAD_RANGE URL FILE_PATH EXPECTED_HASH NB_PARTS
         Push "${NB_PARTS}"
         Push "${EXPECTED_HASH}"
         Push "${FILE_PATH}"
         Push "${URL}"
         Call DownloadRange
         Pop $0
-    !macroend
-!endif
-
-!ifmacrondef DOWNLOAD_RANGE_1
-    !macro DOWNLOAD_RANGE_1 URL1 FILE_PATH EXPECTED_HASH NB_PARTS
-        !insertmacro _DOWNLOAD_RANGE "${URL1}" "${FILE_PATH}" "${EXPECTED_HASH}" "${NB_PARTS}"
-        ${If} $0 != 1
-            MessageBox MB_ICONEXCLAMATION "Download or hash check failed for ${FILE_PATH}, aborting..."
+        ${If} $0 == "ERR_DOWNLOAD"
+            MessageBox MB_ICONSTOP "Download failed for ${FILE_PATH}, aborting..."
+            Abort
+        ${ElseIf} $0 == "ERR_HASH"
+            MessageBox MB_ICONSTOP "Incorrect hash for ${FILE_PATH}, aborting..."
             Abort
         ${EndIf}
     !macroend
 !endif
-
 
 !endif ; __DOWNLOADRANGE_NSH__

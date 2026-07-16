@@ -305,10 +305,10 @@ SectionGroup "High Quality FMVs" fmv
         SetOutPath "$REBIRTHDIR"
 
         # https://www.moddb.com/mods/resident-evil-hd-mod (repacked to keep only videos)
-        !insertmacro DOWNLOAD_RANGE_1 "https://cdn.mulderload.eu/games/resident-evil-2/impr_video/Resident_Evil_2_HD_mod_v20220716 [Videos-MLD].7z.001" \
-                                      "Resident_Evil_2_HD_mod_v20220716 [Videos-MLD].7z" \
-                                      "a67eca24c53f27d77c091c602d4a887fedfb72da" \
-                                      2
+        !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/resident-evil-2/impr_video/Resident_Evil_2_HD_mod_v20220716 [Videos-MLD].7z.001" \
+                                    "Resident_Evil_2_HD_mod_v20220716 [Videos-MLD].7z" \
+                                    "a67eca24c53f27d77c091c602d4a887fedfb72da" \
+                                    2
 
         !insertmacro NSIS7Z_EXTRACT "Resident_Evil_2_HD_mod_v20220716 [Videos-MLD].7z.001" ".\" "AUTO_DELETE"
         Delete "Resident_Evil_2_HD_mod_v20220716 [Videos-MLD].7z.002"
@@ -319,9 +319,10 @@ SectionGroup "High Quality FMVs" fmv
     Section /o "480p - FMVs from Sourcenext release" fmv3
         SetOutPath "$REBIRTHDIR"
 
-        !insertmacro DOWNLOAD_RANGE_1 "https://cdn.mulderload.eu/games/resident-evil-2/impr_video/Sourcenext Videos [MLD].7z.001" \
-                                      "Sourcenext Videos [MLD].7z.001" \
-                                      "dc52f3154436842d43b45ee4d86acee28d4dbfd4" 3
+        !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/resident-evil-2/impr_video/Sourcenext Videos [MLD].7z.001" \
+                                    "Sourcenext Videos [MLD].7z.001" \
+                                    "dc52f3154436842d43b45ee4d86acee28d4dbfd4" \
+                                    3
 
         !insertmacro NSIS7Z_EXTRACT "Sourcenext Videos [MLD].7z.001" ".\" ""
         !insertmacro DELETE_RANGE "Sourcenext Videos [MLD].7z.001" 3
@@ -334,9 +335,10 @@ Section "High Quality Audio v2023 (by lexas87)"
     SetOutPath "$REBIRTHDIR"
 
     # http://re123.bplaced.net/board/viewtopic.php?f=22&t=308 (repack to keep only sound & voice)
-    !insertmacro DOWNLOAD_RANGE_1 "https://cdn.mulderload.eu/games/resident-evil-2/impr_audio/Resident Evil 2 - Classic REbirth HQ Music and Sound 21-01-2023 [Repack-MLD].7z.001" \
-                                  "Resident Evil 2 - Classic REbirth HQ Music and Sound 21-01-2023 [Repack-MLD].7z.001" \
-                                  "4ac5b6a80aa68250eaaa0dd100049460ba2ba3ae" 2
+    !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/resident-evil-2/impr_audio/Resident Evil 2 - Classic REbirth HQ Music and Sound 21-01-2023 [Repack-MLD].7z.001" \
+                                "Resident Evil 2 - Classic REbirth HQ Music and Sound 21-01-2023 [Repack-MLD].7z.001" \
+                                "4ac5b6a80aa68250eaaa0dd100049460ba2ba3ae" \
+                                2
 
     !insertmacro NSIS7Z_EXTRACT "Resident Evil 2 - Classic REbirth HQ Music and Sound 21-01-2023 [Repack-MLD].7z.001" ".\" "AUTO_DELETE"
     Delete "Resident Evil 2 - Classic REbirth HQ Music and Sound 21-01-2023 [Repack-MLD].7z.002"

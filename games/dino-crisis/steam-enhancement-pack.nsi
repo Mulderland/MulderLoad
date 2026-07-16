@@ -96,7 +96,12 @@ SectionGroup /e "Dino Crisis Classic REbirth"
     Section "High Quality Textures (Dreamcast upscaled)"
         AddSize 2527068
         SetOutPath "$REBIRTHDIR"
-        !insertmacro DOWNLOAD_RANGE_1 "https://cdn.mulderload.eu/games/dino-crisis/impr_gfx/HD_Mod_1.0 [Repack-MLD].7z.001" "HD_Mod_1.0 [Repack-MLD].7z.001" "149abbde37507d63bef0ad0a673946f756fe599a" 5
+
+        !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/dino-crisis/impr_gfx/HD_Mod_1.0 [Repack-MLD].7z.001" \
+                                    "HD_Mod_1.0 [Repack-MLD].7z.001" \
+                                    "149abbde37507d63bef0ad0a673946f756fe599a" \
+                                    5
+
         !insertmacro NSIS7Z_EXTRACT "HD_Mod_1.0 [Repack-MLD].7z.001" ".\" ""
         !insertmacro DELETE_RANGE "HD_Mod_1.0 [Repack-MLD].7z.001" 5
         !insertmacro FORCE_RENAME "readme.txt" "Readme_HQ_Textures.txt"
