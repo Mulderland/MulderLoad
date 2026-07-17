@@ -40,7 +40,7 @@ Function Download
 
         !insertmacro _IS_MULDERLOAD $R1 $R4
         ${If} $R4 == 1
-            NScurl::http GET "$R1" "$1" /HEADER "X-API-Key: $%MULDERLOAD_CDN_KEY%" /CONNECTTIMEOUT 10s /INSIST /RESUME /CANCEL /END
+            NScurl::http GET "$R1" "$1" /HEADER "Mld-Key: $%MULDERLOAD_KEY%" /CONNECTTIMEOUT 10s /INSIST /RESUME /CANCEL /END
         ${Else}
             NScurl::http GET "$R1" "$1" /CONNECTTIMEOUT 10s /INSIST /RESUME /CANCEL /END
         ${EndIf}

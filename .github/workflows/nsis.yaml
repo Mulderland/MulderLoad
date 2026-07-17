@@ -60,8 +60,7 @@ jobs:
       env:
         CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
         ENABLE_CODE_SIGNING: ${{ vars.ENABLE_CODE_SIGNING }}
-        MULDERLOAD_CDN_KEY: ${{ secrets.MULDERLOAD_CDN_KEY }}
-        MULDERLOAD_REDIRECT_KEY: ${{ secrets.MULDERLOAD_REDIRECT_KEY }}
+        MULDERLOAD_KEY: ${{ secrets.MULDERLOAD_KEY }}
       run: |
         Get-Content detect_result.txt | ForEach-Object {
           Write-Host " // Building $_"
