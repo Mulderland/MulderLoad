@@ -33,12 +33,8 @@ Function Download
     StrCpy $R5 "ERR_DOWNLOAD"
 
     Download_loop:
-        ClearErrors
-        ${WordFind} "$R3" "|" "E+$R0" $R1
-
-        ${If} ${Errors}
-            Goto Download_end
-        ${EndIf}
+        ${WordFind} "$R3" "|" "+$R0" $R1
+        StrCmp $R1 "" Download_end
 
         DetailPrint " // Downloading $R1"
 
