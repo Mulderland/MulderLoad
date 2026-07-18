@@ -7,6 +7,7 @@ InstallDir "C:\MulderLoad\Tests"
 
 !insertmacro INIT_STATS
 !include "..\..\tests\core\StackFrameTest.nsh"
+!include "..\..\tests\functions\DownloadTest.nsh"
 !include "..\..\tests\functions\ExpandUrlsTest.nsh"
 !include "..\..\tests\functions\FileStrReplaceTest.nsh"
 !include "..\..\tests\functions\GetNext3DigitTest.nsh"

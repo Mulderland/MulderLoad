@@ -8,29 +8,17 @@ Section "ExpandUrls"
     Pop $0
     !insertmacro ASSERT_EQUALS $0 "https://cdn.mulderload.eu/games/a-game/a-file.7z|https://cdn.de.mulderload.eu/games/a-game/a-file.7z"
 
-    DetailPrint " // _ExpandUrlRedirectA (non-www)"
+    DetailPrint " // _ExpandUrlRedirect (non-www)"
     Push "https://moddb.com/games/a-game/a-file.7z"
-    Call _ExpandUrlRedirectA
+    Call _ExpandUrlRedirect
     Pop $0
     !insertmacro ASSERT_EQUALS $0 "https://redirect.mulderload.eu/moddb.com/games/a-game/a-file.7z|https://redirecf.mulderload.eu/moddb.com/games/a-game/a-file.7z|https://redirect.de.mulderload.eu/moddb.com/games/a-game/a-file.7z"
 
-    DetailPrint " // _ExpandUrlRedirectA (www)"
+    DetailPrint " // _ExpandUrlRedirect (www)"
     Push "https://www.moddb.com/games/a-game/a-file.7z"
-    Call _ExpandUrlRedirectA
+    Call _ExpandUrlRedirect
     Pop $0
     !insertmacro ASSERT_EQUALS $0 "https://redirect.mulderload.eu/www.moddb.com/games/a-game/a-file.7z|https://redirecf.mulderload.eu/www.moddb.com/games/a-game/a-file.7z|https://redirect.de.mulderload.eu/www.moddb.com/games/a-game/a-file.7z"
-
-    DetailPrint " // _ExpandUrlRedirectB (non-www)"
-    Push "https://moddb.com/games/a-game/a-file.7z"
-    Call _ExpandUrlRedirectB
-    Pop $0
-    !insertmacro ASSERT_EQUALS $0 "https://redirecf.mulderload.eu/moddb.com/games/a-game/a-file.7z|https://redirect.de.mulderload.eu/moddb.com/games/a-game/a-file.7z"
-
-    DetailPrint " // _ExpandUrlRedirectB (www)"
-    Push "https://www.moddb.com/games/a-game/a-file.7z"
-    Call _ExpandUrlRedirectB
-    Pop $0
-    !insertmacro ASSERT_EQUALS $0 "https://redirecf.mulderload.eu/www.moddb.com/games/a-game/a-file.7z|https://redirect.de.mulderload.eu/www.moddb.com/games/a-game/a-file.7z"
 
     DetailPrint " // ExpandUrls 1: classic"
     !insertmacro EXPAND_URLS "https://www.classic.com/games/a-game/a-file.7z" $0

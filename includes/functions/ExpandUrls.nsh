@@ -42,7 +42,7 @@ Function ExpandUrls
     !insertmacro STR_STARTS_WITH $R1 "https://www.moddb.com/" $R2
     ${If} $R2 == 1
         Push $R1
-        Call _ExpandUrlRedirectA
+        Call _ExpandUrlRedirect
         Pop $R1
         Goto ExpandUrls_append
     ${EndIf}
@@ -50,7 +50,7 @@ Function ExpandUrls
     !insertmacro STR_STARTS_WITH $R1 "https://www.nexusmods.com/" $R2
     ${If} $R2 == 1
         Push $R1
-        Call _ExpandUrlRedirectB
+        Call _ExpandUrlRedirect
         Pop $R1
         Goto ExpandUrls_append
     ${EndIf}
@@ -58,7 +58,7 @@ Function ExpandUrls
     !insertmacro STR_STARTS_WITH $R1 "https://community.pcgamingwiki.com/" $R2
     ${If} $R2 == 1
         Push $R1
-        Call _ExpandUrlRedirectA
+        Call _ExpandUrlRedirect
         Pop $R1
         Goto ExpandUrls_append
     ${EndIf}
@@ -93,7 +93,7 @@ Function _ExpandUrlCdn
     !insertmacro STACKFRAME_END 1 2
 FunctionEnd
 
-Function _ExpandUrlRedirectA
+Function _ExpandUrlRedirect
     !insertmacro STACKFRAME_BEGIN 1 4
     ; $0: url input
     ; $R0-R2: locals
@@ -106,20 +106,6 @@ Function _ExpandUrlRedirectA
 
     !insertmacro STACKFRAME_RETURN 1 4 $R3
     !insertmacro STACKFRAME_END 1 4
-FunctionEnd
-
-Function _ExpandUrlRedirectB
-    !insertmacro STACKFRAME_BEGIN 1 3
-    ; $0: url input
-    ; $R0-R1: locals
-    ; $R2: return value
-
-    !insertmacro STR_REPLACE "https://" "https://redirecf.mulderload.eu/" "$0" $R0
-    !insertmacro STR_REPLACE "https://" "https://redirect.de.mulderload.eu/" "$0" $R1
-    StrCpy $R2 "$R0|$R1"
-
-    !insertmacro STACKFRAME_RETURN 1 3 $R2
-    !insertmacro STACKFRAME_END 1 3
 FunctionEnd
 
 !ifmacrondef EXPAND_URLS

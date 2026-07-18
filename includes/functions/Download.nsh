@@ -33,8 +33,15 @@ Function Download
     StrCpy $R5 "ERR_DOWNLOAD"
 
     Download_loop:
-        ${WordFind} "$R3" "|" "+$R0" $R1
-        StrCmp $R1 "" Download_end
+        ClearErrors
+        ${WordFind} "$R3" "|" "E+$R0" $R1
+        ${If} ${Errors}         ; no more url found (or single url case)
+            ${If} $R0 == 1      ; handle single url input
+                StrCpy $R1 "$0"
+            ${Else}
+                Goto Download_end
+            ${EndIf}
+        ${EndIf}
 
         DetailPrint " // Downloading $R1"
 
@@ -57,6 +64,7 @@ Function Download
             Goto Download_end
         ${EndIf}
 
+        DetailPrint " // Validating $1"
         !insertmacro FILE_HASH_EQUALS "$1" "$2" $R2
 
         ${If} $R2 == 1
