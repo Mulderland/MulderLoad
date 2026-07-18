@@ -306,7 +306,7 @@ SectionGroup "High Quality FMVs" fmv
 
         # https://www.moddb.com/mods/resident-evil-hd-mod (repacked to keep only videos)
         !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/resident-evil-2/impr_video/Resident_Evil_2_HD_mod_v20220716 [Videos-MLD].7z.001" \
-                                    "Resident_Evil_2_HD_mod_v20220716 [Videos-MLD].7z" \
+                                    "Resident_Evil_2_HD_mod_v20220716 [Videos-MLD].7z.001" \
                                     "a67eca24c53f27d77c091c602d4a887fedfb72da" \
                                     2
 
