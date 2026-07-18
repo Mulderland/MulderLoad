@@ -141,7 +141,8 @@ SectionGroup /e "Graphical improvements"
                                 "RE-ENHANCE_RE1R_FMV-Pack_V1.1.zip" \
                                 "2988f79371211e3e56cf855a4d75eabf"
 
-        !insertmacro NSISUNZ_EXTRACT "RE-ENHANCE_RE1R_FMV-Pack_V1.1.zip" ".\" "AUTO_DELETE"
+        # Although this ZIP is under 4GB, NSISUNZ_EXTRACT fails to extract it for an unknown reason
+        !insertmacro 7Z_EXTRACT "RE-ENHANCE_RE1R_FMV-Pack_V1.1.zip" ".\" "AUTO_DELETE"
         #AddSize -1260602
     SectionEnd
 
