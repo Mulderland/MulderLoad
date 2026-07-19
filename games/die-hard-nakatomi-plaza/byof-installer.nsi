@@ -130,11 +130,11 @@ Section "[MOD] Die Hard Improved Edition v2 beta (by ReiKaz316)" mod
     CopyFiles "$INSTDIR\Nakatomi.rez" "$INSTDIR\backup\Nakatomi.rez"
 
     DetailPrint " // Downloading mod"
-    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/die-hard-nakatomi-plaza/impr_misc/DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z" \
-                            "DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z" \
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/die-hard-nakatomi-plaza/impr_misc/DIE_HARD_Improved_Edition_v2.0.0beta [Repack-MLD].7z" \
+                            "DIE_HARD_Improved_Edition_v2.0.0beta [Repack-MLD].7z" \
                             "28ffcac1db43d7e7b1df6ff2cc5697a9fb7a95ca"
 
-    !insertmacro NSIS7Z_EXTRACT "DIE_HARD_Improved_Edition_v2.0.0beta_REPACK.7z" ".\" "AUTO_DELETE"
+    !insertmacro NSIS7Z_EXTRACT "DIE_HARD_Improved_Edition_v2.0.0beta [Repack-MLD].7z" ".\" "AUTO_DELETE"
 
     DetailPrint " // Applying xdelta patch"
     !insertmacro XDELTA3_PATCH_FOLDER "$INSTDIR"
