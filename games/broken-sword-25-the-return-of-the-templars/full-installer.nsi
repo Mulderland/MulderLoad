@@ -32,7 +32,7 @@ Section "Broken Sword 2.5 + Language Patch 2010"
     Delete "bs25-setup-1.bin"
 
     # Get language patch
-    !insertmacro DOWNLOAD_2 "https://baphometsfluch25.de/downloads/sonstiges/BS25_patch000_multilingual.zip" \
+    !insertmacro DOWNLOAD_2 "http://baphometsfluch25.de/downloads/sonstiges/BS25_patch000_multilingual.zip" \
                             "https://cdn.mulderload.eu/games/broken-sword-25-the-return-of-the-templars/update/BS25_patch000_multilingual.zip" \
                             "BS25_patch000_multilingual.zip" \
                             "3ccc20cb9d4277c9530eed88a114128863f0e070"

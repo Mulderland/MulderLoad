@@ -20,7 +20,7 @@ Special thanks to the dhewm3 team && GrowlingGuy41!"
 
 Name "Doom 3 [Enhancement Pack]"
 
-SectionGroup /e "Dhewm3 v1.5.5 RC2 + GUI Wide Patch"
+SectionGroup /e "Dhewm3 v1.5.5 + GUI Wide Patch"
     Section
         AddSize 51200
         SetOutPath "$INSTDIR"

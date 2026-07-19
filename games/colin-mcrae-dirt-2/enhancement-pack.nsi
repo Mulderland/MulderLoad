@@ -43,8 +43,8 @@
     Delete "gfwlivesetup.exe"
 
     SetOutPath "$INSTDIR\redist\Rapture3D"
-    !insertmacro DOWNLOAD_2 "https://www.blueripplesound.com/download/public/rapture3dgame_2.7.4_win.exe" \
-                            "https://cdn.mulderload.eu/redistributables/rapture3d/rapture3dgame_2.7.4_win.exe" \
+    # https://www.blueripplesound.com/download/public/rapture3dgame_2.7.4_win.exe
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/redistributables/rapture3d/rapture3dgame_2.7.4_win.exe" \
                             "rapture3dgame_2.7.4_win.exe" \
                             "4ab1aaaf7a46f082abad203a07b529a9977f0fa0"
 
