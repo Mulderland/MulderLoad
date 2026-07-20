@@ -65,14 +65,14 @@
       {
         "when": [ { "Misc": "Enable HD textures" } ],
         "operation": "rename",
-        "source": "rebirth\\_hires.bak",
-        "target": "rebirth\\hires"
+        "source": "rebirth\\_bio2hd.asi.bak",
+        "target": "rebirth\\bio2hd.asi"
       },
       {
         "when": [ { "!Misc": "Enable HD textures" } ],
         "operation": "rename",
-        "source": "rebirth\\hires",
-        "target": "rebirth\\_hires.bak"
+        "source": "rebirth\\bio2hd.asi",
+        "target": "rebirth\\_bio2hd.asi.bak"
       },
       {
         "when": [ { "MSAA Anti-Aliasing": "Off" } ],
