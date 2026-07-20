@@ -10,8 +10,8 @@ Reasons we bundle these:
 
 Hashes below are SHA-1.
 
-- `7z-v25.01.zip` - 7-Zip CLI - e1b06195495999f6a966631c76fa38eb1955285a
-- `nsis-3.11-setup.exe` - NSIS installer - a64bbad73d4638d668ffdbd0887be7d6528d6a9d
+- `7z-v26.02.zip` - 7-Zip CLI - 591e5377407ce18b4f9f8ed67c7d5b4e42a81821
+- `nsis-3.12-setup.exe` - NSIS installer - 6381316aa3f8203688082c0b88fc5ff304c89b69
 - `Nsis7z_19.00.7z` - NSIS 7z plugin - a2423c9f92c21462aae1f42708e75afef4b226dc
 - `NSISunzU.zip` - NSIS unzip plugin - 10c03c2cbf2be4531eebed35905c650c7a0dc381
 

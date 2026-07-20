@@ -2,11 +2,11 @@ $ErrorActionPreference = 'Stop'
 Push-Location $PSScriptRoot
 
 Write-Host " // Extract 7z"
-Expand-Archive -Path "binaries\7z-v25.01.zip" -DestinationPath "7z" -Force
+Expand-Archive -Path "binaries\7z-v26.02.zip" -DestinationPath "7z" -Force
 
 Write-Host " // Extract NSIS"
 $process = Start-Process `
-	-ArgumentList @('x', '-aoa', '-o.\nsis', 'binaries\nsis-3.11-setup.exe') `
+	-ArgumentList @('x', '-aoa', '-o.\nsis', 'binaries\nsis-3.12-setup.exe') `
 	-FilePath ".\7z\7z.exe" `
 	-NoNewWindow `
     -PassThru `
@@ -40,7 +40,7 @@ if ($process.ExitCode -ne 0) {
 
 Write-Host " // Download & extract NSCurl"
 $ProgressPreference = 'SilentlyContinue' # Disable progress bar
-Invoke-WebRequest -Uri "https://github.com/negrutiu/nsis-nscurl/releases/download/v26.1.11.287/NScurl.zip" -OutFile "nsis\nscurl.zip"
+Invoke-WebRequest -Uri "https://github.com/negrutiu/nsis-nscurl/releases/download/v26.6.21.315/NScurl.zip" -OutFile "nsis\nscurl.zip"
 Expand-Archive -Path "nsis\nscurl.zip" -DestinationPath "nsis" -Force
 Remove-Item "nsis\nscurl.zip" -Force
 
