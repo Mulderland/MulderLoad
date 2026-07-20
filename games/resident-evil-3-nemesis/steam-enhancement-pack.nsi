@@ -83,14 +83,16 @@ SectionGroup "Resident Evil 3 Classic REbirth (by Gemini)"
         !insertmacro XDELTA3_REMOVE
         AddSize 94
 
-        !insertmacro DOWNLOAD_1 "https://community.pcgamingwiki.com/files/file/1224-biohazard-3-last-escape-sourcenext-110-patch/?r=8005" \
-                                "bio3patch1.1.0.7z" \
-                                "ad1dfc85621e0be8a55ecbe5d7dbfc66431be287"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil-3-nemesis/fix/v1.1.0 Uncensored + Music Loop Fix [Repack-MLD].7z" \
+                                "v1.1.0 Uncensored + Music Loop Fix [Repack-MLD].7z" \
+                                "c4f52f62732f400aa3230d74291fe93a670f9510"
 
-        !insertmacro NSIS7Z_EXTRACT "bio3patch1.1.0.7z" ".\" "AUTO_DELETE"
+        !insertmacro NSIS7Z_EXTRACT "v1.1.0 Uncensored + Music Loop Fix [Repack-MLD].7z" ".\" "AUTO_DELETE"
         AddSize 11916
         !ifdef GOG_ENHANCEMENT_PACK_NSI
-            !insertmacro FORCE_RENAME "BIOHAZARD(R) 3 PC.exe" "BH3Launcher.exe"
+            !insertmacro FORCE_RENAME "bio3 Uncensored.EXE" "BH3Launcher.exe"
+        !else
+            !insertmacro FORCE_RENAME "bio3 Uncensored.EXE" "BIOHAZARD(R) 3 PC.exe"
         !endif
 
         # Classic REbirth DLL
@@ -155,6 +157,14 @@ SectionGroup "Resident Evil 3 Classic REbirth (by Gemini)"
 SectionGroupEnd
 
 SectionGroup "Translation patches"
+    Section /o "French patch (by GazousGit)"
+        SetOutPath "$REBIRTHDIR"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil-3-nemesis/translation/mod_fr_v20260518.7z" \
+                                "mod_fr_v20260518.7z" \
+                                "dcdbc5ad6569ea55065ae2ca7ce51b19a9fec258"
+        AddSize 342
+    SectionEnd
+
     Section /o "German patch (by Accandon)"
         SetOutPath "$REBIRTHDIR"
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/residentevil3nemesis/mods/5?tab=files&file_id=123" \
