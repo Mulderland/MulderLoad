@@ -9,6 +9,8 @@
 
     !insertmacro NSISUNZ_EXTRACT "$INSTDIR\@mulderload\7z\7z.zip" "$INSTDIR\@mulderload\7z" "AUTO_DELETE"
 
+    CreateDirectory "$INSTDIR\@mulderload\7z\Formats"
+
     !insertmacro DOWNLOAD_2 "https://cdn.mulderload.eu/dependencies/7z/Iso7z-v1.8.7.zip" \
                             "https://www.tc4shell.com/binary/Iso7z.zip" \
                             "$INSTDIR\@mulderload\7z\Iso7z.zip" \
