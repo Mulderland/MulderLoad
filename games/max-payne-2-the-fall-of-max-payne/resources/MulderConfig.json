@@ -1,0 +1,488 @@
+{
+  "game": {
+    "title": "Max Payne 2: The Fall of Max Payne",
+    "originalExe": "maxpayne2.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Graphical Improvements",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "DxWrapper Anti-Aliasing (WARNING: you must disable in-game AA)" },
+        { "value": "HUD at screen edges (Ultrawide)" },
+        { "value": "Xbox Rain Droplets" }
+      ]
+    },
+    {
+      "name": "FOV Modifier",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Lowest (-20%)" },
+        { "value": "Lower (-10%)" },
+        { "value": "Default" },
+        { "value": "Higher (+10%)" },
+        { "value": "Highest (+20%)" }
+      ]
+    },
+    {
+      "name": "Audio Language",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "English" },
+        { "value": "German" },
+        { "value": "Italian" },
+        { "value": "Russian" },
+        { "value": "Spanish" }
+      ]
+    },
+    {
+      "name": "Text Language",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "English" },
+        { "value": "French" },
+        { "value": "German" },
+        { "value": "Italian" },
+        { "value": "Polish" },
+        { "value": "Russian" },
+        { "value": "Spanish" }
+      ]
+    },
+    {
+      "name": "Sound Fix",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "None (original)" },
+        { "value": "DSOAL + OpenAL Soft (recommended for audio issues)" },
+        { "value": "IndirectSound (compatibility)" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Audio Mix Tweaks (if dialogue is too quiet)" },
+        { "value": "Weapon Accuracy Patch" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "*Graphical Improvements": "DxWrapper Anti-Aliasing" } ],
+        "operation": "replaceLine",
+        "files": ["dxwrapper.ini"],
+        "pattern": "^AntiAliasing.*$",
+        "replacement": "AntiAliasing               = 1"
+      },
+      {
+        "when": [ { "!*Graphical Improvements": "DxWrapper Anti-Aliasing" } ],
+        "operation": "replaceLine",
+        "files": ["dxwrapper.ini"],
+        "pattern": "^AntiAliasing.*$",
+        "replacement": "AntiAliasing               = 0"
+      },
+      {
+        "when": [ { "*Graphical Improvements": "HUD at screen edges (Ultrawide)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\MaxPayne2.WidescreenFix.ini"],
+        "pattern": "^WidescreenHudOffset.*$",
+        "replacement": "WidescreenHudOffset = 250.0 // 100.0 is the default offset for 16:9. For lower aspect ratios adjusted automatically, for higher you may change it manually."
+      },
+      {
+        "when": [ { "!*Graphical Improvements": "HUD at screen edges (Ultrawide)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\MaxPayne2.WidescreenFix.ini"],
+        "pattern": "^WidescreenHudOffset.*$",
+        "replacement": "WidescreenHudOffset = 100.0 // This is the default offset for 16:9. For lower aspect ratios adjusted automatically, for higher you may change it manually."
+      },
+      {
+        "when": [ { "Graphical Improvements": "Xbox Rain Droplets" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\xbox_rain_droplets\\scripts\\MaxPayne2.XboxRainDroplets.asi",
+        "target": "scripts\\MaxPayne2.XboxRainDroplets.asi"
+      },
+      {
+        "when": [ { "Graphical Improvements": "Xbox Rain Droplets" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\xbox_rain_droplets\\scripts\\MaxPayne2.XboxRainDroplets.ini",
+        "target": "scripts\\MaxPayne2.XboxRainDroplets.ini"
+      },
+      {
+        "when": [ { "!Graphical Improvements": "Xbox Rain Droplets" } ],
+        "operation": "move",
+        "source": "scripts\\MaxPayne2.XboxRainDroplets.asi",
+        "target": ".MulderConfig\\xbox_rain_droplets\\scripts\\MaxPayne2.XboxRainDroplets.asi"
+      },
+      {
+        "when": [ { "!Graphical Improvements": "Xbox Rain Droplets" } ],
+        "operation": "move",
+        "source": "scripts\\MaxPayne2.XboxRainDroplets.ini",
+        "target": ".MulderConfig\\xbox_rain_droplets\\scripts\\MaxPayne2.XboxRainDroplets.ini"
+      },
+
+
+
+      {
+        "when": [ { "FOV Modifier": "Lowest (-20%)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\MaxPayne2.WidescreenFix.ini"],
+        "pattern": "^FOVFactor.*$",
+        "replacement": "FOVFactor = 0.8"
+      },
+      {
+        "when": [ { "FOV Modifier": "Lower (-10%)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\MaxPayne2.WidescreenFix.ini"],
+        "pattern": "^FOVFactor.*$",
+        "replacement": "FOVFactor = 0.9"
+      },
+      {
+        "when": [ { "FOV Modifier": "Default" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\MaxPayne2.WidescreenFix.ini"],
+        "pattern": "^FOVFactor.*$",
+        "replacement": "FOVFactor = 1.0"
+      },
+      {
+        "when": [ { "FOV Modifier": "Higher (+10%)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\MaxPayne2.WidescreenFix.ini"],
+        "pattern": "^FOVFactor.*$",
+        "replacement": "FOVFactor = 1.1"
+      },
+      {
+        "when": [ { "FOV Modifier": "Highest (+20%)" } ],
+        "operation": "replaceLine",
+        "files": ["scripts\\MaxPayne2.WidescreenFix.ini"],
+        "pattern": "^FOVFactor.*$",
+        "replacement": "FOVFactor = 1.2"
+      },
+
+
+
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "MP2_DZ_English_Text.ras",
+        "target": ".MulderConfig\\translation_english\\MP2_DZ_English_Text.ras"
+      },
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "MP2_DZ_English_Sound.ras",
+        "target": ".MulderConfig\\translation_english\\MP2_DZ_English_Sound.ras"
+      },
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "MP2_DZ_French_Text.ras",
+        "target": ".MulderConfig\\translation_french\\MP2_DZ_French_Text.ras"
+      },
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "MP2_DZ_German_Sound.ras",
+        "target": ".MulderConfig\\translation_german\\MP2_DZ_German_Sound.ras"
+      },
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "MP2_DZ_German_Text.ras",
+        "target": ".MulderConfig\\translation_german\\MP2_DZ_German_Text.ras"
+      },
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "MP2_DZ_Italian_Sound.ras",
+        "target": ".MulderConfig\\translation_italian\\MP2_DZ_Italian_Sound.ras"
+      },
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "MP2_DZ_Italian_Text.ras",
+        "target": ".MulderConfig\\translation_italian\\MP2_DZ_Italian_Text.ras"
+      },
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "MP2_D0_Polish_Font.ras",
+        "target": ".MulderConfig\\translation_polish\\MP2_D0_Polish_Font.ras"
+      },
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "MP2_DZ_Polish_Text.ras",
+        "target": ".MulderConfig\\translation_polish\\MP2_DZ_Polish_Text.ras"
+      },
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "MP2_D0_Russian_Font.ras",
+        "target": ".MulderConfig\\translation_russian\\MP2_D0_Russian_Font.ras"
+      },
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "MP2_DZ_Russian_Sound.ras",
+        "target": ".MulderConfig\\translation_russian\\MP2_DZ_Russian_Sound.ras"
+      },
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "MP2_DZ_Russian_Text.ras",
+        "target": ".MulderConfig\\translation_russian\\MP2_DZ_Russian_Text.ras"
+      },
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "MP2_DZ_Spanish_Sound.ras",
+        "target": ".MulderConfig\\translation_spanish\\MP2_DZ_Spanish_Sound.ras"
+      },
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "MP2_DZ_Spanish_Text.ras",
+        "target": ".MulderConfig\\translation_spanish\\MP2_DZ_Spanish_Text.ras"
+      },
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "MP2_D0_Western_Font.ras",
+        "target": ".MulderConfig\\translation_western\\MP2_D0_Western_Font.ras"
+      },
+
+
+
+      {
+        "when": [ { "Audio Language": "English" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\translation_english\\MP2_DZ_English_Sound.ras",
+        "target": "MP2_DZ_English_Sound.ras"
+      },
+      {
+        "when": [ { "Audio Language": "German" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\translation_german\\MP2_DZ_German_Sound.ras",
+        "target": "MP2_DZ_German_Sound.ras"
+      },
+      {
+        "when": [ { "Audio Language": "Italian" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\translation_italian\\MP2_DZ_Italian_Sound.ras",
+        "target": "MP2_DZ_Italian_Sound.ras"
+      },
+      {
+        "when": [ { "Audio Language": "Russian" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\translation_russian\\MP2_DZ_Russian_Sound.ras",
+        "target": "MP2_DZ_Russian_Sound.ras"
+      },
+      {
+        "when": [ { "Audio Language": "Spanish" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\translation_spanish\\MP2_DZ_Spanish_Sound.ras",
+        "target": "MP2_DZ_Spanish_Sound.ras"
+      },
+
+
+
+      {
+        "when": [ { "Text Language": "English" }, { "Text Language": "French" }, { "Text Language": "German" }, { "Text Language": "Italian" }, { "Text Language": "Spanish" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\translation_western\\MP2_D0_Western_Font.ras",
+        "target": "MP2_D0_Western_Font.ras"
+      },
+      {
+        "when": [ { "Text Language": "Polish" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\translation_polish\\MP2_D0_Polish_Font.ras",
+        "target": "MP2_D0_Polish_Font.ras"
+      },
+      {
+        "when": [ { "Text Language": "Russian" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\translation_russian\\MP2_D0_Russian_Font.ras",
+        "target": "MP2_D0_Russian_Font.ras"
+      },
+
+
+
+      {
+        "when": [ { "Text Language": "English" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\translation_english\\MP2_DZ_English_Text.ras",
+        "target": "MP2_DZ_English_Text.ras"
+      },
+      {
+        "when": [ { "Text Language": "French" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\translation_french\\MP2_DZ_French_Text.ras",
+        "target": "MP2_DZ_French_Text.ras"
+      },
+      {
+        "when": [ { "Text Language": "German" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\translation_german\\MP2_DZ_German_Text.ras",
+        "target": "MP2_DZ_German_Text.ras"
+      },
+      {
+        "when": [ { "Text Language": "Italian" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\translation_italian\\MP2_DZ_Italian_Text.ras",
+        "target": "MP2_DZ_Italian_Text.ras"
+      },
+      {
+        "when": [ { "Text Language": "Polish" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\translation_polish\\MP2_DZ_Polish_Text.ras",
+        "target": "MP2_DZ_Polish_Text.ras"
+      },
+      {
+        "when": [ { "Text Language": "Russian" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\translation_russian\\MP2_DZ_Russian_Text.ras",
+        "target": "MP2_DZ_Russian_Text.ras"
+      },
+      {
+        "when": [ { "Text Language": "Spanish" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\translation_spanish\\MP2_DZ_Spanish_Text.ras",
+        "target": "MP2_DZ_Spanish_Text.ras"
+      },
+
+
+
+      {
+        "when": [ ],
+        "operation": "delete",
+        "source": "movies\\previously.bik"
+      },
+      {
+        "when": [ { "Text Language": "English" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation_english\\movies\\previously.bik",
+        "target": "movies\\previously.bik"
+      },
+      {
+        "when": [ { "Text Language": "French" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation_french\\movies\\previously.bik",
+        "target": "movies\\previously.bik"
+      },
+      {
+        "when": [ { "Text Language": "German" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation_german\\movies\\previously.bik",
+        "target": "movies\\previously.bik"
+      },
+      {
+        "when": [ { "Text Language": "Italian" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation_italian\\movies\\previously.bik",
+        "target": "movies\\previously.bik"
+      },
+      {
+        "when": [ { "Text Language": "Polish" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation_polish\\movies\\previously.bik",
+        "target": "movies\\previously.bik"
+      },
+      {
+        "when": [ { "Text Language": "Russian" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation_russian\\movies\\previously.bik",
+        "target": "movies\\previously.bik"
+      },
+      {
+        "when": [ { "Text Language": "Spanish" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation_spanish\\movies\\previously.bik",
+        "target": "movies\\previously.bik"
+      },
+
+
+
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "alsoft.ini",
+        "target": ".MulderConfig\\sound_dsoal\\alsoft.ini"
+      },
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "dsoal-aldrv.dll",
+        "target": ".MulderConfig\\sound_dsoal\\dsoal-aldrv.dll"
+      },
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "dsound.ini",
+        "target": ".MulderConfig\\sound_indirectsound\\dsound.ini"
+      },
+      {
+        "when": [ ],
+        "operation": "delete",
+        "source": "dsound.dll"
+      },
+      {
+        "when": [ { "*Sound Fix": "DSOAL" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\sound_dsoal\\alsoft.ini",
+        "target": "alsoft.ini"
+      },
+      {
+        "when": [ { "*Sound Fix": "DSOAL" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\sound_dsoal\\dsoal-aldrv.dll",
+        "target": "dsoal-aldrv.dll"
+      },
+      {
+        "when": [ { "*Sound Fix": "DSOAL" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\sound_dsoal\\dsound.dll",
+        "target": "dsound.dll"
+      },
+      {
+        "when": [ { "*Sound Fix": "IndirectSound" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\sound_indirectsound\\dsound.ini",
+        "target": "dsound.ini"
+      },
+      {
+        "when": [ { "*Sound Fix": "IndirectSound" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\sound_indirectsound\\dsound.dll",
+        "target": "dsound.dll"
+      },
+
+
+
+      {
+        "when": [ { "*Misc": "Audio Mix Tweaks" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\fix_audio_mix_tweaks\\MP2_manual_audio_mix_tweaks.ras",
+        "target": "MP2_manual_audio_mix_tweaks.ras"
+      },
+      {
+        "when": [ { "!*Misc": "Audio Mix Tweaks" } ],
+        "operation": "move",
+        "source": "MP2_manual_audio_mix_tweaks.ras",
+        "target": ".MulderConfig\\fix_audio_mix_tweaks\\MP2_manual_audio_mix_tweaks.ras"
+      },
+      {
+        "when": [ { "Misc": "Weapon Accuracy Patch" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\weapon_accuracy_patch\\Max Payne 2 Weapon Accuracy Patch.mp2m",
+        "target": "Max Payne 2 Weapon Accuracy Patch.ras"
+      },
+      {
+        "when": [ { "!Misc": "Weapon Accuracy Patch" } ],
+        "operation": "move",
+        "source": "Max Payne 2 Weapon Accuracy Patch.ras",
+        "target": ".MulderConfig\\weapon_accuracy_patch\\Max Payne 2 Weapon Accuracy Patch.mp2m"
+      }
+    ]
+  }
+}
