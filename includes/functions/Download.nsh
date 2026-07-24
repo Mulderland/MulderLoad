@@ -73,6 +73,7 @@ Function Download
         ${Else}
             StrCpy $R5 "ERR_HASH"
             DetailPrint "Hash mismatch for '$R1'"
+            Delete "$1" ; delete corrupted file
         ${EndIf}
 
     Download_next:
