@@ -16,6 +16,7 @@ Special thanks to V01DXIX for his incredible textures pack, Blood Money Premaste
 !define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\@mulderload\README.txt"
 !define MUI_FINISHPAGE_SHOWREADME_TEXT "Show README"
 !define MUI_FINISHPAGE_SHOWREADME_NOTCHECKED
+!define ON_SELECTED_FILE
 !include "..\..\includes\templates\SelectTemplate.nsh"
 !include "..\..\includes\tools\7z.nsh"
 
@@ -115,17 +116,34 @@ Section "MulderConfig (latest)"
     !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
 SectionEnd
 
-Section /o "Upscaled Textures (BM Premastered by V01DXIX)"
-    AddSize 5274337
+Section /o "Mission 8 Crash Fix (only for previous installations)" bmpremastered_fix
+    SetOutPath "$INSTDIR"
+
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/hitman-blood-money/impr_gfx/HBMPremastered - Mission 8 Crash Fix [MLD].7z" \
+                            "HBMPremastered - Mission 8 Crash Fix [MLD].7z" \
+                            "621dfc27f4d5250d93dae70c8fd766f124b0974c"
+
+    !insertmacro NSIS7Z_EXTRACT "HBMPremastered - Mission 8 Crash Fix [MLD].7z" ".\" "AUTO_DELETE"
+SectionEnd
+
+Section /o "Upscaled Textures (HBM Premastered by V01DXIX)"
+    AddSize 5038218
     SetOutPath "$INSTDIR"
 
     !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/blood-money-premastered/addons/hbm-premaster-v15" \
                             "HBM_PREMASTER_V1.5.zip" \
                             "f02da72221a6cdec6e950d910423df5b"
 
+    # Prevent M08_main.ZIP to be overwritten by HBM_PREMASTER
+    !insertmacro FORCE_RENAME "$INSTDIR\Scenes\M08\M08_main.ZIP" "$INSTDIR\Scenes\M08\M08_main.ZIP.bak"
+
     !insertmacro 7Z_EXTRACT "HBM_PREMASTER_V1.5.zip" ".\" "AUTO_DELETE"
     !insertmacro FORCE_RENAME "README.txt" "README_PREMASTER.txt"
     Delete "HitmanLaaPatcher.exe"
+
+    # Restore M08_main.ZIP (this fixes the crash on Mission 8: Death on the Mississipi)
+    Delete "$INSTDIR\Scenes\M08\M08_main.ZIP"
+    Rename "$INSTDIR\Scenes\M08\M08_main.ZIP.bak" "$INSTDIR\Scenes\M08\M08_main.ZIP"
 
     # NTCore 4GB Patch
     !insertmacro DOWNLOAD_2 "https://cdn.mulderload.eu/tools/ntcore/4gb_patch.zip" \
@@ -160,4 +178,13 @@ Function .onInit
     StrCpy $SELECT_FILENAME "HitmanBloodMoney.exe"
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Hitman Blood Money"
     StrCpy $SELECT_RELATIVE_INSTDIR ""
+FunctionEnd
+
+Function OnSelectedFile
+    !insertmacro FILE_HASH_EQUALS "$INSTDIR\Scenes\M08\M08_main.ZIP" "6a362d126608660481e4f33ad78be0ad1856b97f" $R0
+    ${If} $R0 = "0"
+        SectionSetFlags ${bmpremastered_fix} ${SF_RO}
+    ${Else}
+        SectionSetFlags ${bmpremastered_fix} ${SF_SELECTED}|${SF_RO}
+    ${EndIf}
 FunctionEnd
