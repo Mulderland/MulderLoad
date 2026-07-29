@@ -1,0 +1,348 @@
+{
+  "game": {
+    "title": "007: First Light",
+    "originalExe": "Retail\\007FirstLight.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Ultrawide Cutscenes Fix",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "16/9 (no fix)" },
+        { "value": "21/9 (2560x1080)" },
+        { "value": "21/9 (3440x1440)" },
+        { "value": "21/9 (3840x1600)" },
+        { "value": "32/9" }
+      ]
+    },
+    {
+      "name": "FOV",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "70 (default)" },
+        { "value": "80" },
+        { "value": "90" },
+        { "value": "100" },
+        { "value": "110" }
+      ]
+    },
+    {
+      "name": "Camera Distance",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Closer Camera", "disabledWhen": [ { "FOV": "70 (default)" }, { "FOV": "80" } ] },
+        { "value": "Default", "disabledWhen": [ { "FOV": "100" } ] },
+        { "value": "Farther Camera", "disabledWhen": [ { "FOV": "100" } ] }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Higher Camera" },
+        { "value": "Immersive HUD" },
+        { "value": "Skip Intro" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "Ultrawide Cutscenes Fix": "16/9 (no fix)" } ],
+        "operation": "patchBytes",
+        "files": ["Retail\\007FirstLight.exe"],
+        "patches": [
+            { "offset": "0xCCF1E6", "bytes": "39 8E E3 3F" },
+            { "offset": "0xD6A066", "bytes": "39 8E E3 3F" },
+            { "offset": "0x2F29790", "bytes": "39 8E E3 3F" }
+        ]
+      },
+      {
+        "when": [ { "Ultrawide Cutscenes Fix": "21/9 (2560x1080)" } ],
+        "operation": "patchBytes",
+        "files": ["Retail\\007FirstLight.exe"],
+        "patches": [
+            { "offset": "0xCCF1E6", "bytes": "26 B4 17 40" },
+            { "offset": "0xD6A066", "bytes": "26 B4 17 40" },
+            { "offset": "0x2F29790", "bytes": "26 B4 17 40" }
+        ]
+      },
+      {
+        "when": [ { "Ultrawide Cutscenes Fix": "21/9 (3440x1440)" } ],
+        "operation": "patchBytes",
+        "files": ["Retail\\007FirstLight.exe"],
+        "patches": [
+            { "offset": "0xCCF1E6", "bytes": "8E E3 18 40" },
+            { "offset": "0xD6A066", "bytes": "8E E3 18 40" },
+            { "offset": "0x2F29790", "bytes": "8E E3 18 40" }
+        ]
+      },
+      {
+        "when": [ { "Ultrawide Cutscenes Fix": "21/9 (3840x1600)" } ],
+        "operation": "patchBytes",
+        "files": ["Retail\\007FirstLight.exe"],
+        "patches": [
+            { "offset": "0xCCF1E6", "bytes": "9A 99 19 40" },
+            { "offset": "0xD6A066", "bytes": "9A 99 19 40" },
+            { "offset": "0x2F29790", "bytes": "9A 99 19 40" }
+        ]
+      },
+      {
+        "when": [ { "Ultrawide Cutscenes Fix": "32/9" } ],
+        "operation": "patchBytes",
+        "files": ["Retail\\007FirstLight.exe"],
+        "patches": [
+            { "offset": "0xCCF1E6", "bytes": "39 8E 63 40" },
+            { "offset": "0xD6A066", "bytes": "39 8E 63 40" },
+            { "offset": "0x2F29790", "bytes": "39 8E 63 40" }
+        ]
+      },
+
+
+      {
+        "when": [ ],
+        "operation": "delete",
+        "source": "RunTime\\chunk0patch204.rpkg"
+      },
+      {
+        "when": [ ],
+        "operation": "delete",
+        "source": "RunTime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "70 (default)", "Camera Distance": "Farther Camera", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\70_farther_default\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "70 (default)", "Camera Distance": "Farther Camera", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\70_farther_default\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "70 (default)", "Camera Distance": "Farther Camera", "Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\70_farther_higher\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "70 (default)", "Camera Distance": "Farther Camera", "Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\70_farther_higher\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "80", "Camera Distance": "Default", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\80_default_default\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "80", "Camera Distance": "Default", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\80_default_default\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "80", "Camera Distance": "Farther Camera", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\80_farther_default\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "80", "Camera Distance": "Farther Camera", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\80_farther_default\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "80", "Camera Distance": "Farther Camera", "Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\80_farther_higher\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "80", "Camera Distance": "Farther Camera", "Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\80_farther_higher\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "90", "Camera Distance": "Closer Camera", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\90_closer_default\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "90", "Camera Distance": "Closer Camera", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\90_closer_default\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "90", "Camera Distance": "Closer Camera", "Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\90_closer_higher\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "90", "Camera Distance": "Closer Camera", "Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\90_closer_higher\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "90", "Camera Distance": "Default", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\90_default_default\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "90", "Camera Distance": "Default", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\90_default_default\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "90", "Camera Distance": "Farther Camera", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\90_farther_default\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "90", "Camera Distance": "Farther Camera", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\90_farther_default\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "90", "Camera Distance": "Farther Camera", "Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\90_farther_higher\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "90", "Camera Distance": "Farther Camera", "Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\90_farther_higher\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "100", "Camera Distance": "Closer Camera", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\100_closer_default\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "100", "Camera Distance": "Closer Camera", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\100_closer_default\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "100", "Camera Distance": "Closer Camera", "Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\100_closer_higher\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "100", "Camera Distance": "Closer Camera", "Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\100_closer_higher\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "110", "Camera Distance": "Closer Camera", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\110_closer_default\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "110", "Camera Distance": "Closer Camera", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\110_closer_default\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "110", "Camera Distance": "Closer Camera", "Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\110_closer_higher\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "110", "Camera Distance": "Closer Camera", "Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\110_closer_higher\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "110", "Camera Distance": "Default", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\110_default_default\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "110", "Camera Distance": "Default", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\110_default_default\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "110", "Camera Distance": "Farther Camera", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\110_farther_default\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "110", "Camera Distance": "Farther Camera", "!Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\110_farther_default\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "110", "Camera Distance": "Farther Camera", "Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\110_farther_higher\\Runtime\\chunk0patch204.rpkg",
+        "target": "Runtime\\chunk0patch204.rpkg"
+      },
+      { 
+        "when": [ { "FOV": "110", "Camera Distance": "Farther Camera", "Misc": "Higher Camera" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\HigherFOVAndCamera\\110_farther_higher\\Runtime\\chunk1patch204.rpkg",
+        "target": "Runtime\\chunk1patch204.rpkg"
+      },
+
+
+
+      {
+        "when": [ { "Misc": "Immersive HUD" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\ImmersiveHUD\\Runtime\\chunk0patch272.rpkg",
+        "target": "Runtime\\chunk0patch272.rpkg"
+      },
+      {
+        "when": [ { "!Misc": "Immersive HUD" } ],
+        "operation": "move",
+        "source": "Runtime\\chunk0patch272.rpkg",
+        "target": ".MulderConfig\\ImmersiveHUD\\Runtime\\chunk0patch272.rpkg"
+      },
+
+
+    
+      {
+        "when": [ { "Misc": "Skip Intro" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\SkipIntro\\Runtime\\chunk0patch203.rpkg",
+        "target": "Runtime\\chunk0patch203.rpkg"
+      },
+      {
+        "when": [ { "!Misc": "Skip Intro" } ],
+        "operation": "move",
+        "source": "Runtime\\chunk0patch203.rpkg",
+        "target": ".MulderConfig\\SkipIntro\\Runtime\\chunk0patch203.rpkg"
+      }
+    ]
+  }
+}
