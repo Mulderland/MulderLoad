@@ -7,7 +7,7 @@
     - Translation patches$\r$\n\
     - Resident Evil 2 HD Mod (by TeamX)$\r$\n\
     - Seamless HD Project v2.0 Patch 2 (by RESHDP)$\r$\n\
-    - RE-Enhance v2.0.1 (by SonicB00M)$\r$\n\
+    - RE-Enhance v3.0 (by SonicB00M)$\r$\n\
     - High Quality FMVs$\r$\n\
     - High Quality Audio (by lexas87)$\r$\n\
     - MulderConfig$\r$\n\
@@ -156,14 +156,16 @@ SectionGroup "Resident Evil 2 Classic REbirth"
     SectionEnd
 
     Section "Modern Controls+ v2.1 (by X4vv, Rebrond)"
-        SetOutPath "$REBIRTHDIR"
+        SetOutPath "$INSTDIR\.MulderConfig\ModernControlsPlus"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/residentevil21998/mods/48?tab=files&file_id=174" \
-                                "$REBIRTHDIR\mod_ModernControlsPlus.zip" \
+                                "mod_ModernControlsPlus.zip" \
                                 "eeb62be7781aa50fbd412f62f40f74f94bad8d3c"
 
         !insertmacro NSISUNZ_EXTRACT "mod_ModernControlsPlus.zip" ".\" "AUTO_DELETE"
-        AddSize 2350
+        !insertmacro NSIS7Z_EXTRACT "mod_ModernControlsPlus.7z" ".\" "AUTO_DELETE"
+        !insertmacro FORCE_RENAME "$INSTDIR\.MulderConfig\ModernControlsPlus\SDL3.dll" "$REBIRTHDIR\SDL3.dll"
+        AddSize 2412
     SectionEnd
 SectionGroupEnd
 
@@ -234,16 +236,15 @@ SectionGroup "Graphical improvements"
         AddSize 35840
     SectionEnd
 
-    Section "RE-Enhance v2.0.1 (by SonicB00M)" gfx3
+    Section "RE-Enhance v3.0 (by SonicB00M)" gfx3
         SetOutPath "$REBIRTHDIR"
 
-        # https://www.moddb.com/mods/reenhance-re2/downloads/re-enhance-re2-v201
-        !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/reenhance-re2/downloads/re-enhance-re2-v201" \
-                                "RE-ENHANCE_RE2_v2.0.1.zip" \
-                                "b6658149a2ecdf8a1df7674f282e33b2"
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/reenhance-re2/downloads/re-enhance-re2-v30" \
+                                "RE-ENHANCE_RE2_v3.0.zip" \
+                                "de250ba703d7d1f773b28f10d8c49db6"
 
-        !insertmacro NSISUNZ_EXTRACT "RE-ENHANCE_RE2_v2.0.1.zip" ".\" "AUTO_DELETE"
-        AddSize 786434
+        !insertmacro NSISUNZ_EXTRACT "RE-ENHANCE_RE2_v3.0.zip" ".\" "AUTO_DELETE"
+        AddSize 884961
     SectionEnd
 
     Section "dgVoodoo2 (by Dege)"
@@ -350,6 +351,10 @@ SectionEnd
         # Copy readme
         SetOutPath "$INSTDIR\@mulderload"
         File "resources\gog\README.txt"
+    SectionEnd
+
+    Section "MulderConfig (latest)"
+        !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources\gog"
     SectionEnd
 !else
     Section

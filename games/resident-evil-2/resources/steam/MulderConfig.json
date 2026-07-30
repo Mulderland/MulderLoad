@@ -22,7 +22,8 @@
       "type": "checkboxGroup",
       "checkboxes": [
         { "value": "Enable dgVoodoo2", "disabledWhen": [{ "!Executable": "Classic REbirth" }] },
-        { "value": "Enable HD textures", "disabledWhen": [{ "!Executable": "Classic REbirth" }] }
+        { "value": "Enable HD textures", "disabledWhen": [{ "!Executable": "Classic REbirth" }] },
+        { "value": "Enable Modern Controls Plus", "disabledWhen": [{ "!Executable": "Classic REbirth" }] }
       ]
     },
     {
@@ -73,6 +74,18 @@
         "operation": "rename",
         "source": "rebirth\\bio2hd.asi",
         "target": "rebirth\\_bio2hd.asi.bak"
+      },
+      {
+        "when": [ { "Misc": "Enable Modern Controls Plus" } ],
+        "operation": "rename",
+        "source": ".MulderConfig\\ModernControlsPlus\\ModernControlsPlus.dll",
+        "target": "rebirth\\ModernControlsPlus.asi"
+      },
+      {
+        "when": [ { "!Misc": "Enable Modern Controls Plus" } ],
+        "operation": "rename",
+        "source": "rebirth\\ModernControlsPlus.asi",
+        "target": ".MulderConfig\\ModernControlsPlus\\ModernControlsPlus.dll"
       },
       {
         "when": [ { "MSAA Anti-Aliasing": "Off" } ],

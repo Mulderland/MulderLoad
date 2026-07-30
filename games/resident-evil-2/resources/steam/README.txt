@@ -21,7 +21,7 @@ Resident Evil 2 *Steam Enhancement Pack* @ mulderland.com
 This is a mix of 3 mods:
 - Resident Evil 2 HD Mod (by TeamX)
 - Seamless HD Project v2 (by RESHDP)
-- RE-Enhance v2 (by SonicB00M)
+- RE-Enhance v3 (by SonicB00M)
 
 The first two were repacked to remove "hi-res" textures that would be overwritten by the third one.
 (priority order: Resident Evil 2 HD Mod < Seamless HD Project < RE-Enhance)

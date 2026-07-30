@@ -1,0 +1,9 @@
+{
+  "Resident Evil 2 (GOG)": {
+    "Misc": [
+      "Enable dgVoodoo2",
+      "Enable HD textures"
+    ],
+    "MSAA Anti-Aliasing": "4x"
+  }
+}

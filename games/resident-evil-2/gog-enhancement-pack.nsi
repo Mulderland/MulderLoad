@@ -5,14 +5,14 @@ This is an Enhancement Pack for Resident Evil 2 (GOG), with:$\r$\n\
 - Translation patches$\r$\n\
 - Resident Evil 2 HD Mod (by TeamX)$\r$\n\
 - Seamless HD Project v2.0 Patch 2 (by RESHDP)$\r$\n\
-- RE-Enhance v2.0.1 (by SonicB00M)$\r$\n\
+- RE-Enhance v3.0 (by SonicB00M)$\r$\n\
 - High Quality FMVs$\r$\n\
 - High Quality Audio (by lexas87)$\r$\n\
+- MulderConfig$\r$\n\
 $\r$\n\
 WARNING: make sure you've downloaded the Japanese version of the game on GOG.$\r$\n\
 $\r$\n\
 ${TXT_WELCOMEPAGE_MULDERLAND_1}$\r$\n\
-$\r$\n\
 Special thanks to the Classic REbirth team!"
 
 !include "..\..\includes\tools\7z.nsh"
