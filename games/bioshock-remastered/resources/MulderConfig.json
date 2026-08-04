@@ -1,0 +1,75 @@
+{
+  "game": {
+    "title": "Bioshock Remastered",
+    "originalExe": "BioshockHD.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "API",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Direct3D 11 (original)" },
+        { "value": "Vulkan (DXVK)" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Minimal HUD for 'HD Textures Pack'" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "API": "Vulkan (DXVK)" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\dxvk\\Build\\Final\\dxgi.dll",
+        "target": "Build\\Final\\dxgi.dll"
+      },
+      {
+        "when": [ { "API": "Vulkan (DXVK)" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\dxvk\\Build\\Final\\d3d11.dll",
+        "target": "Build\\Final\\d3d11.dll"
+      },
+      {
+        "when": [ { "!API": "Vulkan (DXVK)" } ],
+        "operation": "move",
+        "source": "Build\\Final\\dxgi.dll",
+        "target": ".MulderConfig\\dxvk\\Build\\Final\\dxgi.dll"
+      },
+      {
+        "when": [ { "!API": "Vulkan (DXVK)" } ],
+        "operation": "move",
+        "source": "Build\\Final\\d3d11.dll",
+        "target": ".MulderConfig\\dxvk\\Build\\Final\\d3d11.dll"
+      },
+      {
+        "when": [ { "Misc": "Minimal HUD for 'HD Textures Pack'" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\MinimalHUD\\ContentBaked\\pc\\FlashMovies\\HUDPC.swf",
+        "target": "ContentBaked\\pc\\FlashMovies\\HUDPC.swf"
+      },
+      {
+        "when": [ { "Misc": "Minimal HUD for 'HD Textures Pack'" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\MinimalHUD\\ContentBaked\\pc\\FlashMovies\\sharedlibrary.swf",
+        "target": "ContentBaked\\pc\\FlashMovies\\sharedlibrary.swf"
+      },
+      {
+        "when": [ { "!Misc": "Minimal HUD for 'HD Textures Pack'" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\ContentBaked\\pc\\FlashMovies\\HUDPC.swf",
+        "target": "ContentBaked\\pc\\FlashMovies\\HUDPC.swf"
+      },
+      {
+        "when": [ { "!Misc": "Minimal HUD for 'HD Textures Pack'" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\ContentBaked\\pc\\FlashMovies\\sharedlibrary.swf",
+        "target": "ContentBaked\\pc\\FlashMovies\\sharedlibrary.swf"
+      }
+    ]
+  }
+}
