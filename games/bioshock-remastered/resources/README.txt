@@ -10,10 +10,10 @@ There is currently no known fix.
 
 1.2) Crashes
 
-If the game crashes, try the following solutions in order:
+If the game crashes, try the following solutions, in order:
 - (Windows only) Enable DXVK in MulderConfig, then click "Save" and "Apply".
-- (Windows only) Limit the game to 4 CPU cores:
-https://www.pcgamingwiki.com/wiki/BioShock_Remastered#Game_crashes_on_CPUs_with_more_than_4_cores
+- (Windows only) Limit the game to 4 CPU cores. In Steam, right-click the game, Properties, Launch Options:
+cmd /c start "" /affinity f %command%
 - Uninstall the HD Texture Pack (see section 2.4).
 
 1.3) Resolutions not listed when using DXVK
@@ -78,6 +78,14 @@ If you experience crashes and suspect the HD Texture Pack is the cause:
 
 Click "Uninstall All".
 Reinstall the remaining mods, starting with "02 - Visual Fixes v2.3.1" (skip the HD Texture Pack).
+
+2.5) Save space
+
+TFCInstaller creates a backup every time you install a mod. Since the HD Texture Pack is very large, it significantly 
+increases the size of the backup, and all future backups will be much larger as well.
+
+I don't recommend deleting the backups, as restoring your game would then require a clean reinstall through Steam.
+However, if you really need to save disk space, you can delete the TFCInstallerBackup folder.
 
 ------------------------------------------------------------------------------------------------------------------------
 
