@@ -56,6 +56,9 @@ Installation steps:
 - Click "Mod Folder" again, select "02 - Visual Fixes v2.3.1", then click "Update BioShock Remastered".
 - Repeat the process with "03 - Reflective Water Surface v2.2".
 
+Note: If you didn't select the HD Texture Pack in the installer, you won't have the "01 - HD Texture Pack v1.0" folder.
+In that case, simply start with "02 - Visual Fixes v2.3.1".
+
 2.2) Installing the "Disable Headbob" mod
 
 This optional mod is recommended only if you experience motion sickness.

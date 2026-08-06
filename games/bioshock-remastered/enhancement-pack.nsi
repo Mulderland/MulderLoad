@@ -9,8 +9,9 @@ This is an Enhancement Pack for Bioshock Remastered, with:$\r$\n\
 - TFC Installer for UE2-UE3$\r$\n\
 - No Intro / No Splash (by Gametism)$\r$\n\
 - Disable headbob (by FCH823)$\r$\n\
+- DXVK$\r$\n\
 $\r$\n\
-${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
+${TXT_WELCOMEPAGE_MULDERLAND_2}$\r$\n\
 $\r$\n\
 WARNING: TFC Installer is required for some included mods."
 
@@ -58,6 +59,7 @@ SectionGroup "Cutscenes improvements"
     SectionEnd
 
     Section "HQ Sound for Videos (by syrnyky)"
+        AddSize 54879
         SetOutPath "$INSTDIR"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bioshock/mods/4?tab=files&file_id=227" \
@@ -87,7 +89,7 @@ SectionGroup "Cutscenes improvements"
 SectionGroupEnd
 
 SectionGroup /e "Graphical improvements"
-    Section "HD Texture Pack (by FCH823)"
+    Section /o "HD Texture Pack (by FCH823)"
         SetOutPath "$INSTDIR\TFC Mods"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bioshock/mods/54?tab=files&file_id=314" \
@@ -95,6 +97,8 @@ SectionGroup /e "Graphical improvements"
                                 "6e8aa075a2f8a38130679ebc80ebf2fc8dce8c28"
 
         !insertmacro 7Z_EXTRACT "HD Texture pack.zip" ".\" "AUTO_DELETE"
+        AddSize 7440426
+
         Rename "HD Texture Pack v1.0" "01 - HD Texture Pack v1.0"
     SectionEnd
 
@@ -106,6 +110,7 @@ SectionGroup /e "Graphical improvements"
                                 "b9aea34b1d5f6af290e2469fa768a308bc70263e"
 
         !insertmacro NSISUNZ_EXTRACT "Reflective Water Surface.zip" ".\03 - Reflective Water Surface v2.2" "AUTO_DELETE"
+        AddSize 357
     SectionEnd
 
     Section "Visual Fixes + AI Fix (by PhantomThief06)"
@@ -116,6 +121,7 @@ SectionGroup /e "Graphical improvements"
                                 "73fe6ffcee35159eb1a475005839c6bafe760b5d"
 
         !insertmacro NSISUNZ_EXTRACT "Visual Fixes.zip" ".\02 - Visual Fixes v2.3.1" "AUTO_DELETE"
+        AddSize 733679
     SectionEnd
 SectionGroupEnd
 
@@ -155,6 +161,8 @@ Section "Disable headbob (by FCH823)"
                             "360f769e0e17153ad76fc82b77c423cde24eebe4"
 
     !insertmacro NSISUNZ_EXTRACT "Disable headbob.zip" ".\" "AUTO_DELETE"
+    AddSize 346
+
     Rename "Disable Headbob v1.0" "04 - Disable Headbob v1.0"
 SectionEnd
 
@@ -171,8 +179,8 @@ Section "MulderConfig (latest)"
 
     # Create Backup
     CreateDirectory "$INSTDIR\.MulderConfig\Backup\ContentBaked\pc\FlashMovies"
-    CopyFiles /SILENT "$INSTDIR\ContentBaked\pc\FlashMovies\HUDPC.swf" "$INSTDIR\.MulderConfig\Backup\ContentBaked\pc\FlashMovies\HUDPC.swf"
-    CopyFiles /SILENT "$INSTDIR\ContentBaked\pc\FlashMovies\sharedlibrary.swf" "$INSTDIR\.MulderConfig\Backup\ContentBaked\pc\FlashMovies\sharedlibrary.swf"
+    CopyFiles /SILENT "$INSTDIR\ContentBaked\pc\FlashMovies\HUDPC.swf" "$INSTDIR\.MulderConfig\Backup\ContentBaked\pc\FlashMovies\HUDPC.swf" 12034
+    CopyFiles /SILENT "$INSTDIR\ContentBaked\pc\FlashMovies\sharedlibrary.swf" "$INSTDIR\.MulderConfig\Backup\ContentBaked\pc\FlashMovies\sharedlibrary.swf" 74423
 
     # DXVK
     SetOutPath "$INSTDIR\.MulderConfig\dxvk\Build\Final"
@@ -185,64 +193,16 @@ Section "MulderConfig (latest)"
     !insertmacro 7Z_EXTRACT "dxvk-3.0.2.tar.gz" ".\" "AUTO_DELETE"
     !insertmacro 7Z_EXTRACT_ONE "dxvk-3.0.2.tar" ".\" "dxvk-3.0.2\x32\d3d11.dll" ""
     !insertmacro 7Z_EXTRACT_ONE "dxvk-3.0.2.tar" ".\" "dxvk-3.0.2\x32\dxgi.dll" "AUTO_DELETE"
+    AddSize 13698
 
     # MulderConfig
     !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
 
     # End
     !insertmacro 7Z_REMOVE
+    RMDir /r "$INSTDIR\@mulderload"
     File /oname=README-Mulderland.txt resources\README.txt
 SectionEnd
-
-; SectionGroup "A GUI Mod (by Chaos7040) - Only works on NVidia GPUs!"
-;     Section /o "Xbox buttons (normal reticles)" gui_1
-;         SetOutPath "$INSTDIR"
-
-;         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bioshock/mods/109?tab=files&file_id=468" \
-;                                 "A GUI Mod - Xbox.zip" \
-;                                 "445828cd23df958e6e1cd64f051071384dd743dc"
-
-;         !insertmacro NSISUNZ_EXTRACT "A GUI Mod - Xbox.zip" ".\" "AUTO_DELETE"
-;         Delete "A GUI Mod 1.5 manual install Xbox Controller\README.TXT"
-;         !insertmacro FOLDER_MERGE "$INSTDIR\A GUI Mod 1.5 manual install Xbox Controller" "$INSTDIR\ContentBaked\pc"
-;     SectionEnd
-
-;     Section /o "Xbox buttons (small reticles)" gui_2
-;         SetOutPath "$INSTDIR"
-
-;         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bioshock/mods/109?tab=files&file_id=481" \
-;                                 "A GUI Mod - Small Xbox.zip" \
-;                                 "2562d1f24680effacfdfba6c56e18f41a80d79b9"
-
-;         !insertmacro NSISUNZ_EXTRACT "A GUI Mod - Small Xbox.zip" ".\" "AUTO_DELETE"
-;         Delete "A GUI Mod 1.5 manual install Xbox Small Reticles\README.TXT"
-;         !insertmacro FOLDER_MERGE "$INSTDIR\A GUI Mod 1.5 manual install Xbox Small Reticles" "$INSTDIR\ContentBaked\pc"
-;     SectionEnd
-
-;     Section /o "PlayStation buttons (normal reticles)" gui_3
-;         SetOutPath "$INSTDIR"
-
-;         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bioshock/mods/109?tab=files&file_id=467" \
-;                                 "A GUI Mod - PS.zip" \
-;                                 "c57e00e78b392af40a77fb8ab32d53418f51a0b4"
-
-;         !insertmacro NSISUNZ_EXTRACT "A GUI Mod - PS.zip" ".\" "AUTO_DELETE"
-;         Delete "A GUI Mod 1.5 manual install PlayStation controller\README.TXT"
-;         !insertmacro FOLDER_MERGE "$INSTDIR\A GUI Mod 1.5 manual install PlayStation controller" "$INSTDIR\ContentBaked\pc"
-;     SectionEnd
-
-;     Section /o "PlayStation buttons (small reticles)" gui_4
-;         SetOutPath "$INSTDIR"
-
-;         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bioshock/mods/109?tab=files&file_id=482" \
-;                                 "A GUI Mod - Small PS.zip" \
-;                                 "ec0fe74b627392ddc49b0f16abf7c19fee1d602b"
-
-;         !insertmacro NSISUNZ_EXTRACT "A GUI Mod - Small PS.zip" ".\" "AUTO_DELETE"
-;         Delete "A GUI Mod 1.5 manual install PlayStation Small Reticles\README.TXT"
-;         !insertmacro FOLDER_MERGE "$INSTDIR\A GUI Mod 1.5 manual install PlayStation Small Reticles" "$INSTDIR\ContentBaked\pc"
-;     SectionEnd
-; SectionGroupEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "BioshockHD.exe"
