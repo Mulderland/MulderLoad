@@ -16,6 +16,15 @@ If the game crashes, try the following solutions in order:
 https://www.pcgamingwiki.com/wiki/BioShock_Remastered#Game_crashes_on_CPUs_with_more_than_4_cores
 - Uninstall the HD Texture Pack (see section 2.4).
 
+1.3) Resolutions not listed when using DXVK
+
+This can happen when using DXVK in a multi-monitor setup. DXVK only lists the resolutions available on the "first" 
+monitor, which is not always the monitor you're playing on. As a result, you may not be able to select the resolution
+you want in-game.
+
+This is a known limitation of DXVK on Windows. There is no real fix, but you can work around the issue by disabling 
+your other monitors before launching the game.
+
 ------------------------------------------------------------------------------------------------------------------------
 
 2) TFCInstaller
@@ -30,7 +39,8 @@ and install the included runtime.
 
 Some mods here can't be enabled with MulderConfig, we need to use "TFCInstaller".
 It has been installed in your game directory\TFCInstaller
-If it doesn't run because of a missing "Dotnet dependency", look at the "redist" subfolder inside "TFCInstaller" and install that file.
+If it doesn't run because of a missing "Dotnet dependency", look at the "redist" subfolder inside "TFCInstaller" and 
+install that file.
 
 2.1) Installing the graphical mods
 
@@ -42,7 +52,7 @@ Installation steps:
 - Click "Game Folder" and select your BioShock Remastered installation directory.
 - Click "Mod Folder" and browse to the "TFC Mods" folder.
 - Select "01 - HD Texture Pack v1.0" and click "Select Folder".
-- Click "Update BioShock Remastered" and wait a few minutes. This is the largest mod, so it takes the longest to install.
+- Click "Update BioShock Remastered" and wait a few minutes. This is the largest mod, so it takes time.
 - Click "Mod Folder" again, select "02 - Visual Fixes v2.3.1", then click "Update BioShock Remastered".
 - Repeat the process with "03 - Reflective Water Surface v2.2".
 
