@@ -1,0 +1,312 @@
+{
+  "game": {
+    "title": "Alpha Protocol",
+    "originalExe": "APLauncher.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "FOV Increase",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Default (x1)" },
+        { "value": "x1.20" },
+        { "value": "x1.40" },
+        { "value": "x1.60" },
+        { "value": "x1.80" },
+        { "value": "Maximum (x2)" }
+      ]
+    },
+    {
+      "name": "Graphics Tweaks",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Ultra graphics preset (set Graphics to High in-game first)" },
+        { "value": "Uncap FPS" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Skip intro videos" },
+        { "value": "Skip launcher (Steam only, fix PhysX detection issue)" },
+        { "value": "Weapon Accuracy Patch (\"Shooter Experience\" mod)" }
+      ]
+    }
+  ],
+  "actions": {
+    "launch": [
+      {
+        "when": [ { "Misc": "Skip launcher (Steam only, fix PhysX detection issue)" } ],
+        "exec": { "name": "Binaries\\APGame.exe", "workDir": "Binaries\\" }
+      },
+      {
+        "when": [ { "!Misc": "Skip launcher (Steam only, fix PhysX detection issue)" } ],
+        "exec": { "name": "APLauncher_o.exe", "workDir": ".\\" }
+      }
+    ],
+    "operations": [
+      {
+        "when": [ { "FOV Increase": "Default (x1)" } ],
+        "operation": "replaceLine",
+        "files": ["Binaries\\AlphaFixer.ini"],
+        "pattern": "^FOVFactor.*$",
+        "replacement": "FOVFactor=1.0"
+      },
+      {
+        "when": [ { "FOV Increase": "x1.20" } ],
+        "operation": "replaceLine",
+        "files": ["Binaries\\AlphaFixer.ini"],
+        "pattern": "^FOVFactor.*$",
+        "replacement": "FOVFactor=1.20"
+      },
+      {
+        "when": [ { "FOV Increase": "x1.40" } ],
+        "operation": "replaceLine",
+        "files": ["Binaries\\AlphaFixer.ini"],
+        "pattern": "^FOVFactor.*$",
+        "replacement": "FOVFactor=1.40"
+      },
+      {
+        "when": [ { "FOV Increase": "x1.60" } ],
+        "operation": "replaceLine",
+        "files": ["Binaries\\AlphaFixer.ini"],
+        "pattern": "^FOVFactor.*$",
+        "replacement": "FOVFactor=1.60"
+      },
+      {
+        "when": [ { "FOV Increase": "x1.80" } ],
+        "operation": "replaceLine",
+        "files": ["Binaries\\AlphaFixer.ini"],
+        "pattern": "^FOVFactor.*$",
+        "replacement": "FOVFactor=1.80"
+      },
+      {
+        "when": [ { "FOV Increase": "Maximum (x2)" } ],
+        "operation": "replaceLine",
+        "files": ["Binaries\\AlphaFixer.ini"],
+        "pattern": "^FOVFactor.*$",
+        "replacement": "FOVFactor=2.0"
+      },
+
+
+      {
+        "when": [ { "Graphics Tweaks": "Ultra graphics preset (set Graphics to High in-game first)" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^Trilinear=.*$",
+        "replacement": "Trilinear=True"
+      },
+      {
+        "when": [ { "!Graphics Tweaks": "Ultra graphics preset (set Graphics to High in-game first)" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^Trilinear=.*$",
+        "replacement": "Trilinear=False"
+      },
+      {
+        "when": [ { "Graphics Tweaks": "Ultra graphics preset (set Graphics to High in-game first)" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^EnableHighPolyChars=.*$",
+        "replacement": "EnableHighPolyChars=True"
+      },
+      {
+        "when": [ { "!Graphics Tweaks": "Ultra graphics preset (set Graphics to High in-game first)" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^EnableHighPolyChars=.*$",
+        "replacement": "EnableHighPolyChars=False"
+      },
+      {
+        "when": [ { "Graphics Tweaks": "Ultra graphics preset (set Graphics to High in-game first)" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^MaxShadowResolution=.*$",
+        "replacement": "MaxShadowResolution=4096"
+      },
+      {
+        "when": [ { "!Graphics Tweaks": "Ultra graphics preset (set Graphics to High in-game first)" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^MaxShadowResolution=.*$",
+        "replacement": "MaxShadowResolution=512"
+      },
+      {
+        "when": [ { "Graphics Tweaks": "Ultra graphics preset (set Graphics to High in-game first)" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^bEnableBranchingPCFShadows=.*$",
+        "replacement": "bEnableBranchingPCFShadows=True"
+      },
+      {
+        "when": [ { "!Graphics Tweaks": "Ultra graphics preset (set Graphics to High in-game first)" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^bEnableBranchingPCFShadows=.*$",
+        "replacement": "bEnableBranchingPCFShadows=False"
+      },
+      {
+        "when": [ { "Graphics Tweaks": "Ultra graphics preset (set Graphics to High in-game first)" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^bEnableForegroundShadowsOnWorld=.*$",
+        "replacement": "bEnableForegroundShadowsOnWorld=True"
+      },
+      {
+        "when": [ { "!Graphics Tweaks": "Ultra graphics preset (set Graphics to High in-game first)" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^bEnableForegroundShadowsOnWorld=.*$",
+        "replacement": "bEnableForegroundShadowsOnWorld=False"
+      },
+      {
+        "when": [ { "Graphics Tweaks": "Ultra graphics preset (set Graphics to High in-game first)" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^bUseBackgroundLevelStreaming=.*$",
+        "replacement": "bUseBackgroundLevelStreaming=False"
+      },
+      {
+        "when": [ { "!Graphics Tweaks": "Ultra graphics preset (set Graphics to High in-game first)" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^bUseBackgroundLevelStreaming=.*$",
+        "replacement": "bUseBackgroundLevelStreaming=True"
+      },
+      {
+        "when": [ { "Graphics Tweaks": "Ultra graphics preset (set Graphics to High in-game first)" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^OnlyStreamInTextures=.*$",
+        "replacement": "OnlyStreamInTextures=True"
+      },
+      {
+        "when": [ { "!Graphics Tweaks": "Ultra graphics preset (set Graphics to High in-game first)" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^OnlyStreamInTextures=.*$",
+        "replacement": "OnlyStreamInTextures=False"
+      },
+      {
+        "when": [ { "Graphics Tweaks": "Ultra graphics preset (set Graphics to High in-game first)" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^OneFrameThreadLag=.*$",
+        "replacement": "OneFrameThreadLag=False"
+      },
+      {
+        "when": [ { "!Graphics Tweaks": "Ultra graphics preset (set Graphics to High in-game first)" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^OneFrameThreadLag=.*$",
+        "replacement": "OneFrameThreadLag=True"
+      },
+
+
+
+      {
+        "when": [ { "Graphics Tweaks": "Uncap FPS" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^bSmoothFrameRate=.*$",
+        "replacement": "bSmoothFrameRate=FALSE"
+      },
+      {
+        "when": [ { "!Graphics Tweaks": "Uncap FPS" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APEngine.ini"],
+        "pattern": "^bSmoothFrameRate=.*$",
+        "replacement": "bSmoothFrameRate=TRUE"
+      },
+      {
+        "when": [ { "Graphics Tweaks": "Uncap FPS" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseInput.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APInput.ini"],
+        "pattern": "^bEnableMouseSmoothing=.*$",
+        "replacement": "bEnableMouseSmoothing=false"
+      },
+      {
+        "when": [ { "!Graphics Tweaks": "Uncap FPS" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseInput.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\Alpha Protocol\\APGame\\Config\\APInput.ini"],
+        "pattern": "^bEnableMouseSmoothing=.*$",
+        "replacement": "bEnableMouseSmoothing=true"
+      },
+
+
+
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": "APGame\\Movies\\slate_ap.sfd",
+        "target": ".MulderConfig\\Backup\\APGame\\Movies\\slate_ap.sfd"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\Backup\\APGame\\Movies\\slate_ap.sfd",
+        "target": "APGame\\Movies\\slate_ap.sfd"
+      },
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": "APGame\\Movies\\slate_obsidian.sfd",
+        "target": ".MulderConfig\\Backup\\APGame\\Movies\\slate_obsidian.sfd"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\Backup\\APGame\\Movies\\slate_obsidian.sfd",
+        "target": "APGame\\Movies\\slate_obsidian.sfd"
+      },
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": "APGame\\Movies\\slate_sega.sfd",
+        "target": ".MulderConfig\\Backup\\APGame\\Movies\\slate_sega.sfd"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\Backup\\APGame\\Movies\\slate_sega.sfd",
+        "target": "APGame\\Movies\\slate_sega.sfd"
+      },
+
+
+
+      {
+        "when": [ { "Misc": "Weapon Accuracy Patch (\"Shooter Experience\" mod)" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\ShooterExperience\\APGame\\Config\\DefaultWeaponStats.ini",
+        "target": "APGame\\Config\\DefaultWeaponStats.ini"
+      },
+      {
+        "when": [ { "!Misc": "Weapon Accuracy Patch (\"Shooter Experience\" mod)" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\APGame\\Config\\DefaultWeaponStats.ini",
+        "target": "APGame\\Config\\DefaultWeaponStats.ini"
+      }
+    ]
+  }
+}
