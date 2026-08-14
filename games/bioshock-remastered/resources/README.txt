@@ -37,11 +37,6 @@ TFCInstaller has been installed in:
 If TFCInstaller fails to start because of a missing .NET dependency, open the "redist" subfolder inside "TFCInstaller" 
 and install the included runtime.
 
-Some mods here can't be enabled with MulderConfig, we need to use "TFCInstaller".
-It has been installed in your game directory\TFCInstaller
-If it doesn't run because of a missing "Dotnet dependency", look at the "redist" subfolder inside "TFCInstaller" and 
-install that file.
-
 2.1) Installing the graphical mods
 
 IMPORTANT: The installation order matters.

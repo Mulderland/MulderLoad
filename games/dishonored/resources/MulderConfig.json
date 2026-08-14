@@ -1,0 +1,820 @@
+{
+  "game": {
+    "title": "Dishonored",
+    "originalExe": "Dishonored.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "FOV Hack",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "No (use in-game option)" },
+        { "value": "115" },
+        { "value": "120" },
+        { "value": "125" },
+        { "value": "130" },
+        { "value": "135" },
+        { "value": "140" },
+        { "value": "145" },
+        { "value": "150" }
+      ]
+    },
+    {
+      "name": "INI Tweaks (Trials DLC scores won't be posted to leaderboards)",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Anisotropic Filtering: 16x" },
+        { "value": "Fix disappearing bodies" },
+        { "value": "FPS limit: 144 FPS" },
+        { "value": "Level of Detail: Max" },
+        { "value": "Lighting Quality: Max" },
+        { "value": "Shadow Quality: Max" },
+        { "value": "Texture Quality: Max" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Borderless fullscreen" },
+        { "value": "Mission stats" },
+        { "value": "Skip intro videos" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "FOV Hack": "No (use in-game option)" } ],
+        "operation": "move",
+        "source": "Binaries\\Win32\\fov.ini",
+        "target": ".MulderConfig\\FOVHack\\Binaries\\Win32\\fov.ini"
+      },
+      {
+        "when": [ { "!FOV Hack": "No (use in-game option)" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\FOVHack\\Binaries\\Win32\\fov.ini",
+        "target": "Binaries\\Win32\\fov.ini"
+      },
+      {
+        "when": [ { "FOV Hack": "No (use in-game option)" } ],
+        "operation": "move",
+        "source": "Binaries\\Win32\\version.dll",
+        "target": ".MulderConfig\\FOVHack\\Binaries\\Win32\\version.dll"
+      },
+      {
+        "when": [ { "!FOV Hack": "No (use in-game option)" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\FOVHack\\Binaries\\Win32\\version.dll",
+        "target": "Binaries\\Win32\\version.dll"
+      },
+      {
+        "when": [ { "FOV Hack": "115" } ],
+        "operation": "replaceLine",
+        "files": ["Binaries\\Win32\\fov.ini"],
+        "pattern": "^FOV.*$",
+        "replacement": "FOV=115"
+      },
+      {
+        "when": [ { "FOV Hack": "120" } ],
+        "operation": "replaceLine",
+        "files": ["Binaries\\Win32\\fov.ini"],
+        "pattern": "^FOV.*$",
+        "replacement": "FOV=120"
+      },
+      {
+        "when": [ { "FOV Hack": "125" } ],
+        "operation": "replaceLine",
+        "files": ["Binaries\\Win32\\fov.ini"],
+        "pattern": "^FOV.*$",
+        "replacement": "FOV=125"
+      },
+      {
+        "when": [ { "FOV Hack": "130" } ],
+        "operation": "replaceLine",
+        "files": ["Binaries\\Win32\\fov.ini"],
+        "pattern": "^FOV.*$",
+        "replacement": "FOV=130"
+      },
+      {
+        "when": [ { "FOV Hack": "135" } ],
+        "operation": "replaceLine",
+        "files": ["Binaries\\Win32\\fov.ini"],
+        "pattern": "^FOV.*$",
+        "replacement": "FOV=135"
+      },
+      {
+        "when": [ { "FOV Hack": "140" } ],
+        "operation": "replaceLine",
+        "files": ["Binaries\\Win32\\fov.ini"],
+        "pattern": "^FOV.*$",
+        "replacement": "FOV=140"
+      },
+      {
+        "when": [ { "FOV Hack": "145" } ],
+        "operation": "replaceLine",
+        "files": ["Binaries\\Win32\\fov.ini"],
+        "pattern": "^FOV.*$",
+        "replacement": "FOV=145"
+      },
+      {
+        "when": [ { "FOV Hack": "150" } ],
+        "operation": "replaceLine",
+        "files": ["Binaries\\Win32\\fov.ini"],
+        "pattern": "^FOV.*$",
+        "replacement": "FOV=150"
+      },
+
+
+
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Anisotropic Filtering: 16x" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MaxAnisotropy=4$",
+        "replacement": "MaxAnisotropy=16"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Anisotropic Filtering: 16x" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MaxAnisotropy=16$",
+        "replacement": "MaxAnisotropy=4"
+      },
+
+
+
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Fix disappearing bodies" } ],
+        "operation": "replaceLine",
+        "files": ["DishonoredGame\\Config\\DefaultAI.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredAI.ini"],
+        "pattern": "^m_CorpseAbsoluteMaximumCount.*$",
+        "replacement": "m_CorpseAbsoluteMaximumCount=400"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Fix disappearing bodies" } ],
+        "operation": "replaceLine",
+        "files": ["DishonoredGame\\Config\\DefaultAI.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredAI.ini"],
+        "pattern": "^m_CorpseAbsoluteMaximumCount.*$",
+        "replacement": "m_CorpseAbsoluteMaximumCount=10"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Fix disappearing bodies" } ],
+        "operation": "replaceLine",
+        "files": ["DishonoredGame\\Config\\DefaultAI.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredAI.ini"],
+        "pattern": "^m_CorpseIdealMaximumCount.*$",
+        "replacement": "m_CorpseIdealMaximumCount=200"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Fix disappearing bodies" } ],
+        "operation": "replaceLine",
+        "files": ["DishonoredGame\\Config\\DefaultAI.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredAI.ini"],
+        "pattern": "^m_CorpseIdealMaximumCount.*$",
+        "replacement": "m_CorpseIdealMaximumCount=5"
+      },
+
+
+
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "FPS limit: 144 FPS" } ],
+        "operation": "replaceLine",
+        "files": ["DishonoredGame\\Config\\DefaultEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MaxSmoothedFrameRate.*$",
+        "replacement": "MaxSmoothedFrameRate=144"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "FPS limit: 144 FPS" } ],
+        "operation": "replaceLine",
+        "files": ["DishonoredGame\\Config\\DefaultEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MaxSmoothedFrameRate.*$",
+        "replacement": "MaxSmoothedFrameRate=130"
+      },
+
+
+
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Level of Detail: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^SkeletalLODDistanceFactorMultiplier.*$",
+        "replacement": "SkeletalLODDistanceFactorMultiplier=0\\t//DISHONORED: bmartin (2011-08-26) - Setting for graphics quality"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Level of Detail: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^SkeletalLODDistanceFactorMultiplier.*$",
+        "replacement": "SkeletalLODDistanceFactorMultiplier=1\\t//DISHONORED: bmartin (2011-08-26) - Setting for graphics quality"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Level of Detail: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^StaticLODDistanceFactorMultiplier.*$",
+        "replacement": "StaticLODDistanceFactorMultiplier=0"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Level of Detail: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^StaticLODDistanceFactorMultiplier.*$",
+        "replacement": "StaticLODDistanceFactorMultiplier=1"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Level of Detail: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^DetailMode.*$",
+        "replacement": "DetailMode=4"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Level of Detail: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^DetailMode.*$",
+        "replacement": "DetailMode=2"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Level of Detail: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^DecalCullDistanceScale.*$",
+        "replacement": "DecalCullDistanceScale=2.0"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Level of Detail: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^DecalCullDistanceScale.*$",
+        "replacement": "DecalCullDistanceScale=1.0"
+      },
+
+
+
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Lighting Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^CompositeDynamicLights.*$",
+        "replacement": "CompositeDynamicLights=False"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Lighting Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^CompositeDynamicLights.*$",
+        "replacement": "CompositeDynamicLights=True"
+      },
+
+
+
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Shadow Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MinShadowResolution.*$",
+        "replacement": "MinShadowResolution=512"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Shadow Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MinShadowResolution.*$",
+        "replacement": "MinShadowResolution=64"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Shadow Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MaxShadowResolution.*$",
+        "replacement": "MaxShadowResolution=4096"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Shadow Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MaxShadowResolution.*$",
+        "replacement": "MaxShadowResolution=800"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Shadow Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MaxWholeSceneDominantShadowResolution.*$",
+        "replacement": "MaxWholeSceneDominantShadowResolution=4096"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Shadow Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MaxWholeSceneDominantShadowResolution.*$",
+        "replacement": "MaxWholeSceneDominantShadowResolution=1344"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Shadow Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^ShadowTexelsPerPixel.*$",
+        "replacement": "ShadowTexelsPerPixel=0"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Shadow Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^ShadowTexelsPerPixel.*$",
+        "replacement": "ShadowTexelsPerPixel=1.27324"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Shadow Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^bAllowHardwareShadowFiltering.*$",
+        "replacement": "bAllowHardwareShadowFiltering=True"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Shadow Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^bAllowHardwareShadowFiltering.*$",
+        "replacement": "bAllowHardwareShadowFiltering=False"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Shadow Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^ShadowFilterRadius.*$",
+        "replacement": "ShadowFilterRadius=4"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Shadow Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^ShadowFilterRadius.*$",
+        "replacement": "ShadowFilterRadius=2"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Shadow Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^bAllowRatsShadow.*$",
+        "replacement": "bAllowRatsShadow=True"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Shadow Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^bAllowRatsShadow.*$",
+        "replacement": "bAllowRatsShadow=False"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Shadow Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^ShadowFilterQualityBias.*$",
+        "replacement": "ShadowFilterQualityBias=10"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Shadow Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^ShadowFilterQualityBias.*$",
+        "replacement": "ShadowFilterQualityBias=0"
+      },
+
+
+
+
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MipFadeInSpeed0.*$",
+        "replacement": "MipFadeInSpeed0=0"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MipFadeInSpeed0.*$",
+        "replacement": "MipFadeInSpeed0=0.3"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MipFadeOutSpeed0.*$",
+        "replacement": "MipFadeOutSpeed0=0"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MipFadeOutSpeed0.*$",
+        "replacement": "MipFadeOutSpeed0=0.1"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MipFadeInSpeed1.*$",
+        "replacement": "MipFadeInSpeed1=0"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MipFadeInSpeed1.*$",
+        "replacement": "MipFadeInSpeed1=2.0"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MipFadeOutSpeed1.*$",
+        "replacement": "MipFadeOutSpeed1=0"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MipFadeOutSpeed1.*$",
+        "replacement": "MipFadeOutSpeed1=1.0"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^PoolSize.*$",
+        "replacement": "PoolSize=320"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^PoolSize.*$",
+        "replacement": "PoolSize=160"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^StopIncreasingLimit.*$",
+        "replacement": "StopIncreasingLimit=24"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^StopIncreasingLimit.*$",
+        "replacement": "StopIncreasingLimit=18"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MinTimeToGuaranteeMinMipCount.*$",
+        "replacement": "MinTimeToGuaranteeMinMipCount=0"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MinTimeToGuaranteeMinMipCount.*$",
+        "replacement": "MinTimeToGuaranteeMinMipCount=2"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MaxTimeToGuaranteeMinMipCount.*$",
+        "replacement": "MaxTimeToGuaranteeMinMipCount=0"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MaxTimeToGuaranteeMinMipCount.*$",
+        "replacement": "MaxTimeToGuaranteeMinMipCount=12"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^LoadMapTimeLimit.*$",
+        "replacement": "LoadMapTimeLimit=999"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^LoadMapTimeLimit.*$",
+        "replacement": "LoadMapTimeLimit=5.0"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^LightmapStreamingFactor.*$",
+        "replacement": "LightmapStreamingFactor=0"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^LightmapStreamingFactor.*$",
+        "replacement": "LightmapStreamingFactor=0.04"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^ShadowmapStreamingFactor.*$",
+        "replacement": "ShadowmapStreamingFactor=0"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^ShadowmapStreamingFactor.*$",
+        "replacement": "ShadowmapStreamingFactor=0.04"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^TEXTUREGROUP_World=(MinLODSize=256,MaxLODSize=2048,LODBias=0)$",
+        "replacement": "TEXTUREGROUP_World=(MinLODSize=256,MaxLODSize=2048,LODBias=0,NumStreamedMips=0)"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^TEXTUREGROUP_World=(MinLODSize=256,MaxLODSize=2048,LODBias=0,NumStreamedMips=0)$",
+        "replacement": "TEXTUREGROUP_World=(MinLODSize=256,MaxLODSize=2048,LODBias=0)"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MaxProcBuildingLODColorTextureSize.*$",
+        "replacement": "MaxProcBuildingLODColorTextureSize=2048"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MaxProcBuildingLODColorTextureSize.*$",
+        "replacement": "MaxProcBuildingLODColorTextureSize=1024"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MaxProcBuildingLODLightingTextureSize.*$",
+        "replacement": "MaxProcBuildingLODLightingTextureSize=1024"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MaxProcBuildingLODLightingTextureSize.*$",
+        "replacement": "MaxProcBuildingLODLightingTextureSize=256"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^IdealTextureDensity.*$",
+        "replacement": "IdealTextureDensity=20.0"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^IdealTextureDensity.*$",
+        "replacement": "IdealTextureDensity=13.0"
+      },
+      {
+        "when": [ { "INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MaxTextureDensity.*$",
+        "replacement": "MaxTextureDensity=80.0"
+      },
+      {
+        "when": [ { "!INI Tweaks (Trials DLC scores won't be posted to leaderboards)": "Texture Quality: Max" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseEngine.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredEngine.ini"],
+        "pattern": "^MaxTextureDensity.*$",
+        "replacement": "MaxTextureDensity=55.0"
+      },
+
+
+
+      {
+        "when": [ { "Misc": "Borderless fullscreen" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\BorderlessFullscreen\\Binaries\\Win32\\d3d9.dll",
+        "target": "Binaries\\Win32\\d3d9.dll"
+      },
+      {
+        "when": [ { "!Misc": "Borderless fullscreen" } ],
+        "operation": "move",
+        "source": "Binaries\\Win32\\d3d9.dll",
+        "target": ".MulderConfig\\BorderlessFullscreen\\Binaries\\Win32\\d3d9.dll"
+      },
+      {
+        "when": [ { "Misc": "Borderless fullscreen" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\BorderlessFullscreen\\Binaries\\Win32\\DishonoredBorderless.ini",
+        "target": "Binaries\\Win32\\DishonoredBorderless.ini"
+      },
+      {
+        "when": [ { "!Misc": "Borderless fullscreen" } ],
+        "operation": "move",
+        "source": "Binaries\\Win32\\DishonoredBorderless.ini",
+        "target": ".MulderConfig\\BorderlessFullscreen\\Binaries\\Win32\\DishonoredBorderless.ini"
+      },
+
+
+
+      {
+        "when": [ { "Misc": "Mission stats" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\MissionStats\\Binaries\\Win32\\dinput8.dll",
+        "target": "Binaries\\Win32\\dinput8.dll"
+      },
+      {
+        "when": [ { "!Misc": "Mission stats" } ],
+        "operation": "move",
+        "source": "Binaries\\Win32\\dinput8.dll",
+        "target": ".MulderConfig\\MissionStats\\Binaries\\Win32\\dinput8.dll"
+      },
+      {
+        "when": [ { "Misc": "Mission stats" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\MissionStats\\Binaries\\Win32\\NativeMods\\missionstats.dll",
+        "target": "Binaries\\Win32\\NativeMods\\missionstats.dll"
+      },
+      {
+        "when": [ { "!Misc": "Mission stats" } ],
+        "operation": "move",
+        "source": "Binaries\\Win32\\NativeMods\\missionstats.dll",
+        "target": ".MulderConfig\\MissionStats\\Binaries\\Win32\\NativeMods\\missionstats.dll"
+      },
+      {
+        "when": [ { "Misc": "Mission stats" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\MissionStats\\Binaries\\Win32\\NativeMods\\missionstats.ini",
+        "target": "Binaries\\Win32\\NativeMods\\missionstats.ini"
+      },
+      {
+        "when": [ { "!Misc": "Mission stats" } ],
+        "operation": "move",
+        "source": "Binaries\\Win32\\NativeMods\\missionstats.ini",
+        "target": ".MulderConfig\\MissionStats\\Binaries\\Win32\\NativeMods\\missionstats.ini"
+      },
+
+
+
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": "DishonoredGame\\Movies\\Legal.bik",
+        "target": ".MulderConfig\\Backup\\DishonoredGame\\Movies\\Legal.bik"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\Backup\\DishonoredGame\\Movies\\Legal.bik",
+        "target": "DishonoredGame\\Movies\\Legal.bik"
+      },
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": "DishonoredGame\\Movies\\LogoArkane.bik",
+        "target": ".MulderConfig\\Backup\\DishonoredGame\\Movies\\LogoArkane.bik"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\Backup\\DishonoredGame\\Movies\\LogoArkane.bik",
+        "target": "DishonoredGame\\Movies\\LogoArkane.bik"
+      },
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": "DishonoredGame\\Movies\\LogoBethesda.bik",
+        "target": ".MulderConfig\\Backup\\DishonoredGame\\Movies\\LogoBethesda.bik"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\Backup\\DishonoredGame\\Movies\\LogoBethesda.bik",
+        "target": "DishonoredGame\\Movies\\LogoBethesda.bik"
+      },
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": "DishonoredGame\\Movies\\UE3_logo.bik",
+        "target": ".MulderConfig\\Backup\\DishonoredGame\\Movies\\UE3_logo.bik"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\Backup\\DishonoredGame\\Movies\\UE3_logo.bik",
+        "target": "DishonoredGame\\Movies\\UE3_logo.bik"
+      },
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": "DishonoredGame\\Movies\\ZenimaxLegal.bik",
+        "target": ".MulderConfig\\Backup\\DishonoredGame\\Movies\\ZenimaxLegal.bik"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\Backup\\DishonoredGame\\Movies\\ZenimaxLegal.bik",
+        "target": "DishonoredGame\\Movies\\ZenimaxLegal.bik"
+      },
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": "DishonoredGame\\Movies\\ZenimaxLegalFR.bik",
+        "target": ".MulderConfig\\Backup\\DishonoredGame\\Movies\\ZenimaxLegalFR.bik"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\Backup\\DishonoredGame\\Movies\\ZenimaxLegalFR.bik",
+        "target": "DishonoredGame\\Movies\\ZenimaxLegalFR.bik"
+      }
+    ]
+  }
+}
