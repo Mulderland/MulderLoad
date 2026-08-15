@@ -86,8 +86,8 @@ Function _ExpandUrlCdn
     ; $R0: local
     ; $R1: return value
 
-    !insertmacro STR_REPLACE "https://cdn.mulderload.eu/" "https://cdn.de.mulderload.eu/" "$0" $R0
-    StrCpy $R1 "$0|$R0"
+    !insertmacro STR_REPLACE "https://cdn.mulderload.eu/" "https://cdn.de.mulderland.com/" "$0" $R0
+    StrCpy $R1 "$R0|$0"
 
     !insertmacro STACKFRAME_RETURN 1 2 $R1
     !insertmacro STACKFRAME_END 1 2
@@ -99,10 +99,10 @@ Function _ExpandUrlRedirect
     ; $R0-R2: locals
     ; $R3: return value
 
-    !insertmacro STR_REPLACE "https://" "https://redirect.mulderload.eu/" "$0" $R0
+    !insertmacro STR_REPLACE "https://" "https://redirect.mulderland.com/" "$0" $R0
     !insertmacro STR_REPLACE "https://" "https://redirecf.mulderload.eu/" "$0" $R1
-    !insertmacro STR_REPLACE "https://" "https://redirect.de.mulderload.eu/" "$0" $R2
-    StrCpy $R3 "$R0|$R1|$R2"
+    !insertmacro STR_REPLACE "https://" "https://redirect.de.mulderland.com/" "$0" $R2
+    StrCpy $R3 "$R0|$R2|$R1"
 
     !insertmacro STACKFRAME_RETURN 1 4 $R3
     !insertmacro STACKFRAME_END 1 4
