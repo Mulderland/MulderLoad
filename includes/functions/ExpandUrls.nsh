@@ -99,8 +99,8 @@ Function _ExpandUrlRedirect
     ; $R0-R2: locals
     ; $R3: return value
 
-    !insertmacro STR_REPLACE "https://" "https://redirect.mulderload.eu/" "$0" $R0
-    !insertmacro STR_REPLACE "https://" "https://redirecf.mulderload.eu/" "$0" $R1
+    !insertmacro STR_REPLACE "https://" "https://redirect.mulderland.com/" "$0" $R0
+    !insertmacro STR_REPLACE "https://" "https://redirect.mulderload.eu/" "$0" $R1
     !insertmacro STR_REPLACE "https://" "https://redirect.de.mulderload.eu/" "$0" $R2
     StrCpy $R3 "$R0|$R1|$R2"
 

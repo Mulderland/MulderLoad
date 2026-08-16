@@ -12,13 +12,13 @@ Section "ExpandUrls"
     Push "https://moddb.com/games/a-game/a-file.7z"
     Call _ExpandUrlRedirect
     Pop $0
-    !insertmacro ASSERT_EQUALS $0 "https://redirect.mulderload.eu/moddb.com/games/a-game/a-file.7z|https://redirecf.mulderload.eu/moddb.com/games/a-game/a-file.7z|https://redirect.de.mulderload.eu/moddb.com/games/a-game/a-file.7z"
+    !insertmacro ASSERT_EQUALS $0 "https://redirect.mulderland.com/moddb.com/games/a-game/a-file.7z|https://redirect.mulderload.eu/moddb.com/games/a-game/a-file.7z|https://redirect.de.mulderload.eu/moddb.com/games/a-game/a-file.7z"
 
     DetailPrint " // _ExpandUrlRedirect (www)"
     Push "https://www.moddb.com/games/a-game/a-file.7z"
     Call _ExpandUrlRedirect
     Pop $0
-    !insertmacro ASSERT_EQUALS $0 "https://redirect.mulderload.eu/www.moddb.com/games/a-game/a-file.7z|https://redirecf.mulderload.eu/www.moddb.com/games/a-game/a-file.7z|https://redirect.de.mulderload.eu/www.moddb.com/games/a-game/a-file.7z"
+    !insertmacro ASSERT_EQUALS $0 "https://redirect.mulderland.com/www.moddb.com/games/a-game/a-file.7z|https://redirect.mulderload.eu/www.moddb.com/games/a-game/a-file.7z|https://redirect.de.mulderload.eu/www.moddb.com/games/a-game/a-file.7z"
 
     DetailPrint " // ExpandUrls 1: classic"
     !insertmacro EXPAND_URLS "https://www.classic.com/games/a-game/a-file.7z" $0
@@ -30,7 +30,7 @@ Section "ExpandUrls"
 
     DetailPrint " // ExpandUrls 3: moddb"
     !insertmacro EXPAND_URLS "https://www.moddb.com/games/a-game/a-file.7z" $0
-    !insertmacro ASSERT_EQUALS $0 "https://redirect.mulderload.eu/www.moddb.com/games/a-game/a-file.7z|https://redirecf.mulderload.eu/www.moddb.com/games/a-game/a-file.7z|https://redirect.de.mulderload.eu/www.moddb.com/games/a-game/a-file.7z"
+    !insertmacro ASSERT_EQUALS $0 "https://redirect.mulderland.com/www.moddb.com/games/a-game/a-file.7z|https://redirect.mulderload.eu/www.moddb.com/games/a-game/a-file.7z|https://redirect.de.mulderload.eu/www.moddb.com/games/a-game/a-file.7z"
 
     DetailPrint " // ExpandUrls 4: classic, cdn"
     !insertmacro EXPAND_URLS "https://www.classic.com/games/a-game/a-file.7z|https://cdn.mulderload.eu/games/a-game/a-file.7z" $0
@@ -42,5 +42,5 @@ Section "ExpandUrls"
 
     DetailPrint " // ExpandUrls 6: cdn, moddb, classic"
     !insertmacro EXPAND_URLS "https://cdn.mulderload.eu/games/a-game/a-file.7z|https://www.moddb.com/games/a-game/a-file.7z|https://www.classic.com/games/a-game/a-file.7z" $0
-    !insertmacro ASSERT_EQUALS $0 "https://cdn.mulderload.eu/games/a-game/a-file.7z|https://cdn.de.mulderload.eu/games/a-game/a-file.7z|https://redirect.mulderload.eu/www.moddb.com/games/a-game/a-file.7z|https://redirecf.mulderload.eu/www.moddb.com/games/a-game/a-file.7z|https://redirect.de.mulderload.eu/www.moddb.com/games/a-game/a-file.7z|https://www.classic.com/games/a-game/a-file.7z"
+    !insertmacro ASSERT_EQUALS $0 "https://cdn.mulderload.eu/games/a-game/a-file.7z|https://cdn.de.mulderload.eu/games/a-game/a-file.7z|https://redirect.mulderland.com/www.moddb.com/games/a-game/a-file.7z|https://redirect.mulderload.eu/www.moddb.com/games/a-game/a-file.7z|https://redirect.de.mulderload.eu/www.moddb.com/games/a-game/a-file.7z|https://www.classic.com/games/a-game/a-file.7z"
 SectionEnd

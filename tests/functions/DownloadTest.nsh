@@ -64,7 +64,7 @@ Section "Download"
 
     DetailPrint " // Download moddb"
     !insertmacro DOWNLOAD_LITE "https://www.moddb.com/games/a-game/a-file.7z" "a-file.7z" $0
-    !insertmacro ASSERT_EQUALS $0 3 ; redirect + redirecf + redirect.de
+    !insertmacro ASSERT_EQUALS $0 3 ; redirect + redirect.cf + redirect.de
 
     DetailPrint " // Download classic, cdn"
     !insertmacro DOWNLOAD_LITE "https://www.classic.com/games/a-game/a-file.7z|https://cdn.mulderload.eu/games/a-game/a-file.7z" "a-file.7z" $0
@@ -76,9 +76,9 @@ Section "Download"
 
     DetailPrint " // Download cdn, moddb"
     !insertmacro DOWNLOAD_LITE "https://cdn.mulderload.eu/games/a-game/a-file.7z|https://www.moddb.com/games/a-game/a-file.7z" "a-file.7z" $0
-    !insertmacro ASSERT_EQUALS $0 5 ; cdn + cdn.de + redirect + redirecf + redirect.de
+    !insertmacro ASSERT_EQUALS $0 5 ; cdn + cdn.de + redirect + redirect.cf + redirect.de
 
     DetailPrint " // Download moddb, classic"
     !insertmacro DOWNLOAD_LITE "https://www.moddb.com/games/a-game/a-file.7z|https://cdn.mulderload.eu/games/a-game/a-file.7z" "a-file.7z" $0
-    !insertmacro ASSERT_EQUALS $0 5 ; redirect + redirecf + redirect.de + cdn + cdn.de
+    !insertmacro ASSERT_EQUALS $0 5 ; redirect + redirect.cf + redirect.de + cdn + cdn.de
 SectionEnd
