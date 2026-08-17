@@ -37,6 +37,7 @@
       "type": "checkboxGroup",
       "checkboxes": [
         { "value": "Borderless fullscreen" },
+        { "value": "HUD toggle on End key" },
         { "value": "Mission stats" },
         { "value": "Skip intro videos" }
       ]
@@ -700,6 +701,24 @@
         "operation": "move",
         "source": "Binaries\\Win32\\DishonoredBorderless.ini",
         "target": ".MulderConfig\\BorderlessFullscreen\\Binaries\\Win32\\DishonoredBorderless.ini"
+      },
+
+
+
+      {
+        "when": [ ],
+        "operation": "removeLine",
+        "files": ["Engine\\Config\\BaseInput.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredInput.ini"],
+        "pattern": "^m_PCBindings=\\(Name=\"End\",Command=\"ShowHUD true\"\\)$"
+      },
+      {
+        "when": [ { "Misc": "HUD toggle on End key" } ],
+        "operation": "replaceLine",
+        "files": ["Engine\\Config\\BaseInput.ini"],
+        "optionalFiles": ["%USERPROFILE%\\Documents\\My Games\\Dishonored\\DishonoredGame\\Config\\DishonoredInput.ini"],
+        "pattern": "^\\[Engine.PlayerInput\\]$",
+        "replacement": "[Engine.PlayerInput]\nm_PCBindings=(Name=\"End\",Command=\"ShowHUD true\")"
       },
 
 
