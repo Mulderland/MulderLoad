@@ -99,7 +99,7 @@ Function _IsMulderLoad
         Goto _IsMulderLoad_done
     ${EndIf}
 
-    !insertmacro STR_STARTS_WITH "$0" "https://redirect.mulderload.com/" $R0
+    !insertmacro STR_STARTS_WITH "$0" "https://redirect.mulderland.com/" $R0
     ${If} $R0 == 1
         StrCpy $R1 1
         Goto _IsMulderLoad_done
