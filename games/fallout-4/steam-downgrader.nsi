@@ -13,8 +13,16 @@ $\r$\n\
 $\r$\n\
 ${TXT_WELCOMEPAGE_MULDERLAND_1}"
 
+!define MUI_FINISHPAGE_RUN
+!define MUI_FINISHPAGE_RUN_TEXT "Buy me a coffee? :)"
+!define MUI_FINISHPAGE_RUN_FUNCTION "OpenKofi"
+!define MUI_FINISHPAGE_RUN_NOTCHECKED
 !include "..\..\includes\templates\SelectTemplate.nsh"
 !include "..\..\includes\tools\XDelta3.nsh"
+
+Function OpenKofi
+    ExecShell "open" "https://www.ko-fi.com/mulderland"
+FunctionEnd
 
 Name "Fallout 4 [Steam Downgrader]"
 
