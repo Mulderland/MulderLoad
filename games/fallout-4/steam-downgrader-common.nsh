@@ -3,11 +3,11 @@ Var /GLOBAL DLC_Automatron
 Var /GLOBAL DLC_Workshop
 
 !macro ABORT_IF_UNSUPPORTED_VERSION
-    !insertmacro FILE_HASH_EQUALS "$INSTDIR\Fallout4.exe" "478b7e9ddc4212c09dc9acdc50bef9ed6023abb4" $0
+    !insertmacro FILE_HASH_EQUALS "$INSTDIR\Fallout4.exe" "97a1e7d780a8fd4a86c27cd1e1d42d05bf7eb4b5" $0
     ${If} "$0" == "1"
-        DetailPrint " // Supported version detected: v1.11.221 (may 2026)"
+        DetailPrint " // Supported version detected: v1.11.240 (August 2026)"
     ${Else}
-        MessageBox MB_ICONEXCLAMATION "Unsupported Fallout 4 version detected (sha1: $0).$\r$\n$\r$\nThis downgrader only supports the Steam version v1.11.221 (may 2026).$\r$\n$\r$\nAborting."
+        MessageBox MB_ICONEXCLAMATION "Unsupported Fallout 4 version detected (sha1: $0).$\r$\n$\r$\nThis downgrader only supports the Steam version v1.11.240 (August 2026).$\r$\n$\r$\nAborting."
         Abort
     ${EndIf}
 !macroend
