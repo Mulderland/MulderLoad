@@ -1,5 +1,5 @@
 !define MUI_WELCOMEPAGE_TEXT "\
-This downgrader is for the latest Steam version of Fallout 4 (v1.11.240, August 2026). Works with all editions && languages.$\r$\n\
+This downgrader is for the latest Steam version of Fallout 4 (1.11.240, August 26). Works with all editions && languages.$\r$\n\
 $\r$\n\
 It auto-detects your installed language* and your installed DLCs, then downloads matching $\"xdelta patches$\".$\r$\n\
 $\r$\n\
