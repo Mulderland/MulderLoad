@@ -1,14 +1,19 @@
 !define MUI_WELCOMEPAGE_TEXT "\
-This downgrader is for the latest Steam version of Fallout 4 (v1.11.221, May 2026). Works with all editions && languages.$\r$\n\
+This downgrader is for the latest Steam version of Fallout 4 (1.11.240, August 26). Works with all editions && languages.$\r$\n\
 $\r$\n\
 It auto-detects your installed language* and your installed DLCs, then applies matching $\"xdelta patches$\".$\r$\n\
 $\r$\n\
-This LITE edition was specially built for Nexus Mods (to work fully offline), but can only downgrade to v1.11.191 (Anniversary, December Patch 2, 2025)$\r$\n\
+This LITE edition was built for Moddb, works fully offline, but can only downgrade to v1.11.221 (Anniversary, May 2026)$\r$\n\
 $\r$\n\
 *WARNING (for Chinese): Chinese language can't be auto detected, so you'll have to select $\"Chinese$\" during setup.$\r$\n\
 $\r$\n\
-If you wish to downgrade to an earlier version (v1.11.169, v1.10.984 or v1.10.163), you can find the FULL version of this downgrader on my website: www.mulderland.com"
+If you wish to downgrade to an earlier version (v1.11.191, v1.10.984 or v1.10.163), you can find the FULL version of this downgrader on my website: www.mulderland.com"
 
+!define MUI_FINISHPAGE_RUN
+!define MUI_FINISHPAGE_RUN_TEXT "Buy me a coffee? :)"
+!define MUI_FINISHPAGE_RUN_FUNCTION "OpenKofi"
+!define MUI_FINISHPAGE_RUN_NOTCHECKED
+!define ON_SELECTED_FILE
 !include "..\..\includes\templates\SelectTemplate.nsh"
 !include "..\..\includes\tools\XDelta3.nsh"
 
@@ -28,10 +33,9 @@ SectionGroup /e "Downgrade Steam version (v1.11.221) to" version
             StrCpy $DLC_Workshop "yes"
     SectionEnd
 
-    Section "1.11.191 (anniversary, december patch 2)" version_1_11_191
+    Section "1.11.221 (Anniversary, May 2026)" version_1_11_221
         AddSize 28672
         SetOutPath "$INSTDIR"
-        !insertmacro ABORT_IF_UNSUPPORTED_VERSION
         !insertmacro ABORT_IF_USER_REFUSES
 
         DetailPrint " // Copying downgrade 377162 (Base game)"

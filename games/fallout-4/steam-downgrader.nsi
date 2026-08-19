@@ -17,12 +17,9 @@ ${TXT_WELCOMEPAGE_MULDERLAND_1}"
 !define MUI_FINISHPAGE_RUN_TEXT "Buy me a coffee? :)"
 !define MUI_FINISHPAGE_RUN_FUNCTION "OpenKofi"
 !define MUI_FINISHPAGE_RUN_NOTCHECKED
+!define ON_SELECTED_FILE
 !include "..\..\includes\templates\SelectTemplate.nsh"
 !include "..\..\includes\tools\XDelta3.nsh"
-
-Function OpenKofi
-    ExecShell "open" "https://www.ko-fi.com/mulderland"
-FunctionEnd
 
 Name "Fallout 4 [Steam Downgrader]"
 
@@ -43,7 +40,6 @@ SectionGroup /e "Downgrade Steam version (v1.11.240) to" version
     Section "v1.10.163 (Pre-Next-Gen)" version_1_10_163
         AddSize 10485760
         SetOutPath "$INSTDIR"
-        !insertmacro ABORT_IF_UNSUPPORTED_VERSION
         !insertmacro ABORT_IF_USER_REFUSES
 
         DetailPrint " // Downloading downgrade 377161 (Base game)"
@@ -55,31 +51,37 @@ SectionGroup /e "Downgrade Steam version (v1.11.240) to" version
         !insertmacro NSIS7Z_EXTRACT "377162.7z" ".\" "AUTO_DELETE"
 
         DetailPrint " // Downloading downgrade 377163 (Base game)"
-        Delete "Data\ccBGSFO4044-HellfirePowerArmor.esl"
-        Delete "Data\ccBGSFO4046-TesCan - Main.ba2"
-        Delete "Data\ccBGSFO4046-TesCan - Textures.ba2"
-        Delete "Data\ccBGSFO4046-TesCan.esl"
-        Delete "Data\ccBGSFO4096-AS_Enclave - Main.ba2"
-        Delete "Data\ccBGSFO4096-AS_Enclave - Textures.ba2"
-        Delete "Data\ccBGSFO4096-AS_Enclave.esl"
-        Delete "Data\ccBGSFO4110-WS_Enclave - Main.ba2"
-        Delete "Data\ccBGSFO4110-WS_Enclave - Textures.ba2"
-        Delete "Data\ccBGSFO4110-WS_Enclave.esl"
-        Delete "Data\ccBGSFO4115-X02 - Main.ba2"
-        Delete "Data\ccBGSFO4115-X02 - Textures.ba2"
-        Delete "Data\ccBGSFO4115-X02.esl"
-        Delete "Data\ccBGSFO4116-HeavyFlamer - Main.ba2"
-        Delete "Data\ccBGSFO4116-HeavyFlamer - Textures.ba2"
-        Delete "Data\ccBGSFO4116-HeavyFlamer.esl"
-        Delete "Data\ccFSVFO4007-Halloween - Main.ba2"
-        Delete "Data\ccFSVFO4007-Halloween - Textures.ba2"
-        Delete "Data\ccFSVFO4007-Halloween.esl"
-        Delete "Data\ccOTMFO4001-Remnants - Main.ba2"
-        Delete "Data\ccOTMFO4001-Remnants - Textures.ba2"
-        Delete "Data\ccOTMFO4001-Remnants.esl"
-        Delete "Data\ccSBJFO4003-Grenade - Main.ba2"
-        Delete "Data\ccSBJFO4003-Grenade - Textures.ba2"
-        Delete "Data\ccSBJFO4003-Grenade.esl"
+        MessageBox MB_YESNO|MB_DEFBUTTON2 "Do you want to keep Creation Club content?$\r$\n$\r$\n\
+Yes (experimental, requires 'Backported Archive2 Support System')$\r$\n\
+No (recommended for a pure 1.10.163 downgrade)" IDYES cc_keep IDNO cc_delete
+        cc_delete:
+            Delete "Data\ccBGSFO4044-HellfirePowerArmor.esl"
+            Delete "Data\ccBGSFO4046-TesCan - Main.ba2"
+            Delete "Data\ccBGSFO4046-TesCan - Textures.ba2"
+            Delete "Data\ccBGSFO4046-TesCan.esl"
+            Delete "Data\ccBGSFO4096-AS_Enclave - Main.ba2"
+            Delete "Data\ccBGSFO4096-AS_Enclave - Textures.ba2"
+            Delete "Data\ccBGSFO4096-AS_Enclave.esl"
+            Delete "Data\ccBGSFO4110-WS_Enclave - Main.ba2"
+            Delete "Data\ccBGSFO4110-WS_Enclave - Textures.ba2"
+            Delete "Data\ccBGSFO4110-WS_Enclave.esl"
+            Delete "Data\ccBGSFO4115-X02 - Main.ba2"
+            Delete "Data\ccBGSFO4115-X02 - Textures.ba2"
+            Delete "Data\ccBGSFO4115-X02.esl"
+            Delete "Data\ccBGSFO4116-HeavyFlamer - Main.ba2"
+            Delete "Data\ccBGSFO4116-HeavyFlamer - Textures.ba2"
+            Delete "Data\ccBGSFO4116-HeavyFlamer.esl"
+            Delete "Data\ccFSVFO4007-Halloween - Main.ba2"
+            Delete "Data\ccFSVFO4007-Halloween - Textures.ba2"
+            Delete "Data\ccFSVFO4007-Halloween.esl"
+            Delete "Data\ccOTMFO4001-Remnants - Main.ba2"
+            Delete "Data\ccOTMFO4001-Remnants - Textures.ba2"
+            Delete "Data\ccOTMFO4001-Remnants.esl"
+            Delete "Data\ccSBJFO4003-Grenade - Main.ba2"
+            Delete "Data\ccSBJFO4003-Grenade - Textures.ba2"
+            Delete "Data\ccSBJFO4003-Grenade.esl"
+        cc_keep:
+
         Delete "Data\Fallout4 - TexturesPatch.ba2"
         Delete "Fallout4IDs.ccc"
         !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/fallout-4/steam-downgrader/1.11.240_to_1.10.163/377163.7z.001" "377163.7z.001" "02a2a310c1a1ce4cb5851d1c342be5e93b07621b" 22
@@ -199,7 +201,6 @@ SectionGroup /e "Downgrade Steam version (v1.11.240) to" version
     Section /o "v1.10.984 (Next-Gen Update 2)" version_1_10_984
         AddSize 1677722
         SetOutPath "$INSTDIR"
-        !insertmacro ABORT_IF_UNSUPPORTED_VERSION
         !insertmacro ABORT_IF_USER_REFUSES
 
         DetailPrint " // Downloading downgrade 377161 (Base game)"
@@ -278,7 +279,6 @@ SectionGroup /e "Downgrade Steam version (v1.11.240) to" version
     Section /o "v1.11.191 (Anniversary, December 2025)" version_1_11_191
         AddSize 28672
         SetOutPath "$INSTDIR"
-        !insertmacro ABORT_IF_UNSUPPORTED_VERSION
         !insertmacro ABORT_IF_USER_REFUSES
 
         DetailPrint " // Downloading downgrade 377162 (Base game)"
@@ -343,7 +343,6 @@ SectionGroup /e "Downgrade Steam version (v1.11.240) to" version
     Section /o "v1.11.221 (Anniversary, May 2026)" version_1_11_221
         AddSize 28672
         SetOutPath "$INSTDIR"
-        !insertmacro ABORT_IF_UNSUPPORTED_VERSION
         !insertmacro ABORT_IF_USER_REFUSES
 
         DetailPrint " // Downloading downgrade 377162 (Base game)"
