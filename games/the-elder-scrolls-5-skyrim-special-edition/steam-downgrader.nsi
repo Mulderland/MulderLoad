@@ -68,7 +68,7 @@ FunctionEnd
 
 SectionGroup /e "Downgrade Steam version (v1.7.99) to" version
     Section /o "v1.5.97 (November 2019)" version_1_5_97
-        AddSize 1
+        AddSize 5735710
         SetOutPath "$INSTDIR"
 
         DetailPrint " // Downloading downgrade 489831"
@@ -111,7 +111,7 @@ SectionGroup /e "Downgrade Steam version (v1.7.99) to" version
     SectionEnd
 
     Section "v1.6.1170 (January 2024)" version_1_6_1170
-        AddSize 1
+        AddSize 3271557
         SetOutPath "$INSTDIR"
 
         DetailPrint " // Downloading downgrade 489831"
