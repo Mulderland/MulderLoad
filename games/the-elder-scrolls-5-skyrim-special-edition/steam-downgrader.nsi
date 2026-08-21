@@ -68,7 +68,7 @@ FunctionEnd
 
 SectionGroup /e "Downgrade Steam version (v1.7.99) to" version
     Section /o "v1.5.97 (November 2019)" version_1_5_97
-        AddSize 5735710
+        AddSize 4687135
         SetOutPath "$INSTDIR"
 
         DetailPrint " // Downloading downgrade 489831"
@@ -111,7 +111,7 @@ SectionGroup /e "Downgrade Steam version (v1.7.99) to" version
     SectionEnd
 
     Section "v1.6.1170 (January 2024)" version_1_6_1170
-        AddSize 3271557
+        AddSize 1132462
         SetOutPath "$INSTDIR"
 
         DetailPrint " // Downloading downgrade 489831"
@@ -140,8 +140,9 @@ SectionGroup /e "Downgrade Steam version (v1.7.99) to" version
         ${EndIf}
     SectionEnd
 
-    Section
+    Section "" version_common
         # Common for both downgrades
+        AddSize 1000000 # Approximate size (can't be in If statements)
         SetOutPath "$INSTDIR"
 
         ${If} $Game_Language == "French"
@@ -180,10 +181,22 @@ SectionGroup /e "Downgrade Steam version (v1.7.99) to" version
             !insertmacro NSIS7Z_EXTRACT "489839.7z.001" ".\" ""
             !insertmacro DELETE_RANGE "489839.7z.001" 2
         ${EndIf}
-    SectionEnd
 
-    Section
-        SetOutPath "$INSTDIR"
+        # Some users reported crashes when Creations content was installed. The issue appears to depend on which Creations content is installed.
+        # Since the format of ContentCatalog.txt changed in v1.7.99, renaming it will force the game to generate a new one.
+        DetailPrint " // Checking ContentCatalog.txt for potential crash issues"
+        !insertmacro FILE_STR_CONTAINS "$LOCALAPPDATA\Skyrim Special Edition\ContentCatalog.txt" "AchievementSafe" $9
+        ${If} $9 == "1"
+            DetailPrint "Found ContentCatalog.txt in new format (v1.7.99)"
+            MessageBox MB_YESNO|MB_DEFBUTTON1 "It looks like you have a ContentCatalog.txt in the new format (v1.7.99). This may cause crashes with downgraded version.$\r$\n$\r$\nDo you want to rename it to ContentCatalog.bak? (recommended)" IDNO skip_rename
+            !insertmacro FORCE_RENAME "$LOCALAPPDATA\Skyrim Special Edition\ContentCatalog.txt" "$LOCALAPPDATA\Skyrim Special Edition\ContentCatalog.bak"
+            skip_rename:
+        ${EndIf}
+
+        # Another potential crash fix
+        RMDIR /r "$INSTDIR\Data\ShaderCache"
+
+        # Apply xdelta patches
         !insertmacro XDELTA3_GET
         !insertmacro XDELTA3_PATCH_FOLDER "$INSTDIR"
         !insertmacro XDELTA3_REMOVE
@@ -201,6 +214,7 @@ Function .onInit
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Skyrim Special Edition"
     StrCpy $SELECT_RELATIVE_INSTDIR ""
     StrCpy $1 ${version_1_6_1170} ; Radio Button
+    StrCpy $2 ${version_common}
 FunctionEnd
 
 Function .onSelChange
@@ -211,6 +225,7 @@ Function .onSelChange
             !insertmacro RadioButton ${version_1_5_97}
             !insertmacro RadioButton ${version_1_6_1170}
         !insertmacro EndRadioButtons
+        !insertmacro SelectSection $2
     ${EndIf}
 FunctionEnd
 
