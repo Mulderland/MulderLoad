@@ -7,6 +7,7 @@
 !include "..\..\includes\functions\Download.nsh"
 !include "..\..\includes\functions\DownloadRange.nsh"
 !include "..\..\includes\functions\FileHashEquals.nsh"
+!include "..\..\includes\functions\FileStrContains.nsh"
 !include "..\..\includes\functions\FileStrReplace.nsh"
 !include "..\..\includes\functions\FolderMerge.nsh"
 !include "..\..\includes\functions\HasDotnetDesktopRuntime.nsh"
