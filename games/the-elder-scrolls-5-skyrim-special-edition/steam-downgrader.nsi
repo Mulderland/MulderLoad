@@ -3,8 +3,9 @@ This downgrader is for the latest Steam version of Skyrim SE (1.7.99, August 202
 $\r$\n\
 It auto-detects your installed language, then downloads and applies matching $\"xdelta patches$\".$\r$\n\
 $\r$\n\
-It can downgrade to 2 different versions (your choice):$\r$\n\
+It can downgrade to 3 different versions (your choice):$\r$\n\
 - v1.5.97 (November 2019)$\r$\n\
+- v1.6.640 (September 2022)$\r$\n\
 - v1.6.1170 (the n-1 version, January 2024)$\r$\n\
 $\r$\n\
 ${TXT_WELCOMEPAGE_MULDERLAND_3}"
@@ -97,7 +98,43 @@ SectionGroup /e "Downgrade Steam version (v1.7.99) to" version
         !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.5.97/489833.7z" "489833.7z" "e938f0dbddad93f451f1ac4d74250794f5f72db8"
         !insertmacro NSIS7Z_EXTRACT "489833.7z" ".\" "AUTO_DELETE"
 
-        ${If} $Game_Language == "Traditional Chinese"
+        ${If} $Game_Language == "French"
+            DetailPrint " // Downloading downgrade 489834 (French)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.5.97/489834.7z.001" "489834.7z.001" "e642aea4240a3b06b0dfc960e67130d1d31dd39f" 3
+            !insertmacro NSIS7Z_EXTRACT "489834.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489834.7z.001" 3
+
+        ${ElseIf} $Game_Language == "Italian"
+            DetailPrint " // Downloading downgrade 489835 (Italian)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.5.97/489835.7z.001" "489835.7z.001" "283370d2a720a35cb86539f0358e02ae4ccaf603" 3
+            !insertmacro NSIS7Z_EXTRACT "489835.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489835.7z.001" 3
+
+        ${ElseIf} $Game_Language == "German"
+            DetailPrint " // Downloading downgrade 489836 (German)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.5.97/489836.7z.001" "489836.7z.001" "93786aff0ac2c120e5146586bd55c2b171393d29" 3
+            !insertmacro NSIS7Z_EXTRACT "489836.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489836.7z.001" 3
+
+        ${ElseIf} $Game_Language == "Spanish"
+            DetailPrint " // Downloading downgrade 489837 (Spanish)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.5.97/489837.7z.001" "489837.7z.001" "b3672116409c7da72a6c27c9669bd1357059bfe4" 3
+            !insertmacro NSIS7Z_EXTRACT "489837.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489837.7z.001" 3
+
+        ${ElseIf} $Game_Language == "Russian"
+            DetailPrint " // Downloading downgrade 489838 (Russian)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.5.97/489838.7z.001" "489838.7z.001" "4f1eb5c2d882f224cac0559fd1bdf6e1d10f48c1" 2
+            !insertmacro NSIS7Z_EXTRACT "489838.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489838.7z.001" 2
+
+        ${ElseIf} $Game_Language == "Polish"
+            DetailPrint " // Downloading downgrade 489839 (Polish)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.5.97/489839.7z.001" "489839.7z.001" "54c0aacd96de17b119e8e3ae80ef34d8b945a8bf" 2
+            !insertmacro NSIS7Z_EXTRACT "489839.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489839.7z.001" 2
+
+        ${ElseIf} $Game_Language == "Traditional Chinese"
             DetailPrint " // Downloading downgrade 544860 (Traditional Chinese)"
             !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.5.97/544860.7z" "544860.7z" "d561af144e244bddcda57fd764494cb42508420b"
             !insertmacro NSIS7Z_EXTRACT "544860.7z" ".\" "AUTO_DELETE"
@@ -105,6 +142,75 @@ SectionGroup /e "Downgrade Steam version (v1.7.99) to" version
         ${ElseIf} $Game_Language == "Japanese"
             DetailPrint " // Downloading downgrade 544861 (Japanese)"
             !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.5.97/544861.7z.001" "544861.7z.001" "df9040eeb7df9c8fe9a073b7221a081622f087fb" 3
+            !insertmacro NSIS7Z_EXTRACT "544861.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "544861.7z.001" 3
+        ${EndIf}
+    SectionEnd
+
+    Section /o "v1.6.640 (September 2022)" version_1_6_640
+        AddSize 1195377
+        SetOutPath "$INSTDIR"
+
+        DetailPrint " // Downloading downgrade 489831"
+        Delete "Data\_ResourcePack.bsa"
+        Delete "Data\_ResourcePack.esl"
+        Delete "Data\MarketplaceTextures.bsa"
+        !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/489831.7z.001" "489831.7z.001" "c56ab0bf9d381f32a6e2e0015de9d4ab76cc1a20" 3
+        !insertmacro NSIS7Z_EXTRACT "489831.7z.001" ".\" ""
+        !insertmacro DELETE_RANGE "489831.7z.001" 3
+
+        DetailPrint " // Downloading downgrade 489832"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/489832.7z" "489832.7z" "3dfafe25980361f9e62cecf1c280ab48c7bc25ce"
+        !insertmacro NSIS7Z_EXTRACT "489832.7z" ".\" "AUTO_DELETE"
+
+        DetailPrint " // Downloading downgrade 489833"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/489833.7z" "489833.7z" "acc486858a60c7edc77dac3e0bebaa7988d87472"
+        !insertmacro NSIS7Z_EXTRACT "489833.7z" ".\" "AUTO_DELETE"
+
+        ${If} $Game_Language == "French"
+            DetailPrint " // Downloading downgrade 489834 (French)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/489834.7z.001" "489834.7z.001" "537743eca56cbabecefd3fa5e3ce89f986e24754" 3
+            !insertmacro NSIS7Z_EXTRACT "489834.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489834.7z.001" 3
+
+        ${ElseIf} $Game_Language == "Italian"
+            DetailPrint " // Downloading downgrade 489835 (Italian)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/489835.7z.001" "489835.7z.001" "5931e49806c7d42a11865f88e31136df6daca9a6" 3
+            !insertmacro NSIS7Z_EXTRACT "489835.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489835.7z.001" 3
+
+        ${ElseIf} $Game_Language == "German"
+            DetailPrint " // Downloading downgrade 489836 (German)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/489836.7z.001" "489836.7z.001" "903b69bddcc4fe83676772fbf8c487e9d55a14e4" 3
+            !insertmacro NSIS7Z_EXTRACT "489836.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489836.7z.001" 3
+
+        ${ElseIf} $Game_Language == "Spanish"
+            DetailPrint " // Downloading downgrade 489837 (Spanish)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/489837.7z.001" "489837.7z.001" "d348cde03f344cd770d001fedb5eaa10c061427a" 3
+            !insertmacro NSIS7Z_EXTRACT "489837.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489837.7z.001" 3
+
+        ${ElseIf} $Game_Language == "Russian"
+            DetailPrint " // Downloading downgrade 489838 (Russian)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/489838.7z.001" "489838.7z.001" "f2fb33c7746ec220a88dbb3f8bc47c0ffb457cbd" 2
+            !insertmacro NSIS7Z_EXTRACT "489838.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489838.7z.001" 2
+
+        ${ElseIf} $Game_Language == "Polish"
+            DetailPrint " // Downloading downgrade 489839 (Polish)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/489839.7z.001" "489839.7z.001" "331c499e35053f0b6183cbae8672f43598ab3eae" 2
+            !insertmacro NSIS7Z_EXTRACT "489839.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489839.7z.001" 2
+
+        ${ElseIf} $Game_Language == "Traditional Chinese"
+            DetailPrint " // Downloading downgrade 544860 (Traditional Chinese)"
+            !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/544860.7z" "544860.7z" "313fbaee08f670badf79d5e4934768c9333fc3db"
+            !insertmacro NSIS7Z_EXTRACT "544860.7z" ".\" "AUTO_DELETE"
+
+        ${ElseIf} $Game_Language == "Japanese"
+            DetailPrint " // Downloading downgrade 544861 (Japanese)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/544861.7z.001" "544861.7z.001" "b8a6754b383892b460dc4e4e5811ba688039c386" 3
             !insertmacro NSIS7Z_EXTRACT "544861.7z.001" ".\" ""
             !insertmacro DELETE_RANGE "544861.7z.001" 3
         ${EndIf}
@@ -127,14 +233,51 @@ SectionGroup /e "Downgrade Steam version (v1.7.99) to" version
         !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.1170/489833.7z" "489833.7z" "0005f930854cf0b1de7c3f4488c8b90399e44720"
         !insertmacro NSIS7Z_EXTRACT "489833.7z" ".\" "AUTO_DELETE"
 
-        ${If} $Game_Language == "Traditional Chinese"
+        # Languages manifests for v1.6.1170 are the same as for v1.6.640, so we can reuse the same xdelta patches.
+        ${If} $Game_Language == "French"
+            DetailPrint " // Downloading downgrade 489834 (French)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/489834.7z.001" "489834.7z.001" "537743eca56cbabecefd3fa5e3ce89f986e24754" 3
+            !insertmacro NSIS7Z_EXTRACT "489834.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489834.7z.001" 3
+
+        ${ElseIf} $Game_Language == "Italian"
+            DetailPrint " // Downloading downgrade 489835 (Italian)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/489835.7z.001" "489835.7z.001" "5931e49806c7d42a11865f88e31136df6daca9a6" 3
+            !insertmacro NSIS7Z_EXTRACT "489835.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489835.7z.001" 3
+
+        ${ElseIf} $Game_Language == "German"
+            DetailPrint " // Downloading downgrade 489836 (German)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/489836.7z.001" "489836.7z.001" "903b69bddcc4fe83676772fbf8c487e9d55a14e4" 3
+            !insertmacro NSIS7Z_EXTRACT "489836.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489836.7z.001" 3
+
+        ${ElseIf} $Game_Language == "Spanish"
+            DetailPrint " // Downloading downgrade 489837 (Spanish)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/489837.7z.001" "489837.7z.001" "d348cde03f344cd770d001fedb5eaa10c061427a" 3
+            !insertmacro NSIS7Z_EXTRACT "489837.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489837.7z.001" 3
+
+        ${ElseIf} $Game_Language == "Russian"
+            DetailPrint " // Downloading downgrade 489838 (Russian)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/489838.7z.001" "489838.7z.001" "f2fb33c7746ec220a88dbb3f8bc47c0ffb457cbd" 2
+            !insertmacro NSIS7Z_EXTRACT "489838.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489838.7z.001" 2
+
+        ${ElseIf} $Game_Language == "Polish"
+            DetailPrint " // Downloading downgrade 489839 (Polish)"
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/489839.7z.001" "489839.7z.001" "331c499e35053f0b6183cbae8672f43598ab3eae" 2
+            !insertmacro NSIS7Z_EXTRACT "489839.7z.001" ".\" ""
+            !insertmacro DELETE_RANGE "489839.7z.001" 2
+
+        ${ElseIf} $Game_Language == "Traditional Chinese"
             DetailPrint " // Downloading downgrade 544860 (Traditional Chinese)"
-            !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.1170/544860.7z" "544860.7z" "313fbaee08f670badf79d5e4934768c9333fc3db"
+            !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/544860.7z" "544860.7z" "313fbaee08f670badf79d5e4934768c9333fc3db"
             !insertmacro NSIS7Z_EXTRACT "544860.7z" ".\" "AUTO_DELETE"
 
         ${ElseIf} $Game_Language == "Japanese"
             DetailPrint " // Downloading downgrade 544861 (Japanese)"
-            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.1170/544861.7z.001" "544861.7z.001" "b8a6754b383892b460dc4e4e5811ba688039c386" 3
+            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/544861.7z.001" "544861.7z.001" "b8a6754b383892b460dc4e4e5811ba688039c386" 3
             !insertmacro NSIS7Z_EXTRACT "544861.7z.001" ".\" ""
             !insertmacro DELETE_RANGE "544861.7z.001" 3
         ${EndIf}
@@ -142,45 +285,7 @@ SectionGroup /e "Downgrade Steam version (v1.7.99) to" version
 
     Section "" version_common
         # Common for both downgrades
-        AddSize 1000000 # Approximate size (can't be in If statements)
         SetOutPath "$INSTDIR"
-
-        ${If} $Game_Language == "French"
-            DetailPrint " // Downloading downgrade 489834 (French)"
-            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.5.97_or_1.6.1170/489834.7z.001" "489834.7z.001" "537743eca56cbabecefd3fa5e3ce89f986e24754" 3
-            !insertmacro NSIS7Z_EXTRACT "489834.7z.001" ".\" ""
-            !insertmacro DELETE_RANGE "489834.7z.001" 3
-
-        ${ElseIf} $Game_Language == "Italian"
-            DetailPrint " // Downloading downgrade 489835 (Italian)"
-            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.5.97_or_1.6.1170/489835.7z.001" "489835.7z.001" "5931e49806c7d42a11865f88e31136df6daca9a6" 3
-            !insertmacro NSIS7Z_EXTRACT "489835.7z.001" ".\" ""
-            !insertmacro DELETE_RANGE "489835.7z.001" 3
-
-        ${ElseIf} $Game_Language == "German"
-            DetailPrint " // Downloading downgrade 489836 (German)"
-            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.5.97_or_1.6.1170/489836.7z.001" "489836.7z.001" "903b69bddcc4fe83676772fbf8c487e9d55a14e4" 3
-            !insertmacro NSIS7Z_EXTRACT "489836.7z.001" ".\" ""
-            !insertmacro DELETE_RANGE "489836.7z.001" 3
-
-        ${ElseIf} $Game_Language == "Spanish"
-            DetailPrint " // Downloading downgrade 489837 (Spanish)"
-            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.5.97_or_1.6.1170/489837.7z.001" "489837.7z.001" "d348cde03f344cd770d001fedb5eaa10c061427a" 3
-            !insertmacro NSIS7Z_EXTRACT "489837.7z.001" ".\" ""
-            !insertmacro DELETE_RANGE "489837.7z.001" 3
-
-        ${ElseIf} $Game_Language == "Russian"
-            DetailPrint " // Downloading downgrade 489838 (Russian)"
-            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.5.97_or_1.6.1170/489838.7z.001" "489838.7z.001" "f2fb33c7746ec220a88dbb3f8bc47c0ffb457cbd" 2
-            !insertmacro NSIS7Z_EXTRACT "489838.7z.001" ".\" ""
-            !insertmacro DELETE_RANGE "489838.7z.001" 2
-
-        ${ElseIf} $Game_Language == "Polish"
-            DetailPrint " // Downloading downgrade 489839 (Polish)"
-            !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.5.97_or_1.6.1170/489839.7z.001" "489839.7z.001" "331c499e35053f0b6183cbae8672f43598ab3eae" 2
-            !insertmacro NSIS7Z_EXTRACT "489839.7z.001" ".\" ""
-            !insertmacro DELETE_RANGE "489839.7z.001" 2
-        ${EndIf}
 
         # Some users reported crashes when Creations content was installed. The issue appears to depend on which Creations content is installed.
         # Since the format of ContentCatalog.txt changed in v1.7.99, renaming it will force the game to generate a new one.
@@ -223,6 +328,7 @@ Function .onSelChange
     ${Else}
         !insertmacro StartRadioButtons $1
             !insertmacro RadioButton ${version_1_5_97}
+            !insertmacro RadioButton ${version_1_6_640}
             !insertmacro RadioButton ${version_1_6_1170}
         !insertmacro EndRadioButtons
         !insertmacro SelectSection $2
