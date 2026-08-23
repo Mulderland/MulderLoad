@@ -74,7 +74,7 @@ Section /o "Upscaled FMV (by SonicB00M)"
                             "RE-ENHANCE_RE0_FMV-Pack_V1.0.zip" \
                             "990188fe24561d7264687f161aa17781"
 
-    !insertmacro NSISUNZ_EXTRACT "RE-ENHANCE_RE0_FMV-Pack_V1.0.zip" ".\" "AUTO_DELETE"
+    !insertmacro 7Z_EXTRACT "RE-ENHANCE_RE0_FMV-Pack_V1.0.zip" ".\" "AUTO_DELETE"
 SectionEnd
 
 Section "Remastered Weapons Sounds (by TheSorrow55)"
