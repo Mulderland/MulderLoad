@@ -56,13 +56,12 @@ Function OnSelectedFile
         StrCpy $Game_Language "Japanese"
 
     ${If} $Game_Language == "English"
-        # We don't have discriminating files between English and Traditional Chinese, so let's ask the user
-        MessageBox MB_YESNO|MB_DEFBUTTON2 "Is your game in Traditional Chinese?" IDNO +2
-        StrCpy $Game_Language "Traditional Chinese"
+        # We don't have discriminating files between English and Chinese (Traditional), so let's ask the user
+        MessageBox MB_YESNO|MB_DEFBUTTON2 "Is your game in Chinese (Traditional)?" IDNO +2
+        StrCpy $Game_Language "Chinese (Traditional)"
     ${EndIf}
 
     # Ask user to confirm the detected language
-    lang_detection_end:
     MessageBox MB_YESNO|MB_ICONQUESTION "Detected game language: $Game_Language$\r$\n$\r$\nIs this correct?" IDYES +2
     Quit
 FunctionEnd
@@ -134,8 +133,8 @@ SectionGroup /e "Downgrade Steam version (v1.7.99) to" version
             !insertmacro NSIS7Z_EXTRACT "489839.7z.001" ".\" ""
             !insertmacro DELETE_RANGE "489839.7z.001" 2
 
-        ${ElseIf} $Game_Language == "Traditional Chinese"
-            DetailPrint " // Downloading downgrade 544860 (Traditional Chinese)"
+        ${ElseIf} $Game_Language == "Chinese (Traditional)"
+            DetailPrint " // Downloading downgrade 544860 (Chinese Traditional)"
             !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.5.97/544860.7z" "544860.7z" "d561af144e244bddcda57fd764494cb42508420b"
             !insertmacro NSIS7Z_EXTRACT "544860.7z" ".\" "AUTO_DELETE"
 
@@ -203,8 +202,8 @@ SectionGroup /e "Downgrade Steam version (v1.7.99) to" version
             !insertmacro NSIS7Z_EXTRACT "489839.7z.001" ".\" ""
             !insertmacro DELETE_RANGE "489839.7z.001" 2
 
-        ${ElseIf} $Game_Language == "Traditional Chinese"
-            DetailPrint " // Downloading downgrade 544860 (Traditional Chinese)"
+        ${ElseIf} $Game_Language == "Chinese (Traditional)"
+            DetailPrint " // Downloading downgrade 544860 (Chinese Traditional)"
             !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/544860.7z" "544860.7z" "313fbaee08f670badf79d5e4934768c9333fc3db"
             !insertmacro NSIS7Z_EXTRACT "544860.7z" ".\" "AUTO_DELETE"
 
@@ -270,8 +269,8 @@ SectionGroup /e "Downgrade Steam version (v1.7.99) to" version
             !insertmacro NSIS7Z_EXTRACT "489839.7z.001" ".\" ""
             !insertmacro DELETE_RANGE "489839.7z.001" 2
 
-        ${ElseIf} $Game_Language == "Traditional Chinese"
-            DetailPrint " // Downloading downgrade 544860 (Traditional Chinese)"
+        ${ElseIf} $Game_Language == "Chinese (Traditional)"
+            DetailPrint " // Downloading downgrade 544860 (Chinese Traditional)"
             !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/the-elder-scrolls-5-skyrim-special-edition/steam-downgrader/1.7.99_to_1.6.640/544860.7z" "544860.7z" "313fbaee08f670badf79d5e4934768c9333fc3db"
             !insertmacro NSIS7Z_EXTRACT "544860.7z" ".\" "AUTO_DELETE"
 

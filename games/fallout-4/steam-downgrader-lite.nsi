@@ -1,11 +1,9 @@
 !define MUI_WELCOMEPAGE_TEXT "\
 This downgrader is for the latest Steam version of Fallout 4 (1.11.240, August 26). Works with all editions && languages.$\r$\n\
 $\r$\n\
-It auto-detects your installed language* and your installed DLCs, then applies matching $\"xdelta patches$\".$\r$\n\
+It auto-detects your installed language and your installed DLCs, then applies matching $\"xdelta patches$\".$\r$\n\
 $\r$\n\
 This LITE edition was built for Moddb, works fully offline, but can only downgrade to v1.11.221 (Anniversary, May 2026)$\r$\n\
-$\r$\n\
-*WARNING (for Chinese): Chinese language can't be auto detected, so you'll have to select $\"Chinese$\" during setup.$\r$\n\
 $\r$\n\
 If you wish to downgrade to an earlier version (v1.11.191, v1.10.984 or v1.10.163), you can find the FULL version of this downgrader on my website: www.mulderland.com"
 
@@ -21,22 +19,22 @@ Name "Fallout 4 [Steam Downgrader Lite]"
 
 !include "steam-downgrader-common.nsh"
 
-SectionGroup /e "Downgrade Steam version (v1.11.221) to" version
-    Section
-        StrCpy $DLC_Automatron "no"
-        StrCpy $DLC_Workshop "no"
-
-        IfFileExists "$INSTDIR\Data\DLCRobot.cdx" 0 +2
-            StrCpy $DLC_Automatron "yes"
-
-        IfFileExists "$INSTDIR\Data\DLCworkshop01.cdx" 0 +2
-            StrCpy $DLC_Workshop "yes"
+SectionGroup /e "Downgrade Steam version (v1.11.240) to" version
+    Section /o "v1.10.163 (Pre-Next-Gen)"
+        SectionIn RO
     SectionEnd
 
-    Section "1.11.221 (Anniversary, May 2026)" version_1_11_221
+    Section /o "v1.10.984 (Next-Gen Update 2)"
+        SectionIn RO
+    SectionEnd
+
+    Section /o "v1.11.191 (Anniversary, December 2025)"
+        SectionIn RO
+    SectionEnd
+
+    Section "v1.11.221 (Anniversary, May 2026)"
         AddSize 28672
         SetOutPath "$INSTDIR"
-        !insertmacro ABORT_IF_USER_REFUSES
 
         DetailPrint " // Copying downgrade 377162 (Base game)"
         File /r "resources-downgrader-lite\377162\*.*"
@@ -45,34 +43,34 @@ SectionGroup /e "Downgrade Steam version (v1.11.221) to" version
         File /r "resources-downgrader-lite\377163\*.*"
 
         ${If} $DLC_Automatron == "yes"
-            ${If} $F4_Language == "ja"
+            ${If} $Game_Language == "Japanese"
                 DetailPrint " // Copying downgrade 404091 (Automatron DLC, Japanese)"
                 File /r "resources-downgrader-lite\404091\*.*"
-            ${ElseIf} $F4_Language == "en"
+            ${ElseIf} $Game_Language == "English"
                 DetailPrint " // Copying downgrade 435871 (Automatron DLC, English)"
                 File /r "resources-downgrader-lite\435871\*.*"
-            ${ElseIf} $F4_Language == "fr"
+            ${ElseIf} $Game_Language == "French"
                 DetailPrint " // Copying downgrade 435872 (Automatron DLC, French)"
                 File /r "resources-downgrader-lite\435872\*.*"
-            ${ElseIf} $F4_Language == "de"
+            ${ElseIf} $Game_Language == "German"
                 DetailPrint " // Copying downgrade 435873 (Automatron DLC, German)"
                 File /r "resources-downgrader-lite\435873\*.*"
-            ${ElseIf} $F4_Language == "it"
+            ${ElseIf} $Game_Language == "Italian"
                 DetailPrint " // Copying downgrade 435874 (Automatron DLC, Italian)"
                 File /r "resources-downgrader-lite\435874\*.*"
-            ${ElseIf} $F4_Language == "es"
+            ${ElseIf} $Game_Language == "Spanish"
                 DetailPrint " // Copying downgrade 435875 (Automatron DLC, Spanish)"
                 File /r "resources-downgrader-lite\435875\*.*"
-            ${ElseIf} $F4_Language == "pl"
+            ${ElseIf} $Game_Language == "Polish"
                 DetailPrint " // Copying downgrade 435876 (Automatron DLC, Polish)"
                 File /r "resources-downgrader-lite\435876\*.*"
-            ${ElseIf} $F4_Language == "ru"
+            ${ElseIf} $Game_Language == "Russian"
                 DetailPrint " // Copying downgrade 435877 (Automatron DLC, Russian)"
                 File /r "resources-downgrader-lite\435877\*.*"
-            ${ElseIf} $F4_Language == "ptbr"
+            ${ElseIf} $Game_Language == "Portuguese (Brazil)"
                 DetailPrint " // Copying downgrade 435878 (Automatron DLC, Portuguese-Brazil)"
                 File /r "resources-downgrader-lite\435878\*.*"
-            ${ElseIf} $F4_Language == "cn"
+            ${ElseIf} $Game_Language == "Chinese (Traditional)"
                 DetailPrint " // Copying downgrade 435879 (Automatron DLC, Chinese-Traditional)"
                 File /r "resources-downgrader-lite\435879\*.*"
             ${EndIf}
@@ -82,10 +80,7 @@ SectionGroup /e "Downgrade Steam version (v1.11.221) to" version
             DetailPrint " // Copying downgrade 435880 (Wasteland Workshop DLC)"
             File /r "resources-downgrader-lite\435880\*.*"
         ${EndIf}
-    SectionEnd
 
-    Section
-        SetOutPath "$INSTDIR"
         CreateDirectory "$INSTDIR\@mulderload\xdelta3"
         File "/oname=$INSTDIR\@mulderload\xdelta3\xdelta3.exe" "resources-downgrader-lite\xdelta3-3.0.11-x86_64.exe"
         !insertmacro XDELTA3_PATCH_FOLDER "$INSTDIR"
@@ -103,14 +98,4 @@ Function .onInit
     StrCpy $SELECT_FILENAME "Fallout4.exe"
     StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Fallout 4"
     StrCpy $SELECT_RELATIVE_INSTDIR ""
-    StrCpy $1 ${lang_auto} ; Radio Button
-FunctionEnd
-
-Function .onSelChange
-    ${If} ${SectionIsSelected} ${lang}
-        !insertmacro StartRadioButtons $1
-            !insertmacro RadioButton ${lang_auto}
-            !insertmacro RadioButton ${lang_cn}
-        !insertmacro EndRadioButtons
-    ${EndIf}
 FunctionEnd
