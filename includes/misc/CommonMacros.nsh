@@ -105,7 +105,10 @@
         AddSize 1024
         SetOutPath "${OUT_PATH}"
         Delete "MulderConfig.exe"
-        !insertmacro DOWNLOAD_1 "https://github.com/Mulderland/MulderConfig/releases/latest/download/MulderConfig.exe" "MulderConfig.exe" ""
+        !insertmacro DOWNLOAD_2 "https://github.com/Mulderland/MulderConfig/releases/download/26.06.1/MulderConfig.exe" \
+                                "https://cdn.mulderload.eu/tools/mulder-config/MulderConfig-v26.06.1.exe" \
+                                "MulderConfig.exe" \
+                                "777e8a77b169e78899138f8c1ea38c083e74d7dc6224fc275f0cdf5217c58a60"
         File ${CONFIG_FOLDER}\MulderConfig.json
         File ${CONFIG_FOLDER}\MulderConfig.save.json
         ExecWait '"${OUT_PATH}\MulderConfig.exe" -apply' $0
