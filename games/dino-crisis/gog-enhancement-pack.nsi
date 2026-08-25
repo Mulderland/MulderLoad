@@ -40,6 +40,5 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "DINO.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\GOG Galaxy\Games\Dino Crisis\DINO.exe"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\GOG Galaxy\Games\Dino Crisis"
 FunctionEnd

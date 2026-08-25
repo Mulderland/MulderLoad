@@ -43,6 +43,6 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "SHf.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\SILENT HILL f"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\GOG Galaxy\Games\SILENT HILL f"
+    StrCpy $SELECT_STEAM_FOLDER "SILENT HILL f"
 FunctionEnd

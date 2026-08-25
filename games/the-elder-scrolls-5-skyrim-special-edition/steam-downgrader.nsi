@@ -315,8 +315,7 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "SkyrimSE.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Skyrim Special Edition"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_STEAM_FOLDER "Skyrim Special Edition"
     StrCpy $1 ${version_1_6_1170} ; Radio Button
     StrCpy $2 ${version_common}
 FunctionEnd

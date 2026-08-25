@@ -118,8 +118,8 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "Doom3.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Doom 3"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\GOG Galaxy\Games\DOOM 3"
+    StrCpy $SELECT_STEAM_FOLDER "Doom 3"
 FunctionEnd
 
 Function OnSelectedFile

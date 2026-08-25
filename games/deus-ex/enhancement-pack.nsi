@@ -102,6 +102,7 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "DeusEx.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Deus Ex\System"
-    StrCpy $SELECT_RELATIVE_INSTDIR ".."
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\GOG Galaxy\Games\Deus Ex GOTY"
+    StrCpy $SELECT_RELATIVE_PATH "System"
+    StrCpy $SELECT_STEAM_FOLDER "Deus Ex"
 FunctionEnd

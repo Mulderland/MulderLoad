@@ -110,8 +110,7 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "CreationKit.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Fallout 4"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_STEAM_FOLDER "Fallout 4"
     StrCpy $1 ${version_1_11_221_0} ; Radio Button
     StrCpy $2 ${version_common}
 FunctionEnd

@@ -26,6 +26,5 @@ Name "Resident Evil 2 [GOG Enhancement Pack]"
 Function .onInit
     StrCpy $9 ${fmv1} ; Radio Button
     StrCpy $SELECT_FILENAME "BH2Launcher.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\GOG Galaxy\Games\Resident Evil 2"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\GOG Galaxy\Games\Resident Evil 2"
 FunctionEnd

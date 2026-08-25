@@ -16,7 +16,7 @@ Name "Dark Souls: Prepare To Die Edition [Enhancement Pack]"
 SectionGroup /e "DSFix v2.4 + FPSFix-Plus + Morten242's UI v1.5.1"
     Section
         AddSize 1024
-        SetOutPath "$INSTDIR"
+        SetOutPath "$INSTDIR\DATA"
 
         !insertmacro DOWNLOAD_1 "https://www.moddb.com/games/dark-souls-prepare-to-die-edition/downloads/dsfix" \
                                 "DSfix.zip" \
@@ -42,19 +42,19 @@ SectionGroup /e "DSFix v2.4 + FPSFix-Plus + Morten242's UI v1.5.1"
 
     Section "Preset: rendering @ 1080p60" config_1080
         AddSize 8
-        SetOutPath "$INSTDIR"
+        SetOutPath "$INSTDIR\DATA"
         File /oname=DSfix.ini resources\DSfix_1080.ini
     SectionEnd
 
     Section /o "Preset: rendering @ 1440p60" config_1440
         AddSize 8
-        SetOutPath "$INSTDIR"
+        SetOutPath "$INSTDIR\DATA"
         File /oname=DSfix.ini resources\DSfix_1440.ini
     SectionEnd
 
     Section /o "Preset: rendering @ 2160p60" config_2160
         AddSize 8
-        SetOutPath "$INSTDIR"
+        SetOutPath "$INSTDIR\DATA"
         File /oname=DSfix.ini resources\DSfix_2160.ini
     SectionEnd
 SectionGroupEnd
@@ -65,7 +65,7 @@ SectionEnd
 
 Section "HD Interface (Fonts + Controller Icons)"
     AddSize 11949
-    SetOutPath "$INSTDIR\dsfix\tex_override"
+    SetOutPath "$INSTDIR\DATA\dsfix\tex_override"
 
     !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/darksouls/mods/21?tab=files&file_id=209" \
                             "Dark Souls - High-Res UI and Subtitles.rar" \
@@ -83,7 +83,7 @@ SectionEnd
 
 Section "HD Textures (LCD v1.5 + Lava Fix + Random HD Textures + HD Player Messages)"
     AddSize 20583
-    SetOutPath "$INSTDIR\dsfix\tex_override"
+    SetOutPath "$INSTDIR\DATA\dsfix\tex_override"
 
     !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/darksouls/mods/268?tab=files&file_id=1000000511" \
                             "LCD Textures.zip" \
@@ -96,15 +96,15 @@ Section "HD Textures (LCD v1.5 + Lava Fix + Random HD Textures + HD Player Messa
                             "bf74be6aa7a2dfcbb21cd8d140098a0b3a55f64f"
 
     !insertmacro NSISUNZ_EXTRACT "Lava Fix High Res.zip" ".\" "AUTO_DELETE"
-    !insertmacro FOLDER_MERGE "$INSTDIR\dsfix\tex_override\Lava Fix High Res" "$INSTDIR\dsfix\tex_override"
+    !insertmacro FOLDER_MERGE "$INSTDIR\DATA\dsfix\tex_override\Lava Fix High Res" "$INSTDIR\DATA\dsfix\tex_override"
 
     !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/darksouls/mods/1670?tab=files&file_id=1000003291" \
                             "HD Textures.zip" \
                             "f28998684a8e81e32a06380cba7b6fa6acd93e72"
 
     !insertmacro NSISUNZ_EXTRACT "HD Textures.zip" ".\" "AUTO_DELETE"
-    !insertmacro FOLDER_MERGE "$INSTDIR\dsfix\tex_override\Demon Ruins" "$INSTDIR\dsfix\tex_override"
-    !insertmacro FOLDER_MERGE "$INSTDIR\dsfix\tex_override\Duke's Archives" "$INSTDIR\dsfix\tex_override"
+    !insertmacro FOLDER_MERGE "$INSTDIR\DATA\dsfix\tex_override\Demon Ruins" "$INSTDIR\DATA\dsfix\tex_override"
+    !insertmacro FOLDER_MERGE "$INSTDIR\DATA\dsfix\tex_override\Duke's Archives" "$INSTDIR\DATA\dsfix\tex_override"
 
     !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/darksouls/mods/389?tab=files&file_id=1000000337" \
                             "HD Player Messages DDS Version.rar" \
@@ -119,8 +119,8 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "DARKSOULS.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Dark Souls Prepare to Die Edition\DATA"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_RELATIVE_PATH "DATA"
+    StrCpy $SELECT_STEAM_FOLDER "Dark Souls Prepare to Die Edition"
     StrCpy $1 ${config_1080} ; Radio Button - Option 1080 is selected by default
 FunctionEnd
 

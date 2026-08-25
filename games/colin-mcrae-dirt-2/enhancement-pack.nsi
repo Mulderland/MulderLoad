@@ -130,7 +130,6 @@ SectionEnd
 !ifndef BYOF_INSTALLER_NSI
     Function .onInit
         StrCpy $SELECT_FILENAME "dirt2_game.exe"
-        StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Dirt 2"
-        StrCpy $SELECT_RELATIVE_INSTDIR ""
+        StrCpy $SELECT_STEAM_FOLDER "Dirt 2"
     FunctionEnd
 !endif

@@ -107,8 +107,9 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "APGame.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Alpha Protocol\Binaries"
-    StrCpy $SELECT_RELATIVE_INSTDIR ".."
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\GOG Galaxy\Games\Alpha Protocol"
+    StrCpy $SELECT_RELATIVE_PATH "Binaries"
+    StrCpy $SELECT_STEAM_FOLDER "Alpha Protocol"
 FunctionEnd
 
 Function OnSelectedFile

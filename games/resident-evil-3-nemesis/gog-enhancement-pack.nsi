@@ -28,6 +28,5 @@ Function .onInit
     StrCpy $8 ${audio1} ; Radio Button
     StrCpy $9 ${fmv1} ; Radio Button
     StrCpy $SELECT_FILENAME "BH3Launcher.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\GOG Galaxy\Games\Resident Evil 3"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\GOG Galaxy\Games\Resident Evil 3"
 FunctionEnd

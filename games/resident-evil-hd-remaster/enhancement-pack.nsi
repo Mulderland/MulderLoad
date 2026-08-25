@@ -279,6 +279,6 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "bhd.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Resident Evil Biohazard HD REMASTER"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\GOG Galaxy\Games\Resident Evil HD REMASTER"
+    StrCpy $SELECT_STEAM_FOLDER "Resident Evil Biohazard HD REMASTER"
 FunctionEnd

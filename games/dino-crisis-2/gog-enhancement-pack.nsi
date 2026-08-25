@@ -20,8 +20,7 @@ Name "Dino Crisis 2 [GOG Enhancement Pack]"
 
 Function .onInit
     StrCpy $SELECT_FILENAME "Dino2.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\GOG Galaxy\Games\Dino Crisis 2\Dino2.exe"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\GOG Galaxy\Games\Dino Crisis 2"
 FunctionEnd
 
 Function OnSelectedFile

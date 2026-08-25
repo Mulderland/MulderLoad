@@ -147,6 +147,6 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "007FirstLight.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\007 First Light\Retail"
-    StrCpy $SELECT_RELATIVE_INSTDIR ".."
+    StrCpy $SELECT_RELATIVE_PATH "Retail"
+    StrCpy $SELECT_STEAM_FOLDER "007 First Light"
 FunctionEnd

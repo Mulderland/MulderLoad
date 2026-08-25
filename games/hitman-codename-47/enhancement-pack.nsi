@@ -92,6 +92,6 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "Hitman.Exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Hitman Codename 47"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\GOG Galaxy\Games\Hitman Codename 47"
+    StrCpy $SELECT_STEAM_FOLDER "Hitman Codename 47"
 FunctionEnd

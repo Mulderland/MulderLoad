@@ -174,6 +174,7 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "Dishonored.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Dishonored\Binaries\Win32"
-    StrCpy $SELECT_RELATIVE_INSTDIR "..\.."
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\GOG Galaxy\Games\Dishonored"
+    StrCpy $SELECT_RELATIVE_PATH "Binaries\Win32"
+    StrCpy $SELECT_STEAM_FOLDER "Dishonored"
 FunctionEnd

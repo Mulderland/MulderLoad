@@ -403,8 +403,7 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "Fallout4.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Fallout 4"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_STEAM_FOLDER "Fallout 4"
     StrCpy $1 ${version_1_10_163} ; Radio Button
 FunctionEnd
 

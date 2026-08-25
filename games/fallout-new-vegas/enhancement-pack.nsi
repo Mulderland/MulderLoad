@@ -223,6 +223,6 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "FalloutNV.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Fallout New Vegas"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\GOG Galaxy\Games\Fallout New Vegas"
+    StrCpy $SELECT_STEAM_FOLDER "Fallout New Vegas"
 FunctionEnd

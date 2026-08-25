@@ -206,6 +206,7 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "BioshockHD.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\BioShock Remastered\Build\Final"
-    StrCpy $SELECT_RELATIVE_INSTDIR "..\.."
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\GOG Galaxy\Games\BioShock Remastered"
+    StrCpy $SELECT_RELATIVE_PATH "Build\Final"
+    StrCpy $SELECT_STEAM_FOLDER "BioShock Remastered"
 FunctionEnd

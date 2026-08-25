@@ -144,7 +144,6 @@ SectionGroupEnd
 Function .onInit
     !ifndef BYOF_INSTALLER_NSI
         StrCpy $SELECT_FILENAME "dirt3_game.exe"
-        StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\DiRT 3 Complete Edition"
-        StrCpy $SELECT_RELATIVE_INSTDIR ""
+        StrCpy $SELECT_STEAM_FOLDER "DiRT 3 Complete Edition"
     !endif
 FunctionEnd

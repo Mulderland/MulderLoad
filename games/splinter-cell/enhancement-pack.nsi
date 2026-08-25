@@ -71,6 +71,7 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "splintercell.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Splinter Cell\system"
-    StrCpy $SELECT_RELATIVE_INSTDIR ".."
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\GOG Galaxy\Games\Tom Clancys Splinter Cell"
+    StrCpy $SELECT_RELATIVE_PATH "system"
+    StrCpy $SELECT_STEAM_FOLDER "Splinter Cell"
 FunctionEnd

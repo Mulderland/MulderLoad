@@ -80,6 +80,6 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "duke3d.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Duke Nukem 3D\bin"
-    StrCpy $SELECT_RELATIVE_INSTDIR ".."
+    StrCpy $SELECT_RELATIVE_PATH "bin"
+    StrCpy $SELECT_STEAM_FOLDER "Duke Nukem 3D"
 FunctionEnd

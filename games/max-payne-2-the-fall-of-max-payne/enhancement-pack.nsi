@@ -201,6 +201,5 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "maxpayne2.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Max Payne 2 The Fall of Max Payne"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_STEAM_FOLDER "Max Payne 2 The Fall of Max Payne"
 FunctionEnd

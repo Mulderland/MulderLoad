@@ -164,8 +164,7 @@ SectionEnd
 
     Function .onInit
         StrCpy $SELECT_FILENAME "4249140_Launcher.exe"
-        StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\4249140_DinoCrisis2"
-        StrCpy $SELECT_RELATIVE_INSTDIR ""
+        StrCpy $SELECT_STEAM_FOLDER "4249140_DinoCrisis2"
     FunctionEnd
 
     Function .onSelChange

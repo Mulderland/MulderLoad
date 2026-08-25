@@ -57,6 +57,6 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "steam.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam"
-    StrCpy $SELECT_RELATIVE_INSTDIR "steamapps\sourcemods"
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\Steam"
+    StrCpy $SELECT_RELATIVE_PATH "steamapps\sourcemods"
 FunctionEnd

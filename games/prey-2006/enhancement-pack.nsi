@@ -204,8 +204,7 @@ FunctionEnd
 !ifndef NSI_INCLUDE
     Function .onInit
         StrCpy $SELECT_FILENAME "prey.exe"
-        StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Prey 2006"
-        StrCpy $SELECT_RELATIVE_INSTDIR ""
+        StrCpy $SELECT_STEAM_FOLDER "Prey 2006"
         StrCpy $1 ${lang_en} ; Radio Button
         StrCpy $2 ${res_1920_1080} ; Radio Button
     FunctionEnd

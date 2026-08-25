@@ -81,8 +81,9 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "Penumbra.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Penumbra Overture\redist"
-    StrCpy $SELECT_RELATIVE_INSTDIR ".."
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\GOG Galaxy\Games\Penumbra - Black Plague"
+    StrCpy $SELECT_RELATIVE_PATH "redist"
+    StrCpy $SELECT_STEAM_FOLDER "Penumbra Black Plague"
 FunctionEnd
 
 Function OnSelectedFile

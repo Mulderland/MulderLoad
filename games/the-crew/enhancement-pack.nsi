@@ -73,7 +73,7 @@ SectionEnd
 !ifndef NSI_INCLUDE
     Function .onInit
         StrCpy $SELECT_FILENAME "TheCrew.exe"
-        StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\The Crew"
-        StrCpy $SELECT_RELATIVE_INSTDIR ""
+        StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\Ubisoft\Ubisoft Game Launcher\games"
+        StrCpy $SELECT_STEAM_FOLDER "The Crew"
     FunctionEnd
 !endif

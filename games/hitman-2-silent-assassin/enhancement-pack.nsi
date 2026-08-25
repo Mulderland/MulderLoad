@@ -160,8 +160,8 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "hitman2.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Hitman 2 Silent Assassin"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\GOG Galaxy\Games\Hitman 2 Silent Assassin"
+    StrCpy $SELECT_STEAM_FOLDER "Hitman 2 Silent Assassin"
     StrCpy $1 ${lang_fr} ; Radio Button
 FunctionEnd
 

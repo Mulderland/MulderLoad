@@ -116,8 +116,7 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "Condemned.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Condemned Criminal Origins"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_STEAM_FOLDER "Condemned Criminal Origins"
     StrCpy $1 ${fov2} ; Radio Button
 FunctionEnd
 

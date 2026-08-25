@@ -147,6 +147,5 @@ SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "re0hd.exe"
-    StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\Resident Evil 0"
-    StrCpy $SELECT_RELATIVE_INSTDIR ""
+    StrCpy $SELECT_STEAM_FOLDER "Resident Evil 0"
 FunctionEnd

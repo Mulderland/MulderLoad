@@ -426,8 +426,7 @@ SectionEnd
     Function .onInit
         StrCpy $9 ${fmv1} ; Radio Button
         StrCpy $SELECT_FILENAME "4249110_Launcher.exe"
-        StrCpy $SELECT_DEFAULT_FOLDER "C:\Program Files (x86)\Steam\steamapps\common\4249110_Biohazard2"
-        StrCpy $SELECT_RELATIVE_INSTDIR ""
+        StrCpy $SELECT_STEAM_FOLDER "4249110_Biohazard2"
     FunctionEnd
 !endif
 
