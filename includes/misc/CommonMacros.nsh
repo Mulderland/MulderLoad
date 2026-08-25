@@ -82,10 +82,9 @@
 
 !ifmacrondef DOWNLOAD_DGVOODOO2
     !macro DOWNLOAD_DGVOODOO2
-        Push $R0
-        ReadRegStr $R0 HKCU "Software\Wine" ""
-        ${If} $R0 != ""
-            DetailPrint " // DgVoodoo2: Wine/Proton detected, download v2.81.3 (old compatible version)"
+        !insertmacro DETECT_OS $R0
+        ${If} $R0 == "Linux"
+            DetailPrint " // DgVoodoo2: Linux/Deck detected, download v2.81.3 (old compatible version)"
             !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/tools/dgvoodoo/dgVoodoo2_81_3.zip" \
                                     "dgVoodoo2.zip" \
                                     "0b04c7d621192425c595badfc60c12060017738c"

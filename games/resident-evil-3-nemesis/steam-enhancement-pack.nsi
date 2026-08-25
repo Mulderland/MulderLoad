@@ -219,11 +219,10 @@ SectionGroup "Graphical improvements"
         !insertmacro NSISUNZ_EXTRACT_ONE "dinput8-Win32.zip" ".\" "dinput8.dll" "AUTO_DELETE"
         AddSize 5264
 
-        # Get patched asi for Linux/Proton
-        Push $R0
-        EnumRegKey $R0 HKCU "Software\Wine" ""
-        ${If} $R0 != ""
-            DetailPrint " // HD Mod: Wine/Proton detected, download patched asi"
+        # Get patched asi for Linux/Deck
+        !insertmacro DETECT_OS $R0
+        ${If} $R0 == "Linux"
+            DetailPrint " // HD Mod: Linux/Deck detected, download patched asi"
             !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/resident-evil-3-nemesis/impr_gfx/RE3-Linux.zip" \
                                     "RE3-Linux.zip" \
                                     "70ccfce8c1d3946c2bb1757116cb4e2d21ea254f"
