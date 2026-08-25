@@ -4,6 +4,7 @@
 
 # My Functions
 !include "..\..\includes\functions\DeleteRange.nsh"
+!include "..\..\includes\functions\DetectOS.nsh"
 !include "..\..\includes\functions\Download.nsh"
 !include "..\..\includes\functions\DownloadRange.nsh"
 !include "..\..\includes\functions\FileHashEquals.nsh"
