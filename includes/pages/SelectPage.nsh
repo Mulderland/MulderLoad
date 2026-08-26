@@ -41,24 +41,33 @@ Function SelectPage
 FunctionEnd
 
 Function SuggestDirectory
-    !insertmacro STACKFRAME_BEGIN 0 1
+    !insertmacro STACKFRAME_BEGIN 0 2
+    # $R0: temporary variable
+    # $R1: result
 
-    StrCpy $R0 ""
+    StrCpy $R1 ""
 
     ${If} $SELECT_STEAM_FOLDER != ""
-        !insertmacro FIND_STEAM_GAME_PATH $SELECT_STEAM_FOLDER $R0
-        ${If} $R0 != ""
+        !insertmacro FIND_STEAM_GAME_PATH $SELECT_STEAM_FOLDER $R1
+        ${If} $R1 != ""
             Goto SuggestDirectory_end
+        ${Else}
+            !insertmacro DETECT_OS $R0
+            ${If} $R0 == "Linux"
+                ReadEnvStr $R0 USERNAME
+                StrCpy $R1 "Z:\run\media\$R0" ; Game was not found, but it may be installed on an external drive.
+                Goto SuggestDirectory_end
+            ${EndIf}
         ${EndIf}
     ${EndIf}
 
     ${If} $SELECT_INSTALL_PATH != ""
-        StrCpy $R0 $SELECT_INSTALL_PATH
+        StrCpy $R1 $SELECT_INSTALL_PATH
     ${EndIf}
 
     SuggestDirectory_end:
-    !insertmacro STACKFRAME_RETURN 0 1 $R0
-    !insertmacro STACKFRAME_END 0 1
+    !insertmacro STACKFRAME_RETURN 0 2 $R1
+    !insertmacro STACKFRAME_END 0 2
 FunctionEnd
 
 Function GetRootDirectory
