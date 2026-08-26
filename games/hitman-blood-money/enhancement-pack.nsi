@@ -181,10 +181,13 @@ Function .onInit
 FunctionEnd
 
 Function OnSelectedFile
+    !insertmacro STACKFRAME_BEGIN 0 1
     !insertmacro FILE_HASH_EQUALS "$INSTDIR\Scenes\M08\M08_main.ZIP" "6a362d126608660481e4f33ad78be0ad1856b97f" $R0
     ${If} $R0 = "0"
         SectionSetFlags ${bmpremastered_fix} ${SF_RO}
     ${Else}
         SectionSetFlags ${bmpremastered_fix} ${SF_SELECTED}|${SF_RO}
     ${EndIf}
+    !insertmacro STACKFRAME_RETURN 0 1 1
+    !insertmacro STACKFRAME_END 0 1
 FunctionEnd

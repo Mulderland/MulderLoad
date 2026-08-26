@@ -29,16 +29,21 @@ Function .onInit
 FunctionEnd
 
 Function OnSelectedFile
+    !insertmacro STACKFRAME_BEGIN 0 4
     DetailPrint " // Checking that binary is supported"
-    !insertmacro FILE_HASH_EQUALS "$INSTDIR\Biohazard.exe" "08e55bd30cfc31b8d4c62c0fbb8616ecd96f18f3" $0 ; GOG Japanese checksum
-    !insertmacro FILE_HASH_EQUALS "$INSTDIR\Biohazard.exe" "047f4feea01b18c69f12e790f2dc837ae0b7107f" $1 ; Mediakite 1.01 checksum
-    !insertmacro FILE_HASH_EQUALS "$INSTDIR\Biohazard.exe" "98f335e3a568f4e7bbe2ac3063cd5fcee2145b86" $2 ; Mediakite 1.01 checksum (4GB Patched)
-    ${If} $0 != "1"
-    ${AndIf} $1 != "1"
-    ${AndIf} $2 != "1"
+    !insertmacro FILE_HASH_EQUALS "$INSTDIR\Biohazard.exe" "08e55bd30cfc31b8d4c62c0fbb8616ecd96f18f3" $R0 ; GOG Japanese checksum
+    !insertmacro FILE_HASH_EQUALS "$INSTDIR\Biohazard.exe" "047f4feea01b18c69f12e790f2dc837ae0b7107f" $R1 ; Mediakite 1.01 checksum
+    !insertmacro FILE_HASH_EQUALS "$INSTDIR\Biohazard.exe" "98f335e3a568f4e7bbe2ac3063cd5fcee2145b86" $R2 ; Mediakite 1.01 checksum (4GB Patched)
+    ${If} $R0 != "1"
+    ${AndIf} $R1 != "1"
+    ${AndIf} $R2 != "1"
         MessageBox MB_ICONEXCLAMATION "Only GOG Japanese release can apply this Enhancement Pack.$\r$\n\
         $\r$\n\
         Make sure you downloaded the Japanese version of the game on GOG."
-        Quit
+        Strcpy $R3 0
+    ${Else}
+        Strcpy $R3 1
     ${EndIf}
+    !insertmacro STACKFRAME_RETURN 0 4 $R3
+    !insertmacro STACKFRAME_END 0 4
 FunctionEnd

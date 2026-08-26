@@ -22,14 +22,17 @@ ${TXT_WELCOMEPAGE_MULDERLAND_3}"
 Name "Fallout 4: Creation Kit [Steam Downgrader]"
 
 Function OnSelectedFile
-    # Todo change hash with new one
-    !insertmacro FILE_HASH_EQUALS "$INSTDIR\CreationKit.exe" "05accf35db49b99c8f61bf56b022881127ae112f" $0
-     ${If} "$0" == "1"
+    !insertmacro STACKFRAME_BEGIN 0 2
+    !insertmacro FILE_HASH_EQUALS "$INSTDIR\CreationKit.exe" "05accf35db49b99c8f61bf56b022881127ae112f" $R0
+     ${If} "$R0" == "1"
         MessageBox MB_OK "Correct app version detected!$\r$\nApp version: v1.11.240 (August 2026)$\r$\n$\r$\nYou may proceed."
+        StrCpy $R1 1
     ${Else}
-        MessageBox MB_ICONEXCLAMATION "Unsupported Fallout 4: Creation Kit version detected.$\r$\n$\r$\nThis downgrader only supports the Steam version v1.11.240 (August 2026).$\r$\n$\r$\nAborting."
-        Quit
+        MessageBox MB_ICONEXCLAMATION "Unsupported Fallout 4: Creation Kit version detected.$\r$\n$\r$\nThis downgrader only supports the Steam version v1.11.240 (August 2026)"
+        StrCpy $R1 0
     ${EndIf}
+    !insertmacro STACKFRAME_RETURN 0 2 $R1
+    !insertmacro STACKFRAME_END 0 2
 FunctionEnd
 
 SectionGroup /e "Downgrade Steam version (v1.11.240) to" version

@@ -129,4 +129,5 @@ Function OnSelectedFile
     ${Else}
         SectionSetFlags ${lost_mission} ${SF_SELECTED}
     ${EndIf}
+    Push 1
 FunctionEnd

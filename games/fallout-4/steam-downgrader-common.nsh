@@ -3,12 +3,15 @@ Var /GLOBAL DLC_Automatron
 Var /GLOBAL DLC_Workshop
 
 Function OnSelectedFile
-    !insertmacro FILE_HASH_EQUALS "$INSTDIR\Fallout4.exe" "97a1e7d780a8fd4a86c27cd1e1d42d05bf7eb4b5" $0
-     ${If} "$0" == "1"
+    !insertmacro STACKFRAME_BEGIN 0 2
+    !insertmacro FILE_HASH_EQUALS "$INSTDIR\Fallout4.exe" "97a1e7d780a8fd4a86c27cd1e1d42d05bf7eb4b5" $R0
+     ${If} "$R0" == "1"
         MessageBox MB_OK "Correct game version detected!$\r$\nGame version: v1.11.240 (August 2026)$\r$\n$\r$\nYou may proceed."
+        StrCpy $R1 1
     ${Else}
         MessageBox MB_ICONEXCLAMATION "Unsupported Fallout 4 version detected.$\r$\n$\r$\nThis downgrader only supports the Steam version v1.11.240 (August 2026).$\r$\n$\r$\nAborting."
-        Abort
+        StrCpy $R1 0
+        Goto OnSelectedFile_end
     ${EndIf}
 
     # DLC Detection
@@ -56,7 +59,11 @@ Function OnSelectedFile
 
     # Ask user to confirm the detected informations
     MessageBox MB_YESNO|MB_ICONQUESTION "Please review the detected informations:$\r$\n$\r$\nGame language: $Game_Language$\r$\nAutomatron DLC: $DLC_Automatron$\r$\nWasteland Workshop DLC: $DLC_Workshop$\r$\n$\r$\nIs this correct?$\r$\n$\r$\n(other DLCs don't need downgrade so I don't look for them)" IDYES +2
-    Quit
+    StrCpy $R1 0
+
+    OnSelectedFile_end:
+    !insertmacro STACKFRAME_RETURN 0 2 $R1
+    !insertmacro STACKFRAME_END 0 2
 FunctionEnd
 
 Function OpenKofi

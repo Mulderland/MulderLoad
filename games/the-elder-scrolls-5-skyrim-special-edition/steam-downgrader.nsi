@@ -23,13 +23,15 @@ Name "Skyrim Special Edition [Steam Downgrader]"
 Var /GLOBAL Game_Language
 
 Function OnSelectedFile
-    # Todo change hash with new one
-    !insertmacro FILE_HASH_EQUALS "$INSTDIR\SkyrimSE.exe" "5516489a45d63e63ad5d24c74a8b80918cf403b6" $0
-     ${If} "$0" == "1"
+    !insertmacro STACKFRAME_BEGIN 0 2
+    !insertmacro FILE_HASH_EQUALS "$INSTDIR\SkyrimSE.exe" "5516489a45d63e63ad5d24c74a8b80918cf403b6" $R0
+     ${If} "$R0" == "1"
         MessageBox MB_OK "Correct game version detected!$\r$\nGame version: v1.7.99 (August 2026)$\r$\n$\r$\nYou may proceed."
+        StrCpy $R1 1
     ${Else}
-        MessageBox MB_ICONEXCLAMATION "Unsupported Skyrim SE version detected.$\r$\n$\r$\nThis downgrader only supports the Steam version v1.7.99 (August 2026).$\r$\n$\r$\nAborting."
-        Quit
+        MessageBox MB_ICONEXCLAMATION "Unsupported Skyrim SE version detected.$\r$\n$\r$\nThis downgrader only supports the Steam version v1.7.99 (August 2026)."
+        StrCpy $R1 0
+        Goto OnSelectedFile_end
     ${EndIf}
 
     StrCpy $Game_Language "English"
@@ -63,7 +65,11 @@ Function OnSelectedFile
 
     # Ask user to confirm the detected language
     MessageBox MB_YESNO|MB_ICONQUESTION "Detected game language: $Game_Language$\r$\n$\r$\nIs this correct?" IDYES +2
-    Quit
+    StrCpy $R1 0
+
+    OnSelectedFile_end:
+    !insertmacro STACKFRAME_RETURN 0 2 $R1
+    !insertmacro STACKFRAME_END 0 2
 FunctionEnd
 
 SectionGroup /e "Downgrade Steam version (v1.7.99) to" version

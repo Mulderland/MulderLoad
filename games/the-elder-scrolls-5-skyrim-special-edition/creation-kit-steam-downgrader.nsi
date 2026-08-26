@@ -21,14 +21,17 @@ ${TXT_WELCOMEPAGE_MULDERLAND_3}"
 Name "Skyrim SE: Creation Kit [Steam Downgrader]"
 
 Function OnSelectedFile
-    # Todo change hash with new one
-    !insertmacro FILE_HASH_EQUALS "$INSTDIR\CreationKit.exe" "bbfd6c4295148fcead4f3ab878cd95c6ace9dc53" $0
-     ${If} "$0" == "1"
+    !insertmacro STACKFRAME_BEGIN 0 2
+    !insertmacro FILE_HASH_EQUALS "$INSTDIR\CreationKit.exe" "bbfd6c4295148fcead4f3ab878cd95c6ace9dc53" $R0
+     ${If} "$R0" == "1"
         MessageBox MB_OK "Correct app version detected!$\r$\nApp version: v1.7.99 (August 2026)$\r$\n$\r$\nYou may proceed."
+        StrCpy $R1 1
     ${Else}
         MessageBox MB_ICONEXCLAMATION "Unsupported Skyrim SE: Creation Kit version detected.$\r$\n$\r$\nThis downgrader only supports the Steam version v1.7.99 (August 2026).$\r$\n$\r$\nAborting."
-        Quit
+        StrCpy $R1 0
     ${EndIf}
+    !insertmacro STACKFRAME_RETURN 0 2 $R1
+    !insertmacro STACKFRAME_END 0 2
 FunctionEnd
 
 SectionGroup /e "Downgrade Steam version (v1.7.99) to" version

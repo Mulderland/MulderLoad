@@ -113,12 +113,15 @@ Function .onInit
 FunctionEnd
 
 Function OnSelectedFile
-    !insertmacro FILE_HASH_EQUALS "$INSTDIR\Binaries\APGame.exe" "618b5f8c9ef45be6cb5cddbd0f05a80aed15a714" $0 ; steam checksum
-    ${If} $0 = "1"
+    !insertmacro STACKFRAME_BEGIN 0 1
+    !insertmacro FILE_HASH_EQUALS "$INSTDIR\Binaries\APGame.exe" "618b5f8c9ef45be6cb5cddbd0f05a80aed15a714" $R0 ; steam checksum
+    ${If} $R0 = "1"
         MessageBox MB_ICONINFORMATION "The executable matches the Steam version.$\r$\n$\r$\nThe 'GOG 2024 update' will be available on the next screen."
         SectionSetFlags ${update2024} ${SF_SELECTED}
     ${Else}
         MessageBox MB_ICONINFORMATION "The executable does not match the Steam version (or the GOG 2024 update may already be installed).$\r$\n$\r$\nThe 'GOG 2024 update' option will not be available."
         SectionSetFlags ${update2024} ${SF_RO}
     ${EndIf}
+    !insertmacro STACKFRAME_RETURN 0 1 1
+    !insertmacro STACKFRAME_END 0 1
 FunctionEnd

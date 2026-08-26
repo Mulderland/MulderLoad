@@ -55,5 +55,6 @@ Function OnSelectedFile
         ${EndIf}
     ${EndIf}
 
+    !insertmacro STACKFRAME_RETURN 0 2 1
     !insertmacro STACKFRAME_END 0 2
 FunctionEnd

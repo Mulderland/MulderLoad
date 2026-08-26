@@ -93,4 +93,5 @@ Function OnSelectedFile
     ${Else}
         SectionSetFlags ${requiem_textures} ${SF_SELECTED}
     ${EndIf}
+    Push 1
 FunctionEnd
