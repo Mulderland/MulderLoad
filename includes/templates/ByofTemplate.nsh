@@ -3,6 +3,7 @@
 !define MUI_ICON "..\..\MulderLoad.ico"
 
 # My Functions
+!include "..\..\includes\functions\CreateJunction.nsh"
 !include "..\..\includes\functions\DeleteRange.nsh"
 !include "..\..\includes\functions\DetectOS.nsh"
 !include "..\..\includes\functions\Download.nsh"
