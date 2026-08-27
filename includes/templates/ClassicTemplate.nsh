@@ -33,10 +33,16 @@
 
 # MUI Macros
 !insertmacro MUI_PAGE_WELCOME
+!define MUI_PAGE_CUSTOMFUNCTION_LEAVE AfterDirectoryPage
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_INSTFILES
 !insertmacro MUI_PAGE_FINISH
+
+!ifndef AFTER_DIRECTORY_PAGE
+    Function AfterDirectoryPage
+    FunctionEnd
+!endif
 
 # Run as user by default
 RequestExecutionLevel none
