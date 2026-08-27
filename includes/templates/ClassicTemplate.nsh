@@ -13,6 +13,8 @@
 !include "..\..\includes\functions\FileStrContains.nsh"
 !include "..\..\includes\functions\FileStrReplace.nsh"
 !include "..\..\includes\functions\FindSteamGamePath.nsh"
+!include "..\..\includes\functions\FindSteamModsPath.nsh"
+!include "..\..\includes\functions\FindSteamRootPath.nsh"
 !include "..\..\includes\functions\FolderMerge.nsh"
 !include "..\..\includes\functions\HasDotnetDesktopRuntime.nsh"
 !include "..\..\includes\functions\Move.nsh"
