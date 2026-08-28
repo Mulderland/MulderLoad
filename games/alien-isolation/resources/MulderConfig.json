@@ -1,0 +1,233 @@
+{
+  "game": {
+    "title": "Alien: Isolation",
+    "originalExe": "AI.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Graphics enhancements",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Disable lens flare" },
+        { "value": "Enhanced menu options" },
+        { "value": "Temporal anti-aliasing (Alias Isolation)" }
+      ]
+    },
+    {
+      "name": "Other improvements",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Mouse Fix" },
+        { "value": "Skip save confirmation dialog" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Skip intro videos" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" }, { "Other improvements": "Mouse Fix" }, { "Other improvements": "Skip save confirmation dialog" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\UltimateASILoader\\d3d11.dll",
+        "target": "d3d11.dll"
+      },
+      {
+        "when": [ { "!Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)", "!Other improvements": "Mouse Fix", "!*Other improvements": "Skip save confirmation" } ],
+        "operation": "move",
+        "source": "d3d11.dll",
+        "target": ".MulderConfig\\UltimateASILoader\\d3d11.dll"
+      },
+
+
+
+      {
+        "when": [ { "Graphics enhancements": "Disable lens flare" } ],
+        "operation": "move",
+        "source": "DATA\\LENS_FLARE_ATLAS.BIN",
+        "target": ".MulderConfig\\BackupLensFlare\\DATA\\LENS_FLARE_ATLAS.BIN"
+      },
+      {
+        "when": [ { "Graphics enhancements": "Disable lens flare" } ],
+        "operation": "move",
+        "source": "DATA\\LENS_FLARE_CONFIG.BIN",
+        "target": ".MulderConfig\\BackupLensFlare\\DATA\\LENS_FLARE_CONFIG.BIN"
+      },
+      {
+        "when": [ { "!Graphics enhancements": "Disable lens flare" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\BackupLensFlare\\DATA\\LENS_FLARE_ATLAS.BIN",
+        "target": "DATA\\LENS_FLARE_ATLAS.BIN"
+      },
+      {
+        "when": [ { "!Graphics enhancements": "Disable lens flare" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\BackupLensFlare\\DATA\\LENS_FLARE_CONFIG.BIN",
+        "target": "DATA\\LENS_FLARE_CONFIG.BIN"
+      },
+
+
+      
+      {
+        "when": [ { "Graphics enhancements": "Enhanced menu options" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\EnhancedGraphicsMenuOptions\\DATA\\ENGINE_SETTINGS.XML",
+        "target": "DATA\\ENGINE_SETTINGS.XML"
+      },
+      {
+        "when": [ { "!Graphics enhancements": "Enhanced menu options" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\EnhancedGraphicsMenuOptions\\DATA\\ENGINE_SETTINGS — Original.XML",
+        "target": "DATA\\ENGINE_SETTINGS.XML"
+      },
+
+
+
+      {
+        "when": [ { "Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\AliasIsolation\\scripts\\aliasIsolation.asi",
+        "target": "scripts\\aliasIsolation.asi"
+      },
+      {
+        "when": [ { "Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\AliasIsolation\\scripts\\mods\\aliasIsolation",
+        "target": "scripts\\mods\\aliasIsolation"
+      },
+      {
+        "when": [ { "!Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
+        "operation": "move",
+        "source": "scripts\\aliasIsolation.asi",
+        "target": ".MulderConfig\\AliasIsolation\\scripts\\aliasIsolation.asi"
+      },
+      {
+        "when": [ { "!Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
+        "operation": "move",
+        "source": "scripts\\mods\\aliasIsolation",
+        "target": ".MulderConfig\\AliasIsolation\\scripts\\mods\\aliasIsolation"
+      },
+
+
+
+      {
+        "when": [ { "Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
+        "operation": "removeLine",
+        "files": ["DATA\\ENGINE_SETTINGS.XML"],
+        "pattern": "\t\t\t<Quality name=\"Off\"  \t\t\t\tint=\"0\"\t\tprecedence=\"1\"/>"
+      },
+      {
+        "when": [ { "Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
+        "operation": "removeLine",
+        "files": ["DATA\\ENGINE_SETTINGS.XML"],
+        "pattern": "\t\t\t<Quality name=\"FXAA\"\t\t\t\tint=\"1\"\t\tprecedence=\"2\"/>"
+      },
+      {
+        "when": [ { "Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
+        "operation": "removeLine",
+        "files": ["DATA\\ENGINE_SETTINGS.XML"],
+        "pattern": "\t\t\t<Quality name=\"SMAA T2x\"\t\t\tint=\"3\"\t\tprecedence=\"4\"/>"
+      },
+      {
+        "when": [ { "Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
+        "operation": "replaceLine",
+        "files": ["DATA\\ENGINE_SETTINGS.XML"],
+        "pattern": "\t\t\t<Quality name=\"SMAA T1x\"\t\t\tint=\"2\"\t\tprecedence=\"3\"/>",
+        "replacement": "\t\t\t<Quality name=\"SMAA T1x\"\t\t\tint=\"2\"\t\tprecedence=\"1\"/>"
+      },
+      {
+        "when": [ { "Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
+        "operation": "removeLine",
+        "files": ["DATA\\ENGINE_SETTINGS.XML"],
+        "pattern": "\t\t\t<Quality name=\"Off\"\tint=\"0\"\tprecedence=\"1\"/>"
+      },
+      {
+        "when": [ { "Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
+        "operation": "replaceLine",
+        "files": ["DATA\\ENGINE_SETTINGS.XML"],
+        "pattern": "\t\t\t<Quality name=\"On\" \tint=\"1\"\tprecedence=\"2\"/>",
+        "replacement": "\t\t\t<Quality name=\"On\" \tint=\"1\"\tprecedence=\"1\"/>"
+      },
+      {
+        "when": [ { "Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
+        "operation": "removeLine",
+        "files": ["DATA\\ENGINE_SETTINGS.XML"],
+        "pattern": "\t\t\t<Quality name=\"On\"\tbool=\"1\"\tprecedence=\"2\"/>"
+      },
+
+
+
+      {
+        "when": [ { "Other improvements": "Mouse Fix" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\MouseFix\\scripts\\mousefix.asi",
+        "target": "scripts\\mousefix.asi"
+      },
+      {
+        "when": [ { "!Other improvements": "Mouse Fix" } ],
+        "operation": "move",
+        "source": "scripts\\mousefix.asi",
+        "target": ".MulderConfig\\MouseFix\\scripts\\mousefix.asi"
+      },
+
+
+
+      {
+        "when": [ { "Other improvements": "Skip save confirmation dialog" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\SkipSaveConfirmationDialog\\scripts\\AlienIsolation.SkipSaveConfirmationDialog.asi",
+        "target": "scripts\\AlienIsolation.SkipSaveConfirmationDialog.asi"
+      },
+      {
+        "when": [ { "!Other improvements": "Skip save confirmation dialog" } ],
+        "operation": "move",
+        "source": "scripts\\AlienIsolation.SkipSaveConfirmationDialog.asi",
+        "target": ".MulderConfig\\SkipSaveConfirmationDialog\\scripts\\AlienIsolation.SkipSaveConfirmationDialog.asi"
+      },
+
+
+      
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": "DATA\\UI\\MOVIES\\AMD_IDENT.USM",
+        "target": ".MulderConfig\\BackupIntro\\DATA\\UI\\MOVIES\\AMD_IDENT.USM"
+      },
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": "DATA\\UI\\MOVIES\\CA_IDENT.USM",
+        "target": ".MulderConfig\\BackupIntro\\DATA\\UI\\MOVIES\\CA_IDENT.USM"
+      },
+      {
+        "when": [ { "Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": "DATA\\UI\\MOVIES\\FOX_IDENT.USM",
+        "target": ".MulderConfig\\BackupIntro\\DATA\\UI\\MOVIES\\FOX_IDENT.USM"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "target": "DATA\\UI\\MOVIES\\AMD_IDENT.USM",
+        "source": ".MulderConfig\\BackupIntro\\DATA\\UI\\MOVIES\\AMD_IDENT.USM"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\BackupIntro\\DATA\\UI\\MOVIES\\CA_IDENT.USM",
+        "target": "DATA\\UI\\MOVIES\\CA_IDENT.USM"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro videos" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\BackupIntro\\DATA\\UI\\MOVIES\\FOX_IDENT.USM",
+        "target": "DATA\\UI\\MOVIES\\FOX_IDENT.USM"
+      }
+    ]
+  }
+}
