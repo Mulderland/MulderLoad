@@ -12,6 +12,8 @@ Most enhancements are configurable via MulderConfig, which also adds the ability
 $\r$\n\
 ${TXT_WELCOMEPAGE_MULDERLAND_3}"
 
+!define MUI_FINISHPAGE_RUN "$INSTDIR\MulderConfig.exe"
+!define MUI_FINISHPAGE_RUN_TEXT "Run MulderConfig"
 !include "..\..\includes\templates\SelectTemplate.nsh"
 !include "..\..\includes\tools\7z.nsh"
 
@@ -35,6 +37,28 @@ SectionGroup /e "Improvements configurable via MulderConfig"
         CreateDirectory "$INSTDIR\.MulderConfig\AliasIsolation\scripts"
         Rename "mods" "scripts\mods"
         Rename "aliasIsolation.asi" "scripts\aliasIsolation.asi"
+    SectionEnd
+
+    Section "Clean HUD (by DJ Shokwave)"
+        SectionIn RO
+        SetOutPath "$INSTDIR\.MulderConfig\CleanHUD"
+
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/alienisolation/mods/102?tab=files&file_id=767" \
+                                "CleanHUD All-In-One-102-1-0-1737636782.zip" \
+                                "4f3ff1e1f2d954ec48f6f0a8f37a4a7bd17df93a"
+
+        !insertmacro NSISUNZ_EXTRACT "CleanHUD All-In-One-102-1-0-1737636782.zip" ".\" "AUTO_DELETE"
+        AddSize 68557
+
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/alienisolation/mods/102?tab=files&file_id=768" \
+                                "No Mo Orange Glo-102-1-0-1737636900.zip" \
+                                "ad71f95898dbcd343d181fd67e8f07c809fac2cf"
+
+        RMDir /r "No Mo Orange Glo"
+        !insertmacro NSISUNZ_EXTRACT "No Mo Orange Glo-102-1-0-1737636900.zip" ".\" "AUTO_DELETE"
+        AddSize 3
+        CreateDirectory "$INSTDIR\.MulderConfig\CleanHUD\No Mo Orange Glo\DATA\UI"
+        Rename "No Mo Orange Glo\SELECTIONOVERLAYPARAMS.BIN" "No Mo Orange Glo\DATA\UI\SELECTIONOVERLAYPARAMS.BIN"
     SectionEnd
 
     Section "Enhanced Graphics Menu Options (by BUR7N)"
@@ -65,6 +89,18 @@ SectionGroup /e "Improvements configurable via MulderConfig"
         AddSize 179
     SectionEnd
 
+    Section "No Center Dot (by IkarosTRB)"
+        SectionIn RO
+        SetOutPath "$INSTDIR\.MulderConfig\NoCenterDot\DATA"
+
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/alienisolation/mods/44?tab=files&file_id=149" \
+                                "No Center Dot-44-1-0-1688633976.7z" \
+                                "b1118194ebc5cbf6baaf72999eb4051e3f1ca490"
+
+        !insertmacro NSIS7Z_EXTRACT "No Center Dot-44-1-0-1688633976.7z" ".\" "AUTO_DELETE"
+        AddSize 17111
+    SectionEnd
+
     Section "Ultimate ASI Loader (by ThirteenAG)"
         SectionIn RO
         SetOutPath "$INSTDIR\.MulderConfig\UltimateASILoader"
@@ -77,6 +113,19 @@ SectionGroup /e "Improvements configurable via MulderConfig"
         !insertmacro NSISUNZ_EXTRACT "Ultimate-ASI-Loader.zip" ".\" "AUTO_DELETE"
         !insertmacro FORCE_RENAME "dinput8.dll" "d3d11.dll"
         AddSize 5292
+    SectionEnd
+
+    Section "Ultrawide Subtitle Fix (by goobfer)"
+        SectionIn RO
+        SetOutPath "$INSTDIR\.MulderConfig"
+
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/alienisolation/mods/64?tab=files&file_id=258" \
+                                "AI_UltrawideSubtitleFix-64-1-0-1715579680.zip" \
+                                "0b013b201842833017c0b4f1467f7926d390b3e3"
+
+        RMDir /r "UltrawideSubtitleFix"
+        !insertmacro NSISUNZ_EXTRACT "AI_UltrawideSubtitleFix-64-1-0-1715579680.zip" ".\" "AUTO_DELETE"
+        Rename "AI_UltrawideSubtitleFix" "UltrawideSubtitleFix"
     SectionEnd
 
     Section "SkipSaveConfirmationDialog (by ThirteenAG)"
@@ -93,6 +142,13 @@ SectionGroup /e "Improvements configurable via MulderConfig"
     SectionEnd
 
     Section
+        CreateDirectory "$INSTDIR\.MulderConfig\Backup\DATA\UI"
+        ${IfNot} ${FileExists} "$INSTDIR\.MulderConfig\Backup\DATA\UI.PAK"
+            CopyFiles /SILENT "$INSTDIR\DATA\UI.PAK" "$INSTDIR\.MulderConfig\Backup\DATA\UI.PAK" 17111
+        ${EndIf}
+        ${IfNot} ${FileExists} "$INSTDIR\.MulderConfig\Backup\DATA\UI\SELECTIONOVERLAYPARAMS.BIN"
+            CopyFiles /SILENT "$INSTDIR\DATA\UI\SELECTIONOVERLAYPARAMS.BIN" "$INSTDIR\.MulderConfig\Backup\DATA\UI\SELECTIONOVERLAYPARAMS.BIN" 17111
+        ${EndIf}
         !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
     SectionEnd
 SectionGroupEnd
