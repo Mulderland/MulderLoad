@@ -28,8 +28,9 @@ SectionGroup /e "Improvements configurable via MulderConfig"
                                 "1ca067b0e60531223746e1bda88fd38e7d2091b4"
 
         !insertmacro NSIS7Z_EXTRACT "AliasIsolation.7z" ".\" "AUTO_DELETE"
-
         Delete "d3d11.dll"
+        AddSize 770
+
         RMDir /r "$INSTDIR\.MulderConfig\AliasIsolation\scripts"
         CreateDirectory "$INSTDIR\.MulderConfig\AliasIsolation\scripts"
         Rename "mods" "scripts\mods"
@@ -47,6 +48,7 @@ SectionGroup /e "Improvements configurable via MulderConfig"
         !insertmacro 7Z_GET
         !insertmacro 7Z_EXTRACT "Enhanced_Graphics_Alternate.rar" ".\" "AUTO_DELETE"
         !insertmacro 7Z_REMOVE
+        AddSize 25
     SectionEnd
 
     Section "Mouse Fix (by lukeman3000)"
@@ -60,6 +62,7 @@ SectionGroup /e "Improvements configurable via MulderConfig"
 
         !insertmacro NSISUNZ_EXTRACT "MouseFix.zip" ".\" "AUTO_DELETE"
         Delete "d3d11.dll"
+        AddSize 179
     SectionEnd
 
     Section "Ultimate ASI Loader (by ThirteenAG)"
@@ -73,6 +76,7 @@ SectionGroup /e "Improvements configurable via MulderConfig"
 
         !insertmacro NSISUNZ_EXTRACT "Ultimate-ASI-Loader.zip" ".\" "AUTO_DELETE"
         !insertmacro FORCE_RENAME "dinput8.dll" "d3d11.dll"
+        AddSize 5292
     SectionEnd
 
     Section "SkipSaveConfirmationDialog (by ThirteenAG)"
@@ -85,6 +89,7 @@ SectionGroup /e "Improvements configurable via MulderConfig"
                                 "cc20a5043b952bbcc5aaf30b4d6d6694fa1b79bf96c5b866f5a22ff6ac240541"
 
         !insertmacro NSISUNZ_EXTRACT_ONE "SkipSaveConfirmationDialog.zip" ".\" "AlienIsolation.SkipSaveConfirmationDialog.asi" "AUTO_DELETE"
+        AddSize 85
     SectionEnd
 
     Section
@@ -102,6 +107,7 @@ Section /o "[GFX] 2x Upscaled Textures (by ju5tA1ex)"
 
     !insertmacro NSIS7Z_EXTRACT "Upscaled-51-4-1708527061.7z.001" ".\" ""
     !insertmacro DELETE_RANGE "Upscaled-51-4-1708527061.7z.001" 16
+    AddSize 4179933
 SectionEnd
 
 Section /o "[MOD] Overhaul V2 with footsteps (by Bay)"
@@ -113,6 +119,10 @@ Section /o "[MOD] Overhaul V2 with footsteps (by Bay)"
 
     !insertmacro NSISUNZ_EXTRACT "BaysAlienIsolationOverhaulV2.zip" ".\" "AUTO_DELETE"
     !insertmacro FOLDER_MERGE "$INSTDIR\Baylor's Alien Isolation overhaul v2 w footsteps" "$INSTDIR"
+SectionEnd
+
+Section
+    RMDir /r "$INSTDIR\@mulderload"
 SectionEnd
 
 Function .onInit
