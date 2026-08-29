@@ -114,7 +114,7 @@
       },
 
 
-
+    
       {
         "when": [ { "Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
         "operation": "removeLine",
@@ -131,33 +131,19 @@
         "when": [ { "Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
         "operation": "removeLine",
         "files": ["DATA\\ENGINE_SETTINGS.XML"],
-        "pattern": "\t\t\t<Quality name=\"SMAA T2x\"\t\t\tint=\"3\"\t\tprecedence=\"4\"/>"
-      },
-      {
-        "when": [ { "Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
-        "operation": "replaceLine",
-        "files": ["DATA\\ENGINE_SETTINGS.XML"],
-        "pattern": "\t\t\t<Quality name=\"SMAA T1x\"\t\t\tint=\"2\"\t\tprecedence=\"3\"/>",
-        "replacement": "\t\t\t<Quality name=\"SMAA T1x\"\t\t\tint=\"2\"\t\tprecedence=\"1\"/>"
+        "pattern": "^\t\t\t<Quality name=\"SMAA T2x\".*$"
       },
       {
         "when": [ { "Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
         "operation": "removeLine",
         "files": ["DATA\\ENGINE_SETTINGS.XML"],
-        "pattern": "\t\t\t<Quality name=\"Off\"\tint=\"0\"\tprecedence=\"1\"/>"
-      },
-      {
-        "when": [ { "Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
-        "operation": "replaceLine",
-        "files": ["DATA\\ENGINE_SETTINGS.XML"],
-        "pattern": "\t\t\t<Quality name=\"On\" \tint=\"1\"\tprecedence=\"2\"/>",
-        "replacement": "\t\t\t<Quality name=\"On\" \tint=\"1\"\tprecedence=\"1\"/>"
+        "pattern": "^\t\t\t<Quality name=\"Off\"\tint=\"0\"\t{1,2}precedence=\"1\"/>$"
       },
       {
         "when": [ { "Graphics enhancements": "Temporal anti-aliasing (Alias Isolation)" } ],
         "operation": "removeLine",
         "files": ["DATA\\ENGINE_SETTINGS.XML"],
-        "pattern": "\t\t\t<Quality name=\"On\"\tbool=\"1\"\tprecedence=\"2\"/>"
+        "pattern": "\t\t\t<Quality name=\"On\"\t{1,2}bool=\"1\"\tprecedence=\"2\"/>"
       },
 
 
