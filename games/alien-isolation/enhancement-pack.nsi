@@ -2,15 +2,18 @@
 This is an Enhancement Pack for Alien Isolation, including:$\r$\n\
 - Alias-Isolation (better anti-aliasing, by RyanJGray)$\r$\n\
 - Alien Isolation Overhaul V2 (by Bay)$\r$\n\
+- Clean HUD (by DJ Shokwave)$\r$\n\
 - Enhanced Graphics Menu Options (by BUR7N)$\r$\n\
 - Mouse Fix (by lukeman3000)$\r$\n\
+- No Center Dot (by IkarosTRB)$\r$\n\
 - Ultimate ASI Loader (by ThirteenAG)$\r$\n\
 - Upscaled Textures (by ju5tA1ex)$\r$\n\
+- Ultrawide Subtitle Fix (by goobfer)$\r$\n\
 - SkipSaveConfirmationDialog (by ThirteenAG)$\r$\n\
 $\r$\n\
-Most enhancements are configurable via MulderConfig, which also adds the ability to disable lens flare and skip the intro videos.$\r$\n\
+Most enhancements are configurable via MulderConfig, which also lets you disable lens flare and skip intro videos.$\r$\n\
 $\r$\n\
-${TXT_WELCOMEPAGE_MULDERLAND_3}"
+${TXT_WELCOMEPAGE_MULDERLAND_1}"
 
 !define MUI_FINISHPAGE_RUN "$INSTDIR\MulderConfig.exe"
 !define MUI_FINISHPAGE_RUN_TEXT "Run MulderConfig"
@@ -61,7 +64,7 @@ SectionGroup /e "Improvements configurable via MulderConfig"
         Rename "No Mo Orange Glo\SELECTIONOVERLAYPARAMS.BIN" "No Mo Orange Glo\DATA\UI\SELECTIONOVERLAYPARAMS.BIN"
     SectionEnd
 
-    Section "Enhanced Graphics Menu Options (by BUR7N)"
+    Section "Enhanced Graphics Options (by BUR7N)"
         SectionIn RO
         SetOutPath "$INSTDIR\.MulderConfig\EnhancedGraphicsMenuOptions\DATA"
 
@@ -128,7 +131,7 @@ SectionGroup /e "Improvements configurable via MulderConfig"
         Rename "AI_UltrawideSubtitleFix" "UltrawideSubtitleFix"
     SectionEnd
 
-    Section "SkipSaveConfirmationDialog (by ThirteenAG)"
+    Section "SkipSaveConfirmationDialog (ThirteenAG)"
         SectionIn RO
         SetOutPath "$INSTDIR\.MulderConfig\SkipSaveConfirmationDialog\scripts"
 
