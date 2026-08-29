@@ -6,12 +6,13 @@ This is an Enhancement Pack for Alien Isolation, including:$\r$\n\
 - Enhanced Graphics Menu Options (by BUR7N)$\r$\n\
 - Mouse Fix (by lukeman3000)$\r$\n\
 - No Center Dot (by IkarosTRB)$\r$\n\
+- No Lens flare (by Sorceress)$\r$\n\
 - Ultimate ASI Loader (by ThirteenAG)$\r$\n\
 - Upscaled Textures (by ju5tA1ex)$\r$\n\
 - Ultrawide Subtitle Fix (by goobfer)$\r$\n\
 - SkipSaveConfirmationDialog (by ThirteenAG)$\r$\n\
 $\r$\n\
-Most enhancements are configurable via MulderConfig, which also lets you disable lens flare and skip intro videos.$\r$\n\
+Most enhancements are configurable via MulderConfig.$\r$\n\
 $\r$\n\
 ${TXT_WELCOMEPAGE_MULDERLAND_1}"
 
@@ -104,6 +105,18 @@ SectionGroup /e "Improvements configurable via MulderConfig"
         AddSize 17111
     SectionEnd
 
+    Section "No Lens flare (by Sorceress)"
+        SectionIn RO
+        SetOutPath "$INSTDIR\.MulderConfig\NoLensflare\DATA"
+
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/alien-isolation-no-lensflare-mod/addons/alien-isolation-mod" \
+                                "NoLensflareMod.7z" \
+                                "6691327f783d4a68ac7a36aaeca060b6"
+
+        !insertmacro NSIS7Z_EXTRACT "NoLensflareMod.7z" ".\" "AUTO_DELETE"
+        AddSize 2
+    SectionEnd
+
     Section "Ultimate ASI Loader (by ThirteenAG)"
         SectionIn RO
         SetOutPath "$INSTDIR\.MulderConfig\UltimateASILoader"
@@ -149,8 +162,11 @@ SectionGroup /e "Improvements configurable via MulderConfig"
         ${IfNot} ${FileExists} "$INSTDIR\.MulderConfig\Backup\DATA\UI.PAK"
             CopyFiles /SILENT "$INSTDIR\DATA\UI.PAK" "$INSTDIR\.MulderConfig\Backup\DATA\UI.PAK" 17111
         ${EndIf}
+        ${IfNot} ${FileExists} "$INSTDIR\.MulderConfig\Backup\DATA\LENS_FLARE_CONFIG.BIN"
+            CopyFiles /SILENT "$INSTDIR\DATA\LENS_FLARE_CONFIG.BIN" "$INSTDIR\.MulderConfig\Backup\DATA\LENS_FLARE_CONFIG.BIN" 2
+        ${EndIf}
         ${IfNot} ${FileExists} "$INSTDIR\.MulderConfig\Backup\DATA\UI\SELECTIONOVERLAYPARAMS.BIN"
-            CopyFiles /SILENT "$INSTDIR\DATA\UI\SELECTIONOVERLAYPARAMS.BIN" "$INSTDIR\.MulderConfig\Backup\DATA\UI\SELECTIONOVERLAYPARAMS.BIN" 17111
+            CopyFiles /SILENT "$INSTDIR\DATA\UI\SELECTIONOVERLAYPARAMS.BIN" "$INSTDIR\.MulderConfig\Backup\DATA\UI\SELECTIONOVERLAYPARAMS.BIN" 1
         ${EndIf}
         !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
     SectionEnd

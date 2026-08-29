@@ -70,31 +70,19 @@
 
       {
         "when": [ { "Graphics enhancements": "Disable lens flare" } ],
-        "operation": "move",
-        "source": "DATA\\LENS_FLARE_ATLAS.BIN",
-        "target": ".MulderConfig\\Backup\\DATA\\LENS_FLARE_ATLAS.BIN"
-      },
-      {
-        "when": [ { "Graphics enhancements": "Disable lens flare" } ],
-        "operation": "move",
-        "source": "DATA\\LENS_FLARE_CONFIG.BIN",
-        "target": ".MulderConfig\\Backup\\DATA\\LENS_FLARE_CONFIG.BIN"
+        "operation": "copy",
+        "source": ".MulderConfig\\NoLensflare\\DATA\\LENS_FLARE_CONFIG.BIN",
+        "target": "DATA\\LENS_FLARE_CONFIG.BIN"
       },
       {
         "when": [ { "!Graphics enhancements": "Disable lens flare" } ],
-        "operation": "move",
-        "source": ".MulderConfig\\Backup\\DATA\\LENS_FLARE_ATLAS.BIN",
-        "target": "DATA\\LENS_FLARE_ATLAS.BIN"
-      },
-      {
-        "when": [ { "!Graphics enhancements": "Disable lens flare" } ],
-        "operation": "move",
+        "operation": "copy",
         "source": ".MulderConfig\\Backup\\DATA\\LENS_FLARE_CONFIG.BIN",
         "target": "DATA\\LENS_FLARE_CONFIG.BIN"
       },
 
 
-      
+
       {
         "when": [ { "Graphics enhancements": "Enhanced menu options" } ],
         "operation": "copy",
