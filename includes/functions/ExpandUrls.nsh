@@ -8,6 +8,8 @@
 !include "..\..\includes\functions\StrReplace.nsh"
 !include "..\..\includes\functions\StrStartsWith.nsh"
 
+Var /GLOBAL CloudflareErrors
+
 Function ExpandUrls
     !insertmacro STACKFRAME_BEGIN 1 4
     # $0: urls list (separated by |)
@@ -41,6 +43,7 @@ Function ExpandUrls
 
     !insertmacro STR_STARTS_WITH $R1 "https://www.moddb.com/" $R2
     ${If} $R2 == 1
+        Push 7
         Push $R1
         Call _ExpandUrlRedirect
         Pop $R1
@@ -49,6 +52,7 @@ Function ExpandUrls
 
     !insertmacro STR_STARTS_WITH $R1 "https://www.nexusmods.com/" $R2
     ${If} $R2 == 1
+        Push 6
         Push $R1
         Call _ExpandUrlRedirect
         Pop $R1
@@ -57,6 +61,7 @@ Function ExpandUrls
 
     !insertmacro STR_STARTS_WITH $R1 "https://community.pcgamingwiki.com/" $R2
     ${If} $R2 == 1
+        Push 7
         Push $R1
         Call _ExpandUrlRedirect
         Pop $R1
@@ -87,14 +92,20 @@ Function _ExpandUrlCdn
     ; $R1: return value
 
     !insertmacro STR_REPLACE "https://cdn.mulderload.eu/" "https://cdn.de.mulderload.eu/" "$0" $R0
-    StrCpy $R1 "$0|$R0"
+    ${If} $CloudflareErrors >= 3
+        StrCpy $R3 "$R0"
+    ${ElseIf} $CloudflareErrors >= 2
+        StrCpy $R3 "$R0|$0"
+    ${Else}
+        StrCpy $R3 "$0|$R0"
+    ${EndIf}
 
     !insertmacro STACKFRAME_RETURN 1 2 $R1
     !insertmacro STACKFRAME_END 1 2
 FunctionEnd
 
 Function _ExpandUrlRedirect
-    !insertmacro STACKFRAME_BEGIN 1 4
+    !insertmacro STACKFRAME_BEGIN 2 4
     ; $0: url input
     ; $R0-R2: locals
     ; $R3: return value
@@ -102,10 +113,18 @@ Function _ExpandUrlRedirect
     !insertmacro STR_REPLACE "https://" "https://redirect.mulderland.com/" "$0" $R0
     !insertmacro STR_REPLACE "https://" "https://redirect.mulderload.eu/" "$0" $R1
     !insertmacro STR_REPLACE "https://" "https://redirect.de.mulderload.eu/" "$0" $R2
-    StrCpy $R3 "$R0|$R1|$R2"
 
-    !insertmacro STACKFRAME_RETURN 1 4 $R3
-    !insertmacro STACKFRAME_END 1 4
+    ${If} $CloudflareErrors >= 3
+    ${OrIfNot} $1 & 1
+        StrCpy $R3 "$R1|$R2"
+    ${ElseIf} $CloudflareErrors >= 2
+        StrCpy $R3 "$R1|$R2|$R0"
+    ${Else}
+        StrCpy $R3 "$R0|$R1|$R2"
+    ${EndIf}
+
+    !insertmacro STACKFRAME_RETURN 2 4 $R3
+    !insertmacro STACKFRAME_END 2 4
 FunctionEnd
 
 !ifmacrondef EXPAND_URLS

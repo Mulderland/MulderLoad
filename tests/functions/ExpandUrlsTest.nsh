@@ -9,12 +9,14 @@ Section "ExpandUrls"
     !insertmacro ASSERT_EQUALS $0 "https://cdn.mulderload.eu/games/a-game/a-file.7z|https://cdn.de.mulderload.eu/games/a-game/a-file.7z"
 
     DetailPrint " // _ExpandUrlRedirect (non-www)"
+    Push 7
     Push "https://moddb.com/games/a-game/a-file.7z"
     Call _ExpandUrlRedirect
     Pop $0
     !insertmacro ASSERT_EQUALS $0 "https://redirect.mulderland.com/moddb.com/games/a-game/a-file.7z|https://redirect.mulderload.eu/moddb.com/games/a-game/a-file.7z|https://redirect.de.mulderload.eu/moddb.com/games/a-game/a-file.7z"
 
     DetailPrint " // _ExpandUrlRedirect (www)"
+    Push 7
     Push "https://www.moddb.com/games/a-game/a-file.7z"
     Call _ExpandUrlRedirect
     Pop $0

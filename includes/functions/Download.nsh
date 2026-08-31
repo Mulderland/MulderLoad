@@ -77,6 +77,12 @@ Function Download
         ${EndIf}
 
     Download_next:
+        !insertmacro STR_STARTS_WITH "$R1" "https://cdn.mulderload.eu/" $R4
+        !insertmacro STR_STARTS_WITH "$R1" "https://redirect.mulderload.eu/" $R5
+        ${If} $R4 == 1
+        ${OrIf} $R5 == 1
+            IntOp $CloudflareErrors $CloudflareErrors + 1
+        ${EndIf}
         IntOp $R0 $R0 + 1
         Goto Download_loop
 
