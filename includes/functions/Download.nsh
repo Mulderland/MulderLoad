@@ -8,13 +8,15 @@
 !include "..\..\includes\functions\FileHashEquals.nsh"
 !include "..\..\includes\functions\StrStartsWith.nsh"
 
-!ifmacrondef _IS_MULDERLOAD
-    !macro _IS_MULDERLOAD URL RESULT
+!ifmacrondef _GET_MULDERLOAD_TYPE
+    !macro _GET_MULDERLOAD_TYPE URL RESULT
         Push "${URL}"
-        Call _IsMulderLoad
+        Call _GetMulderLoadType
         Pop ${RESULT}
     !macroend
 !endif
+
+!define CLOUDFLARE_LOWSPEEDLIMIT 2097152 ; 2 MB/s
 
 Function Download
     !insertmacro STACKFRAME_BEGIN 3 6
@@ -25,7 +27,7 @@ Function Download
     # $R1: current url value
     # $R2: temporary status (nscurl / hash)
     # $R3: expanded urls list (separated by |)
-    # $R4: _isMulderLoad
+    # $R4: _getMulderLoadType
     # $R5: result (OK, ERR_DOWNLOAD, ERR_HASH)
 
     !insertmacro EXPAND_URLS $0 $R3
@@ -45,8 +47,10 @@ Function Download
 
         DetailPrint " // Downloading $R1"
 
-        !insertmacro _IS_MULDERLOAD $R1 $R4
-        ${If} $R4 == 1
+        !insertmacro _GET_MULDERLOAD_TYPE $R1 $R4
+        ${If} $R4 == 2
+            NScurl::http GET "$R1" "$1" /HEADER "Mld-Key: $%MULDERLOAD_KEY%" /LOWSPEEDLIMIT ${CLOUDFLARE_LOWSPEEDLIMIT} 10s /CONNECTTIMEOUT 10s /RESUME /CANCEL /END
+        ${ElseIf} $R4 == 1
             NScurl::http GET "$R1" "$1" /HEADER "Mld-Key: $%MULDERLOAD_KEY%" /CONNECTTIMEOUT 10s /INSIST /RESUME /CANCEL /END
         ${Else}
             NScurl::http GET "$R1" "$1" /CONNECTTIMEOUT 10s /INSIST /RESUME /CANCEL /END
@@ -91,17 +95,17 @@ Function Download
         !insertmacro STACKFRAME_END 3 6
 FunctionEnd
 
-Function _IsMulderLoad
+Function _GetMulderLoadType
     !insertmacro STACKFRAME_BEGIN 1 2
     # $0: url
     # $R0: local
-    # $R1: result
+    # $R1: result (0: not mulderload, 1: mulderload with cloudflare, 2: mulderload without cloudflare)
 
     StrCpy $R1 0
 
     !insertmacro STR_STARTS_WITH "$0" "https://cdn.mulderload.eu/" $R0
     ${If} $R0 == 1
-        StrCpy $R1 1
+        StrCpy $R1 2
         Goto _IsMulderLoad_done
     ${EndIf}
 
@@ -113,7 +117,7 @@ Function _IsMulderLoad
 
     !insertmacro STR_STARTS_WITH "$0" "https://redirect.mulderload.eu/" $R0
     ${If} $R0 == 1
-        StrCpy $R1 1
+        StrCpy $R1 2
         Goto _IsMulderLoad_done
     ${EndIf}
 
