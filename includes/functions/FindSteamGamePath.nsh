@@ -36,16 +36,16 @@ Function FindSteamGamePath
             ${ElseIf} ${FileExists} "Z:\home\$R0\.local\share\Steam\steamapps\common\$0\*.*"
                 StrCpy $R1 "Z:\home\$R0\.local\share\Steam\steamapps\common\$0"
             ${Else}
-                Goto FindSteamPath_windows
+                Goto FindSteamGamePath_windows
             ${EndIf}
         ${EndIf}
     ${Else}
         # Installer launched with Windows (or Wine)
-        FindSteamPath_windows:
-        ${If} ${FileExists} "C:\Program Files (x86)\steam\steamapps\common\$0\*.*"
-            StrCpy $R1 "C:\Program Files (x86)\steam\steamapps\common\$0"
-        ${ElseIf} ${FileExists} "C:\Program Files\steam\steamapps\common\$0\*.*"
-            StrCpy $R1 "C:\Program Files\steam\steamapps\common\$0"
+        FindSteamGamePath_windows:
+        ${If} ${FileExists} "C:\Program Files (x86)\Steam\steamapps\common\$0\*.*"
+            StrCpy $R1 "C:\Program Files (x86)\Steam\steamapps\common\$0"
+        ${ElseIf} ${FileExists} "C:\Program Files\Steam\steamapps\common\$0\*.*"
+            StrCpy $R1 "C:\Program Files\Steam\steamapps\common\$0"
         ${ElseIf} ${FileExists} "D:\steamapps\common\$0\*.*"
             StrCpy $R1 "D:\steamapps\common\$0"
         ${ElseIf} ${FileExists} "D:\Games\steamapps\common\$0\*.*"
