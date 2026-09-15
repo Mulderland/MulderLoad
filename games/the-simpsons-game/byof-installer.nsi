@@ -25,13 +25,13 @@ Section "TheSimpsonsGame-Recompiled (unofficial PC port)"
     SetOutPath "$INSTDIR"
 
     DetailPrint " // Get TheSimpsonsGame-Recompiled"
-    !insertmacro DOWNLOAD_2 "https://github.com/YesterMester/TheSimpsonsGameRecomp/releases/download/v0.0.5.4/TheSimpsonsGame-Recompiled-Windows-x64.zip" \
-                            "https://cdn.mulderload.eu/games/the-simpsons-game/port/TheSimpsonsGame-Recompiled-Windows-x64-v0.0.5.4.zip" \
+    !insertmacro DOWNLOAD_2 "https://github.com/YesterMester/TheSimpsonsGameRecomp/releases/download/v0.0.5.5/TheSimpsonsGame-Recompiled-Windows-x64.zip" \
+                            "https://cdn.mulderload.eu/games/the-simpsons-game/port/TheSimpsonsGame-Recompiled-Windows-x64-v0.0.5.5.zip" \
                             "TheSimpsonsGame-Recompiled-Windows-x64.zip" \
-                            "c5573bd13f4ec9f844fe3e67dbb98c4258720dfa9a83d9f9a1d3b3e590097d41"
+                            "80ca2774c70be529fd4cf35fbaf0e6116b82835061019b4db081ea5fff0be4c2"
 
     !insertmacro NSISUNZ_EXTRACT "TheSimpsonsGame-Recompiled-Windows-x64.zip" ".\" "AUTO_DELETE"
-    AddSize 445306
+    AddSize 444975
 SectionEnd
 
 Section "Extract game files from DVD image"
