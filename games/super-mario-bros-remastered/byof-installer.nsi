@@ -19,15 +19,15 @@ InstallDir "C:\MulderLoad\Super Mario Bros Remastered"
 !insertmacro BYOF_PAGE_CREATE
 !insertmacro BYOF_WRITE_ENABLE_NEXT_BUTTON
 
-Section "Super Mario Bros Remastered v1.02"
-    AddSize 128000
+Section "Super Mario Bros Remastered v1.1-stable"
+    AddSize 162793
     SectionIn RO
     SetOutPath "$INSTDIR"
 
-    !insertmacro DOWNLOAD_2 "https://github.com/JHDev2006/Super-Mario-Bros.-Remastered-Public/releases/download/1.0.2/Windows.zip" \
-                            "https://cdn.mulderload.eu/games/super-mario-bros-remastered/base/Windows-v1.0.2.zip" \
+    !insertmacro DOWNLOAD_2 "https://github.com/JHDev2006/Super-Mario-Bros.-Remastered-Public/releases/download/1.1-stable/Windows.zip" \
+                            "https://cdn.mulderload.eu/games/super-mario-bros-remastered/base/Windows-v1.1-stable.zip" \
                             "SMBR.zip" \
-                            "0f6a19f09d561259d506165abddce1c2815d889d"
+                            "164f5160b7b73f161b956fa1470813c8e21fa92424f94c8889de46111a59c109"
 
     !insertmacro NSISUNZ_EXTRACT "SMBR.zip" ".\" "AUTO_DELETE"
 
