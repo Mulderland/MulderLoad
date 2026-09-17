@@ -1,0 +1,44 @@
+[Controller Settings]
+Button Icons="AUTO"
+Button Icons (PW)="Keyboard"
+Enable DualShock 3 Support=0
+Set Menu OK && Cancel Button="Default"
+
+[Debugging]
+Debug Logging=0
+Log Create Results=0
+Log Framebuffers=0
+MSAA Log Targets=0
+
+[Enhancements && Tweaks]
+Anisotropic Filtering Level=16
+Custom Shadow Resolution="4096"
+Disable Dynamic Resolution=1
+Disable Motion Blur=1
+Pause On Focus Loss=0
+
+[Language Settings]
+Game Language="en"
+Game Region="eu"
+
+[Launcher and Splashscreens]
+Cutscenes (PW)="Original"
+Internal Resolution (PW)="Original"
+Internal Upscaling (PW)="Original"
+Skip In-Game Splashscreens=1
+Skip Launcher=1
+Skip Launcher Splashscreens="Disabled"
+Skip Launcher Splashscreens (PW)="Disabled"
+
+[Mouse Settings]
+Mouse Horizontal Sensitivity=1.000000
+Mouse Vertical Sensitivity=1.000000
+Use Raw Mouse Input=1
+
+[System Specific Fixes]
+Disable Windows Fullscreen Optimization=0
+
+[Update Notifications]
+Check For MGSPatriotFix Updates=0
+In-Game Update Notifications=0
+

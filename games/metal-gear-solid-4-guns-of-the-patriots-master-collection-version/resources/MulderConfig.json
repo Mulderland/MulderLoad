@@ -1,0 +1,316 @@
+{
+  "game": {
+    "title": "Metal Gear Solid 4: Guns of the Patriots (Master Collection Version)",
+    "originalExe": "mgs4.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Ultrawide Support",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "No (default)" },
+        { "value": "21/9 (2560x1080)" },
+        { "value": "21/9 (3440x1440)" },
+        { "value": "21/9 (3840x1600)" },
+        { "value": "32/9 (3840x1080)" },
+        { "value": "32/9 (5120x1440)" },
+        { "value": "32/9 (7680x2160)" }
+      ]
+    },
+    {
+      "name": "FOV Modifier",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Lowest (-20%)" },
+        { "value": "Lower (-10%)" },
+        { "value": "Default" },
+        { "value": "Higher (+10%)" },
+        { "value": "Highest (+20%)" }
+      ]
+    },
+    {
+      "name": "FPS Unlocker",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "No (60 FPS)" },
+        { "value": "120 FPS" },
+        { "value": "144 FPS" },
+        { "value": "165 FPS" },
+        { "value": "240 FPS" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Stats Overlay (Warning: dx11 only, crashes on dx12)" },
+        { "value": "Ultrawide Centered HUD", "disabledWhen": [ { "Ultrawide Support": "No (default)" } ] }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ ],
+        "operation": "move",
+        "source": "MGS4\\scripts\\MGS4Ultra120.asi",
+        "target": ".MulderConfig\\MGS4Ultra120\\MGS4\\scripts\\MGS4Ultra120.asi"
+      },
+      {
+        "when": [ { "!Ultrawide Support": "No (default)" }, { "!FOV Modifier": "Default" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\MGS4Ultra120\\MGS4\\scripts\\MGS4Ultra120.asi",
+        "target": "MGS4\\scripts\\MGS4Ultra120.asi"
+      },
+
+
+
+      {
+        "when": [ { "*Ultrawide Support": "2560x" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=2560"
+      },
+      {
+        "when": [ { "*Ultrawide Support": "3440x" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=3440"
+      },
+      {
+        "when": [ { "*Ultrawide Support": "3840x" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=3840"
+      },
+      {
+        "when": [ { "*Ultrawide Support": "5120x" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=5120"
+      },
+      {
+        "when": [ { "*Ultrawide Support": "7680x" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^Width=.*$",
+        "replacement": "Width=7680"
+      },
+      {
+        "when": [ { "*Ultrawide Support": "x1080" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=1080"
+      },
+      {
+        "when": [ { "*Ultrawide Support": "x1440" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=1440"
+      },
+      {
+        "when": [ { "*Ultrawide Support": "x1600" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=1600"
+      },
+      {
+        "when": [ { "*Ultrawide Support": "x2160" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^Height=.*$",
+        "replacement": "Height=2160"
+      },
+
+
+      
+      {
+        "when": [ { "Ultrawide Support": "No (default)", "FOV Modifier": "Lowest (-20%)" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^FOVMultiplier=.*$",
+        "replacement": "FOVMultiplier=0.8"
+      },
+      {
+        "when": [ { "Ultrawide Support": "No (default)", "FOV Modifier": "Lower (-10%)" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^FOVMultiplier=.*$",
+        "replacement": "FOVMultiplier=0.9"
+      },
+      {
+        "when": [ { "Ultrawide Support": "No (default)", "FOV Modifier": "Default" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^FOVMultiplier=.*$",
+        "replacement": "FOVMultiplier=1.0"
+      },
+      {
+        "when": [ { "Ultrawide Support": "No (default)", "FOV Modifier": "Higher (+10%)" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^FOVMultiplier=.*$",
+        "replacement": "FOVMultiplier=1.1"
+      },
+      {
+        "when": [ { "Ultrawide Support": "No (default)", "FOV Modifier": "Highest (+20%)" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^FOVMultiplier=.*$",
+        "replacement": "FOVMultiplier=1.2"
+      },
+
+
+
+      {
+        "when": [ { "*Ultrawide Support": "21/9", "FOV Modifier": "Lowest (-20%)" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^FOVMultiplier=.*$",
+        "replacement": "FOVMultiplier=0.96"
+      },
+      {
+        "when": [ { "*Ultrawide Support": "21/9", "FOV Modifier": "Lower (-10%)" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^FOVMultiplier=.*$",
+        "replacement": "FOVMultiplier=1.08"
+      },
+      {
+        "when": [ { "*Ultrawide Support": "21/9", "FOV Modifier": "Default" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^FOVMultiplier=.*$",
+        "replacement": "FOVMultiplier=1.2"
+      },
+      {
+        "when": [ { "*Ultrawide Support": "21/9", "FOV Modifier": "Higher (+10%)" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^FOVMultiplier=.*$",
+        "replacement": "FOVMultiplier=1.32"
+      },
+      {
+        "when": [ { "*Ultrawide Support": "21/9", "FOV Modifier": "Highest (+20%)" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^FOVMultiplier=.*$",
+        "replacement": "FOVMultiplier=1.44"
+      },
+
+
+      {
+        "when": [ { "*Ultrawide Support": "32/9", "FOV Modifier": "Lowest (-20%)" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^FOVMultiplier=.*$",
+        "replacement": "FOVMultiplier=1.44"
+      },
+      {
+        "when": [ { "*Ultrawide Support": "32/9", "FOV Modifier": "Lower (-10%)" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^FOVMultiplier=.*$",
+        "replacement": "FOVMultiplier=1.62"
+      },
+      {
+        "when": [ { "*Ultrawide Support": "32/9", "FOV Modifier": "Default" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^FOVMultiplier=.*$",
+        "replacement": "FOVMultiplier=1.8"
+      },
+      {
+        "when": [ { "*Ultrawide Support": "32/9", "FOV Modifier": "Higher (+10%)" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^FOVMultiplier=.*$",
+        "replacement": "FOVMultiplier=1.98"
+      },
+      {
+        "when": [ { "*Ultrawide Support": "32/9", "FOV Modifier": "Highest (+20%)" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^FOVMultiplier=.*$",
+        "replacement": "FOVMultiplier=2.16"
+      },
+
+
+
+      {
+        "when": [ { "FPS Unlocker": "No (60 FPS)" } ],
+        "operation": "move",
+        "source": "MGS4\\scripts\\MGSFPSUnlock.asi",
+        "target": ".MulderConfig\\MGSFPSUnlock\\MGS4\\scripts\\MGSFPSUnlock.asi"
+      },
+      {
+        "when": [ { "!FPS Unlocker": "No (60 FPS)" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\MGSFPSUnlock\\MGS4\\scripts\\MGSFPSUnlock.asi",
+        "target": "MGS4\\scripts\\MGSFPSUnlock.asi"
+      },
+      {
+        "when": [ { "FPS Unlocker": "120 FPS" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\scripts\\MGSFPSUnlock.ini"],
+        "pattern": "^TargetFrameRate.*$",
+        "replacement": "TargetFrameRate = 120"
+      },
+      {
+        "when": [ { "FPS Unlocker": "144 FPS" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\scripts\\MGSFPSUnlock.ini"],
+        "pattern": "^TargetFrameRate.*$",
+        "replacement": "TargetFrameRate = 144"
+      },
+      {
+        "when": [ { "FPS Unlocker": "165 FPS" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\scripts\\MGSFPSUnlock.ini"],
+        "pattern": "^TargetFrameRate.*$",
+        "replacement": "TargetFrameRate = 165"
+      },
+      {
+        "when": [ { "FPS Unlocker": "240 FPS" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\scripts\\MGSFPSUnlock.ini"],
+        "pattern": "^TargetFrameRate.*$",
+        "replacement": "TargetFrameRate = 240"
+      },
+
+
+
+      {
+        "when": [ { "*Misc": "Stats Overlay" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\MGS4StatsOverlay\\MGS4\\scripts\\mgs4-vv.asi",
+        "target": "MGS4\\scripts\\mgs4-vv.asi"
+      },
+      {
+        "when": [ { "!*Misc": "Stats Overlay" } ],
+        "operation": "move",
+        "source": "MGS4\\scripts\\mgs4-vv.asi",
+        "target": ".MulderConfig\\MGS4StatsOverlay\\MGS4\\scripts\\mgs4-vv.asi"
+      },
+      {
+        "when": [ { "Misc": "Ultrawide Centered HUD" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\MGS4Ultra120\\MGS4\\scripts\\MGS4NativeCenteredHUD.asi",
+        "target": "MGS4\\scripts\\MGS4NativeCenteredHUD.asi"
+      },
+      {
+        "when": [ { "!Misc": "Ultrawide Centered HUD" } ],
+        "operation": "move",
+        "source": "MGS4\\scripts\\MGS4NativeCenteredHUD.asi",
+        "target": ".MulderConfig\\MGS4Ultra120\\MGS4\\scripts\\MGS4NativeCenteredHUD.asi"
+      }
+    ]
+  }
+}
