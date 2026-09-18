@@ -245,6 +245,23 @@
 
 
       {
+        "when": [ { "Ultrawide Support": "No (default)" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^ExperimentalCinematicFOV=.*$",
+        "replacement": "ExperimentalCinematicFOV=0"
+      },
+      {
+        "when": [ { "!Ultrawide Support": "No (default)" } ],
+        "operation": "replaceLine",
+        "files": ["MGS4\\mgs4_ultrawide.ini"],
+        "pattern": "^ExperimentalCinematicFOV=.*$",
+        "replacement": "ExperimentalCinematicFOV=1"
+      },
+
+
+
+      {
         "when": [ { "FPS Unlocker": "No (60 FPS)" } ],
         "operation": "move",
         "source": "MGS4\\scripts\\MGSFPSUnlock.asi",
