@@ -9,9 +9,11 @@ ${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
 $\r$\n\
 Special thanks to the development team, Galactic Cafe! Consider buying the full game on Steam: it has a lot more content than this early version."
 
-!include "..\..\includes\templates\SelectTemplate.nsh"
+!define AFTER_DIRECTORY_PAGE
+!include "..\..\includes\templates\ClassicTemplate.nsh"
 
-Name "The Stanley Parable (Mod)"
+Name "The Stanley Parable (2011)"
+InstallDir "C:\MulderLoad\The Stanley Parable 2011"
 
 Section "The Stanley Parable v1.4"
     AddSize 77722
@@ -27,8 +29,6 @@ Section "The Stanley Parable v1.4"
     !insertmacro FOLDER_MERGE "$INSTDIR\thestanleyparable" "$INSTDIR"
 SectionEnd
 
-Function .onInit
-    StrCpy $SELECT_FILENAME "steam.exe"
-    StrCpy $SELECT_INSTALL_PATH "C:\Program Files (x86)\Steam"
-    StrCpy $SELECT_RELATIVE_PATH "steamapps\sourcemods\thestanleyparable"
+Function AfterDirectoryPage
+    !insertmacro STEAM_SOURCEMOD_PRE_INSTALL "Source SDK Base 2007" "thestanleyparable"
 FunctionEnd
