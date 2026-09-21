@@ -1,6 +1,8 @@
 {
   "Condemned: Criminal Origins": {
-    "Graphical Improvements": [],
+    "Graphical Improvements": [
+      "DxWrapper's Anti-Aliasing. You must set FSAA=Off"
+    ],
     "Vertical FOV": "Default (64.5)",
     "FPS Limiter": "60 FPS (recommended for correct stair timing)",
     "Window Mode": "Exclusive Fullscreen",

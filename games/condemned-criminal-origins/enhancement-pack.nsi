@@ -90,6 +90,10 @@ SectionGroup /e "Improvements configurable via MulderConfig"
         !insertmacro NSISUNZ_EXTRACT_ONE "DSOAL_r693.zip" ".\" "DSOAL\Win32\alsoft.ini" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "DSOAL_r693.zip" ".\" "DSOAL\Win32\dsoal-aldrv.dll" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "DSOAL_r693.zip" ".\" "DSOAL\Win32\dsound.dll" "AUTO_DELETE"
+
+        # Make dsound.dll override works
+        WriteRegStr HKCU "Software\Classes\WOW6432Node\CLSID\{47D4D946-62E8-11CF-93BC-444553540000}\InprocServer32" "" "dsound.dll"
+        WriteRegStr HKCU "Software\Classes\WOW6432Node\CLSID\{3901CC3F-84B5-4FA4-BA35-AA8172B8A09B}\InprocServer32" "" "dsound.dll"
     SectionEnd
 
     Section "Improved Shaders (Sikkmod v3)"
