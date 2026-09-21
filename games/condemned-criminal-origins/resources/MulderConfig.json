@@ -9,7 +9,8 @@
       "type": "checkboxGroup",
       "checkboxes": [
         { "value": "AI upscaled textures (Neural Origins)" },
-        { "value": "Sikkmod. You must set FSAA=Off, FullscreenFX=Off, SoftShadows=On" }
+        { "value": "DxWrapper's Anti-Aliasing. You must set FSAA=Off",  "disabledWhen": [ { "*Graphical Improvements": "Sikkmod" } ] },
+        { "value": "Sikkmod. You must set FSAA=Off, FullscreenFX=Off, SoftShadows=On", "disabledWhen": [ { "*Graphical Improvements": "DxWrapper's Anti-Aliasing" } ] }
       ]
     },
     {
@@ -26,11 +27,13 @@
       ]
     },
     {
-      "name": "HUD Modifications",
-      "type": "checkboxGroup",
-      "checkboxes": [
-        { "value": "Alternate HUD Colors (recommended for OLED)" },
-        { "value": "Toggleable HUD (default key = Caps Lock)" }
+      "name": "FPS Limiter",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "60 FPS (recommended for correct stair timing)" },
+        { "value": "120 FPS" },
+        { "value": "144 FPS" },
+        { "value": "Uncapped (warning: breaks ragdoll physics)" }
       ]
     },
     {
@@ -40,6 +43,14 @@
         { "value": "Exclusive Fullscreen" },
         { "value": "Borderless Windowed Fullscreen" },
         { "value": "Windowed" }
+      ]
+    },
+    {
+      "name": "HUD Modifications",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Alternate HUD Colors (recommended for OLED)" },
+        { "value": "Toggleable HUD (default key = Caps Lock)" }
       ]
     },
     {
@@ -78,7 +89,24 @@
       },
 
 
-      
+
+      {
+        "when": [ { "*Graphical Improvements": "DxWrapper's Anti-Aliasing" } ],
+        "operation": "replaceLine",
+        "files": ["dxwrapper.ini"],
+        "pattern": "^AntiAliasing.*$",
+        "replacement": "AntiAliasing               = 1"
+      },
+      {
+        "when": [ { "!*Graphical Improvements": "DxWrapper's Anti-Aliasing" } ],
+        "operation": "replaceLine",
+        "files": ["dxwrapper.ini"],
+        "pattern": "^AntiAliasing.*$",
+        "replacement": "AntiAliasing               = 0"
+      },
+
+
+
       {
         "when": [ { "*Graphical Improvements": "Sikkmod" } ],
         "operation": "move",
@@ -141,6 +169,67 @@
         "files": ["autoexec.cfg"],
         "search": "\"NearZ\"",
         "replacement": "\"FovY\" \"90.0\"\n\"NearZ\""
+      },
+
+
+
+      {
+        "when": [ { "*FPS Limiter": "60 FPS" } ],
+        "operation": "replaceLine",
+        "files": ["dxwrapper.ini"],
+        "pattern": "^LimitPerFrameFPS.*$",
+        "replacement": "LimitPerFrameFPS           = 60"
+      },
+      {
+        "when": [ { "FPS Limiter": "120 FPS" } ],
+        "operation": "replaceLine",
+        "files": ["dxwrapper.ini"],
+        "pattern": "^LimitPerFrameFPS.*$",
+        "replacement": "LimitPerFrameFPS           = 120"
+      },
+      {
+        "when": [ { "FPS Limiter": "144 FPS" } ],
+        "operation": "replaceLine",
+        "files": ["dxwrapper.ini"],
+        "pattern": "^LimitPerFrameFPS.*$",
+        "replacement": "LimitPerFrameFPS           = 144"
+      },
+      {
+        "when": [ { "*FPS Limiter": "Uncapped" } ],
+        "operation": "replaceLine",
+        "files": ["dxwrapper.ini"],
+        "pattern": "^LimitPerFrameFPS.*$",
+        "replacement": "LimitPerFrameFPS           = 0"
+      },
+
+      
+      
+      {
+        "when": [ ],
+        "operation": "removeLine",
+        "files": ["autoexec.cfg"],
+        "pattern": "^\"Windowed\".*$"
+      },
+      {
+        "when": [ { "!Window Mode": "Exclusive Fullscreen" } ],
+        "operation": "replaceText",
+        "files": ["autoexec.cfg"],
+        "search": "\"GPUSafeLevel\"",
+        "replacement": "\"Windowed\" \"1\"\n\"GPUSafeLevel\""
+      },
+      {
+        "when": [ { "Window Mode": "Borderless Windowed Fullscreen" } ],
+        "operation": "replaceText",
+        "files": ["scripts\\Condemned.WidescreenFix.ini"],
+        "search": "BorderlessWindowed = 0",
+        "replacement": "BorderlessWindowed = 1"
+      },
+      {
+        "when": [ { "!Window Mode": "Borderless Windowed Fullscreen" } ],
+        "operation": "replaceText",
+        "files": ["scripts\\Condemned.WidescreenFix.ini"],
+        "search": "BorderlessWindowed = 1",
+        "replacement": "BorderlessWindowed = 0"
       },
 
 
@@ -219,36 +308,6 @@
         "operation": "move",
         "source": "scripts\\ShaderToggler.addon",
         "target": ".MulderConfig\\ToggleHUD\\scripts\\ShaderToggler.addon"
-      },
-
-      
-      
-      {
-        "when": [ ],
-        "operation": "removeLine",
-        "files": ["autoexec.cfg"],
-        "pattern": "^\"Windowed\".*$"
-      },
-      {
-        "when": [ { "!Window Mode": "Exclusive Fullscreen" } ],
-        "operation": "replaceText",
-        "files": ["autoexec.cfg"],
-        "search": "\"GPUSafeLevel\"",
-        "replacement": "\"Windowed\" \"1\"\n\"GPUSafeLevel\""
-      },
-      {
-        "when": [ { "Window Mode": "Borderless Windowed Fullscreen" } ],
-        "operation": "replaceText",
-        "files": ["scripts\\Condemned.WidescreenFix.ini"],
-        "search": "BorderlessWindowed = 0",
-        "replacement": "BorderlessWindowed = 1"
-      },
-      {
-        "when": [ { "!Window Mode": "Borderless Windowed Fullscreen" } ],
-        "operation": "replaceText",
-        "files": ["scripts\\Condemned.WidescreenFix.ini"],
-        "search": "BorderlessWindowed = 1",
-        "replacement": "BorderlessWindowed = 0"
       },
 
 

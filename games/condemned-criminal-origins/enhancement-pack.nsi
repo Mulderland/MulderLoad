@@ -8,7 +8,7 @@ This Enhancement Pack also includes:$\r$\n\
 - MulderConfig, for intro skipping, FOV adjustment && more.$\r$\n\
 - OLED Alternate HUD Colors (by Mulder)$\r$\n\
 - Toggle HUD (by Akelaphobia)$\r$\n\
-- Widescreen && FPS Fix (by ThirteenAG)$\r$\n\
+- Widescreen Fix (by ThirteenAG) repacked with DxWrapper$\r$\n\
 $\r$\n\
 ${TXT_WELCOMEPAGE_MULDERLAND_2}$\r$\n\
 Special thanks to ThirteenAG && the Neural Origins modders!"
@@ -143,7 +143,7 @@ SectionGroup /e "Improvements configurable via MulderConfig"
         AddSize 3649
     SectionEnd
 
-    Section "Widescreen & FPS Fix (by ThirteenAG)"
+    Section "Widescreen Fix (by ThirteenAG) + DxWrapper"
         SectionIn RO
         SetOutPath "$INSTDIR"
 
@@ -153,7 +153,20 @@ SectionGroup /e "Improvements configurable via MulderConfig"
                                 "d7e4d487621898a9c97c60e05ed8877da6b06f2fcf7619513a40a3920eeb34e3"
 
         !insertmacro NSISUNZ_EXTRACT "Condemned.WidescreenFix.zip" ".\" "AUTO_DELETE"
-        AddSize 10547
+        Delete "d3d9.dll"
+        AddSize 10709
+
+        # Use DxWrapper as alternative ASI Loader + Frame Limiter + Anti-Aliasing
+        !insertmacro DOWNLOAD_2 "https://github.com/elishacloud/dxwrapper/releases/download/v1.8.8600.25/dx9.games.zip" \
+                                "https://cdn.mulderload.eu/tools/dxwrapper/v1.8.8600.25/dx9.games.zip" \
+                                "dx9.games.zip" \
+                                "f390f3c61fef2c2b8a1221bfbacb2ca4864813b250924bf66a98e61d0de46d76"
+
+        !insertmacro NSISUNZ_EXTRACT "dx9.games.zip" ".\" "AUTO_DELETE"
+        !insertmacro FILE_STR_REPLACE "LoadPlugins                = 0" "LoadPlugins                = 1" 1 1 "$INSTDIR\dxwrapper.ini"
+        !insertmacro FILE_STR_REPLACE "LoadFromScriptsOnly        = 0" "LoadFromScriptsOnly        = 1" 1 1 "$INSTDIR\dxwrapper.ini"
+        !insertmacro FILE_STR_REPLACE "EnableD3d9Wrapper          = 0" "EnableD3d9Wrapper          = 1" 1 1 "$INSTDIR\dxwrapper.ini"
+        AddSize 8348
     SectionEnd
 
     Section

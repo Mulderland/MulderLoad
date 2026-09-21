@@ -2,8 +2,9 @@
   "Condemned: Criminal Origins": {
     "Graphical Improvements": [],
     "Vertical FOV": "Default (64.5)",
-    "HUD Modifications": [],
+    "FPS Limiter": "60 FPS (recommended for correct stair timing)",
     "Window Mode": "Exclusive Fullscreen",
+    "HUD Modifications": [],
     "Language": "English",
     "Misc": []
   }
