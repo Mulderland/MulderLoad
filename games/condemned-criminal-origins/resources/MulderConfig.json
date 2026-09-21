@@ -1,0 +1,403 @@
+{
+  "game": {
+    "title": "Condemned: Criminal Origins",
+    "originalExe": "Condemned.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Graphical Improvements",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "AI upscaled textures (Neural Origins)" },
+        { "value": "Sikkmod. You must set FSAA=Off, FullscreenFX=Off, SoftShadows=On" }
+      ]
+    },
+    {
+      "name": "Vertical FOV",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "60" },
+        { "value": "Default (64.5)" },
+        { "value": "70" },
+        { "value": "75" },
+        { "value": "80" },
+        { "value": "85" },
+        { "value": "90" }
+      ]
+    },
+    {
+      "name": "HUD Modifications",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Alternate HUD Colors (recommended for OLED)" },
+        { "value": "Toggleable HUD (default key = Caps Lock)" }
+      ]
+    },
+    {
+      "name": "Window Mode",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Exclusive Fullscreen" },
+        { "value": "Borderless Windowed Fullscreen" },
+        { "value": "Windowed" }
+      ]
+    },
+    {
+      "name": "Language",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "English" },
+        { "value": "French" },
+        { "value": "German" },
+        { "value": "Italian" },
+        { "value": "Spanish" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Restore EAX Sound with DSOAL + OpenAL Soft" },
+        { "value": "Skip Intro Videos" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "*Graphical Improvements": "Neural Origins" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\NeuralOrigins\\Game\\CondemnedN.Arch00",
+        "target": "Game\\CondemnedN.Arch00"
+      },
+      {
+        "when": [ { "!*Graphical Improvements": "Neural Origins" } ],
+        "operation": "move",
+        "source": "Game\\CondemnedN.Arch00",
+        "target": ".MulderConfig\\NeuralOrigins\\Game\\CondemnedN.Arch00"
+      },
+
+
+      
+      {
+        "when": [ { "*Graphical Improvements": "Sikkmod" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\Sikkmod\\Game\\CondemnedS.Arch00",
+        "target": "Game\\CondemnedS.Arch00"
+      },
+      {
+        "when": [ { "!*Graphical Improvements": "Sikkmod" } ],
+        "operation": "move",
+        "source": "Game\\CondemnedS.Arch00",
+        "target": ".MulderConfig\\Sikkmod\\Game\\CondemnedS.Arch00"
+      },
+
+
+      
+      {
+        "when": [ ],
+        "operation": "removeLine",
+        "files": ["autoexec.cfg"],
+        "pattern": "^\"FovY\".*$"
+      },
+      {
+        "when": [ { "Vertical FOV": "60" } ],
+        "operation": "replaceText",
+        "files": ["autoexec.cfg"],
+        "search": "\"NearZ\"",
+        "replacement": "\"FovY\" \"60.0\"\n\"NearZ\""
+      },
+      {
+        "when": [ { "Vertical FOV": "70" } ],
+        "operation": "replaceText",
+        "files": ["autoexec.cfg"],
+        "search": "\"NearZ\"",
+        "replacement": "\"FovY\" \"70.0\"\n\"NearZ\""
+      },
+      {
+        "when": [ { "Vertical FOV": "75" } ],
+        "operation": "replaceText",
+        "files": ["autoexec.cfg"],
+        "search": "\"NearZ\"",
+        "replacement": "\"FovY\" \"75.0\"\n\"NearZ\""
+      },
+      {
+        "when": [ { "Vertical FOV": "80" } ],
+        "operation": "replaceText",
+        "files": ["autoexec.cfg"],
+        "search": "\"NearZ\"",
+        "replacement": "\"FovY\" \"80.0\"\n\"NearZ\""
+      },
+      {
+        "when": [ { "Vertical FOV": "85" } ],
+        "operation": "replaceText",
+        "files": ["autoexec.cfg"],
+        "search": "\"NearZ\"",
+        "replacement": "\"FovY\" \"85.0\"\n\"NearZ\""
+      },
+      {
+        "when": [ { "Vertical FOV": "90" } ],
+        "operation": "replaceText",
+        "files": ["autoexec.cfg"],
+        "search": "\"NearZ\"",
+        "replacement": "\"FovY\" \"90.0\"\n\"NearZ\""
+      },
+
+
+
+      {
+        "when": [ { "*HUD Modifications": "Alternate HUD Colors" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\OLEDAlternateHUDColors\\Game\\CondemnedO.Arch00",
+        "target": "Game\\CondemnedO.Arch00"
+      },
+      {
+        "when": [ { "!*HUD Modifications": "Alternate HUD Colors" } ],
+        "operation": "move",
+        "source": "Game\\CondemnedO.Arch00",
+        "target": ".MulderConfig\\OLEDAlternateHUDColors\\Game\\CondemnedO.Arch00"
+      },
+
+
+
+      {
+        "when": [ { "*HUD Modifications": "Toggleable HUD" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\ToggleHUD\\ShaderToggler.ini",
+        "target": "ShaderToggler.ini"
+      },
+      {
+        "when": [ { "*HUD Modifications": "Toggleable HUD" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\ToggleHUD\\scripts\\reshade-shaders",
+        "target": "scripts\\reshade-shaders"
+      },
+      {
+        "when": [ { "*HUD Modifications": "Toggleable HUD" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\ToggleHUD\\scripts\\d3d9.asi",
+        "target": "scripts\\d3d9.asi"
+      },
+      {
+        "when": [ { "*HUD Modifications": "Toggleable HUD" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\ToggleHUD\\scripts\\ReShade.ini",
+        "target": "scripts\\ReShade.ini"
+      },
+      {
+        "when": [ { "*HUD Modifications": "Toggleable HUD" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\ToggleHUD\\scripts\\ShaderToggler.addon",
+        "target": "scripts\\ShaderToggler.addon"
+      },
+      {
+        "when": [ { "!*HUD Modifications": "Toggleable HUD" } ],
+        "operation": "move",
+        "source": "ShaderToggler.ini",
+        "target": ".MulderConfig\\ToggleHUD\\ShaderToggler.ini"
+      },
+      {
+        "when": [ { "!*HUD Modifications": "Toggleable HUD" } ],
+        "operation": "move",
+        "source": "scripts\\reshade-shaders",
+        "target": ".MulderConfig\\ToggleHUD\\scripts\\reshade-shaders"
+      },
+      {
+        "when": [ { "!*HUD Modifications": "Toggleable HUD" } ],
+        "operation": "move",
+        "source": "scripts\\d3d9.asi",
+        "target": ".MulderConfig\\ToggleHUD\\scripts\\d3d9.asi"
+      },
+      {
+        "when": [ { "!*HUD Modifications": "Toggleable HUD" } ],
+        "operation": "move",
+        "source": "scripts\\ReShade.ini",
+        "target": ".MulderConfig\\ToggleHUD\\scripts\\ReShade.ini"
+      },
+      {
+        "when": [ { "!*HUD Modifications": "Toggleable HUD" } ],
+        "operation": "move",
+        "source": "scripts\\ShaderToggler.addon",
+        "target": ".MulderConfig\\ToggleHUD\\scripts\\ShaderToggler.addon"
+      },
+
+      
+      
+      {
+        "when": [ ],
+        "operation": "removeLine",
+        "files": ["autoexec.cfg"],
+        "pattern": "^\"Windowed\".*$"
+      },
+      {
+        "when": [ { "!Window Mode": "Exclusive Fullscreen" } ],
+        "operation": "replaceText",
+        "files": ["autoexec.cfg"],
+        "search": "\"GPUSafeLevel\"",
+        "replacement": "\"Windowed\" \"1\"\n\"GPUSafeLevel\""
+      },
+      {
+        "when": [ { "Window Mode": "Borderless Windowed Fullscreen" } ],
+        "operation": "replaceText",
+        "files": ["scripts\\Condemned.WidescreenFix.ini"],
+        "search": "BorderlessWindowed = 0",
+        "replacement": "BorderlessWindowed = 1"
+      },
+      {
+        "when": [ { "!Window Mode": "Borderless Windowed Fullscreen" } ],
+        "operation": "replaceText",
+        "files": ["scripts\\Condemned.WidescreenFix.ini"],
+        "search": "BorderlessWindowed = 1",
+        "replacement": "BorderlessWindowed = 0"
+      },
+
+
+
+      {
+        "when": [ { "Language": "English" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\LanguageFiles\\English\\Config.Strdb00p",
+        "target": "Config.Strdb00p"
+      },
+      {
+        "when": [ { "Language": "English" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\LanguageFiles\\English\\enginemsg.txt",
+        "target": "enginemsg.txt"
+      },
+      {
+        "when": [ { "Language": "English" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\LanguageFiles\\English\\Game\\CondemnedL.Arch00",
+        "target": "Game\\CondemnedL.Arch00"
+      },
+      {
+        "when": [ { "Language": "French" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\LanguageFiles\\French\\Config.Strdb00p",
+        "target": "Config.Strdb00p"
+      },
+      {
+        "when": [ { "Language": "French" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\LanguageFiles\\French\\enginemsg.txt",
+        "target": "enginemsg.txt"
+      },
+      {
+        "when": [ { "Language": "French" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\LanguageFiles\\French\\Game\\CondemnedL.Arch00",
+        "target": "Game\\CondemnedL.Arch00"
+      },
+      {
+        "when": [ { "Language": "German" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\LanguageFiles\\German\\Config.Strdb00p",
+        "target": "Config.Strdb00p"
+      },
+      {
+        "when": [ { "Language": "German" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\LanguageFiles\\German\\enginemsg.txt",
+        "target": "enginemsg.txt"
+      },
+      {
+        "when": [ { "Language": "German" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\LanguageFiles\\German\\Game\\CondemnedL.Arch00",
+        "target": "Game\\CondemnedL.Arch00"
+      },
+      {
+        "when": [ { "Language": "Italian" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\LanguageFiles\\Italian\\Config.Strdb00p",
+        "target": "Config.Strdb00p"
+      },
+      {
+        "when": [ { "Language": "Italian" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\LanguageFiles\\Italian\\enginemsg.txt",
+        "target": "enginemsg.txt"
+      },
+      {
+        "when": [ { "Language": "Italian" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\LanguageFiles\\Italian\\Game\\CondemnedL.Arch00",
+        "target": "Game\\CondemnedL.Arch00"
+      },
+      {
+        "when": [ { "Language": "Spanish" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\LanguageFiles\\Spanish\\Config.Strdb00p",
+        "target": "Config.Strdb00p"
+      },
+      {
+        "when": [ { "Language": "Spanish" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\LanguageFiles\\Spanish\\enginemsg.txt",
+        "target": "enginemsg.txt"
+      },
+      {
+        "when": [ { "Language": "Spanish" } ],
+        "operation": "copy",
+        "source": ".MulderConfig\\LanguageFiles\\Spanish\\Game\\CondemnedL.Arch00",
+        "target": "Game\\CondemnedL.Arch00"
+      },
+
+
+      
+      {
+        "when": [ { "*Misc": "DSOAL" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\DSOAL\\alsoft.ini",
+        "target": "alsoft.ini"
+      },
+      {
+        "when": [ { "*Misc": "DSOAL" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\DSOAL\\dsoal-aldrv.dll",
+        "target": "dsoal-aldrv.dll"
+      },
+      {
+        "when": [ { "*Misc": "DSOAL" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\DSOAL\\dsound.dll",
+        "target": "dsound.dll"
+      },
+      {
+        "when": [ { "!*Misc": "DSOAL" } ],
+        "operation": "move",
+        "source": "alsoft.ini",
+        "target": ".MulderConfig\\DSOAL\\alsoft.ini"
+      },
+      {
+        "when": [ { "!*Misc": "DSOAL" } ],
+        "operation": "move",
+        "source": "dsoal-aldrv.dll",
+        "target": ".MulderConfig\\DSOAL\\dsoal-aldrv.dll"
+      },
+      {
+        "when": [ { "!*Misc": "DSOAL" } ],
+        "operation": "move",
+        "source": "dsound.dll",
+        "target": ".MulderConfig\\DSOAL\\dsound.dll"
+      },
+
+
+      
+      {
+        "when": [ ],
+        "operation": "removeLine",
+        "files": ["autoexec.cfg"],
+        "pattern": "^\"DisableMovies\".*$"
+      },
+      {
+        "when": [ { "Misc": "Skip Intro Videos" } ],
+        "operation": "replaceText",
+        "files": ["autoexec.cfg"],
+        "search": "\"ConsoleRight\"",
+        "replacement": "\"DisableMovies\" \"1\"\n\"ConsoleRight\""
+      }
+    ]
+  }
+}

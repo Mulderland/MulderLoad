@@ -1,88 +1,67 @@
 !define MUI_WELCOMEPAGE_TEXT "\
-Enhancement Pack for Condemned: Criminal Origins, to:$\r$\n\
-- install the missing sound effects from Steam effects (by ThirteenAG) for all languages (not just English)$\r$\n\
-- install Widescreen && FPS Fix (by ThirteenAG)$\r$\n\
-- change the FOV$\r$\n\
-- install AI Upscaled Textures (Neural Origins mod)$\r$\n\
-- skip intro videos$\r$\n\
+Note: Steam version v1.0.314 will be updated to Retail v1.0.320, fixing missing sounds && broken non-English menus.$\r$\n\
 $\r$\n\
-${TXT_WELCOMEPAGE_MULDERLAND_3}$\r$\n\
+This Enhancement Pack also includes:$\r$\n\
+- AI Upscaled Textures (Neural Origins)$\r$\n\
+- Improved Shaders (Sikkmod)$\r$\n\
+- DSOAL + OpenAL Soft (to restore EAX support)$\r$\n\
+- MulderConfig, for intro skipping, FOV adjustment && more.$\r$\n\
+- OLED Alternate HUD Colors (by Mulder)$\r$\n\
+- Toggle HUD (by Akelaphobia)$\r$\n\
+- Widescreen && FPS Fix (by ThirteenAG)$\r$\n\
 $\r$\n\
-Special thanks to ThirteenAG and the Neural Origins modders!"
+${TXT_WELCOMEPAGE_MULDERLAND_2}$\r$\n\
+Special thanks to ThirteenAG && the Neural Origins modders!"
 
+!define MUI_FINISHPAGE_RUN "$INSTDIR\MulderConfig.exe"
+!define MUI_FINISHPAGE_RUN_TEXT "Run MulderConfig"
+!define ON_SELECTED_FILE
 !include "..\..\includes\templates\SelectTemplate.nsh"
 !include "..\..\includes\tools\7z.nsh"
+!include "..\..\includes\tools\XDelta3.nsh"
 
 Name "Condemned: Criminal Origins [Enhancement Pack]"
 
-Section "[Steam] Missing sound effects (ThirteenAG)"
-    AddSize 632832
+Section "Update Steam v1.0.314 to 1.0.320 (by Mulder)" update_1_0_320
     SetOutPath "$INSTDIR"
 
-    !insertmacro DOWNLOAD_2 "https://cdn.mulderload.eu/games/condemned-criminal-origins/fix/Condemned.MissingSteamFilesFix-b3e1001.zip" \
-                            "https://github.com/ThirteenAG/WidescreenFixesPack/releases/download/condemned/Condemned.MissingSteamFilesFix.zip" \
-                            "Condemned.MissingSteamFilesFix.zip" \
-                            "b3e10011c7f0e2fc1a44421fa15ba442e0c91b63"
+    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/condemned-criminal-origins/update/Steam v1.0.314 to Retail v1.0.320 [MLD].7z" \
+                            "Steam v1.0.314 to Retail v1.0.320 [MLD].7z" \
+                            "b3966f2b69725c04caabd78ea3afd414500110e6"
 
-    !insertmacro NSISUNZ_EXTRACT_ONE "Condemned.MissingSteamFilesFix.zip" "Game\" "Condemned.MissingSteamFilesFix\Game\CondemnedX.Arch00" ""
-    !insertmacro NSISUNZ_EXTRACT_ONE "Condemned.MissingSteamFilesFix.zip" ".\" "Condemned.MissingSteamFilesFix\default.archcfg" "AUTO_DELETE"
-    Rename "Game\CondemnedX.Arch00" "Game\CondemnedB.Arch00"
+    !insertmacro NSIS7Z_EXTRACT "Steam v1.0.314 to Retail v1.0.320 [MLD].7z" ".\" "AUTO_DELETE"
+
+    !insertmacro XDELTA3_GET
+    !insertmacro XDELTA3_PATCH_FOLDER "$INSTDIR"
+    !insertmacro XDELTA3_REMOVE
+
+    AddSize 75533
 SectionEnd
 
-Section "Widescreen & Framerate Fix (ThirteenAG)"
-    AddSize 10547
-    SectionIn RO
-    SetOutPath "$INSTDIR"
-
-    !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/WidescreenFixesPack/releases/download/condemned/Condemned.WidescreenFix.zip" \
-                            "https://cdn.mulderload.eu/games/condemned-criminal-origins/impr_gfx/Condemned.WidescreenFix-d7e4d48.zip" \
-                            "Condemned.WidescreenFix.zip" \
-                            "d7e4d487621898a9c97c60e05ed8877da6b06f2fcf7619513a40a3920eeb34e3"
-
-    !insertmacro NSISUNZ_EXTRACT "Condemned.WidescreenFix.zip" ".\" "AUTO_DELETE"
-SectionEnd
-
-SectionGroup /e "FOV increase" fov
-    Section /o "Small increase (Vert- 70)" fov1
-        FileOpen $0 "$INSTDIR\autoexec.cfg" a
-        FileSeek $0 0 END
-        FileWrite $0 '"FovY" "70.0"$\r$\n'
-        FileClose $0
-    SectionEnd
-
-    Section "Medium increase (Vert- 75)" fov2
-        FileOpen $0 "$INSTDIR\autoexec.cfg" a
-        FileSeek $0 0 END
-        FileWrite $0 '"FovY" "75.0"$\r$\n'
-        FileClose $0
-    SectionEnd
-
-    Section /o "Big increase (Vert- 80)" fov3
-        FileOpen $0 "$INSTDIR\autoexec.cfg" a
-        FileSeek $0 0 END
-        FileWrite $0 '"FovY" "80.0"$\r$\n'
-        FileClose $0
-    SectionEnd
-SectionGroupEnd
-
-SectionGroup /e "AI Upscaled Textures (Neural Origins 0.9)"
-    Section # 4GB Patch
+SectionGroup /e "Improvements configurable via MulderConfig"
+    Section "AI Upscaled Textures (Neural Origins 0.9)"
+        # 4GB Patch
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_2 "https://cdn.mulderload.eu/tools/ntcore/4gb_patch.zip" \
-                                "https://ntcore.com/files/4gb_patch.zip" \
-                                "4gb_patch.zip" \
-                                "c8b0d61937cb54fc8215124c0f737a1d29479c97"
+        !insertmacro FILE_HASH_EQUALS "$INSTDIR\Condemned.exe" "0cea107671e577a4c7a338dd55502f286463acbe" $R0 ; 4GB Patched Retail Hash
 
-        !insertmacro NSISUNZ_EXTRACT "4gb_patch.zip" ".\" "AUTO_DELETE"
+        ${If} $R0 == 1
+            DetailPrint "Condemned.exe is already LAA-enabled (4GB Patch)"
+        ${Else}
+            DetailPrint "Condemned.exe is not LAA-enabled. Applying 4GB Patch..."
+            !insertmacro DOWNLOAD_2 "https://cdn.mulderload.eu/tools/ntcore/4gb_patch.zip" \
+                                    "https://ntcore.com/files/4gb_patch.zip" \
+                                    "4gb_patch.zip" \
+                                    "c8b0d61937cb54fc8215124c0f737a1d29479c97"
 
-        ExecWait '4gb_patch.exe Condemned.exe' $0
-        Delete "4gb_patch.exe"
-    SectionEnd
+            !insertmacro NSISUNZ_EXTRACT "4gb_patch.zip" ".\" "AUTO_DELETE"
 
-    Section # Neural Origins
-        AddSize 9785344
-        SetOutPath "$INSTDIR\Game\CondemnedC.Arch00"
+            ExecShell "runas" "4gb_patch.exe" 'Condemned.exe'
+            Delete "4gb_patch.exe"
+        ${EndIf}
+
+        # Neural Origins
+        SetOutPath "$INSTDIR\.MulderConfig\NeuralOrigins\Game"
 
         !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/neural-origins/downloads/09" \
                                 "Data.zip" \
@@ -92,42 +71,113 @@ SectionGroup /e "AI Upscaled Textures (Neural Origins 0.9)"
         !insertmacro 7Z_GET
         !insertmacro 7Z_EXTRACT "Data.zip" ".\" "AUTO_DELETE"
         !insertmacro 7Z_REMOVE
-        !insertmacro FOLDER_MERGE "$INSTDIR\Game\CondemnedC.Arch00\Data" "$INSTDIR\Game\CondemnedC.Arch00"
+        AddSize 9785344
+
+        RMDir /r "CondemnedN.Arch00"
+        Rename "Data" "CondemnedN.Arch00"
     SectionEnd
 
-    Section /o "Green HUD for OLED screens"
-        AddSize 768
-        SetOutPath "$INSTDIR\Game\CondemnedC.Arch00"
+    Section "DSOAL + OpenAL Soft (by kcat)"
+        SectionIn RO
+        SetOutPath "$INSTDIR\.MulderConfig\DSOAL"
 
-        !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/neural-origins/addons/green-hud-for-oled" \
-                                "global.1.zip" \
-                                "4fffb4b00087115d21d7dc1ff8255c3b"
+        !insertmacro DOWNLOAD_2 "https://github.com/kcat/dsoal/releases/download/archive/DSOAL_r693.zip" \
+                                "https://cdn.mulderload.eu/tools/dsoal/DSOAL_r693.zip" \
+                                "DSOAL.zip" \
+                                "8cf38acb9ccd8a405b316bf4e7fd9fb05565234d9867f7ee4932e6ee0839ccbc"
 
-        !insertmacro NSISUNZ_EXTRACT "global.1.zip" ".\" "AUTO_DELETE"
+        !insertmacro NSISUNZ_EXTRACT "DSOAL.zip" ".\" "AUTO_DELETE"
+        !insertmacro NSISUNZ_EXTRACT_ONE "DSOAL_r693.zip" ".\" "DSOAL\Win32\alsoft.ini" ""
+        !insertmacro NSISUNZ_EXTRACT_ONE "DSOAL_r693.zip" ".\" "DSOAL\Win32\dsoal-aldrv.dll" ""
+        !insertmacro NSISUNZ_EXTRACT_ONE "DSOAL_r693.zip" ".\" "DSOAL\Win32\dsound.dll" "AUTO_DELETE"
+    SectionEnd
+
+    Section "Improved Shaders (Sikkmod v3)"
+        SectionIn RO
+        SetOutPath "$INSTDIR\.MulderConfig\Sikkmod\Game"
+
+        !insertmacro DOWNLOAD_1 "https://www.moddb.com/mods/sikkmod-condemned-criminal-origins/downloads/sikkmod-v3-condemned-criminal-origins" \
+                                "sikkmod_v3_condemned.zip" \
+                                "0d542b5cd2c00ffb1918679c4baf6042"
+
+        !insertmacro NSISUNZ_EXTRACT "sikkmod_v3_condemned.zip" ".\" "AUTO_DELETE"
+        AddSize 407005
+
+        RMDir /r "CondemnedS.Arch00"
+        Rename "sikkmod" "CondemnedS.Arch00"
+    SectionEnd
+
+    Section "Language Files v1.0.320 (by Mulder)"
+        SectionIn RO
+        SetOutPath "$INSTDIR\.MulderConfig\LanguageFiles"
+
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/condemned-criminal-origins/update/Language Files v1.0.320 [MLD].7z" \
+                                "Language Files v1.0.320 [MLD].7z" \
+                                "4f6799c0e002dc41dba04576118d9be1bfb4cbee"
+
+        !insertmacro NSIS7Z_EXTRACT "Language Files v1.0.320 [MLD].7z" ".\" "AUTO_DELETE"
+        AddSize 2998
+    SectionEnd
+
+    Section "OLED Alternate HUD Colors (by Mulder)"
+        SectionIn RO
+        SetOutPath "$INSTDIR\.MulderConfig\OLEDAlternateHUDColors\Game\CondemnedO.Arch00"
+
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/condemned-criminal-origins/misc/OLED Alternate HUD Colors [MLD].7z" \
+                                "OLED Alternate HUD Colors [MLD].7z" \
+                                "70a186c18b08abc8bb4153c6770a7f61d023f033"
+
+        !insertmacro NSIS7Z_EXTRACT "OLED Alternate HUD Colors [MLD].7z" ".\" "AUTO_DELETE"
+        AddSize 769
+    SectionEnd
+
+    Section "Toggle HUD (by Akelaphobia)"
+        SectionIn RO
+        SetOutPath "$INSTDIR\.MulderConfig\ToggleHUD"
+
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/condemnedcriminalorigins/mods/3?tab=files&file_id=4" \
+                                "Toggle HUD-3-1-00-1704098578.zip" \
+                                "91035fa8f0bb4eaf9302b9f735ddd0c5b9486472"
+
+        !insertmacro NSISUNZ_EXTRACT "Toggle HUD-3-1-00-1704098578.zip" ".\" "AUTO_DELETE"
+        AddSize 3649
+    SectionEnd
+
+    Section "Widescreen & FPS Fix (by ThirteenAG)"
+        SectionIn RO
+        SetOutPath "$INSTDIR"
+
+        !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/WidescreenFixesPack/releases/download/condemned/Condemned.WidescreenFix.zip" \
+                                "https://cdn.mulderload.eu/games/condemned-criminal-origins/impr_gfx/Condemned.WidescreenFix-d7e4d48.zip" \
+                                "Condemned.WidescreenFix.zip" \
+                                "d7e4d487621898a9c97c60e05ed8877da6b06f2fcf7619513a40a3920eeb34e3"
+
+        !insertmacro NSISUNZ_EXTRACT "Condemned.WidescreenFix.zip" ".\" "AUTO_DELETE"
+        AddSize 10547
+    SectionEnd
+
+    Section
+        !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources"
+    SectionEnd
+
+    Section
+        RMDir /r "$INSTDIR\@mulderload"
     SectionEnd
 SectionGroupEnd
-
-Section /o "Skip intro videos"
-    FileOpen $0 "$INSTDIR\autoexec.cfg" a
-    FileSeek $0 0 END
-    FileWrite $0 '"DisableMovies" "1"$\r$\n'
-    FileClose $0
-SectionEnd
 
 Function .onInit
     StrCpy $SELECT_FILENAME "Condemned.exe"
     StrCpy $SELECT_STEAM_FOLDER "Condemned Criminal Origins"
-    StrCpy $1 ${fov2} ; Radio Button
 FunctionEnd
 
-Function .onSelChange
-    ${If} ${SectionIsSelected} ${fov}
-        !insertmacro UnSelectSection ${fov}
+Function OnSelectedFile
+    !insertmacro FILE_HASH_EQUALS "$INSTDIR\Condemned.exe" "fa3c1c4a7b72e12fabac8875d2e5be02771db42c" $R0 ; Steam Hash
+    ${If} $R0 == 1
+        SectionSetFlags ${update_1_0_320} ${SF_SELECTED}|${SF_RO}
+        MessageBox MB_ICONINFORMATION "Old Steam version detected (v1.0.314).$\r$\n$\r$\nUpdate to Retail v1.0.320 will be applied."
     ${Else}
-        !insertmacro StartRadioButtons $1
-            !insertmacro RadioButton ${fov1}
-            !insertmacro RadioButton ${fov2}
-            !insertmacro RadioButton ${fov3}
-        !insertmacro EndRadioButtons
+        SectionSetFlags ${update_1_0_320} ${SF_RO}
+        MessageBox MB_ICONINFORMATION "Latest version detected (v1.0.320).$\r$\n$\r$\nUpdate will be skipped."
     ${EndIf}
+    Push 1
 FunctionEnd
