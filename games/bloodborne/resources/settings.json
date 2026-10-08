@@ -1,0 +1,23 @@
+{
+  "ui_language": "",
+  "user_dir": "",
+  "mods_dir": "",
+  "mods_enabled": true,
+  "patches_dir": "",
+  "language": "1",
+  "player_name": "",
+  "fullscreen": true,
+  "hdr": false,
+  "present_mode": "Mailbox",
+  "fps_mode": "60",
+  "frame_cap": "",
+  "draw_pipe": "0",
+  "readbacks": "",
+  "frames_ahead": "",
+  "frame_stats": false,
+  "gpu_profile": false,
+  "vk_validation": false,
+  "extra_env": "",
+  "close_on_play": false,
+  "check_updates": true
+}
