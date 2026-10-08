@@ -23,14 +23,14 @@ Section
     !insertmacro 7Z_GET
 SectionEnd
 
-SectionGroup "Bloodborne PC Unofficial Port v1.5"
+SectionGroup "Bloodborne PC Unofficial Port v1.6"
     Section
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_2 "https://github.com/Supermedo/bloodborne_pc/releases/download/windows-v1.5/Bloodborne-Windows.zip" \
-                                "https://cdn.mulderload.eu/games/bloodborne/Bloodborne-Windows-v1.5.zip" \
+        !insertmacro DOWNLOAD_2 "https://github.com/Supermedo/bloodborne_pc/releases/download/windows-v1.6/Bloodborne-Windows.zip" \
+                                "https://cdn.mulderload.eu/games/bloodborne/Bloodborne-Windows-v1.6.zip" \
                                 "Bloodborne-Windows.zip" \
-                                "4ce2c1898fd432af100af2bde18649ca8b27dd250a2e3a3c89a9c03ccedc99e8"
+                                "8410d1ca83c5335c2178c742c8a077b9cb07bf262018537f85fba7ac1808bd7d"
 
         !insertmacro NSISUNZ_EXTRACT "Bloodborne-Windows.zip" ".\" "AUTO_DELETE"
         AddSize 273495
