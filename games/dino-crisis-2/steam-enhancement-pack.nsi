@@ -92,6 +92,12 @@ SectionGroup /e "Dino Crisis 2 Classic REbirth"
 
         #
         Delete "dinput.dll"
+
+        # Fix winapi.cpp error on Linux (https://github.com/Mulderland/MulderLoad/issues/31)
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/tools/xaudio/xaudio2_9.dll" \
+                                "xaudio2_9.dll" \
+                                "cf9b9ae1237b1094bead8d44ef65c55a19ec325e"
+        AddSize 719
     SectionEnd
 
     Section "High Quality Movies" rebirth3
