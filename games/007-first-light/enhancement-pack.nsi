@@ -27,93 +27,93 @@ Section "Higher FOV and Camera (by Su4enka)"
     # No need to fetch the "70_default_default": https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=578
     # MulderConfig will just disable the mod instead
 
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=577" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=687" \
                             "70_farther_default.zip" \
-                            "7b1bb3cb1fe5823e2e16074ff6d5967f0c058a4a"
+                            "673d08b8b683d500166c43f725173c1fb517fcaf"
     !insertmacro NSISUNZ_EXTRACT "70_farther_default.zip" ".\70_farther_default\" "AUTO_DELETE"
 
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=588" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=698" \
                             "70_farther_higher.zip" \
-                            "3c2ba0f98ac5221d503ca7ce2212007003f2f0d1"
+                            "7c02b0e05838006c962daf1c5587eca973d5237a"
     !insertmacro NSISUNZ_EXTRACT "70_farther_higher.zip" ".\70_farther_higher\" "AUTO_DELETE"
 
     # FOV 80
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=585" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=695" \
                             "80_default_default.zip" \
-                            "5ea410f83af2d754c57d294e62a2e1bfb96df8ed"
+                            "2dd2c009c41339631f65e3e15ca281787c33fff3"
     !insertmacro NSISUNZ_EXTRACT "80_default_default.zip" ".\80_default_default\" "AUTO_DELETE"
 
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=586" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=696" \
                             "80_farther_default.zip" \
-                            "75043a378129d2c8cf3c9f46f828f0e72c4e9d51"
+                            "0c19998b34fae33aa2c6d96785a0861ee15169ac"
     !insertmacro NSISUNZ_EXTRACT "80_farther_default.zip" ".\80_farther_default\" "AUTO_DELETE"
 
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=591" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=701" \
                             "80_farther_higher.zip" \
-                            "af6e8918e6ff1cc21ff25df945b698a1e5bd2f3e"
+                            "6918899dd49b094a557dc4f1e19b7889a1869d73"
     !insertmacro NSISUNZ_EXTRACT "80_farther_higher.zip" ".\80_farther_higher\" "AUTO_DELETE"
 
     # FOV 90
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=576" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=686" \
                             "90_closer_default.zip" \
-                            "52d182d7d7c03a22147ced58c2b3d51d54bfddb2"
+                            "87b9443f50629010bc7fed75b8c09558ad7e9913"
     !insertmacro NSISUNZ_EXTRACT "90_closer_default.zip" ".\90_closer_default\" "AUTO_DELETE"
 
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=587" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=697" \
                             "90_closer_higher.zip" \
-                            "95e2e005879ae07174213a681b1df925249c3ceb"
+                            "298b7033522c7f67451add8323b4d379fcd7491d"
     !insertmacro NSISUNZ_EXTRACT "90_closer_higher.zip" ".\90_closer_higher\" "AUTO_DELETE"
 
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=581" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=691" \
                             "90_default_default.zip" \
-                            "2596142c1fa03414c21fdcdf3454113de564e865"
+                            "eed9a0ea9940fef2a6da7d32f77daa05516ddeb8"
     !insertmacro NSISUNZ_EXTRACT "90_default_default.zip" ".\90_default_default\" "AUTO_DELETE"
 
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=582" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=692" \
                             "90_farther_default.zip" \
-                            "a895d98f462d0d24c63573cbdbc0e5bf7e068bed"
+                            "0317ed85919e866eb43547acadbffe7b7113f743"
     !insertmacro NSISUNZ_EXTRACT "90_farther_default.zip" ".\90_farther_default\" "AUTO_DELETE"
 
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=592" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=702" \
                             "90_farther_higher.zip" \
-                            "5aca5ba89c63e8e34ac75f62e0b683e4d1533a8b"
+                            "dd677e55ee9a8a0f55037df5269681d18853b417"
     !insertmacro NSISUNZ_EXTRACT "90_farther_higher.zip" ".\90_farther_higher\" "AUTO_DELETE"
 
     # FOV 100
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=584" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=694" \
                             "100_closer_default.zip" \
-                            "372f5f3220928634b6acc94d3cd9f12fd0103572"
+                            "3232fc30dff0048604b4a9e39db01adfd6f4b41c"
     !insertmacro NSISUNZ_EXTRACT "100_closer_default.zip" ".\100_closer_default\" "AUTO_DELETE"
 
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=590" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=700" \
                             "100_closer_higher.zip" \
-                            "364faa1a1440324f39759c228dc91f075d59b4e1"
+                            "0050d2f77c865cb768393acf47d7a1e76606a37c"
     !insertmacro NSISUNZ_EXTRACT "100_closer_higher.zip" ".\100_closer_higher\" "AUTO_DELETE"
 
     # FOV 110
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=583" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=693" \
                             "110_closer_default.zip" \
-                            "c9be58bebbb026c66b7e4bc31c29851abf7b6b62"
+                            "a189871096d864d3f0d47288b902d0101c068f45"
     !insertmacro NSISUNZ_EXTRACT "110_closer_default.zip" ".\110_closer_default\" "AUTO_DELETE"
 
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=589" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=699" \
                             "110_closer_higher.zip" \
-                            "9fa6d72f4ff18fa2d6b686368dbc2ebb12f5152e"
+                            "e4874e9fb8c3c0d8fa858c6b39aa8ed56de6143a"
     !insertmacro NSISUNZ_EXTRACT "110_closer_higher.zip" ".\110_closer_higher\" "AUTO_DELETE"
 
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=580" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=690" \
                             "110_default_default.zip" \
-                            "b44a96d433a5d19bae955180ebe8348789a11d71"
+                            "bd7678b0a14e4bced92e1abd0ec162fcac2c53a3"
     !insertmacro NSISUNZ_EXTRACT "110_default_default.zip" ".\110_default_default\" "AUTO_DELETE"
 
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=579" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=689" \
                             "110_farther_default.zip" \
-                            "76d859535d2c149a45d65d75ccb75186124336cb"
+                            "1a757c0e19282b7f0941b7235d028da13087cdf3"
     !insertmacro NSISUNZ_EXTRACT "110_farther_default.zip" ".\110_farther_default\" "AUTO_DELETE"
 
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=593" \
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/007firstlight/mods/15?tab=files&file_id=703" \
                             "110_farther_higher.zip" \
-                            "ae7ee51cb1cbd5f05c2e873f8eb3328dd8c725aa"
+                            "714b17401e3282347e9e7d82699fdf872c70a433"
     !insertmacro NSISUNZ_EXTRACT "110_farther_higher.zip" ".\110_farther_higher\" "AUTO_DELETE"
 SectionEnd
 
