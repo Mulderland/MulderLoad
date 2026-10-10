@@ -58,3 +58,16 @@ Section "Extract game files from PKG"
         DetailPrint " // Cleaning up"
         Delete "pkgextract.exe"
 SectionEnd
+
+Function .onInit
+    !insertmacro DETECT_OS $R0
+    ${If} $R0 == "Linux"
+        ReadEnvStr $R0 STEAM_APP_PATH
+        ${If} $R0 != ""
+            MessageBox MB_ICONEXCLAMATION "Please run this installer with Wine, not Protontricks."
+            Quit
+        ${EndIf}
+        ReadEnvStr $R0 "USERNAME"
+        StrCpy $INSTDIR "Z:\home\$R0\Mulderland\Silent Hills P.T."
+    ${EndIf}
+FunctionEnd
