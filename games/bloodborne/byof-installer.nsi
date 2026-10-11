@@ -24,7 +24,7 @@ Var /GLOBAL MODSDIR
 Section
     !insertmacro DETECT_OS $R0
     ${If} $R0 == "Linux"
-        StrCpy $MODSDIR "$INSTDIR\bbport\mods"
+        StrCpy $MODSDIR "$INSTDIR\mods"
     ${Else}
         StrCpy $MODSDIR "$INSTDIR\bbport-windows\mods"
     ${EndIf}
@@ -34,14 +34,13 @@ Section
 SectionEnd
 
 SectionGroup "bloodborne_pc (by deadinside28)" bloodborne_pc
-    Section "Linux v0.51 (by deadinside28)" bloodborne_pc_linux
-        SetOutPath "$INSTDIR\bbport"
+    Section "Linux v0.5 (by deadinside28)" bloodborne_pc_linux
+        SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_2 "https://github.com/deadinside28/bloodborne_pc/releases/download/0.51/Bloodborne-bbport-x86_64.AppImage" \
-                                "https://cdn.mulderload.eu/games/bloodborne/Bloodborne-bbport-x86_64-v0.51.AppImage" \
+        !insertmacro DOWNLOAD_1 "https://github.com/deadinside28/bloodborne_pc/releases/download/0.5/Bloodborne-bbport-x86_64.AppImage" \
                                 "Bloodborne-bbport-x86_64.AppImage" \
-                                "3dbbec828aebd542622cf25f0ea10a16f50b13f8b5338fb6596a1a69a635fcce"
-        AddSize 389643
+                                "09fc1d13f645631decc06d427c71a08564a2c153df0734ce7bd2a73aad5b9952"
+        AddSize 864256
 
         ReadEnvStr $R0 "USERNAME"
         ${If} ${FileExists} "Z:\home\$R0\.config\bbport-launcher\settings.json"
