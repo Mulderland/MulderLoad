@@ -24,8 +24,7 @@ Var /GLOBAL MODSDIR
 Section
     !insertmacro DETECT_OS $R0
     ${If} $R0 == "Linux"
-        ReadEnvStr $R0 "USERNAME"
-        StrCpy $MODSDIR "Z:\home\$R0\.local\share\bbport\mods"
+        StrCpy $MODSDIR "$INSTDIR\bbport\mods"
     ${Else}
         StrCpy $MODSDIR "$INSTDIR\bbport-windows\mods"
     ${EndIf}
@@ -35,13 +34,14 @@ Section
 SectionEnd
 
 SectionGroup "bloodborne_pc (by deadinside28)" bloodborne_pc
-    Section "Linux v1.5 (by deadinside28)" bloodborne_pc_linux
+    Section "Linux v0.51 (by deadinside28)" bloodborne_pc_linux
         SetOutPath "$INSTDIR\bbport"
 
-        !insertmacro DOWNLOAD_1 "https://github.com/deadinside28/bloodborne_pc/releases/download/0.4/Bloodborne-bbport-x86_64.AppImage" \
+        !insertmacro DOWNLOAD_2 "https://github.com/deadinside28/bloodborne_pc/releases/download/0.51/Bloodborne-bbport-x86_64.AppImage" \
+                                "https://cdn.mulderload.eu/games/bloodborne/Bloodborne-bbport-x86_64-v0.51.AppImage" \
                                 "Bloodborne-bbport-x86_64.AppImage" \
-                                "b279fe5cd39651ce374d065a84de7dfacd5dda703874effc8c2d35f3fccc754c"
-        AddSize 863911
+                                "3dbbec828aebd542622cf25f0ea10a16f50b13f8b5338fb6596a1a69a635fcce"
+        AddSize 389643
 
         ReadEnvStr $R0 "USERNAME"
         ${If} ${FileExists} "Z:\home\$R0\.config\bbport-launcher\settings.json"
@@ -50,10 +50,10 @@ SectionGroup "bloodborne_pc (by deadinside28)" bloodborne_pc
         CreateDirectory "Z:\home\$R0\.config\bbport-launcher"
         File "/oname=Z:\home\$R0\.config\bbport-launcher\settings.json" "resources\linux\settings.json"
 
-        # Write "game_dir"
+        # Write "__GAMEDIR__"
         StrCpy $R1 $INSTDIR "" 2 ; copy INSTDIR without first 2 char (Z: for example)
         !insertmacro STR_REPLACE "\" "/" $R1 $R1
-        !insertmacro FILE_STR_REPLACE "__GAMEDIR__" "$R1/CUSA03173" 1 1 "Z:\home\$R0\.config\bbport-launcher\settings.json"
+        !insertmacro FILE_STR_REPLACE "__GAMEDIR__" "$R1" 1 4 "Z:\home\$R0\.config\bbport-launcher\settings.json"
         linux_skip_json:
 
         ${If} ${FileExists} "Z:\home\$R0\.local\share\bbport\bbport.ini"
