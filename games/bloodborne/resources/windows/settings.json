@@ -10,7 +10,7 @@
   "hdr": false,
   "present_mode": "Mailbox",
   "fps_mode": "60",
-  "frame_cap": "",
+  "frame_cap": "120",
   "draw_pipe": "0",
   "readbacks": "",
   "frames_ahead": "",
