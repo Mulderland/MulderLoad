@@ -19,16 +19,26 @@ InstallDir "C:\Mulderland\Bloodborne"
 !insertmacro BYOF_PAGE_CREATE
 !insertmacro BYOF_WRITE_ENABLE_NEXT_BUTTON
 
-Var /GLOBAL MODSDIR
+Var /GLOBAL BBPORT_DIR
+Var /GLOBAL BBPORT_CONFIG_DIR
+Var /GLOBAL LAUNCHER_CONFIG_DIR
 
 Section
     !insertmacro DETECT_OS $R0
     ${If} $R0 == "Linux"
-        StrCpy $MODSDIR "$INSTDIR\mods"
+        StrCpy $BBPORT_DIR "$INSTDIR"
+        ReadEnvStr $R0 "USER"
+        StrCpy $BBPORT_CONFIG_DIR "Z:\home\$R0\.local\share\bbport"
+        StrCpy $LAUNCHER_CONFIG_DIR "Z:\home\$R0\.config\bbport-launcher"
     ${Else}
-        StrCpy $MODSDIR "$INSTDIR\bbport-windows\mods"
+        StrCpy $BBPORT_DIR "$INSTDIR\bbport-windows"
+        StrCpy $BBPORT_CONFIG_DIR "$INSTDIR\bbport-windows"
+        StrCpy $LAUNCHER_CONFIG_DIR "$APPDATA\bbport-launcher"
     ${EndIf}
-    CreateDirectory "$MODSDIR"
+    CreateDirectory "$BBPORT_DIR\mods"
+    CreateDirectory "$BBPORT_DIR\patches"
+    CreateDirectory "$BBPORT_CONFIG_DIR"
+    CreateDirectory "$BBPORT_LAUNCHER_DIR"
 
     !insertmacro 7Z_GET
 SectionEnd
@@ -42,24 +52,19 @@ SectionGroup "bloodborne_pc (by deadinside28)" bloodborne_pc
                                 "09fc1d13f645631decc06d427c71a08564a2c153df0734ce7bd2a73aad5b9952"
         AddSize 864256
 
-        ReadEnvStr $R0 "USER"
-        ${If} ${FileExists} "Z:\home\$R0\.config\bbport-launcher\settings.json"
-            MessageBox MB_YESNO|MB_DEFBUTTON1 "You have an old 'settings.json' on your computer.$\r$\n$\r$\nDo you want to replace it with Mulderland's default (recommended)?" IDNO linux_skip_json
-        ${EndIf}
-        CreateDirectory "Z:\home\$R0\.config\bbport-launcher"
-        File "/oname=Z:\home\$R0\.config\bbport-launcher\settings.json" "resources\linux\settings.json"
+        # Copy settings.json
+        File "/oname=$BBPORT_LAUNCHER_DIR\settings.json" "resources\linux\settings.json"
 
-        # Write "__GAMEDIR__"
-        StrCpy $R1 $INSTDIR "" 2 ; copy INSTDIR without first 2 char (Z: for example)
-        !insertmacro STR_REPLACE "\" "/" $R1 $R1
-        !insertmacro FILE_STR_REPLACE "__GAMEDIR__" "$R1" 1 4 "Z:\home\$R0\.config\bbport-launcher\settings.json"
-        linux_skip_json:
+        # Edit settings.json with real __GAMEDIR__
+        StrCpy $R0 $INSTDIR "" 2 ; copy INSTDIR without first 2 char (Z: for example)
+        !insertmacro STR_REPLACE "\" "/" $R0 $R0
+        !insertmacro FILE_STR_REPLACE "__GAMEDIR__" "$R0" 1 4 "Z:\home\$R0\.config\bbport-launcher\settings.json"
 
-        ${If} ${FileExists} "Z:\home\$R0\.local\share\bbport\bbport.ini"
+        # Write bbport.ini (if user accepts)
+        ${If} ${FileExists} "$BBPORT_CONFIG_DIR\bbport.ini"
             MessageBox MB_YESNO|MB_DEFBUTTON1 "You have an old 'bbport.ini' on your computer.$\r$\n$\r$\nDo you want to replace it with Mulderland's default (recommended)?" IDNO linux_skip_ini
         ${EndIf}
-        CreateDirectory "Z:\home\$R0\.local\share\bbport"
-        File "/oname=Z:\home\$R0\.local\share\bbport\bbport.ini" "resources\linux\bbport.ini"
+        File "/oname=$BBPORT_CONFIG_DIR\bbport.ini" "resources\linux\bbport.ini"
         linux_skip_ini:
     SectionEnd
 
@@ -74,17 +79,14 @@ SectionGroup "bloodborne_pc (by deadinside28)" bloodborne_pc
         !insertmacro NSISUNZ_EXTRACT "Bloodborne-Windows.zip" ".\" "AUTO_DELETE"
         AddSize 273495
 
-        ${If} ${FileExists} "$APPDATA\bbport-launcher\settings.json"
-            MessageBox MB_YESNO|MB_DEFBUTTON1 "You have an old 'settings.json' on your computer.$\r$\n$\r$\nDo you want to replace it with Mulderland's default (recommended)?" IDNO windows_skip_json
-        ${EndIf}
-        CreateDirectory "$APPDATA\bbport-launcher"
-        File "/oname=$APPDATA\bbport-launcher\settings.json" "resources\windows\settings.json"
-        windows_skip_json:
+        # Write settings.json
+        File "/oname=$BBPORT_LAUNCHER_DIR\settings.json" "resources\windows\settings.json"
 
-        ${If} ${FileExists} "$INSTDIR\bbport-windows\bbport.ini"
+        # Write bbport.ini (if user accepts)
+        ${If} ${FileExists} "$BBPORT_CONFIG_DIR\bbport.ini"
             MessageBox MB_YESNO|MB_DEFBUTTON1 "You have an old 'bbport.ini' on your computer.$\r$\n$\r$\nDo you want to replace it with Mulderland's default (recommended)?" IDNO windows_skip_ini
         ${EndIf}
-        File "/oname=$INSTDIR\bbport-windows\bbport.ini" "resources\windows\bbport.ini"
+        File "/oname=$BBPORT_CONFIG_DIR\bbport.ini" "resources\windows\bbport.ini"
         windows_skip_ini:
     SectionEnd
 SectionGroupEnd
@@ -111,7 +113,7 @@ Section "Extract game files from PKGs"
 SectionEnd
 
 Section "Ebrietas Charge Hitbox Fix (by thetrashlp)"
-    SetOutPath "$MODSDIR\Ebrietas Charge Hitbox Fix\chr"
+    SetOutPath "$BBPORT_DIR\mods\Ebrietas Charge Hitbox Fix\chr"
 
     !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bloodborne/mods/524?tab=files&file_id=2793" \
                             "Ebriatas Charge 524 1 2026-07-11T01-35Z ZWUkAdu2t.7z" \
@@ -123,7 +125,7 @@ SectionEnd
 
 SectionGroup /e "Graphical improvements"
     Section "4K Upscaled UI + Xbox prompts (by MoxIsABox)"
-        SetOutPath "$MODSDIR"
+        SetOutPath "$BBPORT_DIR\mods"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bloodborne/mods/182?tab=files&file_id=1108" \
                                 "4K UI Xbox Prompts-182-1-1-1735339618.7z" \
@@ -133,8 +135,36 @@ SectionGroup /e "Graphical improvements"
         AddSize 1455
     SectionEnd
 
+    Section "Ultrawide Support (by Kyo & Dziggy)"
+        SetOutPath "$BBPORT_DIR\patches"
+        File "resources/Bloodborne_Ultrawide.xml"
+
+        SetOutPath "$BBPORT_DIR\mods"
+
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bloodborne/mods/202?tab=files&file_id=1286" \
+                                "02 - 21.5x9  (43x18)-202-1-0-1-1736754983.zip" \
+                                "7addc5c11d530e46ac225213ade6b7c33ede8764"
+
+        !insertmacro NSISUNZ_EXTRACT "02 - 21.5x9  (43x18)-202-1-0-1-1736754983.zip" ".\" "AUTO_DELETE"
+        RMDir /r "Ultrawide UI (21-9)"
+        Rename "21.5x9 UI Fixes v1.0.1" "Ultrawide UI (21-9)"
+        AddSize 736
+
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bloodborne/mods/202?tab=files&file_id=1288" \
+                                "04 - 32x9-202-1-0-1-1736755039.zip" \
+                                "d6583304ee3fcafb7f6614f73fba77522560f155"
+
+        !insertmacro NSISUNZ_EXTRACT "04 - 32x9-202-1-0-1-1736755039.zip" ".\" "AUTO_DELETE"
+        RMDir /r "Ultrawide UI (32-9)"
+        Rename "32x9 UI Fixes v1.0.1" "Ultrawide UI (32-9)"
+        AddSize 736
+
+        # Disable Ultrawide Mods by default
+        File "/oname=$BBPORT_CONFIG_DIR\mods.json" "resources\mods.json"
+    SectionEnd
+
     Section /o "Upscaled Skybox and Clouds (by johnnycoax)"
-        SetOutPath "$MODSDIR"
+        SetOutPath "$BBPORT_DIR\mods"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bloodborne/mods/436?tab=files&file_id=2289" \
                                 "High Res Sky v2.0 (includes ArcRays Moon Fix mod)-436-2-0-1766723031.zip" \
@@ -147,7 +177,7 @@ SectionGroupEnd
 
 SectionGroup "Quality of Life improvements"
     Section "Auto refill from storage (by LordTPS)"
-        SetOutPath "$MODSDIR\Auto refill from storage"
+        SetOutPath "$BBPORT_DIR\mods\Auto refill from storage"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bloodborne/mods/217?tab=files&file_id=1313" \
                                 "Auto Refill From Storage-217-1-0-1737135942.rar" \
@@ -158,7 +188,7 @@ SectionGroup "Quality of Life improvements"
     SectionEnd
 
     Section "Coldblood Items Show Value (by BaselDev)"
-        SetOutPath "$MODSDIR"
+        SetOutPath "$BBPORT_DIR\mods"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bloodborne/mods/542?tab=files&file_id=2896" \
                                 "Coldblood Items Show Value 542 3 2026-08-14T18-27Z 37KAeahjb.zip" \
@@ -169,7 +199,7 @@ SectionGroup "Quality of Life improvements"
     SectionEnd
 
     Section "Lamp2Lamp: Warp Between Lamps (by Disschorde)"
-        SetOutPath "$MODSDIR\Lamp2Lamp"
+        SetOutPath "$BBPORT_DIR\mods\Lamp2Lamp"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bloodborne/mods/455?tab=files&file_id=2404" \
                                 "Lamp2Lamp - Core-455-1-1-0-1771802685.zip" \
