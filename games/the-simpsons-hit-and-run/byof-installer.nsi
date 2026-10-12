@@ -195,6 +195,9 @@ SectionGroup /e "Improvements" impr
         AddSize 122
         SetOutPath "$INSTDIR"
         !insertmacro DOWNLOAD_1 "https://github.com/crosire/d3d8to9/releases/latest/download/d3d8.dll" "d3d8.dll" ""
+
+        # Linux: make Wine load d3d8to9 instead of its builtin d3d8.dll
+        !insertmacro WINE_DLL_OVERRIDE_APP "Simpsons.exe" "d3d8" "native,builtin"
     SectionEnd
 SectionGroupEnd
 
