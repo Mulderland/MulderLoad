@@ -137,7 +137,7 @@ SectionGroup /e "Graphical improvements"
 
     Section "Ultrawide Support (by Kyo & Dziggy)"
         SetOutPath "$BBPORT_DIR\patches"
-        File "resources/Bloodborne_Ultrawide.xml"
+        File "resources\Bloodborne_Ultrawide.xml"
 
         SetOutPath "$BBPORT_DIR\mods"
 
