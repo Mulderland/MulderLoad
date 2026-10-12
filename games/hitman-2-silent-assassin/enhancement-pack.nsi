@@ -69,6 +69,9 @@ Section "Widescreen fix (by nemesis2000) + dgVoodoo2"
     !insertmacro NSISUNZ_EXTRACT "Ultimate-ASI-Loader.zip" ".\" "AUTO_DELETE"
     !insertmacro FORCE_RENAME "dinput8.dll" "d3d8.dll"
 
+    # Linux: make Wine load the ASI Loader instead of its builtin d3d8.dll
+    !insertmacro WINE_DLL_OVERRIDE_APP "hitman2.exe" "d3d8" "native,builtin"
+
     SetOutPath "$INSTDIR\scripts"
 
     # Install nemesis2000's Widescreen Fix
