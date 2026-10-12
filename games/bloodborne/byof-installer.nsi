@@ -38,7 +38,7 @@ Section
     CreateDirectory "$BBPORT_DIR\mods"
     CreateDirectory "$BBPORT_DIR\patches"
     CreateDirectory "$BBPORT_CONFIG_DIR"
-    CreateDirectory "$BBPORT_LAUNCHER_DIR"
+    CreateDirectory "$LAUNCHER_CONFIG_DIR"
 
     !insertmacro 7Z_GET
 SectionEnd
@@ -53,12 +53,12 @@ SectionGroup "bloodborne_pc (by deadinside28)" bloodborne_pc
         AddSize 864256
 
         # Copy settings.json
-        File "/oname=$BBPORT_LAUNCHER_DIR\settings.json" "resources\linux\settings.json"
+        File "/oname=$LAUNCHER_CONFIG_DIR\settings.json" "resources\linux\settings.json"
 
         # Edit settings.json with real __GAMEDIR__
         StrCpy $R0 $INSTDIR "" 2 ; copy INSTDIR without first 2 char (Z: for example)
         !insertmacro STR_REPLACE "\" "/" $R0 $R0
-        !insertmacro FILE_STR_REPLACE "__GAMEDIR__" "$R0" 1 4 "Z:\home\$R0\.config\bbport-launcher\settings.json"
+        !insertmacro FILE_STR_REPLACE "__GAMEDIR__" "$R0" 1 4 "$LAUNCHER_CONFIG_DIR\settings.json"
 
         # Write bbport.ini (if user accepts)
         ${If} ${FileExists} "$BBPORT_CONFIG_DIR\bbport.ini"
@@ -80,7 +80,7 @@ SectionGroup "bloodborne_pc (by deadinside28)" bloodborne_pc
         AddSize 273495
 
         # Write settings.json
-        File "/oname=$BBPORT_LAUNCHER_DIR\settings.json" "resources\windows\settings.json"
+        File "/oname=$LAUNCHER_CONFIG_DIR\settings.json" "resources\windows\settings.json"
 
         # Write bbport.ini (if user accepts)
         ${If} ${FileExists} "$BBPORT_CONFIG_DIR\bbport.ini"
