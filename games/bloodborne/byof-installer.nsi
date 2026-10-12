@@ -42,7 +42,7 @@ SectionGroup "bloodborne_pc (by deadinside28)" bloodborne_pc
                                 "09fc1d13f645631decc06d427c71a08564a2c153df0734ce7bd2a73aad5b9952"
         AddSize 864256
 
-        ReadEnvStr $R0 "USERNAME"
+        ReadEnvStr $R0 "USER"
         ${If} ${FileExists} "Z:\home\$R0\.config\bbport-launcher\settings.json"
             MessageBox MB_YESNO|MB_DEFBUTTON1 "You have an old 'settings.json' on your computer.$\r$\n$\r$\nDo you want to replace it with Mulderland's default (recommended)?" IDNO linux_skip_json
         ${EndIf}
@@ -187,15 +187,17 @@ SectionEnd
 
 Function .onInit
     !insertmacro DETECT_OS $R0
-
     ${If} $R0 == "Linux"
         ReadEnvStr $R0 STEAM_APP_PATH
         ${If} $R0 != ""
-            MessageBox MB_ICONEXCLAMATION "Please run this installer with Wine, not Protontricks."
+            MessageBox MB_ICONEXCLAMATION \
+                "This installer should not be run through Protontricks.$\r$\n\
+                $\r$\n\
+                Please run it directly with Wine, or temporarily add it to Steam as a non-Steam game."
             Quit
         ${EndIf}
         SectionSetFlags ${bloodborne_pc_windows} ${SF_RO}
-        ReadEnvStr $R0 "USERNAME"
+        ReadEnvStr $R0 "USER"
         StrCpy $INSTDIR "Z:\home\$R0\Mulderland\Bloodborne"
     ${Else}
         SectionSetFlags ${bloodborne_pc_linux} ${SF_RO}

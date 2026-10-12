@@ -64,10 +64,13 @@ Function .onInit
     ${If} $R0 == "Linux"
         ReadEnvStr $R0 STEAM_APP_PATH
         ${If} $R0 != ""
-            MessageBox MB_ICONEXCLAMATION "Please run this installer with Wine, not Protontricks."
+            MessageBox MB_ICONEXCLAMATION \
+                "This installer should not be run through Protontricks.$\r$\n\
+                $\r$\n\
+                Please run it directly with Wine, or temporarily add it to Steam as a non-Steam game."
             Quit
         ${EndIf}
-        ReadEnvStr $R0 "USERNAME"
+        ReadEnvStr $R0 "USER"
         StrCpy $INSTDIR "Z:\home\$R0\Mulderland\Silent Hills P.T."
     ${EndIf}
 FunctionEnd
