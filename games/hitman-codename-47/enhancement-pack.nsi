@@ -31,6 +31,9 @@ Section "Widescreen fix (by alphayellow) + dgVoodoo2"
     !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "MS\x86\DDraw.dll" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "MS\x86\D3DImm.dll" "AUTO_DELETE"
 
+    # Linux: make Wine load dgVoodoo's ddraw.dll instead of its builtin one
+    !insertmacro WINE_DLL_OVERRIDE_APP "Hitman.Exe" "ddraw" "native,builtin"
+
     # Install ThirteenAG's Ultimate ASI Loader (stick to 9.5, higher doesnt seem to work on GOG release)
     !insertmacro DOWNLOAD_2 "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/v9.5.0/Ultimate-ASI-Loader.zip" \
                             "https://cdn.mulderload.eu/tools/ultimate-asi-loader/Ultimate-ASI-Loader-v9.5.0.zip" \
@@ -39,6 +42,9 @@ Section "Widescreen fix (by alphayellow) + dgVoodoo2"
 
     !insertmacro NSISUNZ_EXTRACT "Ultimate-ASI-Loader.zip" ".\" "AUTO_DELETE"
     !insertmacro FORCE_RENAME "dinput8.dll" "dsound.dll"
+
+    # Linux: make Wine load the ASI Loader instead of its builtin dsound.dll
+    !insertmacro WINE_DLL_OVERRIDE_APP "Hitman.Exe" "dsound" "native,builtin"
 
     # Install Alphayellow's Widescreen Fix
     SetOutPath "$INSTDIR\scripts"
