@@ -37,7 +37,8 @@ SectionGroup "bbport / bloodborne_pc (by deadinside28)"
         # Install
         SetOutPath "$INSTDIR\bbport"
 
-        !insertmacro DOWNLOAD_1 "https://github.com/deadinside28/bloodborne_pc/releases/download/0.51/Bloodborne-bbport-x86_64.AppImage" \
+        !insertmacro DOWNLOAD_2 "https://github.com/deadinside28/bloodborne_pc/releases/download/0.51/Bloodborne-bbport-x86_64.AppImage" \
+                                "https://cdn.mulderload.eu/games/bloodborne/Bloodborne-bbport-x86_64-v0.51.AppImage" \
                                 "Bloodborne-bbport-x86_64.AppImage" \
                                 "3dbbec828aebd542622cf25f0ea10a16f50b13f8b5338fb6596a1a69a635fcce"
         AddSize 390144
@@ -57,7 +58,7 @@ SectionGroup "bbport / bloodborne_pc (by deadinside28)"
         skip_ini:
     SectionEnd
 
-    Section "Windows fork v1.7 (by Supermedo)" bbport_supermedo
+    Section "Windows fork v1.7.1 (by Supermedo)" bbport_supermedo
         # Migrate important folders from previous install
         IfFileExists "$INSTDIR\bbport-windows\mods\*.*" 0 end_migrate_mods
             !insertmacro FOLDER_MERGE "$INSTDIR\bbport-windows\mods" "$INSTDIR\mods"
@@ -72,14 +73,14 @@ SectionGroup "bbport / bloodborne_pc (by deadinside28)"
         # Install
         SetOutPath "$INSTDIR\bbport-supermedo"
 
-        # Todo add mirror
-        !insertmacro DOWNLOAD_1 "https://github.com/Supermedo/bloodborne_pc/releases/download/windows-v1.7/Bloodborne-Windows.zip" \
+        !insertmacro DOWNLOAD_2 "https://github.com/Supermedo/bloodborne_pc/releases/download/windows-v1.7.1/Bloodborne-Windows.zip" \
+                                "https://cdn.mulderload.eu/games/bloodborne/Bloodborne-Windows-v1.7.1.zip" \
                                 "Bloodborne-Windows.zip" \
-                                "48a7ec8a3f3f1e657346ab90dd482000580b3f7cf1a56c055103552f6286699a"
+                                "2adb3870c8c80c70bba0edbbb7cd60767255bce93fb913d1183f28e43dd2c6cd"
 
         !insertmacro NSISUNZ_EXTRACT "Bloodborne-Windows.zip" ".\" "AUTO_DELETE"
         !insertmacro FOLDER_MERGE "$INSTDIR\bbport-supermedo\bbport-windows" "$INSTDIR\bbport-supermedo"
-        AddSize 284560
+        AddSize 285483
 
         # Copy settings.json
         File "/oname=$APPDATA\bbport-launcher\settings.json" "resources\bbport-supermedo\settings.json"

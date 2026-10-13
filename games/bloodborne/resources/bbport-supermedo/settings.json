@@ -29,5 +29,7 @@
   "online_npid": "",
   "online_password": "",
   "online_upnp": true,
-  "online_community": "https://thehuntersdream.com"
+  "online_community": "https://thehuntersdream.com",
+  "online_pool": "shadnet",
+  "bridge_live_map": true
 }
