@@ -1,9 +1,9 @@
 {
   "ui_language": "",
-  "user_dir": "",
-  "mods_dir": "",
+  "user_dir": "../user",
+  "mods_dir": "../mods",
   "mods_enabled": true,
-  "patches_dir": "",
+  "patches_dir": "../patches",
   "language": "1",
   "player_name": "",
   "fullscreen": true,

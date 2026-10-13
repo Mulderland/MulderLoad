@@ -19,73 +19,80 @@ InstallDir "C:\Mulderland\Bloodborne"
 !insertmacro BYOF_PAGE_CREATE
 !insertmacro BYOF_WRITE_ENABLE_NEXT_BUTTON
 
-Var /GLOBAL MODSDIR
+Var /GLOBAL LINUX_HOME
+!include "GetUnixPath.nsh"
 
 Section
-    !insertmacro DETECT_OS $R0
-    ${If} $R0 == "Linux"
-        StrCpy $MODSDIR "$INSTDIR\mods"
-    ${Else}
-        StrCpy $MODSDIR "$INSTDIR\bbport-windows\mods"
-    ${EndIf}
-    CreateDirectory "$MODSDIR"
-
     !insertmacro 7Z_GET
+    CreateDirectory "$INSTDIR\mods"
+    CreateDirectory "$INSTDIR\patches"
+    CreateDirectory "$INSTDIR\user"
 SectionEnd
 
-SectionGroup "bloodborne_pc (by deadinside28)" bloodborne_pc
-    Section "Linux v0.5 (by deadinside28)" bloodborne_pc_linux
-        SetOutPath "$INSTDIR"
+SectionGroup "bbport / bloodborne_pc (by deadinside28)"
+    Section "Linux v0.51 (by deadinside28)" bbport
+        # Delete previous binary (that was not in a bbport subfolder)
+        Delete "$INSTDIR\Bloodborne-bbport-x86_64.AppImage"
 
-        !insertmacro DOWNLOAD_1 "https://github.com/deadinside28/bloodborne_pc/releases/download/0.5/Bloodborne-bbport-x86_64.AppImage" \
+        # Install
+        SetOutPath "$INSTDIR\bbport"
+
+        !insertmacro DOWNLOAD_1 "https://github.com/deadinside28/bloodborne_pc/releases/download/0.51/Bloodborne-bbport-x86_64.AppImage" \
                                 "Bloodborne-bbport-x86_64.AppImage" \
-                                "09fc1d13f645631decc06d427c71a08564a2c153df0734ce7bd2a73aad5b9952"
-        AddSize 864256
+                                "3dbbec828aebd542622cf25f0ea10a16f50b13f8b5338fb6596a1a69a635fcce"
+        AddSize 390144
 
-        ReadEnvStr $R0 "USER"
-        ${If} ${FileExists} "Z:\home\$R0\.config\bbport-launcher\settings.json"
-            MessageBox MB_YESNO|MB_DEFBUTTON1 "You have an old 'settings.json' on your computer.$\r$\n$\r$\nDo you want to replace it with Mulderland's default (recommended)?" IDNO linux_skip_json
+        # Copy settings.json
+        File "/oname=$LINUX_HOME\.config\bbport-launcher\settings.json" "resources\bbport\settings.json"
+
+        # Transform $INSTDIR to Unix Format, and write it to settings.json
+        !insertmacro GET_UNIX_PATH $INSTDIR $R0
+        !insertmacro FILE_STR_REPLACE "__INSTDIR__" "$R0" 1 4 "$LINUX_HOME\.config\bbport-launcher\settings.json"
+
+        # Copy bbport.ini (if user accepts)
+        ${If} ${FileExists} "$LINUX_HOME\.local\share\bbport\bbport.ini"
+            MessageBox MB_YESNO|MB_DEFBUTTON1 "You have an old 'bbport.ini' on your computer.$\r$\n$\r$\nDo you want to replace it with Mulderland's default (recommended)?" IDNO skip_ini
         ${EndIf}
-        CreateDirectory "Z:\home\$R0\.config\bbport-launcher"
-        File "/oname=Z:\home\$R0\.config\bbport-launcher\settings.json" "resources\linux\settings.json"
-
-        # Write "__GAMEDIR__"
-        StrCpy $R1 $INSTDIR "" 2 ; copy INSTDIR without first 2 char (Z: for example)
-        !insertmacro STR_REPLACE "\" "/" $R1 $R1
-        !insertmacro FILE_STR_REPLACE "__GAMEDIR__" "$R1" 1 4 "Z:\home\$R0\.config\bbport-launcher\settings.json"
-        linux_skip_json:
-
-        ${If} ${FileExists} "Z:\home\$R0\.local\share\bbport\bbport.ini"
-            MessageBox MB_YESNO|MB_DEFBUTTON1 "You have an old 'bbport.ini' on your computer.$\r$\n$\r$\nDo you want to replace it with Mulderland's default (recommended)?" IDNO linux_skip_ini
-        ${EndIf}
-        CreateDirectory "Z:\home\$R0\.local\share\bbport"
-        File "/oname=Z:\home\$R0\.local\share\bbport\bbport.ini" "resources\linux\bbport.ini"
-        linux_skip_ini:
+        File "/oname=$LINUX_HOME\.local\share\bbport\bbport.ini" "resources\bbport\bbport.ini"
+        skip_ini:
     SectionEnd
 
-    Section "Windows fork v1.6 (by Supermedo)" bloodborne_pc_windows
-        SetOutPath "$INSTDIR"
+    Section "Windows fork v1.7 (by Supermedo)" bbport_supermedo
+        # Migrate important folders from previous install
+        IfFileExists "$INSTDIR\bbport-windows\mods\*.*" 0 end_migrate_mods
+            !insertmacro FOLDER_MERGE "$INSTDIR\bbport-windows\mods" "$INSTDIR\bbport-supermedo\mods"
+        end_migrate_mods:
+        IfFileExists "$INSTDIR\bbport-windows\patches\*.*" 0 end_migrate_patches
+            !insertmacro FOLDER_MERGE "$INSTDIR\bbport-windows\patches" "$INSTDIR\bbport-supermedo\patches"
+        end_migrate_patches:
+        IfFileExists "$INSTDIR\bbport-windows\user\*.*" 0 end_migrate_user
+            !insertmacro FOLDER_MERGE "$INSTDIR\bbport-windows\user" "$INSTDIR\bbport-supermedo\user"
+        end_migrate_user:
 
-        !insertmacro DOWNLOAD_2 "https://github.com/Supermedo/bloodborne_pc/releases/download/windows-v1.6/Bloodborne-Windows.zip" \
-                                "https://cdn.mulderload.eu/games/bloodborne/Bloodborne-Windows-v1.6.zip" \
+        # Delete previous install
+        RMDir /r "$INSTDIR\bbport-windows"
+
+        # Install
+        SetOutPath "$INSTDIR\bbport-supermedo"
+
+        # Todo add mirror
+        !insertmacro DOWNLOAD_1 "https://github.com/Supermedo/bloodborne_pc/releases/download/windows-v1.7/Bloodborne-Windows.zip" \
                                 "Bloodborne-Windows.zip" \
-                                "8410d1ca83c5335c2178c742c8a077b9cb07bf262018537f85fba7ac1808bd7d"
+                                "48a7ec8a3f3f1e657346ab90dd482000580b3f7cf1a56c055103552f6286699a"
 
         !insertmacro NSISUNZ_EXTRACT "Bloodborne-Windows.zip" ".\" "AUTO_DELETE"
-        AddSize 273495
+        !insertmacro FOLDER_MERGE "$INSTDIR\bbport-supermedo\bbport-windows" "$INSTDIR\bbport-supermedo"
+        AddSize 284560
 
-        ${If} ${FileExists} "$APPDATA\bbport-launcher\settings.json"
-            MessageBox MB_YESNO|MB_DEFBUTTON1 "You have an old 'settings.json' on your computer.$\r$\n$\r$\nDo you want to replace it with Mulderland's default (recommended)?" IDNO windows_skip_json
-        ${EndIf}
-        CreateDirectory "$APPDATA\bbport-launcher"
-        File "/oname=$APPDATA\bbport-launcher\settings.json" "resources\windows\settings.json"
-        windows_skip_json:
+        # Copy settings.json
+        File "/oname=$APPDATA\bbport-launcher\settings.json" "resources\bbport-supermedo\settings.json"
 
-        ${If} ${FileExists} "$INSTDIR\bbport-windows\bbport.ini"
-            MessageBox MB_YESNO|MB_DEFBUTTON1 "You have an old 'bbport.ini' on your computer.$\r$\n$\r$\nDo you want to replace it with Mulderland's default (recommended)?" IDNO windows_skip_ini
+        # Copy bbport.ini (if user accepts)
+        ${If} ${FileExists} "$INSTDIR\bbport-supermedo\bbport.ini"
+            MessageBox MB_YESNO|MB_DEFBUTTON1 "You have an old 'bbport.ini' on your computer.$\r$\n$\r$\nDo you want to replace it with Mulderland's default (recommended)?" IDNO skip_ini_supermedo
         ${EndIf}
-        File "/oname=$INSTDIR\bbport-windows\bbport.ini" "resources\windows\bbport.ini"
-        windows_skip_ini:
+        File "/oname=$INSTDIR\bbport-supermedo\bbport.ini" "resources\bbport-supermedo\bbport.ini"
+        skip_ini_supermedo:
     SectionEnd
 SectionGroupEnd
 
@@ -111,7 +118,7 @@ Section "Extract game files from PKGs"
 SectionEnd
 
 Section "Ebrietas Charge Hitbox Fix (by thetrashlp)"
-    SetOutPath "$MODSDIR\Ebrietas Charge Hitbox Fix\chr"
+    SetOutPath "$INSTDIR\mods\Ebrietas Charge Hitbox Fix\chr"
 
     !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bloodborne/mods/524?tab=files&file_id=2793" \
                             "Ebriatas Charge 524 1 2026-07-11T01-35Z ZWUkAdu2t.7z" \
@@ -123,7 +130,7 @@ SectionEnd
 
 SectionGroup /e "Graphical improvements"
     Section "4K Upscaled UI + Xbox prompts (by MoxIsABox)"
-        SetOutPath "$MODSDIR"
+        SetOutPath "$INSTDIR\mods"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bloodborne/mods/182?tab=files&file_id=1108" \
                                 "4K UI Xbox Prompts-182-1-1-1735339618.7z" \
@@ -134,7 +141,7 @@ SectionGroup /e "Graphical improvements"
     SectionEnd
 
     Section /o "Upscaled Skybox and Clouds (by johnnycoax)"
-        SetOutPath "$MODSDIR"
+        SetOutPath "$INSTDIR\mods"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bloodborne/mods/436?tab=files&file_id=2289" \
                                 "High Res Sky v2.0 (includes ArcRays Moon Fix mod)-436-2-0-1766723031.zip" \
@@ -147,7 +154,7 @@ SectionGroupEnd
 
 SectionGroup "Quality of Life improvements"
     Section "Auto refill from storage (by LordTPS)"
-        SetOutPath "$MODSDIR\Auto refill from storage"
+        SetOutPath "$INSTDIR\mods\Auto refill from storage"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bloodborne/mods/217?tab=files&file_id=1313" \
                                 "Auto Refill From Storage-217-1-0-1737135942.rar" \
@@ -158,7 +165,7 @@ SectionGroup "Quality of Life improvements"
     SectionEnd
 
     Section "Coldblood Items Show Value (by BaselDev)"
-        SetOutPath "$MODSDIR"
+        SetOutPath "$INSTDIR\mods"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bloodborne/mods/542?tab=files&file_id=2896" \
                                 "Coldblood Items Show Value 542 3 2026-08-14T18-27Z 37KAeahjb.zip" \
@@ -169,7 +176,7 @@ SectionGroup "Quality of Life improvements"
     SectionEnd
 
     Section "Lamp2Lamp: Warp Between Lamps (by Disschorde)"
-        SetOutPath "$MODSDIR\Lamp2Lamp"
+        SetOutPath "$INSTDIR\mods\Lamp2Lamp"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bloodborne/mods/455?tab=files&file_id=2404" \
                                 "Lamp2Lamp - Core-455-1-1-0-1771802685.zip" \
@@ -196,10 +203,11 @@ Function .onInit
                 Please run it directly with Wine, or temporarily add it to Steam as a non-Steam game."
             Quit
         ${EndIf}
-        SectionSetFlags ${bloodborne_pc_windows} ${SF_RO}
+        SectionSetFlags ${bbport_supermedo} ${SF_RO}
         ReadEnvStr $R0 "USER"
-        StrCpy $INSTDIR "Z:\home\$R0\Mulderland\Bloodborne"
+        StrCpy $LINUX_HOME "Z:\home\$R0"
+        StrCpy $INSTDIR "$LINUX_HOME\Mulderland\Bloodborne"
     ${Else}
-        SectionSetFlags ${bloodborne_pc_linux} ${SF_RO}
+        SectionSetFlags ${bbport} ${SF_RO}
     ${EndIf}
 FunctionEnd
