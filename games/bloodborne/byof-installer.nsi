@@ -60,13 +60,13 @@ SectionGroup "bbport / bloodborne_pc (by deadinside28)"
     Section "Windows fork v1.7 (by Supermedo)" bbport_supermedo
         # Migrate important folders from previous install
         IfFileExists "$INSTDIR\bbport-windows\mods\*.*" 0 end_migrate_mods
-            !insertmacro FOLDER_MERGE "$INSTDIR\bbport-windows\mods" "$INSTDIR\bbport-supermedo\mods"
+            !insertmacro FOLDER_MERGE "$INSTDIR\bbport-windows\mods" "$INSTDIR\mods"
         end_migrate_mods:
         IfFileExists "$INSTDIR\bbport-windows\patches\*.*" 0 end_migrate_patches
-            !insertmacro FOLDER_MERGE "$INSTDIR\bbport-windows\patches" "$INSTDIR\bbport-supermedo\patches"
+            !insertmacro FOLDER_MERGE "$INSTDIR\bbport-windows\patches" "$INSTDIR\patches"
         end_migrate_patches:
         IfFileExists "$INSTDIR\bbport-windows\user\*.*" 0 end_migrate_user
-            !insertmacro FOLDER_MERGE "$INSTDIR\bbport-windows\user" "$INSTDIR\bbport-supermedo\user"
+            !insertmacro FOLDER_MERGE "$INSTDIR\bbport-windows\user" "$INSTDIR\user"
         end_migrate_user:
 
         # Delete previous install
