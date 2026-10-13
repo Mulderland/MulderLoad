@@ -62,9 +62,6 @@ SectionGroup "bbport / bloodborne_pc (by deadinside28)"
         IfFileExists "$INSTDIR\bbport-windows\mods\*.*" 0 end_migrate_mods
             !insertmacro FOLDER_MERGE "$INSTDIR\bbport-windows\mods" "$INSTDIR\mods"
         end_migrate_mods:
-        IfFileExists "$INSTDIR\bbport-windows\patches\*.*" 0 end_migrate_patches
-            !insertmacro FOLDER_MERGE "$INSTDIR\bbport-windows\patches" "$INSTDIR\patches"
-        end_migrate_patches:
         IfFileExists "$INSTDIR\bbport-windows\user\*.*" 0 end_migrate_user
             !insertmacro FOLDER_MERGE "$INSTDIR\bbport-windows\user" "$INSTDIR\user"
         end_migrate_user:
@@ -97,6 +94,7 @@ SectionGroup "bbport / bloodborne_pc (by deadinside28)"
 SectionGroupEnd
 
 Section "Extract game files from PKGs"
+    AddSize 30774794
     SetOutPath "$INSTDIR"
 
     DetailPrint " // Get pkgextract"
@@ -107,14 +105,28 @@ Section "Extract game files from PKGs"
 
     !insertmacro NSISUNZ_EXTRACT "pkgextract.zip" ".\" "AUTO_DELETE"
 
-    DetailPrint " // Extracting game files from PKGs"
-    nsExec::ExecToStack '"$INSTDIR\pkgextract.exe" -o ".\CUSA03173" -f "$byofPath_GAME"'
-    nsExec::ExecToStack '"$INSTDIR\pkgextract.exe" -o ".\CUSA03173-update" -f "$byofPath_UPDATE"'
-    !insertmacro FOLDER_MERGE "$INSTDIR\CUSA03173-update" "$INSTDIR\CUSA03173"
-    AddSize 30774794
+    DetailPrint " // Extracting game files"
+    nsExec::Exec '"$INSTDIR\pkgextract.exe" -o "$INSTDIR\CUSA03173" -f "$byofPath_GAME"'
+    Pop $R0
+    ${If} $R0 != "0"
+        MessageBox MB_ICONEXCLAMATION "An error occurred while extracting the game files."
+    ${EndIf}
 
-    DetailPrint " // Cleaning up"
-    Delete "pkgextract.exe"
+    DetailPrint " // Extracting update files"
+    nsExec::Exec '"$INSTDIR\pkgextract.exe" -o "$INSTDIR\CUSA03173-update" -f "$byofPath_UPDATE"'
+    Pop $R1
+    ${If} $R1 != "0"
+        MessageBox MB_ICONEXCLAMATION "An error occurred while extracting the update files."
+    ${EndIf}
+
+    ${If} $R0 == "0"
+    ${AndIf} $R1 == "0"
+        DetailPrint " // Merging update files"
+        !insertmacro FOLDER_MERGE "$INSTDIR\CUSA03173-update" "$INSTDIR\CUSA03173"
+
+        DetailPrint " // Cleaning up"
+        Delete "pkgextract.exe"
+    ${EndIf}
 SectionEnd
 
 Section "Ebrietas Charge Hitbox Fix (by thetrashlp)"
