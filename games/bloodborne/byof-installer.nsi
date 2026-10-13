@@ -44,6 +44,7 @@ SectionGroup "bbport / bloodborne_pc (by deadinside28)"
         AddSize 390144
 
         # Copy settings.json
+        CreateDirectory "$LINUX_HOME\.config\bbport-launcher"
         File "/oname=$LINUX_HOME\.config\bbport-launcher\settings.json" "resources\bbport\settings.json"
 
         # Transform $INSTDIR to Unix Format, and write it to settings.json
@@ -54,6 +55,7 @@ SectionGroup "bbport / bloodborne_pc (by deadinside28)"
         ${If} ${FileExists} "$LINUX_HOME\.local\share\bbport\bbport.ini"
             MessageBox MB_YESNO|MB_DEFBUTTON1 "You have an old 'bbport.ini' on your computer.$\r$\n$\r$\nDo you want to replace it with Mulderland's default (recommended)?" IDNO skip_ini
         ${EndIf}
+        CreateDirectory "$LINUX_HOME\.local\share\bbport"
         File "/oname=$LINUX_HOME\.local\share\bbport\bbport.ini" "resources\bbport\bbport.ini"
         skip_ini:
     SectionEnd
@@ -83,6 +85,7 @@ SectionGroup "bbport / bloodborne_pc (by deadinside28)"
         AddSize 285483
 
         # Copy settings.json
+        CreateDirectory "$APPDATA\bbport-launcher"
         File "/oname=$APPDATA\bbport-launcher\settings.json" "resources\bbport-supermedo\settings.json"
 
         # Copy bbport.ini (if user accepts)
