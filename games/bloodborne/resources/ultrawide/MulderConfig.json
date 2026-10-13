@@ -39,7 +39,7 @@
     "operations": [
       {
         "operation": "removereadonly",
-        "files": ["bbport-supermedo\\bbport.ini"]
+        "files": ["bbport.ini", "bbport-supermedo\\bbport.ini"]
       },
 
 
@@ -47,35 +47,35 @@
       {
         "when": [ { "Force ultrawide resolution": "21/9 - 2560x1080" } ],
         "operation": "replaceLine",
-        "files": ["bbport-supermedo\\bbport.ini"],
+        "optionalFiles": ["bbport.ini", "bbport-supermedo\\bbport.ini"],
         "pattern": "^output_res.*$",
         "replacement": "output_res=2560x1080"
       },
       {
         "when": [ { "Force ultrawide resolution": "21/9 - 3440x1440" } ],
         "operation": "replaceLine",
-        "files": ["bbport-supermedo\\bbport.ini"],
+        "optionalFiles": ["bbport.ini", "bbport-supermedo\\bbport.ini"],
         "pattern": "^output_res.*$",
         "replacement": "output_res=3440x1440"
       },
       {
         "when": [ { "Force ultrawide resolution": "21/9 - 5120x2160" } ],
         "operation": "replaceLine",
-        "files": ["bbport-supermedo\\bbport.ini"],
+        "optionalFiles": ["bbport.ini", "bbport-supermedo\\bbport.ini"],
         "pattern": "^output_res.*$",
         "replacement": "output_res=5120x2160"
       },
       {
         "when": [ { "Force ultrawide resolution": "32/9 - 3840x1080" } ],
         "operation": "replaceLine",
-        "files": ["bbport-supermedo\\bbport.ini"],
+        "optionalFiles": ["bbport.ini", "bbport-supermedo\\bbport.ini"],
         "pattern": "^output_res.*$",
         "replacement": "output_res=3840x1080"
       },
       {
         "when": [ { "Force ultrawide resolution": "32/9 - 5120x1440" } ],
         "operation": "replaceLine",
-        "files": ["bbport-supermedo\\bbport.ini"],
+        "optionalFiles": ["bbport.ini", "bbport-supermedo\\bbport.ini"],
         "pattern": "^output_res.*$",
         "replacement": "output_res=5120x1440"
       },
@@ -85,28 +85,28 @@
       {
         "when": [ { "Anti-aliasing": "DLAA" } ],
         "operation": "replaceLine",
-        "files": ["bbport-supermedo\\bbport.ini"],
+        "optionalFiles": ["bbport.ini", "bbport-supermedo\\bbport.ini"],
         "pattern": "^upscaler.*$",
         "replacement": "upscaler=dlss"
       },
       {
         "when": [ { "Anti-aliasing": "FSR 3.1" } ],
         "operation": "replaceLine",
-        "files": ["bbport-supermedo\\bbport.ini"],
+        "optionalFiles": ["bbport.ini", "bbport-supermedo\\bbport.ini"],
         "pattern": "^upscaler.*$",
         "replacement": "upscaler=fsr3"
       },
       {
         "when": [ { "Anti-aliasing": "FSR 4" } ],
         "operation": "replaceLine",
-        "files": ["bbport-supermedo\\bbport.ini"],
+        "optionalFiles": ["bbport.ini", "bbport-supermedo\\bbport.ini"],
         "pattern": "^upscaler.*$",
         "replacement": "upscaler=fsr4"
       },
       {
         "when": [ { "Anti-aliasing": "FSR 4.1.1" } ],
         "operation": "replaceLine",
-        "files": ["bbport-supermedo\\bbport.ini"],
+        "optionalFiles": ["bbport.ini", "bbport-supermedo\\bbport.ini"],
         "pattern": "^upscaler.*$",
         "replacement": "upscaler=fsr411"
       },
@@ -116,21 +116,21 @@
       {
         "when": [ { "!Force ultrawide resolution": "No" } ],
         "operation": "replaceLine",
-        "files": ["bbport-supermedo\\bbport.ini"],
+        "optionalFiles": ["bbport.ini", "bbport-supermedo\\bbport.ini"],
         "pattern": "^preset.*$",
         "replacement": "preset=0"
       },
       {
         "when": [ { "!Force ultrawide resolution": "No" } ],
         "operation": "replaceLine",
-        "files": ["bbport-supermedo\\bbport.ini"],
+        "optionalFiles": ["bbport.ini", "bbport-supermedo\\bbport.ini"],
         "pattern": "^effect_game_aa.*$",
         "replacement": "effect_game_aa=0"
       },
       {
         "when": [ { "!Force ultrawide resolution": "No" } ],
         "operation": "replaceLine",
-        "files": ["bbport-supermedo\\bbport.ini"],
+        "optionalFiles": ["bbport.ini", "bbport-supermedo\\bbport.ini"],
         "pattern": "^live_resolution.*$",
         "replacement": "live_resolution=0"
       },
@@ -140,7 +140,7 @@
       {
         "when": [ { "!Force ultrawide resolution": "No" } ],
         "operation": "setReadonly",
-        "files": ["bbport-supermedo\\bbport.ini"]
+        "files": ["bbport.ini", "bbport-supermedo\\bbport.ini"]
       },
 
 
@@ -162,43 +162,43 @@
 
       {
         "operation": "removeLine",
-        "files": ["bbport-supermedo\\patches.json"],
+        "optionalFiles": ["patches.json", "bbport-supermedo\\patches.json"],
         "pattern": "Bloodborne_Ultrawide.xml"
       },
       {
         "when": [ { "Force ultrawide resolution": "21/9 - 2560x1080" } ],
         "operation": "replaceText",
-        "files": ["bbport-supermedo\\patches.json"],
-        "pattern": "\"enabled\": \\[",
-        "replacement": "\"enabled\": [\r\n    \"Bloodborne_Ultrawide.xml/Ultrawide Rendering (21/9) - 2560x1080\""
+        "optionalFiles": ["patches.json", "bbport-supermedo\\patches.json"],
+        "pattern": "],\r\n  \"disabled\"",
+        "replacement": "  \"Bloodborne_Ultrawide.xml/Ultrawide Rendering (21/9) - 2560x1080\"\r\n  ],\r\n  \"disabled\""
       },
       {
         "when": [ { "Force ultrawide resolution": "21/9 - 3440x1440" } ],
         "operation": "replaceText",
-        "files": ["bbport-supermedo\\patches.json"],
-        "pattern": "\"enabled\": \\[",
-        "replacement": "\"enabled\": [\r\n    \"Bloodborne_Ultrawide.xml/Ultrawide Rendering (21/9) - 3440x1440\""
+        "optionalFiles": ["patches.json", "bbport-supermedo\\patches.json"],
+        "pattern": "],\r\n  \"disabled\"",
+        "replacement": "  \"Bloodborne_Ultrawide.xml/Ultrawide Rendering (21/9) - 3440x1440\"\r\n  ],\r\n  \"disabled\""
       },
       {
         "when": [ { "Force ultrawide resolution": "21/9 - 5120x2160" } ],
         "operation": "replaceText",
-        "files": ["bbport-supermedo\\patches.json"],
-        "pattern": "\"enabled\": \\[",
-        "replacement": "\"enabled\": [\r\n    \"Bloodborne_Ultrawide.xml/Ultrawide Rendering (21/9) - 5120x2160\""
+        "optionalFiles": ["patches.json", "bbport-supermedo\\patches.json"],
+        "pattern": "],\r\n  \"disabled\"",
+        "replacement": "  \"Bloodborne_Ultrawide.xml/Ultrawide Rendering (21/9) - 5120x2160\"\r\n  ],\r\n  \"disabled\""
       },
       {
         "when": [ { "Force ultrawide resolution": "32/9 - 3840x1080" } ],
         "operation": "replaceText",
-        "files": ["bbport-supermedo\\patches.json"],
-        "pattern": "\"enabled\": \\[",
-        "replacement": "\"enabled\": [\r\n    \"Bloodborne_Ultrawide.xml/Ultrawide Rendering (32/9) - 3840x1080\""
+        "optionalFiles": ["patches.json", "bbport-supermedo\\patches.json"],
+        "pattern": "],\r\n  \"disabled\"",
+        "replacement": "  \"Bloodborne_Ultrawide.xml/Ultrawide Rendering (32/9) - 3840x1080\"\r\n  ],\r\n  \"disabled\""
       },
       {
         "when": [ { "Force ultrawide resolution": "32/9 - 5120x1440" } ],
         "operation": "replaceText",
-        "files": ["bbport-supermedo\\patches.json"],
-        "pattern": "\"enabled\": \\[",
-        "replacement": "\"enabled\": [\r\n    \"Bloodborne_Ultrawide.xml/Ultrawide Rendering (32/9) - 5120x1440\""
+        "optionalFiles": ["patches.json", "bbport-supermedo\\patches.json"],
+        "pattern": "],\r\n  \"disabled\"",
+        "replacement": "  \"Bloodborne_Ultrawide.xml/Ultrawide Rendering (32/9) - 5120x1440\"\r\n  ],\r\n  \"disabled\""
       },
 
 
@@ -230,22 +230,37 @@
 
       {
         "operation": "removeLine",
-        "files": ["bbport-supermedo\\mods.json"],
+        "optionalFiles": ["mods.json", "bbport-supermedo\\mods.json"],
         "pattern": "Ultrawide UI"
       },
       {
         "when": [ { "Misc": "HUD at screen edges (Ultrawide)", "*Force ultrawide resolution": "21/9" } ],
         "operation": "replaceText",
-        "files": ["bbport-supermedo\\mods.json"],
-        "pattern": "  ],\r\n  \"disabled\"",
-        "replacement": "    \"Ultrawide UI (21-9)\"\r\n  ],\r\n  \"disabled\""
+        "optionalFiles": ["mods.json", "bbport-supermedo\\mods.json"],
+        "pattern": "],\r\n  \"disabled\"",
+        "replacement": "  \"Ultrawide UI (21-9)\"\r\n  ],\r\n  \"disabled\""
       },
       {
         "when": [ { "Misc": "HUD at screen edges (Ultrawide)", "*Force ultrawide resolution": "32/9" } ],
         "operation": "replaceText",
-        "files": ["bbport-supermedo\\mods.json"],
-        "pattern": "  ],\r\n  \"disabled\"",
-        "replacement": "    \"Ultrawide UI (32-9)\"\r\n  ],\r\n  \"disabled\""
+        "optionalFiles": ["mods.json", "bbport-supermedo\\mods.json"],
+        "pattern": "],\r\n  \"disabled\"",
+        "replacement": "  \"Ultrawide UI (32-9)\"\r\n  ],\r\n  \"disabled\""
+      },
+
+
+
+      {
+        "operation": "replaceText",
+        "optionalFiles": ["mods.json", "bbport-supermedo\\mods.json", "patches.json", "bbport-supermedo\\patches.json"],
+        "pattern": "\"\r\n    \"",
+        "replacement": "\",\r\n    \""
+      },
+      {
+        "operation": "replaceText",
+        "optionalFiles": ["mods.json", "bbport-supermedo\\mods.json", "patches.json", "bbport-supermedo\\patches.json"],
+        "pattern": "\",\r\n  ]",
+        "replacement": "\"\r\n  ]"
       }
     ]
   }
