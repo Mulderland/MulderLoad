@@ -1,10 +1,10 @@
 {
   "ui_language": "",
-  "game_dir": "__GAMEDIR__/CUSA03173",
-  "user_dir": "__GAMEDIR__/user",
-  "mods_dir": "__GAMEDIR__/mods",
+  "game_dir": "__INSTDIR__/CUSA03173",
+  "user_dir": "__INSTDIR__/user",
+  "mods_dir": "__INSTDIR__/mods",
   "mods_enabled": true,
-  "patches_dir": "__GAMEDIR__/patches",
+  "patches_dir": "__INSTDIR__/patches",
   "language": "1",
   "fullscreen": true,
   "hdr": false,
@@ -26,5 +26,12 @@
   "as_0_3": false,
   "gpu_profile": false,
   "vk_validation": false,
-  "extra_env": ""
+  "extra_env": "BB_DLSS=0",
+  "online": false,
+  "online_community": "https://thehuntersdream.com",
+  "online_server": "srv.shadps4.net:31313",
+  "online_webapi": "",
+  "online_npid": "",
+  "online_password": "",
+  "online_upnp": true
 }
