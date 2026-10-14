@@ -60,7 +60,7 @@ SectionGroup "bbport / bloodborne_pc (by deadinside28)"
         skip_ini:
     SectionEnd
 
-    Section "Windows fork v1.7.1 (by Supermedo)" bbport_supermedo
+    Section "Windows fork v1.7.2 (by Supermedo)" bbport_supermedo
         # Migrate important folders from previous install
         IfFileExists "$INSTDIR\bbport-windows\mods\*.*" 0 end_migrate_mods
             !insertmacro FOLDER_MERGE "$INSTDIR\bbport-windows\mods" "$INSTDIR\mods"
@@ -75,10 +75,10 @@ SectionGroup "bbport / bloodborne_pc (by deadinside28)"
         # Install
         SetOutPath "$INSTDIR\bbport-supermedo"
 
-        !insertmacro DOWNLOAD_2 "https://github.com/Supermedo/bloodborne_pc/releases/download/windows-v1.7.1/Bloodborne-Windows.zip" \
-                                "https://cdn.mulderload.eu/games/bloodborne/Bloodborne-Windows-v1.7.1.zip" \
+        !insertmacro DOWNLOAD_2 "https://github.com/Supermedo/bloodborne_pc/releases/download/windows-v1.7.2/Bloodborne-Windows.zip" \
+                                "https://cdn.mulderload.eu/games/bloodborne/Bloodborne-Windows-v1.7.2.zip" \
                                 "Bloodborne-Windows.zip" \
-                                "2adb3870c8c80c70bba0edbbb7cd60767255bce93fb913d1183f28e43dd2c6cd"
+                                "0e47412530079e41c4b3d0b7ac07081a58f68e6b05f82732196abdb3ad7840fe"
 
         !insertmacro NSISUNZ_EXTRACT "Bloodborne-Windows.zip" ".\" "AUTO_DELETE"
         !insertmacro FOLDER_MERGE "$INSTDIR\bbport-supermedo\bbport-windows" "$INSTDIR\bbport-supermedo"
