@@ -114,32 +114,58 @@ Section "Extract game files from PKGs"
     AddSize 30774794
     SetOutPath "$INSTDIR"
 
-    DetailPrint " // Get pkgextract"
-    !insertmacro DOWNLOAD_2 "https://github.com/paulomanrique/ps4-pkg-extractor/releases/download/v0.0.1/pkgextract-x86_64-pc-windows-msvc.zip" \
-                            "https://cdn.mulderload.eu/dependencies/ps4-pkg-extractor/v0.0.1/pkgextract-x86_64-pc-windows-msvc.zip" \
-                            "pkgextract.zip" \
-                            "0c736ee02779fb5cf4403a91da23f94fdaa72debf995be0c400ac9c36acee63a"
+    !insertmacro DETECT_OS $R0
 
-    !insertmacro NSISUNZ_EXTRACT "pkgextract.zip" ".\" "AUTO_DELETE"
+    ${If} $R0 == "Linux"
+        DetailPrint " // Get PkgExtractor"
+        !insertmacro DOWNLOAD_1 "https://github.com/AzaharPlus/shadPS4Plus/releases/download/PKG_EXTRACTOR_1_1/ShadPs4Plus-PkgExtractor-1.1-windows.zip" \
+                                "PkgExtractor.zip" \
+                                "a6a6dee84c1283949245c868e580ff8d0049d0e73df9de3096460ee26c6f04d7"
 
-    DetailPrint " // Extracting game files"
-    nsExec::Exec '"$INSTDIR\pkgextract.exe" -o "$INSTDIR\CUSA03173" -f "$byofPath_GAME"'
-    Pop $R0
-    ${If} $R0 != "0"
-        MessageBox MB_ICONEXCLAMATION "An error occurred while extracting the game files."
-    ${EndIf}
+        !insertmacro NSISUNZ_EXTRACT "PkgExtractor.zip" ".\" "AUTO_DELETE"
 
-    DetailPrint " // Extracting update files"
-    nsExec::Exec '"$INSTDIR\pkgextract.exe" -o "$INSTDIR\CUSA03173-update" -f "$byofPath_UPDATE"'
-    Pop $R1
-    ${If} $R1 != "0"
-        MessageBox MB_ICONEXCLAMATION "An error occurred while extracting the update files."
+        DetailPrint " // Extracting game files"
+        nsExec::Exec '"$INSTDIR\ShadPs4Plus-PkgExtractor-1.1-windows\pkg_extractor.exe" "$byofPath_GAME" "$INSTDIR"'
+        Pop $R0
+        ${If} $R0 != "0"
+            MessageBox MB_ICONEXCLAMATION "An error occurred while extracting the game files."
+        ${EndIf}
+
+        DetailPrint " // Extracting update files"
+        nsExec::Exec '"$INSTDIR\ShadPs4Plus-PkgExtractor-1.1-windows\pkg_extractor.exe" "$byofPath_UPDATE" "$INSTDIR"'
+        Pop $R1
+        ${If} $R1 != "0"
+            MessageBox MB_ICONEXCLAMATION "An error occurred while extracting the update files."
+        ${EndIf}
+
+    ${Else}
+        DetailPrint " // Get pkgextract"
+        !insertmacro DOWNLOAD_2 "https://github.com/paulomanrique/ps4-pkg-extractor/releases/download/v0.0.1/pkgextract-x86_64-pc-windows-msvc.zip" \
+                                "https://cdn.mulderload.eu/dependencies/ps4-pkg-extractor/v0.0.1/pkgextract-x86_64-pc-windows-msvc.zip" \
+                                "pkgextract.zip" \
+                                "0c736ee02779fb5cf4403a91da23f94fdaa72debf995be0c400ac9c36acee63a"
+
+        !insertmacro NSISUNZ_EXTRACT "pkgextract.zip" ".\" "AUTO_DELETE"
+
+        DetailPrint " // Extracting game files"
+        nsExec::Exec '"$INSTDIR\pkgextract.exe" -o "$INSTDIR\CUSA03173" -f "$byofPath_GAME"'
+        Pop $R0
+        ${If} $R0 != "0"
+            MessageBox MB_ICONEXCLAMATION "An error occurred while extracting the game files."
+        ${EndIf}
+
+        DetailPrint " // Extracting update files"
+        nsExec::Exec '"$INSTDIR\pkgextract.exe" -o "$INSTDIR\CUSA03173-patch" -f "$byofPath_UPDATE"'
+        Pop $R1
+        ${If} $R1 != "0"
+            MessageBox MB_ICONEXCLAMATION "An error occurred while extracting the update files."
+        ${EndIf}
     ${EndIf}
 
     ${If} $R0 == "0"
     ${AndIf} $R1 == "0"
         DetailPrint " // Merging update files"
-        !insertmacro FOLDER_MERGE "$INSTDIR\CUSA03173-update" "$INSTDIR\CUSA03173"
+        !insertmacro FOLDER_MERGE "$INSTDIR\CUSA03173-patch" "$INSTDIR\CUSA03173"
 
         DetailPrint " // Cleaning up"
         Delete "pkgextract.exe"
