@@ -8,8 +8,6 @@ ${TXT_WELCOMEPAGE_MULDERLAND_1}$\r$\n\
 $\r$\n\
 This installer && this port are not affiliated with or endorsed by Sony, From Software or any of the original developers."
 
-!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\MulderConfig-README.txt"
-!define MUI_FINISHPAGE_SHOWREADME_TEXT "Show ultrawide instructions"
 !include "..\..\includes\templates\ByofTemplate.nsh"
 !include "..\..\includes\tools\7z.nsh"
 
@@ -62,7 +60,7 @@ SectionGroup "bbport / bloodborne_pc (by deadinside28)"
         skip_ini:
     SectionEnd
 
-    Section "Windows fork v1.7.2 (by Supermedo)" bbport_supermedo
+    Section "Windows fork v1.7.6 (by Supermedo)" bbport_supermedo
         # Migrate important folders from previous install
         IfFileExists "$INSTDIR\bbport-windows\mods\*.*" 0 end_migrate_mods
             !insertmacro FOLDER_MERGE "$INSTDIR\bbport-windows\mods" "$INSTDIR\mods"
@@ -74,17 +72,30 @@ SectionGroup "bbport / bloodborne_pc (by deadinside28)"
         # Delete previous install
         RMDir /r "$INSTDIR\bbport-windows"
 
+        # Remove deprecated ultrawide patch
+        ${If} ${FileExists} "$INSTDIR\MulderConfig.exe"
+            Delete "$INSTDIR\MulderConfig.exe"
+            Delete "$INSTDIR\MulderConfig.json"
+            Delete "$INSTDIR\MulderConfig.save.json"
+            RMDir /r "$INSTDIR\.MulderConfig"
+            Delete "$INSTDIR\bbport-supermedo\mods.json"
+            Delete "$INSTDIR\bbport-supermedo\patches.json"
+            Delete "$INSTDIR\patches\Bloodborne_Ultrawide.xml"
+            RMDir /r "$INSTDIR\mods\Ultrawide UI (21-9)"
+            RMDir /r "$INSTDIR\mods\Ultrawide UI (32-9)"
+        ${EndIf}
+
         # Install
         SetOutPath "$INSTDIR\bbport-supermedo"
 
-        !insertmacro DOWNLOAD_2 "https://github.com/Supermedo/bloodborne_pc/releases/download/windows-v1.7.2/Bloodborne-Windows.zip" \
-                                "https://cdn.mulderload.eu/games/bloodborne/Bloodborne-Windows-v1.7.2.zip" \
+        !insertmacro DOWNLOAD_2 "https://github.com/Supermedo/bloodborne_pc/releases/download/windows-v1.7.6/Bloodborne-Windows.zip" \
+                                "https://cdn.mulderload.eu/games/bloodborne/Bloodborne-Windows-v1.7.6.zip" \
                                 "Bloodborne-Windows.zip" \
-                                "0e47412530079e41c4b3d0b7ac07081a58f68e6b05f82732196abdb3ad7840fe"
+                                "4843a2c0430d12d8c0eefe338f35dea744d68c9ea7b7106ab9dca3d23fe9f23a"
 
         !insertmacro NSISUNZ_EXTRACT "Bloodborne-Windows.zip" ".\" "AUTO_DELETE"
         !insertmacro FOLDER_MERGE "$INSTDIR\bbport-supermedo\bbport-windows" "$INSTDIR\bbport-supermedo"
-        AddSize 285483
+        AddSize 284697
 
         # Copy settings.json
         CreateDirectory "$APPDATA\bbport-launcher"
@@ -168,40 +179,6 @@ SectionGroup /e "Graphical improvements"
         !insertmacro 7Z_EXTRACT "High Res Sky v2.0 (includes ArcRays Moon Fix mod)-436-2-0-1766723031.zip" ".\" "AUTO_DELETE"
         AddSize 4548075
     SectionEnd
-
-    Section "[WIN] Ultrawide Support (by Kyo, Dziggy & Mulder)" ultrawide
-        SetOutPath "$INSTDIR\.MulderConfig"
-        File "resources\ultrawide\Bloodborne_Ultrawide.xml"
-
-        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bloodborne/mods/202?tab=files&file_id=1286" \
-                                "02 - 21.5x9  (43x18)-202-1-0-1-1736754983.zip" \
-                                "7addc5c11d530e46ac225213ade6b7c33ede8764"
-
-        !insertmacro NSISUNZ_EXTRACT "02 - 21.5x9  (43x18)-202-1-0-1-1736754983.zip" ".\" "AUTO_DELETE"
-        RMDir /r "Ultrawide UI (21-9)"
-        Rename "21.5x9 UI Fixes v1.0.1" "Ultrawide UI (21-9)"
-        AddSize 736
-
-        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bloodborne/mods/202?tab=files&file_id=1288" \
-                                "04 - 32x9-202-1-0-1-1736755039.zip" \
-                                "d6583304ee3fcafb7f6614f73fba77522560f155"
-
-        !insertmacro NSISUNZ_EXTRACT "04 - 32x9-202-1-0-1-1736755039.zip" ".\" "AUTO_DELETE"
-        RMDir /r "Ultrawide UI (32-9)"
-        Rename "32x9 UI Fixes v1.0.1" "Ultrawide UI (32-9)"
-        AddSize 736
-
-        ${IfNot} ${FileExists} "$INSTDIR\bbport-supermedo\mods.json"
-            File "/oname=$INSTDIR\bbport-supermedo\mods.json" "resources\ultrawide\mods.json"
-        ${EndIf}
-        ${IfNot} ${FileExists} "$INSTDIR\bbport-supermedo\patches.json"
-            File "/oname=$INSTDIR\bbport-supermedo\patches.json" "resources\ultrawide\patches.json"
-        ${EndIf}
-
-        SetOutPath "$INSTDIR"
-        File "resources\ultrawide\MulderConfig-README.txt"
-        !insertmacro INSTALL_MULDERCONFIG "$INSTDIR" "resources\ultrawide"
-    SectionEnd
 SectionGroupEnd
 
 SectionGroup "Quality of Life improvements"
@@ -256,7 +233,6 @@ Function .onInit
             Quit
         ${EndIf}
         SectionSetFlags ${bbport_supermedo} ${SF_RO}
-        SectionSetFlags ${ultrawide} ${SF_RO}
         ReadEnvStr $R0 "USER"
         StrCpy $LINUX_HOME "Z:\home\$R0"
         StrCpy $INSTDIR "$LINUX_HOME\Mulderland\Bloodborne"
