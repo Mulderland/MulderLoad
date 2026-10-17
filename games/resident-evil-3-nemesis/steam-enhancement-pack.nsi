@@ -25,6 +25,12 @@
 
 Var /GLOBAL REBIRTHDIR
 
+!ifdef GOG_ENHANCEMENT_PACK_NSI
+    !define REBIRTH_EXE "BH3Launcher.exe"
+!else
+    !define REBIRTH_EXE "BIOHAZARD(R) 3 PC.exe"
+!endif
+
 Section
     !ifdef GOG_ENHANCEMENT_PACK_NSI
         StrCpy $REBIRTHDIR "$INSTDIR"
@@ -102,6 +108,9 @@ SectionGroup "RE 3 Classic REbirth v1.0.3 (by Gemini)"
 
         !insertmacro NSISUNZ_EXTRACT "re3cr-2026-08-16.zip" ".\" "AUTO_DELETE"
         AddSize 7834
+
+        # Linux: make Wine load Classic REbirth's ddraw.dll instead of its builtin one
+        !insertmacro WINE_DLL_OVERRIDE_APP "${REBIRTH_EXE}" "ddraw" "native,builtin"
 
         # XAudio DLL
         !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/tools/xaudio/xaudio2_9.dll" \
@@ -203,6 +212,9 @@ SectionGroup "Graphical improvements"
 
         !insertmacro NSISUNZ_EXTRACT_ONE "dinput8-Win32.zip" ".\" "dinput8.dll" "AUTO_DELETE"
         AddSize 5264
+
+        # Linux: make Wine load the ASI Loader instead of its builtin dinput8.dll
+        !insertmacro WINE_DLL_OVERRIDE_APP "${REBIRTH_EXE}" "dinput8" "native,builtin"
 
         # Get patched asi for Linux/Deck
         !insertmacro DETECT_OS $R0

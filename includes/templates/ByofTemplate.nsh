@@ -22,6 +22,7 @@
 !include "..\..\includes\functions\StrResolveFilename.nsh"
 !include "..\..\includes\functions\StrRightExplode.nsh"
 !include "..\..\includes\functions\StrStartsWith.nsh"
+!include "..\..\includes\functions\WineDllOverride.nsh"
 !include "..\..\includes\misc\CommonMacros.nsh"
 
 # Customize pages
