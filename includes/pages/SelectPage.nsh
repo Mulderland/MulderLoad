@@ -96,7 +96,11 @@ Function SelectFileDialog
     Call SuggestDirectory
     Pop $R0
 
-    nsDialogs::SelectFileDialog open "$R0\$SELECT_RELATIVE_PATH" "$SELECT_FILENAME|$SELECT_FILENAME"
+    ${If} "$SELECT_RELATIVE_PATH" == ""
+        nsDialogs::SelectFileDialog open "$R0\$SELECT_RELATIVE_PATH" "$SELECT_FILENAME|$SELECT_FILENAME"
+    ${Else}
+        nsDialogs::SelectFileDialog open "$R0\$SELECT_RELATIVE_PATH\" "$SELECT_FILENAME|$SELECT_FILENAME"
+    ${EndIf}
     Call GetRootDirectory
     Pop $R0
 
