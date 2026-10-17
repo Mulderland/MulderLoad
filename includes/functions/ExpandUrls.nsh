@@ -93,11 +93,11 @@ Function _ExpandUrlCdn
 
     !insertmacro STR_REPLACE "https://cdn.mulderload.eu/" "https://cdn.de.mulderload.eu/" "$0" $R0
     ${If} $CloudflareErrors >= 3
-        StrCpy $R3 "$R0"
+        StrCpy $R1 "$R0"
     ${ElseIf} $CloudflareErrors >= 2
-        StrCpy $R3 "$R0|$0"
+        StrCpy $R1 "$R0|$0"
     ${Else}
-        StrCpy $R3 "$0|$R0"
+        StrCpy $R1 "$0|$R0"
     ${EndIf}
 
     !insertmacro STACKFRAME_RETURN 1 2 $R1
