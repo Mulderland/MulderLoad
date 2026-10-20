@@ -37,7 +37,7 @@ Section "TheSimpsonsGame-Recompiled v0.0.6.5"
     ${Else}
         DetailPrint " // Get TheSimpsonsGame-Recompiled (Windows)"
         !insertmacro DOWNLOAD_2 "https://github.com/YesterMester/TheSimpsonsGameRecomp/releases/download/v0.0.6.5/TheSimpsonsGame-Recompiled-Windows-x64.zip" \
-                                "https://cdn.mulderload.eu/games/the-simpsons-game/port/TheSimpsonsGame-Recompiled-Windows-x64-v0.0.6.5.zip" \
+                                "https://cdn.mulderload.eu/games/the-simpsons-game/port/TheSimpsonsGame-Recompiled-Windows-v0.0.6.5-x64.zip" \
                                 "TheSimpsonsGame-Recompiled-Windows-x64.zip" \
                                 "a52b3bd3efe063f643a3b9110622de34dc719cdbb8bb14e9c00f3c608959323e"
 
