@@ -10,6 +10,7 @@ This installer and the PC port are not affiliated with or endorsed by Disney, EA
 
 !include "..\..\includes\templates\ByofTemplate.nsh"
 !include "..\..\includes\tools\7z.nsh"
+!include "..\bloodborne\GetUnixPath.nsh"
 
 Name "The Simpsons Game"
 InstallDir "C:\Mulderland\The Simpsons Game"
@@ -34,6 +35,21 @@ Section "TheSimpsonsGame-Recompiled v0.0.6.5"
         !insertmacro 7Z_EXTRACT "TheSimpsonsGame-Recompiled-Linux-x64.tar.gz" ".\" "AUTO_DELETE"
         !insertmacro 7Z_EXTRACT "TheSimpsonsGame-Recompiled-Linux-x64.tar" ".\" "AUTO_DELETE"
         !insertmacro 7Z_REMOVE
+
+        !insertmacro GET_UNIX_PATH "$INSTDIR" $R0
+        nsExec::ExecToStack '"$SYSDIR\cmd.exe" /c start /unix /bin/sh -c "chmod +x \"$R0/Play.sh\""'
+        Pop $R1
+        Pop $R2
+        ${If} $R1 != 0
+            MessageBox MB_ICONEXCLAMATION "Error while making the file Play.sh executable."
+        ${EndIf}
+
+        nsExec::ExecToStack '"$SYSDIR\cmd.exe" /c start /unix /bin/sh -c "chmod +x \"$R0/launcher/simpsons-launcher.sh\""'
+        Pop $R1
+        Pop $R2
+        ${If} $R1 != 0
+            MessageBox MB_ICONEXCLAMATION "Error while making the file launcher/simpsons-launcher.sh executable."
+        ${EndIf}
     ${Else}
         DetailPrint " // Get TheSimpsonsGame-Recompiled (Windows)"
         !insertmacro DOWNLOAD_2 "https://github.com/YesterMester/TheSimpsonsGameRecomp/releases/download/v0.0.6.5/TheSimpsonsGame-Recompiled-Windows-x64.zip" \
