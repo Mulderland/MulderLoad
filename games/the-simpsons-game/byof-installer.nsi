@@ -10,28 +10,41 @@ This installer and the PC port are not affiliated with or endorsed by Disney, EA
 
 !include "..\..\includes\templates\ByofTemplate.nsh"
 !include "..\..\includes\tools\7z.nsh"
-!include "..\..\includes\tools\I6Comp.nsh"
-!include "..\..\includes\tools\XDelta3.nsh"
 
 Name "The Simpsons Game"
-InstallDir "E:\MulderLoad\The Simpsons Game"
+InstallDir "C:\Mulderland\The Simpsons Game"
 
 ; ...................................................Europe (Danish, English, Finnish, Norwegian)......Europe (Italian, Spanish)........................USA.......................................Germany.............................France....................
 !insertmacro BYOF_DEFINE "DVD" "Image files|*.iso" "101f34f12530704cd1b985f339ae2a7c21cd72b1,6f664a6832298c9cdb3db3e02703121ab3f53aed,7729aae27c5035d20717be9694d007fb9da444dc,9838409efea0c6cc8b97526722d4a39f323e3ca9,7ff5432e397e80b9a2b19c12652413b2acdfc89a"
 !insertmacro BYOF_PAGE_CREATE
 !insertmacro BYOF_WRITE_ENABLE_NEXT_BUTTON
 
-Section "TheSimpsonsGame-Recompiled (unofficial PC port)"
+Section "TheSimpsonsGame-Recompiled v0.0.6.5"
     SetOutPath "$INSTDIR"
 
-    DetailPrint " // Get TheSimpsonsGame-Recompiled"
-    !insertmacro DOWNLOAD_2 "https://github.com/YesterMester/TheSimpsonsGameRecomp/releases/download/v0.0.5.5/TheSimpsonsGame-Recompiled-Windows-x64.zip" \
-                            "https://cdn.mulderload.eu/games/the-simpsons-game/port/TheSimpsonsGame-Recompiled-Windows-x64-v0.0.5.5.zip" \
-                            "TheSimpsonsGame-Recompiled-Windows-x64.zip" \
-                            "80ca2774c70be529fd4cf35fbaf0e6116b82835061019b4db081ea5fff0be4c2"
+    !insertmacro DETECT_OS $R0
+    ${If} $R0 == "Linux"
+        DetailPrint " // Get TheSimpsonsGame-Recompiled (Linux)"
+        !insertmacro DOWNLOAD_2 "https://github.com/YesterMester/TheSimpsonsGameRecomp/releases/download/v0.0.6.5/TheSimpsonsGame-Recompiled-Linux-x64.tar.gz" \
+                                "https://cdn.mulderload.eu/games/the-simpsons-game/port/TheSimpsonsGame-Recompiled-Linux-v0.0.6.5-x64.tar.gz" \
+                                "TheSimpsonsGame-Recompiled-Linux-x64.tar.gz" \
+                                "ce3c85c04b3d7469acc41cde575fda008501994b8cd22505d02407daf7c3b70c"
 
-    !insertmacro NSISUNZ_EXTRACT "TheSimpsonsGame-Recompiled-Windows-x64.zip" ".\" "AUTO_DELETE"
-    AddSize 444975
+        !insertmacro 7Z_GET
+        !insertmacro 7Z_EXTRACT "TheSimpsonsGame-Recompiled-Linux-x64.tar.gz" ".\" "AUTO_DELETE"
+        !insertmacro 7Z_EXTRACT "TheSimpsonsGame-Recompiled-Linux-x64.tar" ".\" "AUTO_DELETE"
+        !insertmacro 7Z_REMOVE
+    ${Else}
+        DetailPrint " // Get TheSimpsonsGame-Recompiled (Windows)"
+        !insertmacro DOWNLOAD_2 "https://github.com/YesterMester/TheSimpsonsGameRecomp/releases/download/v0.0.6.5/TheSimpsonsGame-Recompiled-Windows-x64.zip" \
+                                "https://cdn.mulderload.eu/games/the-simpsons-game/port/TheSimpsonsGame-Recompiled-Windows-x64-v0.0.6.5.zip" \
+                                "TheSimpsonsGame-Recompiled-Windows-x64.zip" \
+                                "a52b3bd3efe063f643a3b9110622de34dc719cdbb8bb14e9c00f3c608959323e"
+
+        !insertmacro NSISUNZ_EXTRACT "TheSimpsonsGame-Recompiled-Windows-x64.zip" ".\" "AUTO_DELETE"
+    ${EndIf}
+
+    AddSize 720415 ; windows size
 SectionEnd
 
 Section "Extract game files from DVD image"
@@ -51,3 +64,19 @@ Section "Extract game files from DVD image"
     nsExec::ExecToStack '"$INSTDIR\extract-xiso.exe" -x -d gamedata "$byofPath_DVD"'
     AddSize 4282303
 SectionEnd
+
+Function .onInit
+    !insertmacro DETECT_OS $R0
+    ${If} $R0 == "Linux"
+        ReadEnvStr $R0 STEAM_APP_PATH
+        ${If} $R0 != ""
+            MessageBox MB_ICONEXCLAMATION \
+                "This installer should not be run through Protontricks.$\r$\n\
+                $\r$\n\
+                Please run it directly with Wine, or temporarily add it to Steam as a non-Steam game."
+            Quit
+        ${EndIf}
+        ReadEnvStr $R0 "USER"
+        StrCpy $INSTDIR "Z:\home\$R0\Mulderland\The Simpsons Game"
+    ${EndIf}
+FunctionEnd
