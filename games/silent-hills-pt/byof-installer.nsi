@@ -20,24 +20,24 @@ InstallDir "C:\Mulderland\Silent Hills P.T."
 !insertmacro BYOF_PAGE_CREATE
 !insertmacro BYOF_WRITE_ENABLE_NEXT_BUTTON
 
-Section "P.T. PC Port v1.03 (by LoreanXavier)"
+Section "P.T. PC Port v1.07 (by LoreanXavier)"
     SetOutPath "$INSTDIR"
 
     !insertmacro DETECT_OS $R0
     ${If} $R0 == "Linux"
-        !insertmacro DOWNLOAD_2 "https://github.com/LoreanXavier/pt-pc/releases/download/v1.0.3/P.T.PC.Port-portable-linux.zip" \
-                                "https://cdn.mulderload.eu/games/silent-hills-pt/P.T.PC.Port-portable-linux-v1.0.3.zip" \
+        !insertmacro DOWNLOAD_2 "https://github.com/LoreanXavier/pt-pc/releases/download/v1.0.7/P.T.PC.Port-portable-linux.zip" \
+                                "https://cdn.mulderload.eu/games/silent-hills-pt/P.T.PC.Port-portable-linux-v1.0.7.zip" \
                                 "P.T.PC.Port-portable.zip" \
-                                "dd29be2bf18eae55f4c10b9e68ed88c52dd275204aab5260a213da9cdd14a1be"
+                                "3b093fc425c39faa98741749bf649514f1a179a39784a366033ce7b1f02d70e5"
     ${Else}
-        !insertmacro DOWNLOAD_2 "https://github.com/LoreanXavier/pt-pc/releases/download/v1.0.3/P.T.PC.Port-portable-windows.zip" \
-                                "https://cdn.mulderload.eu/games/silent-hills-pt/P.T.PC.Port-portable-windows-v1.0.3.zip" \
+        !insertmacro DOWNLOAD_2 "https://github.com/LoreanXavier/pt-pc/releases/download/v1.0.7/P.T.PC.Port-portable-windows.zip" \
+                                "https://cdn.mulderload.eu/games/silent-hills-pt/P.T.PC.Port-portable-windows-v1.0.7.zip" \
                                 "P.T.PC.Port-portable.zip" \
-                                "5831d9ab7f9019f2f0db4bbb8d34220530535cd4bc407b01334534ff866057a8"
+                                "0ac88518cd479a8b81ea993400608f879a3a107447216a1a076519df9576e06f"
     ${EndIf}
     !insertmacro NSISUNZ_EXTRACT "P.T.PC.Port-portable.zip" ".\" "AUTO_DELETE"
-    !insertmacro FOLDER_MERGE "$INSTDIR\pt-port-20261012-191c3904" "$INSTDIR"
-    AddSize 475922
+    !insertmacro FOLDER_MERGE "$INSTDIR\pt-port-20261019-9941d9df" "$INSTDIR"
+    AddSize 472759
 SectionEnd
 
 Section "Extract game files from PKG"
