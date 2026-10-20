@@ -30,18 +30,18 @@ Section
 SectionEnd
 
 SectionGroup "bbport / bloodborne_pc (by deadinside28)"
-    Section "Linux v0.51 (by deadinside28)" bbport
+    Section "Linux v0.6 (by deadinside28)" bbport
         # Delete previous binary (that was not in a bbport subfolder)
         Delete "$INSTDIR\Bloodborne-bbport-x86_64.AppImage"
 
         # Install
         SetOutPath "$INSTDIR\bbport"
 
-        !insertmacro DOWNLOAD_2 "https://github.com/deadinside28/bloodborne_pc/releases/download/0.51/Bloodborne-bbport-x86_64.AppImage" \
-                                "https://cdn.mulderload.eu/games/bloodborne/Bloodborne-bbport-x86_64-v0.51.AppImage" \
+        !insertmacro DOWNLOAD_2 "https://github.com/deadinside28/bloodborne_pc/releases/download/0.6/Bloodborne-bbport-x86_64.AppImage" \
+                                "https://cdn.mulderload.eu/games/bloodborne/Bloodborne-bbport-x86_64-v0.6.AppImage" \
                                 "Bloodborne-bbport-x86_64.AppImage" \
-                                "3dbbec828aebd542622cf25f0ea10a16f50b13f8b5338fb6596a1a69a635fcce"
-        AddSize 390144
+                                "a28f87543d3e6d316ad158525333be08f9c7c362ed19b57c5f3550c69d058f62"
+        AddSize 492871
 
         # Copy settings.json
         CreateDirectory "$LINUX_HOME\.config\bbport-launcher"
@@ -60,7 +60,7 @@ SectionGroup "bbport / bloodborne_pc (by deadinside28)"
         skip_ini:
     SectionEnd
 
-    Section "Windows fork v1.7.6 (by Supermedo)" bbport_supermedo
+    Section "Windows fork v1.9.2 (by Supermedo)" bbport_supermedo
         # Migrate important folders from previous install
         IfFileExists "$INSTDIR\bbport-windows\mods\*.*" 0 end_migrate_mods
             !insertmacro FOLDER_MERGE "$INSTDIR\bbport-windows\mods" "$INSTDIR\mods"
@@ -88,14 +88,14 @@ SectionGroup "bbport / bloodborne_pc (by deadinside28)"
         # Install
         SetOutPath "$INSTDIR\bbport-supermedo"
 
-        !insertmacro DOWNLOAD_2 "https://github.com/Supermedo/bloodborne_pc/releases/download/windows-v1.7.6/Bloodborne-Windows.zip" \
-                                "https://cdn.mulderload.eu/games/bloodborne/Bloodborne-Windows-v1.7.6.zip" \
+        !insertmacro DOWNLOAD_2 "https://github.com/Supermedo/bloodborne_pc/releases/download/windows-v1.9.2/Bloodborne-Windows.zip" \
+                                "https://cdn.mulderload.eu/games/bloodborne/Bloodborne-Windows-v1.9.2.zip" \
                                 "Bloodborne-Windows.zip" \
-                                "4843a2c0430d12d8c0eefe338f35dea744d68c9ea7b7106ab9dca3d23fe9f23a"
+                                "10c20ec0160a3349178a8ad314fc03ec8e53b24cce37d51b7636ab3916208050"
 
         !insertmacro NSISUNZ_EXTRACT "Bloodborne-Windows.zip" ".\" "AUTO_DELETE"
         !insertmacro FOLDER_MERGE "$INSTDIR\bbport-supermedo\bbport-windows" "$INSTDIR\bbport-supermedo"
-        AddSize 284697
+        AddSize 294865
 
         # Copy settings.json
         CreateDirectory "$APPDATA\bbport-launcher"

@@ -31,7 +31,9 @@
   "online_upnp": true,
   "online_community": "https://thehuntersdream.com",
   "online_pool": "shadnet",
-  "bridge_live_map": true,
+  "bridge_live_map": false,
   "supermedo_user": "",
-  "supermedo_password": ""
+  "supermedo_password": "",
+  "thd_online_id": "",
+  "thd_token": ""
 }
