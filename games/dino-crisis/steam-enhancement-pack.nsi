@@ -78,6 +78,9 @@ SectionGroup /e "Dino Crisis Classic REbirth"
 
         !insertmacro NSIS7Z_EXTRACT "dc1cr-1.0.0-2020-04-24.7z" ".\" "AUTO_DELETE"
 
+        # Linux: make Wine load Classic REbirth's ddraw.dll instead of its builtin one
+        !insertmacro WINE_DLL_OVERRIDE_APP "DINO.exe" "ddraw" "native,builtin"
+
         # Create Save folder if not exist
         SetOutPath "$REBIRTHDIR\Save"
     SectionEnd

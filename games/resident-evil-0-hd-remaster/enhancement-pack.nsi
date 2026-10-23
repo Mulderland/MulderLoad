@@ -26,6 +26,9 @@ SectionGroup /e "Ultimate ASI Loader (by ThirteenAG)"
         SetOutPath "$INSTDIR"
         !insertmacro DOWNLOAD_1 "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/Win32-latest/dinput8-Win32.zip" "dinput8-Win32.zip" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "dinput8-Win32.zip" ".\" "dinput8.dll" "AUTO_DELETE"
+
+        # Linux: make Wine load the ASI Loader instead of its builtin dinput8.dll
+        !insertmacro WINE_DLL_OVERRIDE_APP "re0hd.exe" "dinput8" "native,builtin"
     SectionEnd
 
     Section "Fusion Fix (by ThirteenAG)"
@@ -120,6 +123,9 @@ Section "dgVoodoo2 (by Dege)"
     !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "MS\x86\D3D9.dll" "AUTO_DELETE"
     !insertmacro FORCE_RENAME "$INSTDIR\D3D9.dll" "$INSTDIR\_dgVoodoo.dll.bak"
 
+    # Linux: make Wine load d3d9.dll (copied by MulderConfig) instead of its builtin one
+    !insertmacro WINE_DLL_OVERRIDE_APP "re0hd.exe" "d3d9" "native,builtin"
+
     # Configure dgVoodoo2
     !insertmacro FILE_STR_REPLACE "VRAM                                = 256" "VRAM                                = 2048" 1 1 "$INSTDIR\dgVoodoo.conf"
     !insertmacro FILE_STR_REPLACE "dgVoodooWatermark                   = true" "dgVoodooWatermark                   = false" 1 1 "$INSTDIR\dgVoodoo.conf"
@@ -135,6 +141,9 @@ Section "FPS Fix (by megatenfreak)"
 
     !insertmacro 7Z_EXTRACT "RE0FixV2.rar" ".\" "AUTO_DELETE"
     !insertmacro FORCE_RENAME "$INSTDIR\d3d9.dll" "$INSTDIR\_half.dll.bak"
+
+    # Linux: make Wine load d3d9.dll (copied by MulderConfig) instead of its builtin one
+    !insertmacro WINE_DLL_OVERRIDE_APP "re0hd.exe" "d3d9" "native,builtin"
 SectionEnd
 
 Section

@@ -94,6 +94,9 @@ SectionGroup /e "Improvements configurable via MulderConfig"
         # Make dsound.dll override works
         WriteRegStr HKCU "Software\Classes\WOW6432Node\CLSID\{47D4D946-62E8-11CF-93BC-444553540000}\InprocServer32" "" "dsound.dll"
         WriteRegStr HKCU "Software\Classes\WOW6432Node\CLSID\{3901CC3F-84B5-4FA4-BA35-AA8172B8A09B}\InprocServer32" "" "dsound.dll"
+
+        # Linux: make Wine load DSOAL's dsound.dll (copied by MulderConfig) instead of its builtin one
+        !insertmacro WINE_DLL_OVERRIDE_APP "Condemned.exe" "dsound" "native,builtin"
     SectionEnd
 
     Section "Improved Shaders (Sikkmod v3)"
@@ -171,6 +174,9 @@ SectionGroup /e "Improvements configurable via MulderConfig"
         !insertmacro FILE_STR_REPLACE "LoadFromScriptsOnly        = 0" "LoadFromScriptsOnly        = 1" 1 1 "$INSTDIR\dxwrapper.ini"
         !insertmacro FILE_STR_REPLACE "EnableD3d9Wrapper          = 0" "EnableD3d9Wrapper          = 1" 1 1 "$INSTDIR\dxwrapper.ini"
         AddSize 8348
+
+        # Linux: make Wine load DxWrapper's d3d9.dll and the Widescreen Fix's dinput8.dll instead of its builtin ones
+        !insertmacro WINE_DLL_OVERRIDE_APP "Condemned.exe" "d3d9,dinput8" "native,builtin"
     SectionEnd
 
     Section

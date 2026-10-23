@@ -19,4 +19,5 @@ InstallDir "C:\MulderLoad\Tests"
 !include "..\..\tests\functions\StrResolveFilenameTest.nsh"
 !include "..\..\tests\functions\StrRightExplodeTest.nsh"
 !include "..\..\tests\functions\StrStartsWithTest.nsh"
+!include "..\..\tests\functions\WineDllOverrideTest.nsh"
 !insertmacro PRINT_STATS

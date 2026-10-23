@@ -52,6 +52,9 @@ SectionGroup /e "Non-NVSE"
         !insertmacro 7Z_EXTRACT "dxvk-2.7.1.tar.gz" ".\" "AUTO_DELETE"
         !insertmacro 7Z_EXTRACT_ONE "dxvk-2.7.1.tar" ".\" "dxvk-2.7.1\x32\d3d9.dll" "AUTO_DELETE"
         !insertmacro 7Z_REMOVE
+
+        # Linux: make Wine load DXVK's d3d9.dll (toggled by MulderConfig) instead of its builtin one
+        !insertmacro WINE_DLL_OVERRIDE_APP "FalloutNV.exe" "d3d9" "native,builtin"
     SectionEnd
 
     Section "NVHR (New Vegas Heap Replacer) v4.3"
@@ -63,6 +66,9 @@ SectionGroup /e "Non-NVSE"
                                 "6892646b5505165783c63a3cdf2c897846eae238"
 
         !insertmacro NSIS7Z_EXTRACT "NVHR.7z" ".\" "AUTO_DELETE"
+
+        # Linux: make Wine load NVHR (d3dx9_38.dll, toggled by MulderConfig) instead of its builtin one
+        !insertmacro WINE_DLL_OVERRIDE_APP "FalloutNV.exe" "d3dx9_38" "native,builtin"
     SectionEnd
 
     Section "YUP (Yukichigai Unofficial Patch) v13.8"
