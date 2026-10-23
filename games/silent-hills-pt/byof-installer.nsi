@@ -9,9 +9,6 @@ $\r$\n\
 This installer and the PC port are not affiliated with or endorsed by Konami, Kojima Productions or any of the original developers."
 
 !include "..\..\includes\templates\ByofTemplate.nsh"
-!include "..\..\includes\tools\7z.nsh"
-!include "..\..\includes\tools\I6Comp.nsh"
-!include "..\..\includes\tools\XDelta3.nsh"
 
 Name "Silent Hills: P.T. (Unofficial PC port)"
 InstallDir "C:\Mulderland\Silent Hills P.T."
@@ -20,24 +17,24 @@ InstallDir "C:\Mulderland\Silent Hills P.T."
 !insertmacro BYOF_PAGE_CREATE
 !insertmacro BYOF_WRITE_ENABLE_NEXT_BUTTON
 
-Section "P.T. PC Port v1.07 (by LoreanXavier)"
+Section "P.T. PC Port v1.08 (by LoreanXavier)"
     SetOutPath "$INSTDIR"
 
     !insertmacro DETECT_OS $R0
     ${If} $R0 == "Linux"
-        !insertmacro DOWNLOAD_2 "https://github.com/LoreanXavier/pt-pc/releases/download/v1.0.7/P.T.PC.Port-portable-linux.zip" \
-                                "https://cdn.mulderload.eu/games/silent-hills-pt/P.T.PC.Port-portable-linux-v1.0.7.zip" \
+        !insertmacro DOWNLOAD_2 "https://github.com/LoreanXavier/pt-pc/releases/download/v1.0.8/P.T.PC.Port-portable-linux.zip" \
+                                "https://cdn.mulderload.eu/games/silent-hills-pt/P.T.PC.Port-portable-linux-v1.0.8.zip" \
                                 "P.T.PC.Port-portable.zip" \
-                                "3b093fc425c39faa98741749bf649514f1a179a39784a366033ce7b1f02d70e5"
+                                "aa59261385950717940207602acadea35440b98df90a66a8b13d5eca331b36ff"
     ${Else}
-        !insertmacro DOWNLOAD_2 "https://github.com/LoreanXavier/pt-pc/releases/download/v1.0.7/P.T.PC.Port-portable-windows.zip" \
-                                "https://cdn.mulderload.eu/games/silent-hills-pt/P.T.PC.Port-portable-windows-v1.0.7.zip" \
+        !insertmacro DOWNLOAD_2 "https://github.com/LoreanXavier/pt-pc/releases/download/v1.0.8/P.T.PC.Port-portable-windows.zip" \
+                                "https://cdn.mulderload.eu/games/silent-hills-pt/P.T.PC.Port-portable-windows-v1.0.8.zip" \
                                 "P.T.PC.Port-portable.zip" \
-                                "0ac88518cd479a8b81ea993400608f879a3a107447216a1a076519df9576e06f"
+                                "bbe35c93bb767354672a4b3bb885bef94ba78fc48f5a69d208d7201575cdc02e"
     ${EndIf}
     !insertmacro NSISUNZ_EXTRACT "P.T.PC.Port-portable.zip" ".\" "AUTO_DELETE"
-    !insertmacro FOLDER_MERGE "$INSTDIR\pt-port-20261019-9941d9df" "$INSTDIR"
-    AddSize 472759
+    !insertmacro FOLDER_MERGE "$INSTDIR\pt-port-20261022-484d2c1d" "$INSTDIR"
+    AddSize 689552
 SectionEnd
 
 Section "Extract game files from PKG"
