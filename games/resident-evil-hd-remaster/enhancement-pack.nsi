@@ -23,7 +23,8 @@ Section
     !insertmacro 7Z_GET
 SectionEnd
 
-Section "Fusion Fix (by ThirteenAG) + True 4K (by Arcturium)"
+Section /o "Fusion Fix (by ThirteenAG) + True 4K (by Arcturium)"
+    SectionIn RO
     SetOutPath "$INSTDIR"
 
     # Fusion Fix
@@ -51,7 +52,8 @@ Section "Fusion Fix (by ThirteenAG) + True 4K (by Arcturium)"
 SectionEnd
 
 SectionGroup "Bug fixes"
-    Section "4GB Patch (by NTCore)"
+    Section /o "4GB Patch (by NTCore)"
+        SectionIn RO
         SetOutPath "$INSTDIR"
 
         !insertmacro DOWNLOAD_2 "https://cdn.mulderload.eu/tools/ntcore/4gb_patch.zip" \
@@ -78,7 +80,8 @@ SectionGroup "Bug fixes"
         !insertmacro FORCE_RENAME "$INSTDIR\d3d9.dll" "$INSTDIR\_crashfix.dll"
     SectionEnd
 
-    Section "Lab lift fix (by Kayael)"
+    Section /o "Lab lift fix (by Kayael)"
+        SectionIn RO
         SetOutPath "$INSTDIR"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/residentevilbiohazardhdremaster/mods/98?tab=files&file_id=197" \
@@ -90,7 +93,8 @@ SectionGroup "Bug fixes"
         Delete "modinfo.ini"
     SectionEnd
 
-    Section "Normalized Soundtrack (by zeikar & MrBunny)"
+    Section /o "Normalized Soundtrack (by zeikar & MrBunny)"
+        SectionIn RO
         SetOutPath "$INSTDIR"
 
         !insertmacro DOWNLOAD_RANGE "https://cdn.mulderload.eu/games/resident-evil-hd-remaster/fix/Normalized Soundtrack Mod [Repack-MLD].7z.001" \
@@ -105,7 +109,8 @@ SectionGroup "Bug fixes"
 SectionGroupEnd
 
 SectionGroup /e "Graphical improvements"
-    Section "[Characters] Retcon Pack (by Bloodyhunter)"
+    Section /o "[Characters] Retcon Pack (by Bloodyhunter)"
+        SectionIn RO
         SetOutPath "$INSTDIR"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/residentevilbiohazardhdremaster/mods/20?tab=files&file_id=96" \
@@ -122,6 +127,7 @@ SectionGroup /e "Graphical improvements"
     SectionEnd
 
     Section /o "[Textures] RESCALE 2.0 (by Arcturium)"
+        SectionIn RO
         SetOutPath "$INSTDIR"
 
         !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/residentevilbiohazardhdremaster/mods/102?tab=files&file_id=502" \
@@ -133,6 +139,7 @@ SectionGroup /e "Graphical improvements"
     SectionEnd
 
     Section /o "[Videos] RE-Enhance FMVs (by SonicB00M)"
+        SectionIn RO
         SetOutPath "$INSTDIR"
         # Alert, requires to play at 1080p. Don't download if you have a lower resolution (Steam Deck for example)
 
@@ -145,7 +152,8 @@ SectionGroup /e "Graphical improvements"
         #AddSize -1260602
     SectionEnd
 
-    Section "East stairs lightning fix (by Kayael or nayef)"
+    Section /o "East stairs lightning fix (by Kayael or nayef)"
+        SectionIn RO
         SetOutPath "$INSTDIR"
 
         # Check if RESCALE is installed, by looking at a "stable" texture (ie present in RESCALE, but not present in a East stairs lighting fix)
