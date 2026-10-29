@@ -1,42 +1,44 @@
-!define MUI_WELCOMEPAGE_TEXT "\
-Note: Steam version v1.0.314 will be updated to Retail v1.0.320, fixing missing sounds && broken non-English menus.$\r$\n\
-$\r$\n\
-This Enhancement Pack also includes:$\r$\n\
-- AI Upscaled Textures (Neural Origins)$\r$\n\
-- Improved Shaders (Sikkmod)$\r$\n\
-- DSOAL + OpenAL Soft (to restore EAX support)$\r$\n\
-- MulderConfig, for intro skipping, FOV adjustment && more.$\r$\n\
-- OLED Alternate HUD Colors (by Mulder)$\r$\n\
-- Toggle HUD (by Akelaphobia)$\r$\n\
-- Widescreen Fix (by ThirteenAG) repacked with DxWrapper$\r$\n\
-$\r$\n\
-${TXT_WELCOMEPAGE_MULDERLAND_2}$\r$\n\
-Special thanks to ThirteenAG && the Neural Origins modders!"
+!ifndef NSI_INCLUDE
+    !define MUI_WELCOMEPAGE_TEXT "\
+    Note: Steam version v1.0.314 will be updated to Retail v1.0.320, fixing missing sounds && broken non-English menus.$\r$\n\
+    $\r$\n\
+    This Enhancement Pack also includes:$\r$\n\
+    - AI Upscaled Textures (Neural Origins)$\r$\n\
+    - Improved Shaders (Sikkmod)$\r$\n\
+    - DSOAL + OpenAL Soft (to restore EAX support)$\r$\n\
+    - MulderConfig, for intro skipping, FOV adjustment && more.$\r$\n\
+    - OLED Alternate HUD Colors (by Mulder)$\r$\n\
+    - Toggle HUD (by Akelaphobia)$\r$\n\
+    - Widescreen Fix (by ThirteenAG) repacked with DxWrapper$\r$\n\
+    $\r$\n\
+    ${TXT_WELCOMEPAGE_MULDERLAND_2}$\r$\n\
+    Special thanks to ThirteenAG && the Neural Origins modders!"
 
-!define MUI_FINISHPAGE_RUN "$INSTDIR\MulderConfig.exe"
-!define MUI_FINISHPAGE_RUN_TEXT "Run MulderConfig"
-!define ON_SELECTED_FILE
-!include "..\..\includes\templates\SelectTemplate.nsh"
-!include "..\..\includes\tools\7z.nsh"
-!include "..\..\includes\tools\XDelta3.nsh"
+    !define MUI_FINISHPAGE_RUN "$INSTDIR\MulderConfig.exe"
+    !define MUI_FINISHPAGE_RUN_TEXT "Run MulderConfig"
+    !define ON_SELECTED_FILE
+    !include "..\..\includes\templates\SelectTemplate.nsh"
+    !include "..\..\includes\tools\7z.nsh"
+    !include "..\..\includes\tools\XDelta3.nsh"
 
-Name "Condemned: Criminal Origins [Enhancement Pack]"
+    Name "Condemned: Criminal Origins [Enhancement Pack]"
 
-Section "Update Steam v1.0.314 to 1.0.320 (by Mulder)" update_1_0_320
-    SetOutPath "$INSTDIR"
+    Section "Update Steam v1.0.314 to 1.0.320 (by Mulder)" update_1_0_320
+        SetOutPath "$INSTDIR"
 
-    !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/condemned-criminal-origins/update/Steam v1.0.314 to Retail v1.0.320 [MLD].7z" \
-                            "Steam v1.0.314 to Retail v1.0.320 [MLD].7z" \
-                            "b3966f2b69725c04caabd78ea3afd414500110e6"
+        !insertmacro DOWNLOAD_1 "https://cdn.mulderload.eu/games/condemned-criminal-origins/update/Steam v1.0.314 to Retail v1.0.320 [MLD].7z" \
+                                "Steam v1.0.314 to Retail v1.0.320 [MLD].7z" \
+                                "b3966f2b69725c04caabd78ea3afd414500110e6"
 
-    !insertmacro NSIS7Z_EXTRACT "Steam v1.0.314 to Retail v1.0.320 [MLD].7z" ".\" "AUTO_DELETE"
+        !insertmacro NSIS7Z_EXTRACT "Steam v1.0.314 to Retail v1.0.320 [MLD].7z" ".\" "AUTO_DELETE"
 
-    !insertmacro XDELTA3_GET
-    !insertmacro XDELTA3_PATCH_FOLDER "$INSTDIR"
-    !insertmacro XDELTA3_REMOVE
+        !insertmacro XDELTA3_GET
+        !insertmacro XDELTA3_PATCH_FOLDER "$INSTDIR"
+        !insertmacro XDELTA3_REMOVE
 
-    AddSize 75533
-SectionEnd
+        AddSize 75533
+    SectionEnd
+!endif
 
 SectionGroup /e "Improvements configurable via MulderConfig"
     Section "AI Upscaled Textures (Neural Origins 0.9)"
@@ -182,19 +184,21 @@ SectionGroup /e "Improvements configurable via MulderConfig"
     SectionEnd
 SectionGroupEnd
 
-Function .onInit
-    StrCpy $SELECT_FILENAME "Condemned.exe"
-    StrCpy $SELECT_STEAM_FOLDER "Condemned Criminal Origins"
-FunctionEnd
+!ifndef NSI_INCLUDE
+    Function .onInit
+        StrCpy $SELECT_FILENAME "Condemned.exe"
+        StrCpy $SELECT_STEAM_FOLDER "Condemned Criminal Origins"
+    FunctionEnd
 
-Function OnSelectedFile
-    !insertmacro FILE_HASH_EQUALS "$INSTDIR\Condemned.exe" "fa3c1c4a7b72e12fabac8875d2e5be02771db42c" $R0 ; Steam Hash
-    ${If} $R0 == 1
-        SectionSetFlags ${update_1_0_320} ${SF_SELECTED}|${SF_RO}
-        MessageBox MB_ICONINFORMATION "Old Steam version detected (v1.0.314).$\r$\n$\r$\nUpdate to Retail v1.0.320 will be applied."
-    ${Else}
-        SectionSetFlags ${update_1_0_320} ${SF_RO}
-        MessageBox MB_ICONINFORMATION "Latest version detected (v1.0.320).$\r$\n$\r$\nUpdate will be skipped."
-    ${EndIf}
-    Push 1
-FunctionEnd
+    Function OnSelectedFile
+        !insertmacro FILE_HASH_EQUALS "$INSTDIR\Condemned.exe" "fa3c1c4a7b72e12fabac8875d2e5be02771db42c" $R0 ; Steam Hash
+        ${If} $R0 == 1
+            SectionSetFlags ${update_1_0_320} ${SF_SELECTED}|${SF_RO}
+            MessageBox MB_ICONINFORMATION "Old Steam version detected (v1.0.314).$\r$\n$\r$\nUpdate to Retail v1.0.320 will be applied."
+        ${Else}
+            SectionSetFlags ${update_1_0_320} ${SF_RO}
+            MessageBox MB_ICONINFORMATION "Latest version detected (v1.0.320).$\r$\n$\r$\nUpdate will be skipped."
+        ${EndIf}
+        Push 1
+    FunctionEnd
+!endif
