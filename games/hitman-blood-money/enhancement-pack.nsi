@@ -88,6 +88,9 @@ Section "Widescreen fix (by nemesis2000) + Wrappers"
     !insertmacro FILE_STR_REPLACE "RealDllPath       = AUTO" "RealDllPath       = d3d9_dgVoodoo2.dll" 1 1 "$INSTDIR\d3d9.ini"
     !insertmacro FILE_STR_REPLACE "LoadCustomDllPath          = " "LoadCustomDllPath          = scripts\h4w.dll" 1 1 "$INSTDIR\dxwrapper.ini"
     !insertmacro FILE_STR_REPLACE "DisableLogging             = 0" "DisableLogging             = 1" 1 1 "$INSTDIR\dxwrapper.ini"
+
+    # Linux: make Wine load DxWrapper's d3d9.dll stub instead of its builtin one
+    !insertmacro WINE_DLL_OVERRIDE_APP "HitmanBloodMoney.exe" "d3d9" "native,builtin"
 SectionEnd
 
 Section "Add controller support (by JerichoRex)"

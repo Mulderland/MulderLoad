@@ -73,6 +73,9 @@ Section "Mouse Fix / Crash Fix (by demon27248)"
     !insertmacro DOWNLOAD_1 "https://community.pcgamingwiki.com/files/file/2528-no-one-lives-forever-mouse-input-fix-dinputdll/" \
                             "dinput.dll" \
                             "1f0636f8821c8a862cef94bf83f68edbc35f372d"
+
+    # Linux: make Wine load the Mouse Fix instead of its builtin dinput.dll
+    !insertmacro WINE_DLL_OVERRIDE_APP "Nakatomi.exe" "dinput" "native,builtin"
 SectionEnd
 
 Section "FOV Fix v1.4.1 (by alphayellow)"
@@ -85,6 +88,9 @@ Section "FOV Fix v1.4.1 (by alphayellow)"
                             ""
 
     !insertmacro NSISUNZ_EXTRACT_ONE "winmm.zip" ".\" "winmm.dll" "AUTO_DELETE"
+
+    # Linux: make Wine load the ASI Loader instead of its builtin winmm.dll
+    !insertmacro WINE_DLL_OVERRIDE_APP "Nakatomi.exe" "winmm" "native,builtin"
 
     # alphayellow's FOV Fix
     SetOutPath "$INSTDIR\scripts"
@@ -106,6 +112,9 @@ Section "dgVoodoo2 (fix multiple other issues)"
     !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "MS\x86\D3D8.dll" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "MS\x86\D3DImm.dll" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "MS\x86\DDraw.dll" "AUTO_DELETE"
+
+    # Linux: make Wine load dgVoodoo's d3d8.dll and ddraw.dll instead of its builtin ones
+    !insertmacro WINE_DLL_OVERRIDE_APP "Nakatomi.exe" "d3d8,ddraw" "native,builtin"
 
     # config
     !insertmacro FILE_STR_REPLACE "FPSLimit                             = 0" "FPSLimit                             = 60" 1 1 "$INSTDIR\dgVoodoo.conf"
