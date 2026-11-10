@@ -116,21 +116,21 @@ SectionGroup /e "Graphical improvements"
     Section "Visual Fixes + AI Fix (by PhantomThief06)"
         SetOutPath "$INSTDIR\TFC Mods"
 
-        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bioshock/mods/90?tab=files&file_id=585" \
-                                "Visual Fixes.zip" \
-                                "73fe6ffcee35159eb1a475005839c6bafe760b5d"
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/bioshock/mods/90?tab=files&file_id=646" \
+                                "BS1R Visual Fixes Main Pack (2.4.1) 90 2.4.1 2026-09-02T02-27Z iN0QW2aMC.zip" \
+                                "8fa3014372491a1743f045ef8cfee64eff0c46ecca526472d52982442ec12c1c"
 
-        !insertmacro NSISUNZ_EXTRACT "Visual Fixes.zip" ".\02 - Visual Fixes v2.3.1" "AUTO_DELETE"
+        !insertmacro NSISUNZ_EXTRACT "BS1R Visual Fixes Main Pack (2.4.1) 90 2.4.1 2026-09-02T02-27Z iN0QW2aMC.zip" ".\02 - Visual Fixes v2.4.1" "AUTO_DELETE"
         AddSize 733679
     SectionEnd
 SectionGroupEnd
 
 Section "TFC Installer for UE2-UE3"
     SetOutPath "$INSTDIR"
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/site/mods/588?tab=files&file_id=8694" \
-                            "TFC Installer.zip" \
-                            "dae642032aa401fbf439ac6a11f53161e6fe6a0e"
-    !insertmacro NSISUNZ_EXTRACT "TFC Installer.zip" ".\" "AUTO_DELETE"
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/site/mods/588?tab=files&file_id=12777" \
+                            "TFC Installer 588 2.5.7.0 2026-11-07T11-02Z nTOxfVedM.zip" \
+                            "cd150078e17f4985f894a29bf5bbdc20d9a4b420ab1456207798dd1f6a802a16"
+    !insertmacro NSISUNZ_EXTRACT "TFC Installer 588 2.5.7.0 2026-11-07T11-02Z nTOxfVedM.zip" ".\" "AUTO_DELETE"
     AddSize 24576
 
     SetOutPath "$INSTDIR\TFCInstaller\redist"
