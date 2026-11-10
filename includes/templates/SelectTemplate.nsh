@@ -8,6 +8,7 @@
 !include "..\..\includes\functions\Download.nsh"
 !include "..\..\includes\functions\DownloadRange.nsh"
 !include "..\..\includes\functions\GetParentDirectory.nsh"
+!include "..\..\includes\functions\GetUnixPath.nsh"
 !include "..\..\includes\functions\FileHashEquals.nsh"
 !include "..\..\includes\functions\FileStrContains.nsh"
 !include "..\..\includes\functions\FileStrReplace.nsh"

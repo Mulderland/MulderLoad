@@ -10,7 +10,6 @@ This installer and the PC port are not affiliated with or endorsed by Disney, EA
 
 !include "..\..\includes\templates\ByofTemplate.nsh"
 !include "..\..\includes\tools\7z.nsh"
-!include "..\bloodborne\GetUnixPath.nsh"
 
 Name "The Simpsons Game"
 InstallDir "C:\Mulderland\The Simpsons Game"

@@ -20,7 +20,6 @@ InstallDir "C:\Mulderland\Bloodborne"
 !insertmacro BYOF_WRITE_ENABLE_NEXT_BUTTON
 
 Var /GLOBAL LINUX_HOME
-!include "GetUnixPath.nsh"
 
 Section
     !insertmacro 7Z_GET

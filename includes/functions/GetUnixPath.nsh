@@ -1,4 +1,9 @@
-﻿# TODO: move to /includes/functions
+﻿!ifndef __GETUNIXPATH_NSH__
+!define __GETUNIXPATH_NSH__
+
+!include "LogicLib.nsh"
+!include "..\..\includes\core\StackFrame.nsh"
+!include "..\..\includes\functions\StrReplace.nsh"
 
 Function GetUnixPath
     !insertmacro STACKFRAME_BEGIN 1 2
@@ -23,3 +28,5 @@ FunctionEnd
         POP ${RESULT}
     !macroend
 !endif
+
+!endif ; __GETUNIXPATH_NSH__

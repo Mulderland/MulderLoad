@@ -41,7 +41,6 @@ Function GetParentDirectory
     !insertmacro STACKFRAME_END 2 3
 FunctionEnd
 
-
 !ifmacrondef GET_PARENT_DIRECTORY
     !macro GET_PARENT_DIRECTORY PATH NB_PARENTS RESULT
         Push "${NB_PARENTS}"
