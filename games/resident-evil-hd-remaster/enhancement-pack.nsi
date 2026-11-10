@@ -36,6 +36,9 @@ Section "Fusion Fix (by ThirteenAG) + True 4K (by Arcturium)"
     !insertmacro FILE_STR_REPLACE "BorderlessWindowed = 1" "BorderlessWindowed = 0" 1 1 "$INSTDIR\scripts\ResidentEvil.FusionFix.ini"
     AddSize 9268
 
+    # Linux: make Wine load the ASI Loader (shipped with Fusion Fix) instead of its builtin dinput8.dll
+    !insertmacro WINE_DLL_OVERRIDE_APP "bhd.exe" "dinput8" "native,builtin"
+
     # True 4K
     ${IfNot} ${FileExists} "$INSTDIR\nativePC\arc\_ingamecommon.ori"
         CopyFiles /SILENT "$INSTDIR\nativePC\arc\ingamecommon.arc" "$INSTDIR\nativePC\arc\_ingamecommon.ori" 597
@@ -76,6 +79,9 @@ SectionGroup "Bug fixes"
         !insertmacro NSIS7Z_EXTRACT "d3d9.dll (G-Sync Fix).7z" ".\" "AUTO_DELETE"
         AddSize 511
         !insertmacro FORCE_RENAME "$INSTDIR\d3d9.dll" "$INSTDIR\_crashfix.dll"
+
+        # Linux: make Wine load d3d9.dll (copied by MulderConfig) instead of its builtin one
+        !insertmacro WINE_DLL_OVERRIDE_APP "bhd.exe" "d3d9" "native,builtin"
     SectionEnd
 
     Section "Lab lift fix (by Kayael)"
@@ -182,6 +188,9 @@ SectionGroup /e "Graphical improvements"
         AddSize 676
         !insertmacro FORCE_RENAME "d3d9.dll" "_realtimegraphics.dll"
         !insertmacro FOLDER_MERGE "$INSTDIR\@mulderload\realtimegraphics" "$INSTDIR"
+
+        # Linux: make Wine load d3d9.dll (copied by MulderConfig) instead of its builtin one
+        !insertmacro WINE_DLL_OVERRIDE_APP "bhd.exe" "d3d9" "native,builtin"
     SectionEnd
 SectionGroupEnd
 

@@ -129,6 +129,9 @@ SectionGroup /e "Improvements configurable via MulderConfig"
         !insertmacro NSISUNZ_EXTRACT "Ultimate-ASI-Loader.zip" ".\" "AUTO_DELETE"
         !insertmacro FORCE_RENAME "dinput8.dll" "d3d11.dll"
         AddSize 5292
+
+        # Linux: make Wine load the ASI Loader (copied by MulderConfig) instead of its builtin d3d11.dll
+        !insertmacro WINE_DLL_OVERRIDE_APP "AI.exe" "d3d11" "native,builtin"
     SectionEnd
 
     Section "Ultrawide Subtitle Fix (by goobfer)"

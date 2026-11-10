@@ -193,6 +193,9 @@ Section "MulderConfig (latest)"
     !insertmacro 7Z_EXTRACT "dxvk-3.0.2.tar.gz" ".\" "AUTO_DELETE"
     !insertmacro 7Z_EXTRACT_ONE "dxvk-3.0.2.tar" ".\" "dxvk-3.0.2\x32\d3d11.dll" ""
     !insertmacro 7Z_EXTRACT_ONE "dxvk-3.0.2.tar" ".\" "dxvk-3.0.2\x32\dxgi.dll" "AUTO_DELETE"
+
+    # Linux: make Wine load DXVK (copied by MulderConfig) instead of its builtin d3d11.dll and dxgi.dll
+    !insertmacro WINE_DLL_OVERRIDE_APP "BioshockHD.exe" "d3d11,dxgi" "native,builtin"
     AddSize 13698
 
     # MulderConfig

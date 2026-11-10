@@ -114,6 +114,9 @@ Section "Resident Evil Classic REbirth"
     !insertmacro NSIS7Z_EXTRACT "re1cr-2020-12-06.7z" ".\" "AUTO_DELETE"
     AddSize 3181
 
+    # Linux: make Wine load Classic REbirth's ddraw.dll instead of its builtin one
+    !insertmacro WINE_DLL_OVERRIDE_APP "Biohazard.exe" "ddraw" "native,builtin"
+
     # Create Classic REbirth save folder
     CreateDirectory "$REBIRTHDIR\savedata"
 
@@ -191,6 +194,9 @@ SectionGroup "Graphical improvements" gfx
 
         !insertmacro NSISUNZ_EXTRACT_ONE "dinput8-Win32.zip" ".\" "dinput8.dll" "AUTO_DELETE"
         AddSize 5264
+
+        # Linux: make Wine load the ASI Loader instead of its builtin dinput8.dll
+        !insertmacro WINE_DLL_OVERRIDE_APP "Biohazard.exe" "dinput8" "native,builtin"
     SectionEnd
 
     Section "Seamless HD Project v1.1 (by RESHDP)" gfx2

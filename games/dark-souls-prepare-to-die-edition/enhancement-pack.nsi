@@ -38,6 +38,9 @@ SectionGroup /e "DSFix v2.4 + FPSFix-Plus + Morten242's UI v1.5.1"
                                 "bd969141f065c731b8d19eced2ae3cde2c3258c5"
 
         !insertmacro NSISUNZ_EXTRACT "Morten242s UI for DSfix.zip" ".\" "AUTO_DELETE"
+
+        # Linux: make Wine load DSfix (d3d9.dll) and FPSFix-Plus (d3dx9_43.dll) instead of its builtin ones
+        !insertmacro WINE_DLL_OVERRIDE_APP "DARKSOULS.exe" "d3d9,d3dx9_43" "native,builtin"
     SectionEnd
 
     Section "Preset: rendering @ 1080p60" config_1080

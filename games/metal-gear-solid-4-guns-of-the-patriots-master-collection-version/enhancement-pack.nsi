@@ -29,6 +29,9 @@ Section "MGSPatriotFix (by ShizCalev)"
     AddSize 17818
 
     File "resources\MGSPatriotFix.settings"
+
+    # Linux: make Wine load the ASI Loader instead of its builtin winmm.dll
+    !insertmacro WINE_DLL_OVERRIDE_APP "mgs4.exe" "winmm" "native,builtin"
 SectionEnd
 
 SectionGroup /e "Improvements configurable via MulderConfig"

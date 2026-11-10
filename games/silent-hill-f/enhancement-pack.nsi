@@ -20,6 +20,9 @@ SectionGroup /e "ThirteenAG's Ultimate ASI Loader"
         SetOutPath "$INSTDIR\SHf\Binaries\Win64"
         !insertmacro DOWNLOAD_1 "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/dsound-x64.zip" "dsound.zip" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "dsound.zip" ".\" "dsound.dll" "AUTO_DELETE"
+
+        # Linux: make Wine load the ASI Loader instead of its builtin dsound.dll
+        !insertmacro WINE_DLL_OVERRIDE_APP "SHf-Win64-Shipping.exe" "dsound" "native,builtin"
     SectionEnd
 
     Section "Lyall's SHfFix v0.0.1"

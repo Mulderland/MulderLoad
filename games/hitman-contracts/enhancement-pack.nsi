@@ -38,6 +38,9 @@ Section "Widescreen fix (by nemesis2000) + dgVoodoo2"
     !insertmacro DOWNLOAD_1 "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/Win32-latest/d3d8-Win32.zip" "d3d8.zip" ""
     !insertmacro NSISUNZ_EXTRACT_ONE "d3d8.zip" ".\" "d3d8.dll" "AUTO_DELETE"
 
+    # Linux: make Wine load the ASI Loader instead of its builtin d3d8.dll
+    !insertmacro WINE_DLL_OVERRIDE_APP "HitmanContracts.exe" "d3d8" "native,builtin"
+
     # Install nemesis2000's Widescreen Fix
     SetOutPath "$INSTDIR\scripts"
     !insertmacro DOWNLOAD_1 "https://community.pcgamingwiki.com/files/file/2789-hitman-contracts-widescreen-fix/" \
@@ -62,6 +65,9 @@ Section "Add missing Direct3D effects (by burntshrimp)"
         !insertmacro DOWNLOAD_1 "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/Win32-latest/d3d8-Win32.zip" "d3d8.zip" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "d3d8.zip" ".\" "d3d8.dll" "AUTO_DELETE"
     ${EndIf}
+
+    # Linux: make Wine load the ASI Loader instead of its builtin d3d8.dll
+    !insertmacro WINE_DLL_OVERRIDE_APP "HitmanContracts.exe" "d3d8" "native,builtin"
 
     SetOutPath "$INSTDIR\scripts"
 

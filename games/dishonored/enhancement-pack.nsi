@@ -35,6 +35,9 @@ SectionGroup "Quality of Life"
 
         !insertmacro NSISUNZ_EXTRACT "missionstats_v1.1_hotfix.zip" ".\" "AUTO_DELETE"
         AddSize 137
+
+        # Linux: make Wine load dinput8.dll (copied by MulderConfig) instead of its builtin one
+        !insertmacro WINE_DLL_OVERRIDE_APP "Dishonored.exe" "dinput8" "native,builtin"
     SectionEnd
 
     Section "Skippable Cutscenes (by FCH823)"
@@ -60,6 +63,9 @@ SectionGroup /e "Graphic enhancements"
 
         !insertmacro NSISUNZ_EXTRACT "DishonoredBorderless.zip" ".\" "AUTO_DELETE"
         AddSize 86
+
+        # Linux: make Wine load d3d9.dll (copied by MulderConfig) instead of its builtin one
+        !insertmacro WINE_DLL_OVERRIDE_APP "Dishonored.exe" "d3d9" "native,builtin"
     SectionEnd
 
     Section
@@ -144,6 +150,9 @@ SectionGroup /e "Graphic enhancements"
 
         !insertmacro NSISUNZ_EXTRACT "dishonoredfov10.zip" ".\" "AUTO_DELETE"
         AddSize 75
+
+        # Linux: make Wine load version.dll (copied by MulderConfig) instead of its builtin one
+        !insertmacro WINE_DLL_OVERRIDE_APP "Dishonored.exe" "version" "native,builtin"
     SectionEnd
 SectionGroupEnd
 
