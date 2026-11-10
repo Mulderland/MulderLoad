@@ -1,10 +1,10 @@
 ﻿!define MUI_WELCOMEPAGE_TEXT "\
 This is an Enhancement Pack for CONTROL Resonant, which includes some graphics enhancements and quality of life mods, while keeping a vanilla experience. It includes:$\r$\n\
 - Dynamic HUD (by SLEEP)$\r$\n\
-- Head Size Slider v0.5 (by alexanderhawkins)$\r$\n\
+- Head Size Slider v0.6 (by alexanderhawkins)$\r$\n\
 - NoIntro Fix v0.2 (by Gametism)$\r$\n\
 - PhotoMode (by kkyleeb21)$\r$\n\
-- Ultrawide Fix v1.3.0 (by SLEEP)$\r$\n\
+- Ultrawide Fix v1.4.1 (by SLEEP)$\r$\n\
 $\r$\n\
 ${TXT_WELCOMEPAGE_MULDERLAND_3}"
 
@@ -26,14 +26,14 @@ SectionGroup "Required dependencies"
         !insertmacro FORCE_RENAME "winmm.dll" "winmmHooked.dll"
     SectionEnd
 
-    Section "Mod Settings Menu v1.6.2 (by kkyleeb21)"
+    Section "Mod Settings Menu v1.7.2 (by kkyleeb21)"
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/controlresonant/mods/35?tab=files&file_id=311" \
-                                "ModMenu 1.6.2 35 1.6.2 2026-10-01T08-49Z ofuzpD6Vb.zip" \
-                                "b32e7df1dc06c3d5f74cd759bf6224f6511c838b"
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/controlresonant/mods/35?tab=files&file_id=551" \
+                                "ModMenu 1.7.2 35 1.7.2 2026-10-04T08-29Z pZRs05yxr.zip" \
+                                "36d052d999df3f6d99f9490c5090f82ca4f644fc7bc5c93e50be1b177424fa87"
 
-        !insertmacro NSISUNZ_EXTRACT "ModMenu 1.6.2 35 1.6.2 2026-10-01T08-49Z ofuzpD6Vb.zip" ".\" "AUTO_DELETE"
+        !insertmacro NSISUNZ_EXTRACT "ModMenu 1.7.2 35 1.7.2 2026-10-04T08-29Z pZRs05yxr.zip" ".\" "AUTO_DELETE"
         AddSize 903
     SectionEnd
 
@@ -55,34 +55,34 @@ SectionGroup /e "Graphics Enhancements"
     Section "Head Size Slider v0.6 (by alexanderhawkins)"
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/controlresonant/mods/47?tab=files&file_id=330" \
-                                "Head Size Slider V0.6 for update 1.4 47 0.6 2026-10-01T12-05Z yuomjSKAd.zip" \
-                                "879b9243c174ab12583bbd3fead7f410f31116b5"
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/controlresonant/mods/47?tab=files&file_id=463" \
+                                "Head Size Slider V0.6 for update 1.4.1 47 0.6 2026-10-02T20-39Z uKfjREn1j.zip" \
+                                "f828b73b9dbfcae98b4d051929d9cbcc348f08f2dd2e6d0009645b10f5fcf89e"
 
-        !insertmacro NSISUNZ_EXTRACT "Head Size Slider V0.6 for update 1.4 47 0.6 2026-10-01T12-05Z yuomjSKAd.zip" ".\" "AUTO_DELETE"
+        !insertmacro NSISUNZ_EXTRACT "Head Size Slider V0.6 for update 1.4.1 47 0.6 2026-10-02T20-39Z uKfjREn1j.zip" ".\" "AUTO_DELETE"
         AddSize 3063
     SectionEnd
 
-    Section /o "Ultrawide Fix v1.3.2 (by SLEEP)"
+    Section /o "Ultrawide Fix v1.4.1 (by SLEEP)"
         SetOutPath "$INSTDIR"
 
-        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/controlresonant/mods/11?tab=files&file_id=322" \
-                                "UltrawideFix - F2G DLL Mod Loader 11 1.3.2 2026-10-01T11-03Z Kn6R1ACvY.zip" \
-                                "1c543f5e354e640c2f5e77976aac1dfdac82f00f"
+        !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/controlresonant/mods/11?tab=files&file_id=958" \
+                                "UltrawideFix - F2G DLL Mod Loader 11 1.4.1 2026-10-23T01-42Z VJWqSZNGd.zip" \
+                                "457b46b2ff464adb6e3ad9fcd570424b8a1e50c01f5bc3d5d5e7815867c5a500"
 
-        !insertmacro NSISUNZ_EXTRACT "UltrawideFix - F2G DLL Mod Loader 11 1.3.2 2026-10-01T11-03Z Kn6R1ACvY.zip" ".\" "AUTO_DELETE"
+        !insertmacro NSISUNZ_EXTRACT "UltrawideFix - F2G DLL Mod Loader 11 1.4.1 2026-10-23T01-42Z VJWqSZNGd.zip" ".\" "AUTO_DELETE"
         AddSize 214
     SectionEnd
 SectionGroupEnd
 
-Section "Dynamic HUD v1.4.1 (by SLEEP)"
+Section "Dynamic HUD v1.11.3 (by SLEEP)"
     SetOutPath "$INSTDIR"
 
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/controlresonant/mods/28?tab=files&file_id=258" \
-                            "Dynamic HUD - F2G 28 1.4.1 2026-09-30T14-32Z SEDl9mA8n.zip" \
-                            "009027ae8c951988fcf00a0eee6603b2c0ee46c5"
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/controlresonant/mods/28?tab=files&file_id=960" \
+                            "Dynamic HUD - F2G 28 1.11.3 2026-10-23T01-45Z OPICYtUHD.zip" \
+                            "9e6a204d6a7b4e5f602c74616fc0038953f2511e3ce1ca9fe351a9e0b545a732"
 
-    !insertmacro NSISUNZ_EXTRACT "Dynamic HUD - F2G 28 1.4.1 2026-09-30T14-32Z SEDl9mA8n.zip" ".\" "AUTO_DELETE"
+    !insertmacro NSISUNZ_EXTRACT "Dynamic HUD - F2G 28 1.11.3 2026-10-23T01-45Z OPICYtUHD.zip" ".\" "AUTO_DELETE"
     AddSize 354
 SectionEnd
 
@@ -96,25 +96,25 @@ Section
     ${EndIf}
 SectionEnd
 
-Section /o "No-Intro v0.2 (by Gametism)"
+Section /o "No-Intro v0.4 (by Gametism)"
     SetOutPath "$INSTDIR\scripts"
 
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/controlresonant/mods/1?tab=files&file_id=26" \
-                            "CRNo-IntroFix-v.0.2 1 0.2 2026-09-25T13-11Z g4qMrXDls.zip" \
-                            "955dacee7c5476cb04c8b3bee8c6f7b2bb4424df"
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/controlresonant/mods/1?tab=files&file_id=569" \
+                            "CRNo-IntroFix-v.0.4 1 0.4 2026-10-04T13-23Z Lb8AWKtmY.zip" \
+                            "43aaef45d94b845d303382daf8fcda52b6b2cd130493c919254354e18f0dd0b3"
 
-    !insertmacro NSISUNZ_EXTRACT_ONE "CRNo-IntroFix-v.0.2 1 0.2 2026-09-25T13-11Z g4qMrXDls.zip" ".\" "ControlResonantNoIntro.asi" "AUTO_DELETE"
+    !insertmacro NSISUNZ_EXTRACT_ONE "CRNo-IntroFix-v.0.4 1 0.4 2026-10-04T13-23Z Lb8AWKtmY.zip" ".\" "ControlResonantNoIntro.asi" "AUTO_DELETE"
     AddSize 32
 SectionEnd
 
-Section "PhotoMode v2.3.3 (by kkyleeb21)"
+Section "PhotoMode v2.4.3 (by kkyleeb21)"
     SetOutPath "$INSTDIR"
 
-    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/controlresonant/mods/62?tab=files&file_id=320" \
-                            "PhotoMode 2.3.3 62 2.3.3 2026-10-01T10-58Z SEDl9mARq.zip" \
-                            "cc08c5dbc7556216e9da941ac2cc891f21c712a0"
+    !insertmacro DOWNLOAD_1 "https://www.nexusmods.com/controlresonant/mods/62?tab=files&file_id=773" \
+                            "PhotoMode 2.4.3 62 2.4.3 2026-10-11T03-29Z uKfjREnJG.zip" \
+                            "eab3f7e47c9f58f377023c54cbc7c21600a15b13861f197fc3b907249a5055de"
 
-    !insertmacro NSISUNZ_EXTRACT "PhotoMode 2.3.3 62 2.3.3 2026-10-01T10-58Z SEDl9mARq.zip" ".\" "AUTO_DELETE"
+    !insertmacro NSISUNZ_EXTRACT "PhotoMode 2.4.3 62 2.4.3 2026-10-11T03-29Z uKfjREnJG.zip" ".\" "AUTO_DELETE"
     AddSize 1430
 SectionEnd
 
