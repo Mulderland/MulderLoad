@@ -13,8 +13,11 @@ trim_trailing_whitespace = true
 [*.md]
 trim_trailing_whitespace = false
 
+[*.json]
+indent_size = 2
+
 # Resources directories: only enforce Windows line endings
-[games/*/resources/**]
+[games/**/resources/**]
 charset = unset
 end_of_line = crlf
 indent_size = unset

@@ -1,0 +1,14 @@
+mods = true
+
+[renderer]
+hq_assets = true
+quick_toggle = true
+video_cutouts = true
+
+[display]
+vsync = true
+hdpi_fix = true
+
+[logging]
+enabled = true
+debug = false

@@ -1,0 +1,417 @@
+{
+  "game": {
+    "title": "Grim Fandango Remastered",
+    "originalExe": "GrimFandango.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "GrimMod",
+      "type": "checkboxGroup",
+      "checkboxes": [{ "value": "Enabled" }]
+    },
+    {
+      "name": "Graphical enhancements",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        {
+          "value": "Forced VSync",
+          "disabledWhen": [{ "!GrimMod": "Enabled" }]
+        },
+        {
+          "value": "HQ Backgrounds",
+          "disabledWhen": [{ "!GrimMod": "Enabled" }]
+        }
+      ]
+    },
+    {
+      "name": "Unofficial translation",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "None" },
+        { "value": "Czech" },
+        { "value": "Romanian" },
+        { "value": "Russian" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [{ "value": "Skip intro logo" }]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [{ "!GrimMod": "Enabled" }],
+        "operation": "move",
+        "source": "glu32.dll",
+        "target": ".MulderConfig\\grimmod\\glu32.dll"
+      },
+      {
+        "when": [{ "GrimMod": "Enabled" }],
+        "operation": "move",
+        "source": ".MulderConfig\\grimmod\\glu32.dll",
+        "target": "glu32.dll"
+      },
+
+      {
+        "when": [{ "Graphical enhancements": "Forced VSync" }],
+        "operation": "replaceLine",
+        "files": ["grimmod.toml"],
+        "pattern": "^vsync.*$",
+        "replacement": "vsync = true"
+      },
+      {
+        "when": [{ "!Graphical enhancements": "Forced VSync" }],
+        "operation": "replaceLine",
+        "files": ["grimmod.toml"],
+        "pattern": "^vsync.*$",
+        "replacement": "vsync = false"
+      },
+
+      {
+        "when": [{ "Graphical enhancements": "HQ Backgrounds" }],
+        "operation": "replaceLine",
+        "files": ["grimmod.toml"],
+        "pattern": "^hq_assets.*$",
+        "replacement": "hq_assets = true"
+      },
+      {
+        "when": [{ "!Graphical enhancements": "HQ Backgrounds" }],
+        "operation": "replaceLine",
+        "files": ["grimmod.toml"],
+        "pattern": "^hq_assets.*$",
+        "replacement": "hq_assets = false"
+      },
+
+      {
+        "when": [{ "Unofficial translation": "None" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\grim.en.tab",
+        "target": "grim.en.tab"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\COMICSANS18.LAF.txt",
+        "target": "FontsHD\\COMICSANS18.LAF.txt"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\FiraSans-Regular_0.ttf",
+        "target": "FontsHD\\FiraSans-Regular_0.ttf"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\FUTURA40.LAF.txt",
+        "target": "FontsHD\\FUTURA40.LAF.txt"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\FuturaStd-Heavy.ttf",
+        "target": "FontsHD\\FuturaStd-Heavy.ttf"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\FuturaStd-Medium.ttf",
+        "target": "FontsHD\\FuturaStd-Medium.ttf"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\KINO14S.LAF.txt",
+        "target": "FontsHD\\KINO14S.LAF.txt"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\Koloss.ttf",
+        "target": "FontsHD\\Koloss.ttf"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\KOLOSS52.LAF.txt",
+        "target": "FontsHD\\KOLOSS52.LAF.txt"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\KOLOSS69.LAF.txt",
+        "target": "FontsHD\\KOLOSS69.LAF.txt"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\KOLOSS100.LAF.txt",
+        "target": "FontsHD\\KOLOSS100.LAF.txt"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\Meredith.ttf",
+        "target": "FontsHD\\Meredith.ttf"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\MEREDITH38.LAF.txt",
+        "target": "FontsHD\\MEREDITH38.LAF.txt"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\MEREDITH46.LAF.txt",
+        "target": "FontsHD\\MEREDITH46.LAF.txt"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\OCR10.LAF.txt",
+        "target": "FontsHD\\OCR10.LAF.txt"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\OCRA.ttf",
+        "target": "FontsHD\\OCRA.ttf"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\OCRB.ttf",
+        "target": "FontsHD\\OCRB.ttf"
+      },
+      {
+        "when": [],
+        "operation": "copy",
+        "source": ".MulderConfig\\Backup\\FontsHD\\TREB13BS.LAF.txt",
+        "target": "FontsHD\\TREB13BS.LAF.txt"
+      },
+
+      {
+        "when": [{ "Unofficial translation": "Czech" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.cz\\grim.en.tab",
+        "target": "grim.en.tab"
+      },
+      {
+        "when": [{ "Unofficial translation": "Czech" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.cz\\FontsHD\\COMICSANS18.LAF.txt",
+        "target": "FontsHD\\COMICSANS18.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Czech" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.cz\\FontsHD\\FUTURA40.LAF.txt",
+        "target": "FontsHD\\FUTURA40.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Czech" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.cz\\FontsHD\\FuturaStd-Heavy.ttf",
+        "target": "FontsHD\\FuturaStd-Heavy.ttf"
+      },
+      {
+        "when": [{ "Unofficial translation": "Czech" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.cz\\FontsHD\\FuturaStd-Heavy.txt",
+        "target": "FontsHD\\FuturaStd-Heavy.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Czech" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.cz\\FontsHD\\KINO14S.LAF.txt",
+        "target": "FontsHD\\KINO14S.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Czech" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.cz\\FontsHD\\Koloss.ttf",
+        "target": "FontsHD\\Koloss.ttf"
+      },
+      {
+        "when": [{ "Unofficial translation": "Czech" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.cz\\FontsHD\\KOLOSS52.LAF.txt",
+        "target": "FontsHD\\KOLOSS52.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Czech" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.cz\\FontsHD\\KOLOSS69.LAF.txt",
+        "target": "FontsHD\\KOLOSS69.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Czech" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.cz\\FontsHD\\KOLOSS100.LAF.txt",
+        "target": "FontsHD\\KOLOSS100.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Czech" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.cz\\FontsHD\\Meredith.ttf",
+        "target": "FontsHD\\Meredith.ttf"
+      },
+      {
+        "when": [{ "Unofficial translation": "Czech" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.cz\\FontsHD\\MEREDITH38.LAF.txt",
+        "target": "FontsHD\\MEREDITH38.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Czech" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.cz\\FontsHD\\MEREDITH46.LAF.txt",
+        "target": "FontsHD\\MEREDITH46.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Czech" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.cz\\FontsHD\\OCR10.LAF.txt",
+        "target": "FontsHD\\OCR10.LAF.txt"
+      },
+
+      {
+        "when": [{ "Unofficial translation": "Romanian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ro\\grim.en.tab",
+        "target": "grim.en.tab"
+      },
+
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\grim.en.tab",
+        "target": "grim.en.tab"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\COMICSANS18.LAF.txt",
+        "target": "FontsHD\\COMICSANS18.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\FiraSans-Regular_0-ENPY.ttf",
+        "target": "FontsHD\\FiraSans-Regular_0-ENPY.ttf"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\FUTURA40.LAF.txt",
+        "target": "FontsHD\\FUTURA40.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\FuturaStd-Heavy.ttf",
+        "target": "FontsHD\\FuturaStd-Heavy.ttf"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\FuturaStd-Heavy-ENPY.ttf",
+        "target": "FontsHD\\FuturaStd-Heavy-ENPY.ttf"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\FuturaStd-Medium-ENPY.ttf",
+        "target": "FontsHD\\FuturaStd-Medium-ENPY.ttf"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\KINO14S.LAF.txt",
+        "target": "FontsHD\\KINO14S.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\Koloss-ENPY.ttf",
+        "target": "FontsHD\\Koloss-ENPY.ttf"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\KOLOSS52.LAF.txt",
+        "target": "FontsHD\\KOLOSS52.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\KOLOSS69.LAF.txt",
+        "target": "FontsHD\\KOLOSS69.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\KOLOSS100.LAF.txt",
+        "target": "FontsHD\\KOLOSS100.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\Meredith-ENPY.ttf",
+        "target": "FontsHD\\Meredith-ENPY.ttf"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\MEREDITH38.LAF.txt",
+        "target": "FontsHD\\MEREDITH38.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\MEREDITH46.LAF.txt",
+        "target": "FontsHD\\MEREDITH46.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\OCR10.LAF.txt",
+        "target": "FontsHD\\OCR10.LAF.txt"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\OCRA-ENPY.ttf",
+        "target": "FontsHD\\OCRA-ENPY.ttf"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\OCRB-ENPY.ttf",
+        "target": "FontsHD\\OCRB-ENPY.ttf"
+      },
+      {
+        "when": [{ "Unofficial translation": "Russian" }],
+        "operation": "copy",
+        "source": ".MulderConfig\\translation.ru\\FontsHD\\TREB13BS.LAF.txt",
+        "target": "FontsHD\\TREB13BS.LAF.txt"
+      },
+
+      {
+        "when": [{ "Misc": "Skip intro logo" }],
+        "operation": "move",
+        "source": "MoviesHD\\logos.ogv",
+        "target": ".MulderConfig\\Backup\\MoviesHD\\logos.ogv"
+      },
+      {
+        "when": [{ "!Misc": "Skip intro logo" }],
+        "operation": "move",
+        "source": ".MulderConfig\\Backup\\MoviesHD\\logos.ogv",
+        "target": "MoviesHD\\logos.ogv"
+      }
+    ]
+  }
+}
