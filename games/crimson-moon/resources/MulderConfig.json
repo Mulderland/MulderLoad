@@ -1,0 +1,221 @@
+{
+  "game": {
+    "title": "Crimson Moon",
+    "originalExe": "CrimsonMoonNG.exe"
+  },
+  "optionGroups": [
+    {
+      "name": "Ultrawide Fix",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Disabled" },
+        { "value": "Enabled (21/9)" },
+        { "value": "Enabled (32/9)" }
+      ]
+    },
+    {
+      "name": "FOV Modifier",
+      "type": "radioGroup",
+      "radios": [
+        { "value": "Lowest (-20%)" },
+        { "value": "Lower (-10%)" },
+        { "value": "Default" },
+        { "value": "Higher (+10%)" },
+        { "value": "Highest (+20%)" }
+      ]
+    },
+    {
+      "name": "Misc",
+      "type": "checkboxGroup",
+      "checkboxes": [
+        { "value": "Skip intro logos" }
+      ]
+    }
+  ],
+  "actions": {
+    "operations": [
+      {
+        "when": [ { "*Ultrawide Fix": "Enabled" }, { "!FOV Modifier": "Default" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\UltimateASILoader\\dinput8.dll",
+        "target": "CrimsonMoonNG\\Binaries\\Win64\\version.dll"
+      },
+      {
+        "when": [ { "*Ultrawide Fix": "Enabled" }, { "!FOV Modifier": "Default" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\SUWSF\\SUWSF.asi",
+        "target": "CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.asi"
+      },
+      {
+        "when": [ { "*Ultrawide Fix": "Enabled" }, { "!FOV Modifier": "Default" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\SUWSF\\SUWSF.ini",
+        "target": "CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.ini"
+      },
+      {
+        "when": [ { "!*Ultrawide Fix": "Enabled", "FOV Modifier": "Default" } ],
+        "operation": "move",
+        "source": "CrimsonMoonNG\\Binaries\\Win64\\version.dll",
+        "target": ".MulderConfig\\UltimateASILoader\\dinput8.dll"
+      },
+      {
+        "when": [ { "!*Ultrawide Fix": "Enabled", "FOV Modifier": "Default" } ],
+        "operation": "move",
+        "source": "CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.asi",
+        "target": ".MulderConfig\\SUWSF\\SUWSF.asi"
+      },
+      {
+        "when": [ { "!*Ultrawide Fix": "Enabled", "FOV Modifier": "Default" } ],
+        "operation": "move",
+        "source": "CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.ini",
+        "target": ".MulderConfig\\SUWSF\\SUWSF.ini"
+      },
+
+
+
+      {
+        "when": [ { "Ultrawide Fix": "Disabled", "*FOV Modifier": "-20" } ],
+        "operation": "replaceLine",
+        "files": ["CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.ini"],
+        "pattern": "^Value=\"\\(pi/360\\).*$",
+        "replacement": "Value=\"(pi/360) * 0.8\""
+      },
+      {
+        "when": [ { "Ultrawide Fix": "Disabled", "*FOV Modifier": "-10" } ],
+        "operation": "replaceLine",
+        "files": ["CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.ini"],
+        "pattern": "^Value=\"\\(pi/360\\).*$",
+        "replacement": "Value=\"(pi/360) * 0.9\""
+      },
+      {
+        "when": [ { "Ultrawide Fix": "Disabled", "*FOV Modifier": "+10" } ],
+        "operation": "replaceLine",
+        "files": ["CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.ini"],
+        "pattern": "^Value=\"\\(pi/360\\).*$",
+        "replacement": "Value=\"(pi/360) * 1.1\""
+      },
+      {
+        "when": [ { "Ultrawide Fix": "Disabled", "*FOV Modifier": "+20" } ],
+        "operation": "replaceLine",
+        "files": ["CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.ini"],
+        "pattern": "^Value=\"\\(pi/360\\).*$",
+        "replacement": "Value=\"(pi/360) * 1.2\""
+      },
+
+
+
+      {
+        "when": [ { "Ultrawide Fix": "Enabled (21/9)", "FOV Modifier": "Default" } ],
+        "operation": "replaceLine",
+        "files": ["CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.ini"],
+        "pattern": "^Value=\"\\(pi/360\\).*$",
+        "replacement": "Value=\"(pi/360) * 1.19\""
+      },
+      {
+        "when": [ { "Ultrawide Fix": "Enabled (21/9)", "*FOV Modifier": "-20" } ],
+        "operation": "replaceLine",
+        "files": ["CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.ini"],
+        "pattern": "^Value=\"\\(pi/360\\).*$",
+        "replacement": "Value=\"(pi/360) * 0.952\""
+      },
+      {
+        "when": [ { "Ultrawide Fix": "Enabled (21/9)", "*FOV Modifier": "-10" } ],
+        "operation": "replaceLine",
+        "files": ["CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.ini"],
+        "pattern": "^Value=\"\\(pi/360\\).*$",
+        "replacement": "Value=\"(pi/360) * 1.071\""
+      },
+      {
+        "when": [ { "Ultrawide Fix": "Enabled (21/9)", "*FOV Modifier": "+10" } ],
+        "operation": "replaceLine",
+        "files": ["CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.ini"],
+        "pattern": "^Value=\"\\(pi/360\\).*$",
+        "replacement": "Value=\"(pi/360) * 1.309\""
+      },
+      {
+        "when": [ { "Ultrawide Fix": "Enabled (21/9)", "*FOV Modifier": "+20" } ],
+        "operation": "replaceLine",
+        "files": ["CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.ini"],
+        "pattern": "^Value=\"\\(pi/360\\).*$",
+        "replacement": "Value=\"(pi/360) * 1.428\""
+      },
+
+
+
+      {
+        "when": [ { "Ultrawide Fix": "Enabled (32/9)", "FOV Modifier": "Default" } ],
+        "operation": "replaceLine",
+        "files": ["CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.ini"],
+        "pattern": "^Value=\"\\(pi/360\\).*$",
+        "replacement": "Value=\"(pi/360) * 1.412\""
+      },
+      {
+        "when": [ { "Ultrawide Fix": "Enabled (32/9)", "*FOV Modifier": "-20" } ],
+        "operation": "replaceLine",
+        "files": ["CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.ini"],
+        "pattern": "^Value=\"\\(pi/360\\).*$",
+        "replacement": "Value=\"(pi/360) * 1.1296\""
+      },
+      {
+        "when": [ { "Ultrawide Fix": "Enabled (32/9)", "*FOV Modifier": "-10" } ],
+        "operation": "replaceLine",
+        "files": ["CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.ini"],
+        "pattern": "^Value=\"\\(pi/360\\).*$",
+        "replacement": "Value=\"(pi/360) * 1.2708\""
+      },
+      {
+        "when": [ { "Ultrawide Fix": "Enabled (32/9)", "*FOV Modifier": "+10" } ],
+        "operation": "replaceLine",
+        "files": ["CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.ini"],
+        "pattern": "^Value=\"\\(pi/360\\).*$",
+        "replacement": "Value=\"(pi/360) * 1.5532\""
+      },
+      {
+        "when": [ { "Ultrawide Fix": "Enabled (32/9)", "*FOV Modifier": "+20" } ],
+        "operation": "replaceLine",
+        "files": ["CrimsonMoonNG\\Binaries\\Win64\\scripts\\SUWSF.ini"],
+        "pattern": "^Value=\"\\(pi/360\\).*$",
+        "replacement": "Value=\"(pi/360) * 1.6944\""
+      },
+
+
+
+      {
+        "when": [ { "Misc": "Skip intro logos" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\NoIntro\\CrimsonMoonNG\\Content\\Paks\\~mods\\zzz_No-Intro_P.pak",
+        "target": "CrimsonMoonNG\\Content\\Paks\\~mods\\zzz_No-Intro_P.pak"
+      },
+      {
+        "when": [ { "Misc": "Skip intro logos" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\NoIntro\\CrimsonMoonNG\\Content\\Paks\\~mods\\zzz_No-Intro_P.ucas",
+        "target": "CrimsonMoonNG\\Content\\Paks\\~mods\\zzz_No-Intro_P.ucas"
+      },
+      {
+        "when": [ { "Misc": "Skip intro logos" } ],
+        "operation": "move",
+        "source": ".MulderConfig\\NoIntro\\CrimsonMoonNG\\Content\\Paks\\~mods\\zzz_No-Intro_P.utoc",
+        "target": "CrimsonMoonNG\\Content\\Paks\\~mods\\zzz_No-Intro_P.utoc"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro logos" } ],
+        "operation": "move",
+        "source": "CrimsonMoonNG\\Content\\Paks\\~mods\\zzz_No-Intro_P.pak",
+        "target": ".MulderConfig\\NoIntro\\CrimsonMoonNG\\Content\\Paks\\~mods\\zzz_No-Intro_P.pak"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro logos" } ],
+        "operation": "move",
+        "source": "CrimsonMoonNG\\Content\\Paks\\~mods\\zzz_No-Intro_P.ucas",
+        "target": ".MulderConfig\\NoIntro\\CrimsonMoonNG\\Content\\Paks\\~mods\\zzz_No-Intro_P.ucas"
+      },
+      {
+        "when": [ { "!Misc": "Skip intro logos" } ],
+        "operation": "move",
+        "source": "CrimsonMoonNG\\Content\\Paks\\~mods\\zzz_No-Intro_P.utoc",
+        "target": ".MulderConfig\\NoIntro\\CrimsonMoonNG\\Content\\Paks\\~mods\\zzz_No-Intro_P.utoc"
+      }
+    ]
+  }
+}
