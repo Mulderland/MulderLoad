@@ -61,6 +61,9 @@ SectionGroup "Bug fixes"
 
         WriteRegStr HKCU "Software\Classes\WOW6432Node\CLSID\{47D4D946-62E8-11CF-93BC-444553540000}\InprocServer32" "" "dsound.dll"
         WriteRegStr HKCU "Software\Classes\WOW6432Node\CLSID\{3901CC3F-84B5-4FA4-BA35-AA8172B8A09B}\InprocServer32" "" "dsound.dll"
+
+        # Linux: make Wine load DSOAL's dsound.dll instead of its builtin one
+        !insertmacro WINE_DLL_OVERRIDE_APP "maxpayne.exe" "dsound" "native,builtin"
     SectionEnd
 SectionGroupEnd
 
@@ -104,6 +107,9 @@ SectionGroup /e "Improvements"
                                 ""
 
         !insertmacro NSISUNZ_EXTRACT_ONE "d3d8-Win32.zip" ".\" "d3d8.dll" "AUTO_DELETE"
+
+        # Linux: make Wine load the ASI Loader instead of its builtin d3d8.dll
+        !insertmacro WINE_DLL_OVERRIDE_APP "maxpayne.exe" "d3d8" "native,builtin"
         AddSize 5271
 
         # Add configuration with D3D9 enabled by default

@@ -48,6 +48,9 @@ SectionGroup "Required dependencies"
         !insertmacro NSISUNZ_EXTRACT "Ultimate-ASI-Loader.zip" ".\" "AUTO_DELETE"
         !insertmacro FORCE_RENAME "dinput8.dll" "winmm.dll"
         AddSize 5292
+
+        # Linux: make Wine load the ASI Loader instead of its builtin winmm.dll
+        !insertmacro WINE_DLL_OVERRIDE_APP "CONTROLResonant.exe" "winmm" "native,builtin"
     SectionEnd
 SectionGroupEnd
 

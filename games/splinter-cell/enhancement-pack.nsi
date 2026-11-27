@@ -37,6 +37,9 @@ SectionGroup /e "Graphical improvements"
         !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "dgVoodoo.conf" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "dgVoodooCpl.exe" ""
         !insertmacro NSISUNZ_EXTRACT_ONE "dgVoodoo2.zip" ".\" "MS\x86\D3D8.dll" "AUTO_DELETE"
+
+        # Linux: make Wine load the ASI Loaders and dgVoodoo's d3d8.dll instead of its builtin ones
+        !insertmacro WINE_DLL_OVERRIDE_APP "splintercell.exe" "msacm32,msvfw32,d3d8" "native,builtin"
     SectionEnd
 
     Section /o "PS3 HD Textures"

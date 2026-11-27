@@ -57,6 +57,9 @@ SectionGroup "Bug fixes"
         # Make dsound.dll override works
         WriteRegStr HKCU "Software\Classes\WOW6432Node\CLSID\{47D4D946-62E8-11CF-93BC-444553540000}\InprocServer32" "" "dsound.dll"
         WriteRegStr HKCU "Software\Classes\WOW6432Node\CLSID\{3901CC3F-84B5-4FA4-BA35-AA8172B8A09B}\InprocServer32" "" "dsound.dll"
+
+        # Linux: make Wine load dsound.dll (DSOAL or IndirectSound, copied by MulderConfig) instead of its builtin one
+        !insertmacro WINE_DLL_OVERRIDE_APP "maxpayne2.exe" "dsound" "native,builtin"
     SectionEnd
 
     Section "Startup Hang Patch"
@@ -99,6 +102,9 @@ Section "DxWrapper + Widescreen Fix + Xbox Rain Droplets (by ThirteenAG)"
                             "133907ab4c93add5296a481ab892489807b0af76"
 
     !insertmacro NSISUNZ_EXTRACT "dxwrapper.zip"  ".\" "AUTO_DELETE"
+
+    # Linux: make Wine load DxWrapper's d3d8.dll instead of its builtin one
+    !insertmacro WINE_DLL_OVERRIDE_APP "maxpayne2.exe" "d3d8" "native,builtin"
     AddSize 8110
 
     !insertmacro FILE_STR_REPLACE "DisableLogging             = 0" "DisableLogging             = 1" 1 1 "$INSTDIR\dxwrapper.ini"

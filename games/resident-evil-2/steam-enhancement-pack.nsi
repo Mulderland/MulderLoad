@@ -24,6 +24,12 @@
 
 Var /GLOBAL REBIRTHDIR
 
+!ifdef GOG_ENHANCEMENT_PACK_NSI
+    !define REBIRTH_EXE "BH2Launcher.exe"
+!else
+    !define REBIRTH_EXE "bio2.exe"
+!endif
+
 Section
     !ifdef GOG_ENHANCEMENT_PACK_NSI
         StrCpy $REBIRTHDIR "$INSTDIR"
@@ -133,6 +139,9 @@ SectionGroup "Resident Evil 2 Classic REbirth"
         !insertmacro NSIS7Z_EXTRACT "re2cr-2024-09-01.7z" ".\" "AUTO_DELETE"
         AddSize 3364
 
+        # Linux: make Wine load Classic REbirth's ddraw.dll instead of its builtin one
+        !insertmacro WINE_DLL_OVERRIDE_APP "${REBIRTH_EXE}" "ddraw" "native,builtin"
+
         # Copy default config.ini (without that, DATA1, DATA2 and DriverMode will have incorrect values)
         File "resources\config.ini"
 
@@ -222,6 +231,9 @@ SectionGroup "Graphical improvements"
 
         !insertmacro NSISUNZ_EXTRACT_ONE "dsound-Win32.zip" ".\" "dsound.dll" "AUTO_DELETE"
         AddSize 5264
+
+        # Linux: make Wine load the ASI Loader instead of its builtin dsound.dll
+        !insertmacro WINE_DLL_OVERRIDE_APP "${REBIRTH_EXE}" "dsound" "native,builtin"
     SectionEnd
 
     Section "Seamless HD Project v2.0 p2 (by RESHDP)" gfx2

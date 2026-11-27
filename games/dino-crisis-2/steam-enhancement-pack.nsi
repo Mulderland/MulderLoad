@@ -90,6 +90,9 @@ SectionGroup /e "Dino Crisis 2 Classic REbirth"
 
         !insertmacro NSIS7Z_EXTRACT "dc2cr-2024-05-05.7z" ".\" "AUTO_DELETE"
 
+        # Linux: make Wine load Classic REbirth's ddraw.dll instead of its builtin one
+        !insertmacro WINE_DLL_OVERRIDE_APP "Dino2.exe" "ddraw" "native,builtin"
+
         #
         Delete "dinput.dll"
 
@@ -143,6 +146,9 @@ Section "High Quality Textures (Rex-HD Project Preview)" rexhd
     !else ; If Steam
         !insertmacro NSISUNZ_EXTRACT "$INSTDIR\DC2_RexHD_Preview1.zip" "$INSTDIR\english" "AUTO_DELETE"
     !endif
+
+    # Linux: make Wine load Rex-HD's dinput.dll instead of its builtin one
+    !insertmacro WINE_DLL_OVERRIDE_APP "Dino2.exe" "dinput" "native,builtin"
 SectionEnd
 
 !ifndef GOG_ENHANCEMENT_PACK_NSI ; If Steam
