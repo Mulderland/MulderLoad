@@ -114,4 +114,27 @@
     !macroend
 !endif
 
+!ifmacrondef STEAM_SOURCEMOD_PRE_INSTALL
+    !macro STEAM_SOURCEMOD_PRE_INSTALL SDK_FOLDER MOD_FOLDER
+        sdk_search:
+        !insertmacro FIND_STEAM_GAME_PATH "${SDK_FOLDER}" $R0
+        ${If} $R0 == ""
+            MessageBox MB_ABORTRETRYIGNORE "Cannot find $\"${SDK_FOLDER}$\".$\r$\nMake sure you have it installed on Steam, or this game will not work." IDIGNORE sdk_ignore IDRETRY sdk_search
+            Quit
+        ${EndIf}
+        sdk_ignore:
+
+        !insertmacro FIND_STEAM_MODS_PATH $R0
+        ${If} $R0 == ""
+            MessageBox MB_ICONEXCLAMATION "Cannot find the Steam $\"sourcemods$\" folder.$\r$\n$\r$\nPlease make sure Steam is installed and that a valid Steam installation containing $\"sourcemods$\" can be found."
+            Quit
+        ${EndIf}
+
+        !insertmacro CREATE_JUNCTION "$R0\${MOD_FOLDER}" "$INSTDIR" $R0
+        ${If} $R0 == 0
+            Abort
+        ${EndIf}
+    !macroend
+!endif
+
 !endif ; __COMMONMACROS_NSH__
